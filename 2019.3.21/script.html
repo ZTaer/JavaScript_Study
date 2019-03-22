@@ -1,0 +1,23 @@
+<!doctype html>
+
+<html>
+    <head>
+        <title> script脚本测试 </title>
+        <script defer="defer" type="text/javascript" src="test.js" ></script> <!-- 外部引入式写法 --> 
+        <!-- 
+            关于script属性:
+                defer="defer": 等加载完毕html文档在解析js脚本( 外部引用有效 )
+                async="async": 异步解析js脚本,并加载html页面( 外部引用有效,有此属性不要修改DOM )
+                type="text/javascript": 约定必备
+                src="js路径": 引入外部js脚本,可本地,可远程( 有src属性时,内部嵌入内容会忽略,只执行外部引入内容 )
+        
+        -->
+        <script type="text/javascript" > // 内部写入方式
+            alert("233");
+        </script>
+
+    </head>
+    <body>
+        <p>test</p>
+    </body>
+</html>
