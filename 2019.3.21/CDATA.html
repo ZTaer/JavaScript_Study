@@ -1,0 +1,28 @@
+<!doctype html>
+
+<html>
+    <head>
+        <title> script脚本测试 </title>
+
+        <!-- <![CDATA[ 代码内容 ]]> 防止"<"和"&"在XML解释器,内入式js代码出现错误 -->
+        <!-- 如果浏览器不支持<![CDATA[  ]]>,则注释掉如下( 即可支持所有浏览器 ): -->
+        <script type="text/javascript" >
+        //<![CDATA[
+            function abs(a,b){
+                if(a < b){
+                    alert("hello");
+                }
+                else{
+                    alert("NONO");
+                }
+            }
+            abs(1,2);
+        
+        //]]>
+        </script>
+
+    </head>
+    <body>
+        <P>test</p>
+    </body>
+</html>

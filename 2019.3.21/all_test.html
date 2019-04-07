@@ -1,0 +1,47 @@
+<!doctype html>
+
+<html>
+    <head>
+        <title> script脚本测试 </title>
+        
+		<script type="text/javascript" > // 内部写入方式
+			
+			// 关于js的严格模式  
+			function  test0(){
+				"use strict" // 严格模式,尊循ES3
+				var massage; // 可以赋给任何类型数据
+				alert(massage);
+			}
+
+
+			// 全局变量与局部变量
+			var mas0; // 全局变量
+			function test(){ // function定义函数
+				var mas1=101,mas2="hello"; // 局部变量
+				mas3 = 100; // 全局变量
+			}
+			test(); // 函数调用
+
+
+			// typeof操作符( 非函数 ),可以判断数据类型
+				/*
+				*	undefined: 未定义值,变量为赋值
+				*	boolean: 布尔值
+				*	string: 字符串类型
+				*	number: 阿拉伯数字
+				*	object: 对象或null
+				*	function: 函数类型
+				*/
+			var a = "he",b;
+			alert(typeof a); // typeof是操作符,非函数,所以不加括号也可以
+			alert(typeof(a)); // 当然加括号也可以
+			alert( typeof null ); // object类型( Safari 5/Chrome7 之前浏览器会返回function,其它浏览器返回object )
+			alert( typeof b ); // undefined类型
+
+        </script>
+
+    </head>
+    <body>
+        <p>test</p>
+    </body>
+</html>
