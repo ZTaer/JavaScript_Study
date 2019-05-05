@@ -1,0 +1,14 @@
+IE trident踹den特
+firefox gecko该扣
+safari chrome webkit      
+opera  presto     普瑞斯特额   公认渲染速度最快
+google和opera开发了 Blink 
+
+
+
+*Trident:IE、Maxthon(遨游)、腾讯 、Theworld世界之窗、360浏览器  代表作品IE,因为IE捆绑在Windows中，所以占有极高的市场份额，又称IE内核或是MSHTML，此内核只能应用于windows
+平台，且是不开源的。 
+*Gecko：代表作品Mozilla Firefox 是开源的,它的最大优势是跨平台，能在Microsoft Windows、Linux和MacOS X等主要操作系统上运行。 
+*Webkit :代表作品Safari、Chrome ， 是一个开源项目。 
+*Presto :代表作品Opera ，Presto是由Opera Software开发的浏览器排版引擎。它也是世界上公认的渲染速度最快的引擎。 
+*Blink ：由Google和Opera Software开发的浏览器排版引擎，2013年4月发布
