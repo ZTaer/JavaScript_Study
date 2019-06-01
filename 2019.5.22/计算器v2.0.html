@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	
+	 <script type="text/javascript">
+	 
+        function js(){
+		
+            var num1 = +document.getElementById("num1").value; // 加号有个特性，可以转换字符串为实数类型
+            var num2 = +document.getElementById("num2").value;
+			
+            var fh = document.getElementById("fh").value;
+            var result = document.getElementById("jg").value;
+
+                if( !isNaN(num1) && !isNaN(num2)){
+                    if( fh == "+"){
+							result =num1+num2;
+						}
+					else if( fh == "-" ){
+						result = num1-num2;
+					}
+					else if( fh == "*" ){
+						result = num1*num2;
+					}
+					else if( fh == "/" ){
+						result = num1/num2;
+					}
+
+                }
+				document.getElementById("jg").value=result; // 这样才能真正的改变value值
+        }
+    </script>
+	
+</head>
+<body>
+    数据一：<input type="text" value="" width="100px" id="num1"><br>
+    数据二：<input type="text" value="" width="100px" id="num2"><br>
+    符 号： <select id="fh">
+        <option value="+">加号</option>
+        <option value="-">减号</option>
+        <option value="*">乘号</option>
+        <option value="/">除号</option>
+    </select><br>
+
+    运算结果：<input type="text" value="0" width="100px" id="jg"><br>
+            <input type="button" value="计算" onclick="js()">
+    
+    
+</body>
+</html>
