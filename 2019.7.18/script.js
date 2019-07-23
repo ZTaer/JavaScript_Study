@@ -5,14 +5,13 @@
 //		条件 ? 真,执行此语句 : 假,执行此语句;
 
 var drinks;
-var age = prompt(" 你的年龄? ");
+// var age = prompt(" 你的年龄? ");
 age >= 18 ? drinks = "wine" : drinks  = "joice";
 console.log( "ZTaer drinks " + drinks + "!" );
 
 /** switch **/
 // 适用于,避免使用多个if else,使程序简洁性
 // js的switch很自由,case的条件按照if的判断条件来就好
-
 var man;
 switch( true ){
 	case age < 18 && age >= 16:
@@ -30,3 +29,6 @@ switch( true ){
 		break;
 }
 console.log( "ZTaer 已经是 " + man + "!" );
+
+
+/**  **/
