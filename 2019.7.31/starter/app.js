@@ -77,28 +77,141 @@ document.querySelector(' #score-0 '); //  以CSS选择器选中即可
      document.getElementById('test');
 */
 
+/**************** es5-.classList标签多类名操控，删除，添加，切换HTML标签类名 
+     // 删除指定类名,多个类名用逗号隔开
+     document.querySelector('.player-0-panel').classList.remove('active','test','test1');
+
+     // 添加类名,多个类名同样用逗号隔开
+     document.querySelector( '.player-0-panel' ).classList.add('active','name');
+
+     // 切换类名，所为切换: 标签含有类名时删除,无类名时添加
+     document.querySelector('.player-0-panel').classList.toggle('active');
+*/
 
 
 // 玩家得分，临时得分，玩家选择，骰子
 var scores, roundScore, activePlayer, dice;
+var gameing; 
 
-scores = [0,0];
-roundScore = 0;
-activePlayer = 0;
+// 初始化函数init()
+function init(){
+    scores = [0,0];
+    roundScore = 0;
+    activePlayer = 0;
+    gameing = true; // 控制游戏开始结束，以限制游戏中按钮操作，及游戏进度    
 
-// 初始化游戏界面
-// dice = Math.floor( Math.random() * 6 + 1 ); // 随机数 
-document.querySelector('.dice').style.display = 'none'; // 取消dice显示
+    // 初始化游戏界面
+    // dice = Math.floor( Math.random() * 6 + 1 ); // 随机数 
+    document.querySelector('.dice').style.display = 'none'; // 取消dice显示
 
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
+    document.getElementById('score-0').textContent = '0';
+    document.getElementById('score-1').textContent = '0';
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
 
-// 单击按钮骰子进行变化
+    //  还原一切
+    document.querySelector('#name-0').textContent = 'Player 1';
+    document.querySelector('#name-1').textContent = 'Player 2';
+
+    document.querySelector('.player-0-panel' ).classList.remove('winner'); 
+    document.querySelector('.player-1-panel' ).classList.remove('winner'); 
+
+    document.querySelector('.player-0-panel').classList.remove('active');
+    document.querySelector('.player-1-panel').classList.remove('active');
+    
+    document.querySelector('.dice').style.display = 'none'; // 取消dice显示
+
+
+}
+
+init();
+
+// 切换玩家
+function next_player(){
+    activePlayer == 0 ? activePlayer = 1 : activePlayer = 0;
+    document.querySelector('.player-0-panel').classList.toggle('active'); //  切换类名
+    document.querySelector('.player-1-panel').classList.toggle('active');
+
+    // 数值初始化
+    document.querySelector('#current-0').textContent = '0';
+    document.querySelector('#current-1').textContent = '0';
+    document.querySelector('.dice').style.display = 'none'; // 取消dice显示
+    roundScore = 0;
+}
+
+// 单击"Roll Dice"按钮骰子进行变化
 document.querySelector('.btn-roll').addEventListener('click',function(){
-    var dice = Math.floor( Math.random() * 6 + 1 ); // 因为每单击一次都需更新下随机数，故放函数内 
-    var diceDom = document.querySelector('.dice'); // 抓取图片标签
-    diceDom.style.display = 'block';
-    diceDom.src = 'dice-' + dice + '.png'; //  更改src属性
+
+    if( gameing ){
+        var dice = Math.floor( Math.random() * 6 + 1 ); // 因为每单击一次都需更新下随机数，故放函数内 
+        var diceDom = document.querySelector('.dice'); // 抓取图片标签
+        diceDom.style.display = 'block';
+        diceDom.src = 'dice-' + dice + '.png'; //  更改src属性
+
+        // 逻辑分析
+            // 当晒子不等1时
+                // 骰子的分数，积累为临时分数，并显示出当前玩家
+            // 当晒子等于1时
+                // 切换玩家
+                    // 如果玩家1则切换为玩家2，与其相反即可
+                    // css样式跟着变化
+                // 初始化
+                    // 双方临时分数
+                    // 骰子取消显示
+                    // 临时分数
+        if( dice !== 1 ){
+            roundScore += dice;
+            document.querySelector('#current-' + activePlayer ).textContent = roundScore;
+        }
+        else{
+            // 切换玩家
+            next_player();
+        }
+
+    }
+
+
+
 });
+
+// 单击"Hold"按钮
+document.querySelector('.btn-hold').addEventListener('click',function(){
+   // 逻辑分析:
+        // 保存，临时分数，到对应玩家分数，显示到前端
+        // 检测是否达到100分赢得比赛
+            // 是:
+                // 更换标语为Winner，且引用css样式加红标语
+                // 取消active
+                // 隐藏筛子 
+                // 禁用rooll/HOLD按钮disabled = "disabled"( 初始化游戏时别忘记解封 disabled = "false"  )
+            // 否: 
+                // 切换玩家
+    
+    if(gameing){
+        scores[ activePlayer ] += roundScore;
+        document.getElementById('score-' + activePlayer ).textContent = scores[activePlayer] ;
+        
+        if( scores[activePlayer] >= 10 ){
+
+            // 更换标语为Winner，且引用css样式加红标语
+            gameing = false; // 标记游戏结束,只有btn-new按钮可用
+            document.querySelector('#name-' + activePlayer ).textContent = 'Winner!';
+            document.querySelector('.player-' + activePlayer + '-panel' ).classList.add('winner'); // 增加类
+
+            document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+            document.querySelector('.dice').style.display = 'none'; // 取消dice显示
+
+        }
+        else{
+            // 切换玩家
+            next_player();
+        }
+
+    }
+    
+
+});
+
+
+// 重新开始游戏
+document.querySelector('.btn-new').addEventListener('click',init);
