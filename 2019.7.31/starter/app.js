@@ -89,6 +89,12 @@ document.querySelector(' #score-0 '); //  以CSS选择器选中即可
 */
 
 
+/*************** v2.0 */
+    // 功能1: 当骰子连续为2个6时清空临时分数，并切换下一个玩家
+    // 功能2: 玩家自定义胜利分数
+    // 功能3: 增加一个骰子，只要有一个骰子为1则清空临时分数，并切换下一个玩家
+
+
 // 玩家得分，临时得分，玩家选择，骰子
 var scores, roundScore, activePlayer, dice;
 var gameing; 
@@ -101,7 +107,7 @@ function init(){
     gameing = true; // 控制游戏开始结束，以限制游戏中按钮操作，及游戏进度    
 
     // 初始化游戏界面
-    // dice = Math.floor( Math.random() * 6 + 1 ); // 随机数 
+    dice = Math.floor( Math.random() * 6 + 1 ); // 随机数 
     document.querySelector('.dice').style.display = 'none'; // 取消dice显示
 
     document.getElementById('score-0').textContent = '0';
@@ -128,6 +134,7 @@ init();
 
 // 切换玩家
 function next_player(){
+
     activePlayer == 0 ? activePlayer = 1 : activePlayer = 0;
     document.querySelector('.player-0-panel').classList.toggle('active'); //  切换类名
     document.querySelector('.player-1-panel').classList.toggle('active');
@@ -143,12 +150,17 @@ function next_player(){
 document.querySelector('.btn-roll').addEventListener('click',function(){
 
     if( gameing ){
-        var dice = Math.floor( Math.random() * 6 + 1 ); // 因为每单击一次都需更新下随机数，故放函数内 
+
+        var dice = Math.floor( Math.random() * 6 + 1 ); // 确保每一次单击骰子就将刷新 
         var diceDom = document.querySelector('.dice'); // 抓取图片标签
         diceDom.style.display = 'block';
         diceDom.src = 'dice-' + dice + '.png'; //  更改src属性
 
+        document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+        document.querySelector('.player-' + activePlayer + '-panel').classList.add('active');
+
         // 逻辑分析
+            // 选中当前玩家
             // 当晒子不等1时
                 // 骰子的分数，积累为临时分数，并显示出当前玩家
             // 当晒子等于1时
@@ -159,6 +171,8 @@ document.querySelector('.btn-roll').addEventListener('click',function(){
                     // 双方临时分数
                     // 骰子取消显示
                     // 临时分数
+        
+        console.log(dice);
         if( dice !== 1 ){
             roundScore += dice;
             document.querySelector('#current-' + activePlayer ).textContent = roundScore;
@@ -169,8 +183,6 @@ document.querySelector('.btn-roll').addEventListener('click',function(){
         }
 
     }
-
-
 
 });
 
@@ -191,7 +203,7 @@ document.querySelector('.btn-hold').addEventListener('click',function(){
         scores[ activePlayer ] += roundScore;
         document.getElementById('score-' + activePlayer ).textContent = scores[activePlayer] ;
         
-        if( scores[activePlayer] >= 10 ){
+        if( scores[activePlayer] >= 100 ){
 
             // 更换标语为Winner，且引用css样式加红标语
             gameing = false; // 标记游戏结束,只有btn-new按钮可用
