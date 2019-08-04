@@ -141,7 +141,7 @@ i {
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 
-.dice {
+.dice,.dice_2 {
     position: absolute;
     left: 50%;
     top: 178px;
@@ -152,3 +152,41 @@ i {
 
 .winner { background-color: #f7f7f7; }
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
+
+/***** 输入 **/
+.setting{
+    width:300px;
+    margin:0px auto;
+    position: relative;
+    top:50px;
+}
+
+.setting input{
+    width:100%;
+    display: block;
+    height:35px;
+    margin:10px auto;
+    background: transparent;
+    outline: none;
+    border: 0;
+    border-bottom: 1px solid #f8f8f8;
+    text-align: center;
+    color: #EB4D4D;
+    font-size: 17px;
+}
+
+.winner_setting{
+    color:#f8f8f8;
+    border:1px solid #f8f8f8;
+    padding:5px 3px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.winner_setting:hover {
+
+    font-size: 16px;
+    background: #f8f8f8;
+    color:#333;
+    font-weight: normal;
+}

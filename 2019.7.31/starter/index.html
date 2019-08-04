@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
     <head>
         <meta charset="UTF-8">
         <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">
@@ -32,10 +32,19 @@
             <button class="btn-new"><i class="ion-ios-plus-outline"></i>New game</button>
             <button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>
             <button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>
-            
-            <img src="dice-5.png" alt="Dice" class="dice">
+
+            <img src="dice-5.png" alt="Dice" class="dice" style="top:250px;" >
+            <img src="dice-4.png" alt="Dice" class="dice_2" style="top:120px;" >
+        </div>
+
+        <div class="setting" >
+            <input type="text" id="winner_scores" required='required' placeholder="请设定胜利分数 - 默认为100分" >
+            <button class="winner_setting">
+                提交
+            </button>
         </div>
         
-        <script src="app.js"></script>
+        
+        <script src="appv2.js"></script>
     </body>
 </html>
