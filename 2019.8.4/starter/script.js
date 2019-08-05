@@ -108,7 +108,7 @@ console.info(sss);
 
 */
 
-/********** 关于js的赋值 */
+/********** 关于js的赋值 
 // 0. 普通变量间的赋值
     // a) 不同与C，在JS中普通变量间的赋值是真正的赋值
     // b) 指定的不是内存的同一个位置，但内容相同
@@ -127,3 +127,16 @@ var test2 = test1;
 test1.a = '233';
 
 console.log( test1.a,test2.a ); // 233,233
+*/
+
+function a(x){
+    console.log(x);
+}
+
+
+var b = {
+}
+b.prototype.c = a;
+b.cale = prototype.c;
+
+b.cale('sss');
