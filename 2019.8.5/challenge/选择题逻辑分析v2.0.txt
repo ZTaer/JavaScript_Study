@@ -1,0 +1,46 @@
+    无限循环随机答题逻辑分析:
+        // 0. 创建题目模板，使用函数蓝图模板的方式
+            function Questions( q,c,a ){
+                this.title = q;  // 问题
+                this.choose = c; // 选项,接受一个数组
+                this.answer = a; // 答案
+            }
+        // 1. 创建题目列表,使用IIFF添加题目
+            // var qlist = [
+                new Questions( 'xxxxx?','[ 1,2,3 ]','2' ),
+                new Questions( 'yyyyy?','[ a,b,c ]','c' )
+            ]
+        
+        //  2. 调用题目的验证逻辑( return IIFF函数来执行下方内容 -  利用的闭包特性 )
+            总分 winner = 0
+            循环:
+                用IIFF( 保证安全 )
+                a) 随机索引一个题目( var 局部变量来搞定 )
+                b) 显示题目到控制台,以及选项( 选项的输出，可用一函数来搞定，保持代码的清洁,尽量是逻辑语言 )
+                c) 弹出可输入窗口
+                d) 验证用户输入的答案是否在数组中
+                    0. 如果为exit则: 
+                        进行下个循环
+                    1. 如果为其它: 
+                        用qlist[随机题][1].indexOf('用户答案')
+                        进行下个循环
+                e) 是: 加一分,并打印到控制台信息
+                   否: 不加分,并打印到控制台信息
+        // 3. 总体来说1,2使用的IIFF利用闭包特性:
+            // 正常函数利用闭包特性
+            function abs(b){
+                var b;
+                return function(){
+                    console.log(b);
+                }
+            }
+            abs(3)();
+
+            // IIFF利用闭包特性
+            ( function(){
+                var s = 1;
+                return (  function()
+                    { 
+                        console.log( s );
+                    } ) ();
+            } )()
