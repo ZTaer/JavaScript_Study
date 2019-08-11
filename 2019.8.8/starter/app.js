@@ -23,19 +23,68 @@ var dataModule = ( function(){
     var data = {
 
         allItems:{
-            exp: [],
-            icn: []
-        }
+            inc: [],
+            exp: []
+        },
 
         totals: {
-            exp:0,
-            icn:0
+            inc:0,
+            exp:0
         }
 
     }
 
+
     return{
 
+        // 添加预算API
+        addItems: function( type,doc,value ){
+            var ID,long,newsItems;
+            
+            // 生成ID，以长度单位为ID( 0~x )
+            if ( data.allItems[type].length == 0 ){
+                ID = 0;
+            }
+            else{
+                long = data.allItems[type].length; // 已存储数据数
+                ID = data.allItems[type][ long - 1 ].id + 1; 
+            }
+
+            // 用户数据整理为对象,并加入相应分类中
+            if(type == 'exp'){
+                newsItems = new Expense(ID,doc,value);
+            }
+            else if( type = 'inc' ){
+                newsItems = new Income(ID,doc,value);
+            }
+            data.allItems[type].push( newsItems );
+
+            return newsItems;
+            
+        },
+
+        // 显示当前存储的预算API
+        printItems:function(){
+            console.log(data);
+        },
+
+        // 总计API
+        totalItems: function(){
+            var totalList = function( list ){
+                var result = 0;
+                for ( var i=0; i<list.length; i++ ){
+                    result += parseFloat(list[i].value);
+                }
+                return result;
+            }
+            // 计算总收入/支出
+            data.totals.inc = totalList( data.allItems.inc );
+            data.totals.exp = totalList( data.allItems.exp );
+            // 开放总收入/支出
+            return [data.totals.inc, data.totals.exp];
+
+        }
+        
     }
 
 } )()
@@ -50,7 +99,10 @@ var uiModule = ( function(){
         addType:'.add__type',
         addDescroption:'.add__description',
         addValue: '.add__value',
-        addBtn: '.add__btn'
+        addBtn: '.add__btn',
+        chooseIncomeList: '.income__list',
+        chooseExpensesList: '.expenses__list'
+
     };
 
     return{
@@ -65,7 +117,32 @@ var uiModule = ( function(){
                 iDoc: document.querySelector( DOM_strings.addDescroption ).value,
                 iValue: document.querySelector( DOM_strings.addValue ).value
             }
-        }
+        },
+
+        add_ui_items: function( itype,obj,totalsInc ){
+            // 创建预算HTML模板
+            var html,choose;
+            // 引用HTML给变量时，不能有空格间隙,并要以字符串的形式引用( 笔记未完成 )
+            if( itype == 'inc' ){
+                choose = DOM_strings.chooseIncomeList;
+                html = '<div class="item clearfix" id="income-%id%"><div class="item__description">%doc%</div><div class="right clearfix"><div class="item__value">+ %value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+            }
+            else if( itype == 'exp' ){
+                choose = DOM_strings.chooseExpensesList;
+                html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%doc%</div><div class="right clearfix"><div class="item__value">- %value%</div><div class="item__percentage">%pic%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+            }
+
+            // 更换HTML中内容( 笔记未完成 )
+            newsHtml = html.replace('%id%',obj.id);
+            newsHtml = newsHtml.replace('%doc%',obj.doc);
+            newsHtml = newsHtml.replace('%value%',obj.value);
+            newsHtml = newsHtml.replace('%pic%', ( parseInt((obj.value/totalsInc)*(10**2)) + '%') ); // 计算支出所占百分比
+
+            // 插入HTML到前端( 笔记未完成 )
+            document.querySelector(choose).insertAdjacentHTML('beforeend',newsHtml);
+
+
+        }        
 
     }
 
@@ -82,12 +159,17 @@ var controlModule = ( function( data,ui ){
 
     // 添加预算
     var control_add_items = function(){
+
+        var input,addItems,totalItems,printItems;
         // 思路:
             // 0. 获取输入信息
-            var input = ui.pubGetInput(); // 直接调用ui的接口也是保持及时性
-            console.log(input);
+            input = ui.pubGetInput(); // 直接调用ui的接口也是保持及时性
             // 1. 添加预算到对应栏目
+            addItems = data.addItems( input.iType, input.iDoc, input.iValue );
+            totalItems = data.totalItems();
+            printItems  = data.printItems();
             // 2. 显示到UI
+            add_ui_items = ui.add_ui_items( input.iType,addItems,totalItems[0] ); // 符号类型，新添加的obj,总计收入
             // 3. 计算预算
             // 4. 显示计算结果到UI
     };
