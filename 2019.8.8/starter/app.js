@@ -19,6 +19,27 @@ var dataModule = ( function(){
         this.value = value; 
     };
 
+    // 计算总数
+    var totalList = function( list ){
+        var result = 0;
+        for ( var i=0; i<list.length; i++ ){
+            result += parseFloat(list[i].value);
+        }
+        return result;
+    }
+
+    // 计算百分比
+    var calcPercentage = function( top,bottom ){
+        var result;
+        if( bottom !== 0 ){
+           result = Math.round( (top/bottom)*(10**2) );
+        }
+        else{
+            result = -1;
+        }
+        return result;
+    }
+
     // 非常非常结构化的数据存储模式
     var data = {
 
@@ -30,7 +51,10 @@ var dataModule = ( function(){
         totals: {
             inc:0,
             exp:0
-        }
+        },
+
+        balance: 0,
+        percentage: -1
 
     }
 
@@ -68,21 +92,33 @@ var dataModule = ( function(){
             console.log(data);
         },
 
-        // 总计API
-        totalItems: function(){
-            var totalList = function( list ){
-                var result = 0;
-                for ( var i=0; i<list.length; i++ ){
-                    result += parseFloat(list[i].value);
-                }
-                return result;
-            }
-            // 计算总收入/支出
+        // 计算百分比API
+        calcPercentage:function( top,bottom ){
+            return calcPercentage(top,bottom);
+        },
+
+        // 计算预算
+        calcBudget: function(){
+            // 计算收入/支出总和
             data.totals.inc = totalList( data.allItems.inc );
             data.totals.exp = totalList( data.allItems.exp );
-            // 开放总收入/支出
-            return [data.totals.inc, data.totals.exp];
 
+            // 计算余额
+            data.balance = data.totals.inc - data.totals.exp;
+
+            // 计算收入百分比
+            data.percentage = calcPercentage( data.totals.exp,data.totals.inc );
+
+        },
+
+        // 返回计算预算结果API
+        calcBudgetResult: function(){
+            return {
+                totalInc: data.totals.inc,
+                totalExp: data.totals.exp,
+                balance: data.balance,
+                per: data.percentage
+            }
         }
         
     }
@@ -101,8 +137,11 @@ var uiModule = ( function(){
         addValue: '.add__value',
         addBtn: '.add__btn',
         chooseIncomeList: '.income__list',
-        chooseExpensesList: '.expenses__list'
-
+        chooseExpensesList: '.expenses__list',
+        budGetValue: '.budget__value',
+        budGetIncomeValue: '.budget__income--value',
+        budGetExpensesValue: '.budget__expenses--value',
+        budGetExpensesPercentage: '.budget__expenses--percentage'
     };
 
     return{
@@ -119,10 +158,10 @@ var uiModule = ( function(){
             }
         },
 
-        add_ui_items: function( itype,obj,totalsInc ){
+        add_ui_items: function( itype,obj ){
             // 创建预算HTML模板
             var html,choose;
-            // 引用HTML给变量时，不能有空格间隙,并要以字符串的形式引用( 笔记未完成 )
+            // 引用HTML给变量时，不能有空格间隙,并要以字符串的形式引用( 完成 )
             if( itype == 'inc' ){
                 choose = DOM_strings.chooseIncomeList;
                 html = '<div class="item clearfix" id="income-%id%"><div class="item__description">%doc%</div><div class="right clearfix"><div class="item__value">+ %value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
@@ -136,13 +175,59 @@ var uiModule = ( function(){
             newsHtml = html.replace('%id%',obj.id);
             newsHtml = newsHtml.replace('%doc%',obj.doc);
             newsHtml = newsHtml.replace('%value%',obj.value);
-            newsHtml = newsHtml.replace('%pic%', ( parseInt((obj.value/totalsInc)*(10**2)) + '%') ); // 计算支出所占百分比
+            // newsHtml = newsHtml.replace('%pic%', ( calcPercentage( obj.value,totalsInc ) + '%') ); // 计算支出所占百分比
 
             // 插入HTML到前端( 笔记未完成 )
             document.querySelector(choose).insertAdjacentHTML('beforeend',newsHtml);
+        },        
 
+        clearInput: function(){
 
-        }        
+            // .querySelectorAll( )选中所有元素，返回NodeList对象( 笔记未完成 )
+            /**
+             * 0. 选中指定所有元素，并返回一个NodeList对象,对象中包括标签中所有被选中的元素( NodeList包含所有的CSS样式 )
+             * 1. 小技巧:
+             *      a) .querySelectorAll('p').length 可以查看有多少元素
+             *      b) 因为返回的是一个对象，对象中包括所有被选中的元素，所以需要迭代出所有元素进行操作
+             *      c) 但是如果想精确的选中元素进化操作，则需要转换为数组进行操作，因为objct类型数据为无序，数组为有序
+             * 2. 转换数组:
+             *      a) 借用数组的slice函数: Array.prototype.slice
+             *      b) 使用call()借用方法: Array.prototype.slice.call(example)即可返回一个数组; 
+             */  
+            var input = document.querySelectorAll(DOM_strings.addDescroption + ',' + DOM_strings.addValue);
+            input = Array.prototype.slice.call(input);
+
+            // .forEach()方法用于调用数组的每个元素，并将元素传递给回调函数。( 笔记未完成 )
+            /**
+             * 0. forEach()默认会返回给函数3个元素
+             * 1.  array.forEach(function(currentValue, index, array), thisValue)
+             *      a) currentValue: 当前元素
+             *      b) index: 当前元素索引值
+             *      c) array: 当前所属数组对象
+             * 2. 在函数中操控元素
+             */
+            input.forEach( function( item,index,array ){
+                item.value = "";
+            } );
+
+            // .focus()成为焦点元素( 笔记未完成 )
+            input[0].focus();
+        },
+
+        displayBudget: function( obj ){
+            console.log(obj);
+
+            document.querySelector( DOM_strings.budGetValue ).textContent = obj.balance;
+            document.querySelector( DOM_strings.budGetIncomeValue ).textContent = obj.totalInc;
+            document.querySelector( DOM_strings.budGetExpensesValue ).textContent = obj.totalExp;
+            if( obj.totalInc > 0 ){  
+                document.querySelector( DOM_strings.budGetExpensesPercentage ).textContent = obj.per;
+            }
+            else{
+                document.querySelector( DOM_strings.budGetExpensesPercentage ).textContent = '---';
+            }
+
+        }
 
     }
 
@@ -157,21 +242,39 @@ var controlModule = ( function( data,ui ){
     // 获取class,输入值
     var getDOM = ui.pubGetDOM();
 
-    // 添加预算
+    // 上传预算
+    var updateBudget = function(){
+        // 1. 计算预算
+        data.calcBudget();
+        // 3. 返回预算
+        var budGet =  data.calcBudgetResult();
+
+        // 2. 显示计算结果到UI     
+        ui.displayBudget( budGet );
+    };
+
+    // 添加项目
     var control_add_items = function(){
 
         var input,addItems,totalItems,printItems;
         // 思路:
+
             // 0. 获取输入信息
             input = ui.pubGetInput(); // 直接调用ui的接口也是保持及时性
+
+        if( input.iDoc !== "" && ( !isNaN( input.iValue ) && input.iValue > 0 ) ){ // 保证用户输入规定的值
             // 1. 添加预算到对应栏目
             addItems = data.addItems( input.iType, input.iDoc, input.iValue );
-            totalItems = data.totalItems();
             printItems  = data.printItems();
             // 2. 显示到UI
-            add_ui_items = ui.add_ui_items( input.iType,addItems,totalItems[0] ); // 符号类型，新添加的obj,总计收入
+            add_ui_items = ui.add_ui_items( input.iType,addItems); // 符号类型，新添加的obj,总计收入
+            ui.clearInput();
             // 3. 计算预算
-            // 4. 显示计算结果到UI
+            updateBudget();
+            
+
+        }
+            
     };
 
     // 创建初始化函数( 目的是结构化监听,方便更多管理 )
@@ -198,7 +301,14 @@ var controlModule = ( function( data,ui ){
     
     return{
         init: function(){
-            return setupEventLiteners();
+            console.log('开始');
+            ui.displayBudget({
+                totalInc: 0,
+                totalExp: 0,
+                balance: 0,
+                per: -1
+            });
+            setupEventLiteners();
         }
     }
 
