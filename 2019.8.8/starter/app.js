@@ -119,6 +119,45 @@ var dataModule = ( function(){
                 balance: data.balance,
                 per: data.percentage
             }
+        },
+
+        // 删除指定数据
+        deleteItems: function( itype, ID ){
+
+            //array.map() 遍历数组元素，并进化函数处理，处理完则返回一个新的数组( 未完成笔记 )
+            /**
+             * 0.默认会返回3个参数，数组元素为必须，其它2个为可选
+             *  array.map( function( 数组元素,索引值,当前数组 ){} );
+             * 1. 遍历完数组元素后，进行函数处理，处理完则返回一个新的数组，
+             * 2. 排序保持不变,且不会改变原数组
+             * */
+            ids = data.allItems[ itype ].map( function( current ){ // 通过map函数获取数组的id值
+                return current.id;
+            } );
+            
+            indexID = ids.indexOf(ID) // 利用map返回数组排序不变，配合indexOf判断目标索引值
+
+            // 既然有索引值，在利用splice()修改数组 ( 未完成笔记 )
+            // array.splice()添加/删除数组( 注意，会直接影响原数组 )
+            /***
+             * 0. array.splice( 目标索引值，删除数量，添加的元素0,添加的元素1.... );
+             *      a) 注意splice将直接改变原数组内容，无需赋值操作
+             *      b) 将返回删除的数组
+             * 1. 删除:
+             *      返回删除的数组，且原数组也将改变
+             *      var fruits = ["Banana", "Orange", "Apple", "Mango"];
+             *      fruits.splice(2,2); // Banana,Orange
+             * 2. 添加:
+             *      var fruits = ["Banana", "Orange", "Apple", "Mango"];
+	         *      fruits.splice(2,0,"Lemon","Kiwi"); // Banana,Orange,Lemon,Kiwi,Apple,Mango
+             * 3. 替换添加:
+             *      fruits.splice(2,1,"Lemon","Kiwi"); // Banana,Orange,Lemon,Kiwi,Mango
+             *      
+             */
+            if( indexID !== -1 ){
+                data.allItems[itype].splice( indexID,1 ); // 删除数组内容
+            
+            } 
         }
         
     }
@@ -141,7 +180,8 @@ var uiModule = ( function(){
         budGetValue: '.budget__value',
         budGetIncomeValue: '.budget__income--value',
         budGetExpensesValue: '.budget__expenses--value',
-        budGetExpensesPercentage: '.budget__expenses--percentage'
+        budGetExpensesPercentage: '.budget__expenses--percentage',
+        container: '.container'
     };
 
     return{
@@ -164,26 +204,26 @@ var uiModule = ( function(){
             // 引用HTML给变量时，不能有空格间隙,并要以字符串的形式引用( 完成 )
             if( itype == 'inc' ){
                 choose = DOM_strings.chooseIncomeList;
-                html = '<div class="item clearfix" id="income-%id%"><div class="item__description">%doc%</div><div class="right clearfix"><div class="item__value">+ %value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+                html = '<div class="item clearfix" id="inc-%id%"><div class="item__description">%doc%</div><div class="right clearfix"><div class="item__value">+ %value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
             }
             else if( itype == 'exp' ){
                 choose = DOM_strings.chooseExpensesList;
-                html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%doc%</div><div class="right clearfix"><div class="item__value">- %value%</div><div class="item__percentage">%pic%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+                html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%doc%</div><div class="right clearfix"><div class="item__value">- %value%</div><div class="item__percentage">%pic%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
             }
 
-            // 更换HTML中内容( 笔记未完成 )
+            // 更换HTML中内容( 完成 )
             newsHtml = html.replace('%id%',obj.id);
             newsHtml = newsHtml.replace('%doc%',obj.doc);
             newsHtml = newsHtml.replace('%value%',obj.value);
             // newsHtml = newsHtml.replace('%pic%', ( calcPercentage( obj.value,totalsInc ) + '%') ); // 计算支出所占百分比
 
-            // 插入HTML到前端( 笔记未完成 )
+            // 插入HTML到前端( 完成 )
             document.querySelector(choose).insertAdjacentHTML('beforeend',newsHtml);
         },        
 
         clearInput: function(){
 
-            // .querySelectorAll( )选中所有元素，返回NodeList对象( 笔记未完成 )
+            // .querySelectorAll( )选中所有元素，返回NodeList对象( 完成 )
             /**
              * 0. 选中指定所有元素，并返回一个NodeList对象,对象中包括标签中所有被选中的元素( NodeList包含所有的CSS样式 )
              * 1. 小技巧:
@@ -197,7 +237,7 @@ var uiModule = ( function(){
             var input = document.querySelectorAll(DOM_strings.addDescroption + ',' + DOM_strings.addValue);
             input = Array.prototype.slice.call(input);
 
-            // .forEach()方法用于调用数组的每个元素，并将元素传递给回调函数。( 笔记未完成 )
+            // .forEach()方法用于调用数组的每个元素，并将元素传递给回调函数。( 完成 )
             /**
              * 0. forEach()默认会返回给函数3个元素
              * 1.  array.forEach(function(currentValue, index, array), thisValue)
@@ -210,7 +250,7 @@ var uiModule = ( function(){
                 item.value = "";
             } );
 
-            // .focus()成为焦点元素( 笔记未完成 )
+            // .focus()成为焦点元素( 完成 )
             input[0].focus();
         },
 
@@ -227,6 +267,12 @@ var uiModule = ( function(){
                 document.querySelector( DOM_strings.budGetExpensesPercentage ).textContent = '---';
             }
 
+        },
+
+        deleteItems:function( targetID ){
+            // 目标父类.removeChild( 目标子类 ) 删除子标签( 完成笔记 )
+            target = document.getElementById( targetID );
+            target.parentNode.removeChild( target ); 
         }
 
     }
@@ -272,10 +318,37 @@ var controlModule = ( function( data,ui ){
             // 3. 计算预算
             updateBudget();
             
-
         }
             
     };
+
+    // 删除项目
+    var control_delete_items = function( event ){
+
+        // 以下参数可以在prototype控制台中查看  ( 未完成笔记 )
+        // .target: 获取当前标签
+        // .parentNode: 获取父类标签
+        // .id 获取标签id
+        var itemsID = event.target.parentNode.parentNode.parentNode.parentNode.id;
+        if( itemsID ){
+            var splitID,itype,ID;
+            
+            // .split('x')指定符号,切割字符串并返回数组( 未完成笔记 )
+            splitID = itemsID.split('-');
+            itype = splitID[0];
+            ID = parseInt( splitID[1] );
+
+            // 删除预算数据结构中的存储值
+            data.deleteItems( itype,ID );
+
+            // 删除预算UI显示
+            ui.deleteItems( itemsID );
+
+            // 重新计算预算
+            updateBudget();
+        }
+
+    }
 
     // 创建初始化函数( 目的是结构化监听,方便更多管理 )
     var setupEventLiteners = function(){
@@ -283,7 +356,6 @@ var controlModule = ( function( data,ui ){
         document.querySelector('.add__btn').addEventListener( 'click', function(){
             control_add_items();
         });
-
 
         // 监听全局"按键"并返回对象给event
         /**
@@ -296,6 +368,9 @@ var controlModule = ( function( data,ui ){
                 control_add_items();
             }
         });
+
+        // 监听删除按钮 
+        document.querySelector(getDOM.container).addEventListener( 'click', control_delete_items );
 
     }
     
