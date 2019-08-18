@@ -10,6 +10,22 @@ var dataModule = ( function(){
         this.id = id;
         this.doc = doc;
         this.value = value; 
+        this.percentage = -1;
+    };
+
+    // 计算单个项目百分比
+    Expense.prototype.calcItemPercentage = function( totals ){
+        if( totals > 0 ){
+            this.percentage = Math.round( (this.value/totals)*(10**2) );
+        }
+        else{
+            this.percentage = -1;
+        }
+    };
+
+    // 输出单个项目百分比
+    Expense.prototype.getItemPercentage = function(){
+        return this.percentage;
     };
 
     // 支出蓝图
@@ -97,6 +113,7 @@ var dataModule = ( function(){
             return calcPercentage(top,bottom);
         },
 
+
         // 计算预算
         calcBudget: function(){
             // 计算收入/支出总和
@@ -110,6 +127,20 @@ var dataModule = ( function(){
             data.percentage = calcPercentage( data.totals.exp,data.totals.inc );
 
         },
+        
+        // 计算每个预算百分比
+        calcItemsPercentage: function(){
+            data.allItems.exp.forEach( function( cur ){
+                cur.calcItemPercentage( data.totals.inc );
+            } );
+        },
+
+        // 返回每个项目百分比
+        getItemsPercentage: function(){
+            return data.allItems.exp.map( function( cur ){
+                return cur.getItemPercentage();
+            } );
+        },
 
         // 返回计算预算结果API
         calcBudgetResult: function(){
@@ -120,6 +151,8 @@ var dataModule = ( function(){
                 per: data.percentage
             }
         },
+
+        
 
         // 删除指定数据
         deleteItems: function( itype, ID ){
@@ -299,6 +332,17 @@ var controlModule = ( function( data,ui ){
         ui.displayBudget( budGet );
     };
 
+    // 单个项目预算百分比
+    var updateItemsPercentage = function (){
+        // 计算百分比
+        data.calcItemsPercentage();
+
+        // 获取百分比
+        console.log( data.getItemsPercentage() );
+        
+    };
+
+
     // 添加项目
     var control_add_items = function(){
 
@@ -317,6 +361,8 @@ var controlModule = ( function( data,ui ){
             ui.clearInput();
             // 3. 计算预算
             updateBudget();
+            // 4. 计算单个项目百分比
+            updateItemsPercentage();
             
         }
             
@@ -346,6 +392,11 @@ var controlModule = ( function( data,ui ){
 
             // 重新计算预算
             updateBudget();
+
+            // 计算单个项目百分比
+            updateItemsPercentage();
+            
+
         }
 
     }
@@ -373,6 +424,8 @@ var controlModule = ( function( data,ui ){
         document.querySelector(getDOM.container).addEventListener( 'click', control_delete_items );
 
     }
+
+    
     
     return{
         init: function(){
