@@ -214,8 +214,18 @@ var uiModule = ( function(){
         budGetIncomeValue: '.budget__income--value',
         budGetExpensesValue: '.budget__expenses--value',
         budGetExpensesPercentage: '.budget__expenses--percentage',
-        container: '.container'
+        container: '.container',
+        itemPercentage: '.item__percentage',
+        titleTime: '.budget__title--month'
     };
+
+    // 创建nodelist的forEach()函数
+    var nodeListForEach = function( list, callback ){
+        for( var i=0; i<list.length; i++ ){
+            // 回调函数: 返回参数给其它调用的父类函数
+                // callback() 回调是一个函数，它作为参数传递给另一个函数，并在其父函数完成后执行。( 未完成笔记 )
+            callback( list[i],i );                }
+    }
 
     return{
         pubGetDOM: function(){
@@ -231,23 +241,54 @@ var uiModule = ( function(){
             }
         },
 
+        // 数字加工，使数字显示的更人性化
+        forNumber: function( num, type ){
+            /**
+             * 功能需求:
+             *  0. +/-在数字之前
+             *  1. 保留二位小数
+             *  2. 大于千位数字时，从小数点的倒数第3位加逗号
+             *      a) +2300.00 => +2,300.00
+             */
+
+            var resultNum,intNum,decNum;
+            resultNum = Math.abs(num); // 绝对值,保证数字为正数( 未完成笔记 )
+            resultNum =  resultNum.toFixed(2);
+            resultNum = resultNum.split('.'); // 想起: slice( start,end )函数切片功能( 未完成笔记 )
+            intNum = resultNum[0];
+            decNum = resultNum[1];
+
+            if( intNum.length > 3 ){
+                // substr()自定义字符串切片,不影响原字符串 ( 未完成笔记 )
+                    // substr( 开始位置,结束位置 );
+                    // 实际切去位置，与python的计数方式一样( 开始位置 ~ 结束位置-1 )
+                    // 如: a = '4000', a.substr( 0,1 ) == '4';
+                intNum = intNum.substr( 0, intNum.length -3 ) + ',' + intNum.substr( intNum.length - 3, intNum.length );
+            }
+
+            resultNum = type + ' ' + intNum + '.' + decNum;
+            return resultNum;
+        },
+
         add_ui_items: function( itype,obj ){
             // 创建预算HTML模板
-            var html,choose;
+            var html,choose,itypeForNum;
             // 引用HTML给变量时，不能有空格间隙,并要以字符串的形式引用( 完成 )
             if( itype == 'inc' ){
+                itypeForNum = '+';
                 choose = DOM_strings.chooseIncomeList;
-                html = '<div class="item clearfix" id="inc-%id%"><div class="item__description">%doc%</div><div class="right clearfix"><div class="item__value">+ %value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+                html = '<div class="item clearfix" id="inc-%id%"><div class="item__description">%doc%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
             }
             else if( itype == 'exp' ){
+                itypeForNum = '-';
                 choose = DOM_strings.chooseExpensesList;
-                html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%doc%</div><div class="right clearfix"><div class="item__value">- %value%</div><div class="item__percentage">%pic%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+                html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%doc%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">%pic%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
             }
 
             // 更换HTML中内容( 完成 )
             newsHtml = html.replace('%id%',obj.id);
             newsHtml = newsHtml.replace('%doc%',obj.doc);
-            newsHtml = newsHtml.replace('%value%',obj.value);
+            newsHtml = newsHtml.replace('%value%', this.forNumber( obj.value, itypeForNum )  );
             // newsHtml = newsHtml.replace('%pic%', ( calcPercentage( obj.value,totalsInc ) + '%') ); // 计算支出所占百分比
 
             // 插入HTML到前端( 完成 )
@@ -290,11 +331,17 @@ var uiModule = ( function(){
         displayBudget: function( obj ){
             console.log(obj);
 
-            document.querySelector( DOM_strings.budGetValue ).textContent = obj.balance;
-            document.querySelector( DOM_strings.budGetIncomeValue ).textContent = obj.totalInc;
-            document.querySelector( DOM_strings.budGetExpensesValue ).textContent = obj.totalExp;
+            // 计算余额的正负
+            var balanceItype = '+';
+            if( obj.totalInc < obj.totalExp ){
+                balanceItype = '-';
+            }
+
+            document.querySelector( DOM_strings.budGetValue ).textContent = this.forNumber( obj.balance, balanceItype ) ;
+            document.querySelector( DOM_strings.budGetIncomeValue ).textContent = this.forNumber( obj.totalInc,'+' );
+            document.querySelector( DOM_strings.budGetExpensesValue ).textContent = this.forNumber( obj.totalExp,'-' );
             if( obj.totalInc > 0 ){  
-                document.querySelector( DOM_strings.budGetExpensesPercentage ).textContent = obj.per;
+                document.querySelector( DOM_strings.budGetExpensesPercentage ).textContent = (obj.per + '%');
             }
             else{
                 document.querySelector( DOM_strings.budGetExpensesPercentage ).textContent = '---';
@@ -302,12 +349,72 @@ var uiModule = ( function(){
 
         },
 
+        displayPercentages: function( percentageGroup ){
+            // 选中所有预算百分比显示
+            var chooseList = document.querySelectorAll(DOM_strings.itemPercentage);
+
+            
+
+            // 百分比的数组值，传输给nodelist对象中
+            nodeListForEach( chooseList, function( cur,index ){
+                if( percentageGroup[index] > 0 ){
+                    cur.textContent = percentageGroup[index] + '%';
+                }
+                else{
+                    cur.textContent = '---';
+                }
+            } );
+
+        },
+
+        // 显示时间
+        displayDate: function(){
+            var time,tYear,tMouth;
+            
+            // Date()获取当前时间( 未完成笔记 )
+                // a) getFullYear(): 获取当前年
+                // b) getMonth(): 获取当前月
+            time = new Date();
+            tYear = time.getFullYear();
+            tMouth = time.getMonth();
+            
+            document.querySelector(DOM_strings.titleTime).textContent = tYear + '.' + tMouth ;
+        },
+
         deleteItems:function( targetID ){
             // 目标父类.removeChild( 目标子类 ) 删除子标签( 完成笔记 )
             target = document.getElementById( targetID );
             target.parentNode.removeChild( target ); 
+        },
+
+        // 切换表单焦点样式
+        changeFocus: function(){
+
+            /*
+        addType:'.add__type',
+        addDescroption:'.add__description',
+        addValue: '.add__value',
+        addBtn: '.add__btn',
+            */
+
+            // 创建一个对象选中多个元素
+            var tar = document.querySelectorAll(
+                DOM_strings.addType + ',' +
+                DOM_strings.addDescroption + ',' +
+                DOM_strings.addValue
+            );
+
+
+            // 配合nodelistForEach(可以迭代对象的函数)进行多个toggle的方法进行元素操控( 补充: nodeListForEach()本质，以及要入'黄金模块' )
+            nodeListForEach( tar, function( cur ){
+                cur.classList.toggle('red-focus');
+            } );
+
+            // 给按钮切换焦点样式
+            document.querySelector(DOM_strings.addBtn).classList.toggle('red');
         }
 
+        
     }
 
 } )()
@@ -338,7 +445,7 @@ var controlModule = ( function( data,ui ){
         data.calcItemsPercentage();
 
         // 获取百分比
-        console.log( data.getItemsPercentage() );
+        ui.displayPercentages( data.getItemsPercentage() );
         
     };
 
@@ -423,6 +530,10 @@ var controlModule = ( function( data,ui ){
         // 监听删除按钮 
         document.querySelector(getDOM.container).addEventListener( 'click', control_delete_items );
 
+        // 监听+/-切换选项，得以操控样式
+            // 监听事件 - 监听改变状态，一旦标签发生改变则执行此函数( 未完成笔记 )
+        document.querySelector(getDOM.addType).addEventListener('change', ui.changeFocus );
+
     }
 
     
@@ -430,6 +541,7 @@ var controlModule = ( function( data,ui ){
     return{
         init: function(){
             console.log('开始');
+            ui.displayDate();
             ui.displayBudget({
                 totalInc: 0,
                 totalExp: 0,
@@ -444,6 +556,5 @@ var controlModule = ( function( data,ui ){
 /************ 主空模块-END  */
 
 controlModule.init();
-
 
 
