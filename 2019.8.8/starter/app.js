@@ -157,7 +157,7 @@ var dataModule = ( function(){
         // 删除指定数据
         deleteItems: function( itype, ID ){
 
-            //array.map() 遍历数组元素，并进化函数处理，处理完则返回一个新的数组( 未完成笔记 )
+            //array.map() 遍历数组元素，并进化函数处理，处理完则返回一个新的数组( 完成笔记 )
             /**
              * 0.默认会返回3个参数，数组元素为必须，其它2个为可选
              *  array.map( function( 数组元素,索引值,当前数组 ){} );
@@ -170,7 +170,7 @@ var dataModule = ( function(){
             
             indexID = ids.indexOf(ID) // 利用map返回数组排序不变，配合indexOf判断目标索引值
 
-            // 既然有索引值，在利用splice()修改数组 ( 未完成笔记 )
+            // 既然有索引值，在利用splice()修改数组 ( 完成笔记 )
             // array.splice()添加/删除数组( 注意，会直接影响原数组 )
             /***
              * 0. array.splice( 目标索引值，删除数量，添加的元素0,添加的元素1.... );
@@ -223,7 +223,7 @@ var uiModule = ( function(){
     var nodeListForEach = function( list, callback ){
         for( var i=0; i<list.length; i++ ){
             // 回调函数: 返回参数给其它调用的父类函数
-                // callback() 回调是一个函数，它作为参数传递给另一个函数，并在其父函数完成后执行。( 未完成笔记 )
+                // callback() 回调是一个函数，它作为参数传递给另一个函数，并在其父函数完成后执行。( 完成笔记 )
             callback( list[i],i );                }
     }
 
@@ -252,14 +252,14 @@ var uiModule = ( function(){
              */
 
             var resultNum,intNum,decNum;
-            resultNum = Math.abs(num); // 绝对值,保证数字为正数( 未完成笔记 )
+            resultNum = Math.abs(num); // 绝对值,保证数字为正数( 完成笔记 )
             resultNum =  resultNum.toFixed(2);
-            resultNum = resultNum.split('.'); // 想起: slice( start,end )函数切片功能( 未完成笔记 )
+            resultNum = resultNum.split('.'); // 想起: slice( start,end )函数切片功能( 完成笔记 )
             intNum = resultNum[0];
             decNum = resultNum[1];
 
             if( intNum.length > 3 ){
-                // substr()自定义字符串切片,不影响原字符串 ( 未完成笔记 )
+                // substr()自定义字符串切片,不影响原字符串 ( 完成笔记 )
                     // substr( 开始位置,结束位置 );
                     // 实际切去位置，与python的计数方式一样( 开始位置 ~ 结束位置-1 )
                     // 如: a = '4000', a.substr( 0,1 ) == '4';
@@ -371,7 +371,7 @@ var uiModule = ( function(){
         displayDate: function(){
             var time,tYear,tMouth;
             
-            // Date()获取当前时间( 未完成笔记 )
+            // Date()获取当前时间( 完成笔记 )
                 // a) getFullYear(): 获取当前年
                 // b) getMonth(): 获取当前月
             time = new Date();
@@ -478,7 +478,7 @@ var controlModule = ( function( data,ui ){
     // 删除项目
     var control_delete_items = function( event ){
 
-        // 以下参数可以在prototype控制台中查看  ( 未完成笔记 )
+        // 以下参数可以在prototype控制台中查看  ( 完成笔记 )
         // .target: 获取当前标签
         // .parentNode: 获取父类标签
         // .id 获取标签id
@@ -486,7 +486,7 @@ var controlModule = ( function( data,ui ){
         if( itemsID ){
             var splitID,itype,ID;
             
-            // .split('x')指定符号,切割字符串并返回数组( 未完成笔记 )
+            // .split('x')指定符号,切割字符串并返回数组( 完成笔记 )
             splitID = itemsID.split('-');
             itype = splitID[0];
             ID = parseInt( splitID[1] );
@@ -531,7 +531,7 @@ var controlModule = ( function( data,ui ){
         document.querySelector(getDOM.container).addEventListener( 'click', control_delete_items );
 
         // 监听+/-切换选项，得以操控样式
-            // 监听事件 - 监听改变状态，一旦标签发生改变则执行此函数( 未完成笔记 )
+            // 监听事件 - 监听改变状态，一旦标签发生改变则执行此函数( 完成笔记 )
         document.querySelector(getDOM.addType).addEventListener('change', ui.changeFocus );
 
     }
