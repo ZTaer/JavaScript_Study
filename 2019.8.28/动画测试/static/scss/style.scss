@@ -1,25 +1,14 @@
-@import "D:/Work/remeber_oo7/OO7_GoldModl/WORK/scss_oo7GoldModl_bt4_v2.0.scss";
+@import "E:/Study/OO7_GoldModl/WORK/scss_oo7GoldModl_bt4_v2.0.scss";
+@import "../css/animation.css";
 
-// 设置动画时间
-.yourElement {
-    animation-duration: 3s; // 动画时间
-    animation-delay: 2s; // 动画延迟
-    animation-iteration-count: infinite; // 动画播放次数
-  }
 
-// 暂停动画
-.stop .animated{
-    animation-play-state: paused !important;
-    -webkit-animation-play-state:paused !important;
+
+
+.test{
+        
+        @extend .animated !optional;
+        @extend .wobble !optional;
+    &:hover{
+        color: antiquewhite;
+    }
 }
-
-// 播放动画
-.play .animated {
-    animation-play-state: running;
-    -webkit-animation-play-state:running;
-}
-
-.oo7-Animate{
-    opacity: 0;
-}
-

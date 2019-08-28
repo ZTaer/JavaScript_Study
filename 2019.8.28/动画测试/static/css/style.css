@@ -29,6 +29,7 @@
 	6.  其他类
 	
 */
+@import url(../css/animation.css);
 ol, ul, li {
   list-style: none;
 }
@@ -37,24 +38,12 @@ a {
   text-decoration: none;
 }
 
-.yourElement {
-  animation-duration: 3s;
-  animation-delay: 2s;
-  animation-iteration-count: infinite;
-}
-
-.stop .animated {
-  animation-play-state: paused !important;
-  -webkit-animation-play-state: paused !important;
-}
-
-.play .animated {
-  animation-play-state: running;
-  -webkit-animation-play-state: running;
-}
-
 .oo7-Animate {
   opacity: 0;
+}
+
+.test:hover {
+  color: antiquewhite;
 }
 
 /*# sourceMappingURL=style.css.map */
