@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": ";AACA,gDAAgD;AAChD;;;;;;;;;;;;;;;;;;;;;;;;;;;;EA4BE;AAEF,UAAQ;EACP,UAAU,EAAC,IAAI;;;AAGhB,CAAC;EACA,eAAe,EAAC,IAAI;;;AClCrB,YAAa;EACT,kBAAkB,EAAE,EAAE;EACtB,eAAe,EAAE,EAAE;EACnB,yBAAyB,EAAE,QAAQ;;;AAIvC,eAAe;EACX,oBAAoB,EAAE,iBAAiB;EACvC,4BAA4B,EAAC,iBAAiB;;;AAIlD,eAAgB;EACZ,oBAAoB,EAAE,OAAO;EAC7B,4BAA4B,EAAC,OAAO;;;AAGxC,YAAY;EACR,OAAO,EAAE,CAAC",
+"sources": ["../../../../../OO7_GoldModl/WORK/scss_oo7GoldModl_bt4_v2.0.scss","../scss/style.scss"],
+"names": [],
+"file": "style.css"
+}
