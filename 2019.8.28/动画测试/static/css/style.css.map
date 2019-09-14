@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": ";AACA,gDAAgD;AAChD;;;;;;;;;;;;;;;;;;;;;;;;;;;;EA4BE;AC7BM,iCAAsB;ADgC9B,UAAQ;EACP,UAAU,EAAC,IAAI;;;AAGhB,CAAC;EACA,eAAe,EAAC,IAAI;;;AAGrB,YAAY;EACX,OAAO,EAAE,CAAC;;;AChCP,WAAO;EACH,KAAK,EAAE,YAAY",
+"sources": ["../../../../../OO7_GoldModl/WORK/scss_oo7GoldModl_bt4_v2.0.scss","../scss/style.scss"],
+"names": [],
+"file": "style.css"
+}
