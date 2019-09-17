@@ -22,7 +22,10 @@ body {
   background-image: linear-gradient(to right bottom, #FBDB89, #F48982);
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: calc(100vh - 2 * 4vw); }
+  min-height: calc(100vh - 2 * 4vw); 
+
+}
+
 
 .container {
   max-width: 120rem;
