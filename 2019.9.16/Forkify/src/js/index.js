@@ -12,19 +12,11 @@
     console.log(` ${Search.add(5,5)},${Search.ID} `);
 */
 
+
 // API说明文档: https://www.food2fork.com/about/api
 // API: 0360de105ebd1b22a33b1de1ee0e2f46
 
+import Search from './models/Search';
 
-import axios from 'axios';
-
-// 搜索功能
-async function getSearchResult( contact ){
-    const apiPassword = '0360de105ebd1b22a33b1de1ee0e2f46';
-    const result = await axios(`https://cors-anywhere.herokuapp.com/https://www.food2fork.com/api/search?key=${apiPassword}&q=${contact}`);
-
-    const recipe = result.data.recipes;
-    console.log(recipe);
-}
-
-getSearchResult('pizza');
+const search = new Search();
+search.getSearchResult('pizza');
