@@ -1,0 +1,12 @@
+
+/**
+    文本不换行
+*/
+.results__name{
+    display:block;	
+    max-width:214px;
+    word-break:keep-all;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
