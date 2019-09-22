@@ -2,7 +2,7 @@
 // API: 0360de105ebd1b22a33b1de1ee0e2f46
 
 import Search from './models/Search';
-import { element, elementString } from './views/base';
+import { element, elementString, showLoader, clearLoader } from './views/base';
 import * as searchView from './views/searchView';
 
 /** 全局页面状态
@@ -23,14 +23,15 @@ const controlSearch = async () => {
         state.search = new Search();
 
         // 2. 显示加载器到UI界面
+        showLoader(`.${elementString.results}`);
+        searchView.clearHtml(`.${elementString.resultsList}`);
 
         // 3. 搜索结果,加入到 - 状态中
         await state.search.getSearchResult(query);
 
         // 4. UI初始化
-        searchView.clearHtml(`.${elementString.resultsList}`);
         searchView.clearInput(`.${elementString.searchField}`);
-
+        clearLoader( `.${elementString.results}` );
         // 5. 搜索结果显示到UI界面
         searchView.showResult( state.search.result ); // 注意class中保存的数据为this.result;所以要使用此方法来调出结果
     }
