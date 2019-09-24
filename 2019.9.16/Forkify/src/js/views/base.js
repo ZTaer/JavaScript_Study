@@ -3,6 +3,8 @@ export const elementString = {
     searchField: 'search__field',
     loader: 'loader',
     results: 'results',
+    btnInline: 'btn-inline',
+    resultsPages: 'results__pages',
 };
 
 export const element = {
@@ -10,6 +12,8 @@ export const element = {
     query: document.querySelector('.search__field'),
     resultsList: document.querySelector('.results__list'),
     loader: document.querySelector('.loader'),
+    searchPageButton: document.querySelector('.results__pages'),
+    resultPages: document.querySelector('.results__pages'),
 };
 
 
