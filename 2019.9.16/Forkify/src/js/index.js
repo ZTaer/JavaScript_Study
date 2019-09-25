@@ -2,6 +2,7 @@
 // API: 0360de105ebd1b22a33b1de1ee0e2f46
 
 import Search from './models/Search';
+import Recipe from './models/Recipe';
 import { element, elementString, showLoader, clearLoader } from './views/base';
 import * as searchView from './views/searchView';
 
@@ -13,6 +14,9 @@ import * as searchView from './views/searchView';
  */
 const state = {};
 
+/** 
+ * 搜索栏监听区域
+ */
 const controlSearch = async () => {
     // 0. 获取搜索结果
     const query = element.query.value; 
@@ -27,21 +31,24 @@ const controlSearch = async () => {
         searchView.clearHtml(`.${elementString.resultsList}`);
         searchView.clearHtml(`.${elementString.resultsPages}`);
 
-        // 3. 搜索结果,加入到 - 状态中
-        await state.search.getSearchResult(query);
+        try{
+            // 3. 搜索结果,加入到 - 状态中
+            await state.search.getSearchResult(query);
+    
+            // 4. UI初始化
+            searchView.clearInput(`.${elementString.searchField}`);
+            clearLoader( `.${elementString.results}` );
+            // 5. 搜索结果显示到UI界面
+            searchView.showResult( state.search.result ); // 注意class中保存的数据为this.result;所以要使用此方法来调出结果
 
-        // 4. UI初始化
-        searchView.clearInput(`.${elementString.searchField}`);
-        clearLoader( `.${elementString.results}` );
-        // 5. 搜索结果显示到UI界面
-        searchView.showResult( state.search.result ); // 注意class中保存的数据为this.result;所以要使用此方法来调出结果
+        }catch( error ){
+            console.log( error );
+        }
     }
         
 }
 
-/** 监听区域
- * 
- */
+
 
 element.search.addEventListener( 'submit', e => {
     e.preventDefault(); // 禁用按钮的默认效果
@@ -61,7 +68,7 @@ element.resultPages.addEventListener( 'click', e => {
             // d) .closest( ':not(div)' ): 不抓取div元素,抓取其它元素
     const btn = e.target.closest('.btn-inline');
 
-    // .dataset用法,标签data属性读取
+    // .dataset用法,标签data属性读取( 等待笔记 )
         // 注意: 返回值为"字符串格式"
         // 例: 
            // HTML: <a data-goto='1'></a>
@@ -76,3 +83,31 @@ element.resultPages.addEventListener( 'click', e => {
         searchView.showResult( state.search.result, page );
     }
 } );
+
+/**
+ * 监听获取ID数据区域
+ */
+const controlRecipe = async () => {
+    // window.location.hash 获取URL改变的HASH值( 等待笔记 )
+    const id = window.location.hash.replace('#','');
+    if(id){
+        try{
+            // 0. 清除原HTML模板; 模块class加入状态方便调用
+            state.recipe = new Recipe();
+            // 1. 加载器
+            // 2. 获取ID数据
+            await state.recipe.getIdRecipe( id )
+            // 3. 清除加载器
+            // 4. 渲染HTML数据
+            console.log(state);
+            
+        }catch( error )
+        {
+            console.log( error );
+        }
+    }
+}
+
+// window.addEventListener( 'hashchange',function ); 监听URL改变触发函数( 等待笔记 )
+// window.addEventListener( 'load',function ); 网页加载时触发函数( 等待笔记 )
+ ['hashchange','load'].forEach( e => window.addEventListener( e, controlRecipe ) );
