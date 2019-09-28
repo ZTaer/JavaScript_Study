@@ -96,7 +96,9 @@ const controlRecipe = async () => {
             state.recipe = new Recipe();
             // 1. 加载器
             // 2. 获取ID数据
-            await state.recipe.getIdRecipe( id )
+            await state.recipe.getIdRecipe( id );
+            state.recipe.processIngredients();
+
             // 3. 清除加载器
             // 4. 渲染HTML数据
             console.log(state);
