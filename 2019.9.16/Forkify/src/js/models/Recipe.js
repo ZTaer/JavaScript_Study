@@ -46,8 +46,8 @@ import { apiPassword, cors } from '../config';
                 // teaspoon - 茶匙
                 // cups - 杯
                 // pound - 镑
-        const unitsL = [ 'tablespoon','tablespoons', 'ounce','ounces', 'teaspoon','teaspoons', 'cups', 'pounds' ];
-        const unitsS = [ 'tbsp','tbsp', 'oz','oz', 'tsp','tsp', 'cup', 'pound' ];
+        const unitsL = [ 'tablespoons', 'tablespoon', 'ounces', 'ounce',  'teaspoons', 'teaspoon', 'cups', 'pounds' ];
+        const unitsS = [ 'tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound' ];
         result = result.map( cur => {
 
             // 0. 替换统一词汇
@@ -68,7 +68,39 @@ import { apiPassword, cors } from '../config';
                 // c) 无参数,无词汇
             cur = cur.split(' ');
             let door = cur.findIndex( el => unitsS.includes( el ) );
-            console.log(`door = ${door}`);
+            let num,unit,ingredients;
+            if( door > -1 ){
+                // a) 有词汇,有参数
+                num = cur.slice( 0, door ).join('+');
+                num = num.replace('-','+');
+                // eval()函数,字符串js执行语句( 等待笔记 )
+                    // 0. 如: eval( " a = () => { console.log('233') }; a(); " ) 成立;
+                    // 1. 不过通常用来字符串计算使用
+                        // a) 如: eval( "1+1" );
+                num = eval( num ); 
+                unit = cur[ door ];
+                ingredients = cur.slice( door+1 ).join(' ');
+            }
+            else if( parseInt( cur[0], 10 ) ){
+                // b) 没有词汇,有参数
+                num = parseFloat( cur[0] );
+                unit = '';
+                ingredients = cur.slice( 1 ).join(' ');
+            }
+            else if( door === -1 ){
+                // c) 无参数,无词汇
+                num = 1
+                unit = '';
+                ingredients = cur.join(' ');
+            }
+
+            cur = {
+                // 对象属性便捷式写法( 等待笔记 )
+                    // 0. num, 相当于 num = num,
+                num,
+                unit,
+                ingredients,
+            }
 
             return cur;
         } );

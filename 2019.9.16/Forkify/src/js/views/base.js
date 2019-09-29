@@ -16,7 +16,6 @@ export const element = {
     resultPages: document.querySelector('.results__pages'),
 };
 
-
 /** 加载器动画
 *  0. div中写入 .loader 中svg可执行旋转动画如:
 * <div class="loader">
@@ -37,8 +36,6 @@ export const showLoader = target => {
 };
 
 export const clearLoader = target => {
-    console.log(target);
     const loader = document.querySelector(`${target} .${elementString.loader}`);
-    console.log(loader);
     if( loader ) loader.parentNode.removeChild( loader ); 
 };

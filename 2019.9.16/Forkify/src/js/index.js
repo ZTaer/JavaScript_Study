@@ -66,6 +66,7 @@ element.resultPages.addEventListener( 'click', e => {
             // b) .closest( 'div' ): 默认多标签时抓最底层子类 
             // c) .closest( 'section > div' ): 会抓取最近子类div
             // d) .closest( ':not(div)' ): 不抓取div元素,抓取其它元素
+        // 2. 通常与document.querySelector('xxx').closest('yyy');来合作抓取指定标签
     const btn = e.target.closest('.btn-inline');
 
     // .dataset用法,标签data属性读取( 等待笔记 )
