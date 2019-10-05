@@ -8,7 +8,7 @@ import { element, elementString } from './base';
 const showRecipes = recipe => {
     const modelHtml = `
     <li>
-        <a class="results__link results__link--active" href="#${recipe.recipe_id}">
+        <a class="results__link" href="#${recipe.recipe_id}">
             <figure class="results__fig">
                 <img src="${recipe.image_url}" alt="Test">
             </figure>
@@ -83,6 +83,20 @@ export const showResult = ( recipes, page = 1, showRecipeNum = 10 ) => {
 
 }
 
+
+/**
+ * 选中按钮效果 
+ */
+export const clickItemsBg = (id = 0) => {
+    let rlist = Array.from(document.querySelectorAll(`.${elementString.resultsLink}`)); 
+    if( rlist.length !== 0 ){
+        rlist.forEach( cur => {
+            cur.classList.remove(`${elementString.resultsLinkActive}`);
+        } );
+        document.querySelector(`a[ href="#${id}" ]`).classList.add(`${elementString.resultsLinkActive}`);
+    }
+
+}
 
 
  

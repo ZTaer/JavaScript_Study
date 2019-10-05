@@ -3,8 +3,9 @@
 
 import Search from './models/Search';
 import Recipe from './models/Recipe';
-import { element, elementString, showLoader, clearLoader } from './views/base';
+import { element, elementString, showLoader, clearLoader, pubClearHtml, pubClearInput } from './views/base';
 import * as searchView from './views/searchView';
+import * as recipeView from './views/recipeView';
 
 /** 全局页面状态
  * - 搜索对象
@@ -57,7 +58,7 @@ element.search.addEventListener( 'submit', e => {
 } );
 
 element.resultPages.addEventListener( 'click', e => {
-    // .closest()指定选择元素( 等待笔记 )
+    // .closest()指定选择元素( 完成笔记 )
         // 0. .closest()符合抓取标签
             // 是: 返回标签
             // 否: 返回NULL
@@ -69,7 +70,7 @@ element.resultPages.addEventListener( 'click', e => {
         // 2. 通常与document.querySelector('xxx').closest('yyy');来合作抓取指定标签
     const btn = e.target.closest('.btn-inline');
 
-    // .dataset用法,标签data属性读取( 等待笔记 )
+    // .dataset用法,标签data属性读取( 完成笔记 )
         // 注意: 返回值为"字符串格式"
         // 例: 
            // HTML: <a data-goto='1'></a>
@@ -89,20 +90,29 @@ element.resultPages.addEventListener( 'click', e => {
  * 监听获取ID数据区域
  */
 const controlRecipe = async () => {
-    // window.location.hash 获取URL改变的HASH值( 等待笔记 )
+    // window.location.hash 获取URL改变的HASH值( 完成笔记 )
     const id = window.location.hash.replace('#','');
     if(id){
         try{
             // 0. 清除原HTML模板; 模块class加入状态方便调用
             state.recipe = new Recipe();
+            pubClearHtml(`.${elementString.recipe}`);
+            searchView.clickItemsBg(id);
             // 1. 加载器
+            showLoader(`.${elementString.recipe}`);
+
             // 2. 获取ID数据
             await state.recipe.getIdRecipe( id );
+            state.recipe.calcCookTime();
+            state.recipe.calcServings();
             state.recipe.processIngredients();
 
             // 3. 清除加载器
+            clearLoader(`.${elementString.recipe}`);
+
             // 4. 渲染HTML数据
-            console.log(state);
+            recipeView.showRecipe( state.recipe );
+            console.log(state.recipe);
             
         }catch( error )
         {
@@ -111,6 +121,23 @@ const controlRecipe = async () => {
     }
 }
 
-// window.addEventListener( 'hashchange',function ); 监听URL改变触发函数( 等待笔记 )
-// window.addEventListener( 'load',function ); 网页加载时触发函数( 等待笔记 )
- ['hashchange','load'].forEach( e => window.addEventListener( e, controlRecipe ) );
+// window.addEventListener( 'hashchange',function ); 监听URL改变触发函数( 完成笔记 )
+// window.addEventListener( 'load',function ); 网页加载时触发函数( 完成笔记 )
+// ['hashchange','load'].forEach( e => window.addEventListener( e, controlRecipe ) );
+['hashchange'].forEach( e => window.addEventListener( e, controlRecipe ) );
+
+/**
+ *  调整所需材料份数
+ */
+
+ // .matches( css选择 )判断是否为指定的CSS选择标签, 返回True/False( 等待笔记 )
+    // a) 可使用css多选如: el.traget.matches( ' btn-dec, btn-dec * ' )
+    // b) '.btn-dec *': 的意思为选中所有子类标签
+element.recipe.addEventListener( 'click', cur => {
+    if (cur.target.matches(' .btn-dec, .btn-dec * ') ){
+        state.recipe.reviseServings( 'dec' );
+    }
+    else if( cur.target.matches(' .btn-inc, .btn-inc * ' ) ){
+        state.recipe.reviseServings( 'inc' );
+    } 
+} );

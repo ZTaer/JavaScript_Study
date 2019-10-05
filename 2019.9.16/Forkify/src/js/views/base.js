@@ -5,6 +5,9 @@ export const elementString = {
     results: 'results',
     btnInline: 'btn-inline',
     resultsPages: 'results__pages',
+    recipe: 'recipe',
+    resultsLink: 'results__link',
+    resultsLinkActive: 'results__link--active',
 };
 
 export const element = {
@@ -14,6 +17,8 @@ export const element = {
     loader: document.querySelector('.loader'),
     searchPageButton: document.querySelector('.results__pages'),
     resultPages: document.querySelector('.results__pages'),
+    recipe: document.querySelector('.recipe'),
+
 };
 
 /** 加载器动画
@@ -38,4 +43,17 @@ export const showLoader = target => {
 export const clearLoader = target => {
     const loader = document.querySelector(`${target} .${elementString.loader}`);
     if( loader ) loader.parentNode.removeChild( loader ); 
+};
+
+ 
+/** 界面初始化
+ * 
+ */
+
+export const pubClearHtml = target => {
+    document.querySelector( target ).innerHTML = '';
+};
+
+export const pubClearInput = target => {
+    document.querySelector( target ).value = '';
 };

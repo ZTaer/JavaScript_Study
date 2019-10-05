@@ -31,13 +31,12 @@ import { apiPassword, cors } from '../config';
         this.cookTime = Math.ceil( this.ingredients.length / 3 ) * 15; 
     }
 
-    calcServings( num = 4 ){
+    calcServings( num = 1 ){
         this.servings = num;
     }
 
     processIngredients(){
         let result = this.ingredients;
-        console.log(result);
 
         // 0. 替换统一词汇
             // a) 单词解析
@@ -48,14 +47,15 @@ import { apiPassword, cors } from '../config';
                 // pound - 镑
         const unitsL = [ 'tablespoons', 'tablespoon', 'ounces', 'ounce',  'teaspoons', 'teaspoon', 'cups', 'pounds' ];
         const unitsS = [ 'tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'tsp', 'cup', 'pound' ];
+        const units = [...unitsS, 'kg', 'g' ];
         result = result.map( cur => {
 
             // 0. 替换统一词汇
             unitsL.forEach( ( unit, index ) => {
-                cur = cur.replace( unit, unitsS[index] );
+                cur = cur.replace( unit, units[index] );
             } );
 
-            // window.r = result; 加入到全局( 根据视频中的记录 - 等待笔记 )
+            // window.r = result; 加入到全局( 根据视频中的记录 - 完成笔记 )
 
             // 1. 删除括号内容用空格代替( 正则表达式 - 等待研究 )
             cur = cur.replace(/ *\([^)]*\) */g, ' ' );
@@ -73,7 +73,7 @@ import { apiPassword, cors } from '../config';
                 // a) 有词汇,有参数
                 num = cur.slice( 0, door ).join('+');
                 num = num.replace('-','+');
-                // eval()函数,字符串js执行语句( 等待笔记 )
+                // eval()函数,字符串js执行语句( 完成笔记 )
                     // 0. 如: eval( " a = () => { console.log('233') }; a(); " ) 成立;
                     // 1. 不过通常用来字符串计算使用
                         // a) 如: eval( "1+1" );
@@ -95,7 +95,7 @@ import { apiPassword, cors } from '../config';
             }
 
             cur = {
-                // 对象属性便捷式写法( 等待笔记 )
+                // 对象属性便捷式写法( 完成笔记 )
                     // 0. num, 相当于 num = num,
                 num,
                 unit,
@@ -108,5 +108,25 @@ import { apiPassword, cors } from '../config';
         this.ingredients = result;
 
     }
+
+    // 调整材料份量
+    reviseServings( type ){
+        const newIng = this.ingredients;
+        if( type === 'inc' ){
+            this.servings++;
+            newIng.forEach( ( cur, index ) => {
+                this.ingredients[index].num = cur.num * 2;
+            } );
+        }
+        else if ( type === 'dec' && this.servings > 1 ){
+            this.servings--;
+            newIng.forEach( ( cur, index ) => {
+                this.ingredients[index].num = cur.num * 0.5;
+            } );
+        }
+        console.log( this.ingredients );
+    }    
+
+
 
  }
