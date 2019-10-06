@@ -111,20 +111,14 @@ import { apiPassword, cors } from '../config';
 
     // 调整材料份量
     reviseServings( type ){
-        const newIng = this.ingredients;
-        if( type === 'inc' ){
-            this.servings++;
-            newIng.forEach( ( cur, index ) => {
-                this.ingredients[index].num = cur.num * 2;
+        const newServings = ( type == 'inc' ) ? this.servings + 1 : this.servings - 1;
+        // 用 人数的百分比 * 材料数 = 来控制材料份量
+        if( newServings > 0 ){
+            this.ingredients.forEach( cur => {
+                cur.num *= ( newServings / this.servings );
             } );
+            this.servings = newServings;
         }
-        else if ( type === 'dec' && this.servings > 1 ){
-            this.servings--;
-            newIng.forEach( ( cur, index ) => {
-                this.ingredients[index].num = cur.num * 0.5;
-            } );
-        }
-        console.log( this.ingredients );
     }    
 
 

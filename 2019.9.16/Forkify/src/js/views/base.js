@@ -8,6 +8,9 @@ export const elementString = {
     recipe: 'recipe',
     resultsLink: 'results__link',
     resultsLinkActive: 'results__link--active',
+    recipeInfoDataPeole: 'recipe__info-data--people',
+    recipeCount: 'recipe__count',
+
 };
 
 export const element = {

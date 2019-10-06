@@ -129,4 +129,16 @@ export const showRecipe = data => {
     element.recipe.insertAdjacentHTML('beforeend', modelHTML);
 }
 
+/**
+ * 调整材料份数渲染
+ */
 
+export const showServings = recipe => {
+    // 渲染人数
+    document.querySelector( `.${elementString.recipeInfoDataPeole}` ).textContent = recipe.servings;
+
+    // 渲染材料数
+    Array.from(document.querySelectorAll(`.${elementString.recipeCount}`)).forEach( ( cur, index ) => {
+        cur.textContent = numFraction(recipe.ingredients[index].num) ;
+    } );
+}

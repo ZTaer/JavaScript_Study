@@ -136,8 +136,10 @@ const controlRecipe = async () => {
 element.recipe.addEventListener( 'click', cur => {
     if (cur.target.matches(' .btn-dec, .btn-dec * ') ){
         state.recipe.reviseServings( 'dec' );
+        recipeView.showServings( state.recipe );
     }
     else if( cur.target.matches(' .btn-inc, .btn-inc * ' ) ){
         state.recipe.reviseServings( 'inc' );
+        recipeView.showServings( state.recipe );
     } 
 } );
