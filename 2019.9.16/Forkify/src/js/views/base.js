@@ -10,6 +10,10 @@ export const elementString = {
     resultsLinkActive: 'results__link--active',
     recipeInfoDataPeole: 'recipe__info-data--people',
     recipeCount: 'recipe__count',
+    shoppingDelete: 'shopping__delete',
+    shoppingItem: 'shopping__item',
+    shoppingCountValue: 'shopping__count-value',
+    shoppingCount: 'shopping__count',
 
 };
 
@@ -21,6 +25,8 @@ export const element = {
     searchPageButton: document.querySelector('.results__pages'),
     resultPages: document.querySelector('.results__pages'),
     recipe: document.querySelector('.recipe'),
+    shoppingList: document.querySelector('.shopping__list'),
+
 
 };
 

@@ -3,9 +3,11 @@
 
 import Search from './models/Search';
 import Recipe from './models/Recipe';
+import List from './models/List';
 import { element, elementString, showLoader, clearLoader, pubClearHtml, pubClearInput } from './views/base';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
+import * as listView from './views/listView';
 
 /** 全局页面状态
  * - 搜索对象
@@ -142,4 +144,36 @@ element.recipe.addEventListener( 'click', cur => {
         state.recipe.reviseServings( 'inc' );
         recipeView.showServings( state.recipe );
     } 
+    else if( cur.target.matches( '.recipe__btn, .recipe__btn *' ) ){
+        // 购物车的数据加入全局状态
+        if( !state.list ) state.list = new List();
+        console.log(state.recipe.ingredients);
+        const items = state.recipe.ingredients;
+        items.forEach( cur => state.list.addItem( cur.num, cur.unit, cur.ingredients ) );
+
+        // 渲染材料到购物车
+        listView.showList( state.list.items );
+    }
 } );
+
+/**
+ * 购物车操控
+ */
+const reviseList = cur => {
+    const id = cur.target.closest(`.${elementString.shoppingItem}`).dataset.itemid;
+
+    // 删除按钮
+    if( cur.target.matches( ` .${elementString.shoppingDelete}, .${elementString.shoppingDelete} * ` ) ){
+        state.list.deleteItem( id );
+        listView.clearListItem( id );
+    }
+    else if( cur.target.matches( ` .${elementString.shoppingCountValue}` ) ){
+        const newNum = parseFloat(cur.target.value);
+        if( newNum < 0 ) listView.showNum( id, 0 ); // 保证数量不小于0
+        state.list.updateNewNum( id, newNum );
+    }
+    console.log( state.list );
+
+}
+
+element.shoppingList.addEventListener( 'click',reviseList );
