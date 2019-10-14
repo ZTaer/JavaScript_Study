@@ -50,7 +50,8 @@ const recipeItems = (cur, index) => {
 
 }
 
-export const showRecipe = data => {
+export const showRecipe = ( data, toggleLikeIcon ) => {
+    const string = toggleLikeIcon == true ? 'icon-heart' : 'icon-heart-outlined';
     let modelHTML = `
         <figure class="recipe__fig">
             <img src="${data.img}" alt="Tomato" class="recipe__img">
@@ -89,7 +90,7 @@ export const showRecipe = data => {
             </div>
             <button class="recipe__love">
                 <svg class="header__likes">
-                    <use href="img/icons.svg#icon-heart-outlined"></use>
+                    <use href="img/icons.svg#${string}"></use>
                 </svg>
             </button>
         </div>

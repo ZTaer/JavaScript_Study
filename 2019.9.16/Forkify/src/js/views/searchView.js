@@ -93,7 +93,7 @@ export const clickItemsBg = (id = 0) => {
         rlist.forEach( cur => {
             cur.classList.remove(`${elementString.resultsLinkActive}`);
         } );
-        document.querySelector(`a[ href="#${id}" ]`).classList.add(`${elementString.resultsLinkActive}`);
+        document.querySelector(`.${elementString.resultsLink}[ href="#${id}" ]`).classList.add(`${elementString.resultsLinkActive}`);
     }
 
 }

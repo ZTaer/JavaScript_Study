@@ -4,10 +4,12 @@
 import Search from './models/Search';
 import Recipe from './models/Recipe';
 import List from './models/List';
+import Likes from './models/Likes';
 import { element, elementString, showLoader, clearLoader, pubClearHtml, pubClearInput } from './views/base';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
 import * as listView from './views/listView';
+import * as likesView from './views/likesView';
 
 /** 全局页面状态
  * - 搜索对象
@@ -88,10 +90,15 @@ element.resultPages.addEventListener( 'click', e => {
     }
 } );
 
+// ***** 临时添加 *****
+if( !state.likes ) state.likes = new Likes();
 /**
  * 监听获取ID数据区域
  */
 const controlRecipe = async () => {
+    // 初始化"喜欢列表"按钮
+    likesView.toggleLikeMenu( state.likes.getLikesNum() );
+
     // window.location.hash 获取URL改变的HASH值( 完成笔记 )
     const id = window.location.hash.replace('#','');
     if(id){
@@ -113,8 +120,9 @@ const controlRecipe = async () => {
             clearLoader(`.${elementString.recipe}`);
 
             // 4. 渲染HTML数据
-            recipeView.showRecipe( state.recipe );
+            recipeView.showRecipe( state.recipe, state.likes.isLiked( state.recipe.id ) );
             console.log(state.recipe);
+
             
         }catch( error )
         {
@@ -153,6 +161,42 @@ element.recipe.addEventListener( 'click', cur => {
 
         // 渲染材料到购物车
         listView.showList( state.list.items );
+    }
+    else if( cur.target.matches( '.recipe__love, .recipe__love *' ) ){
+        /**
+         * "喜欢"按钮
+         */
+        let recipeID = state.recipe.id;
+        // 主控程序注意全局状态new创建( 等待笔记 )
+            // 0. 一定要验证如果new已经创建，就没有在创建的必要。
+        if( !state.likes ) state.likes = new Likes();
+        if( state.likes.isLiked( recipeID ) ){
+            // 删除喜欢列表
+            // 数据处理
+            state.likes.delLikeItem( recipeID );
+            // 按钮变化
+           likesView.toggleLikeIcon( false ); 
+           likesView.toggleLikeMenu( state.likes.getLikesNum() );
+            // 渲染HTML
+            likesView.clearLikeItem( recipeID );
+        }
+        else{
+            // 添加喜欢列表
+            // 数据处理
+            state.likes.addLikeItem( 
+                recipeID, 
+                state.recipe.title, 
+                state.recipe.publisher, 
+                state.recipe.img 
+            );
+            // 按钮变化
+           likesView.toggleLikeIcon( true ); 
+           likesView.toggleLikeMenu( state.likes.getLikesNum() );
+            // 渲染HTML
+            likesView.showLikeItem( state.recipe );
+        }
+        console.log( state.likes, state.likes.getLikesNum() );
+
     }
 } );
 

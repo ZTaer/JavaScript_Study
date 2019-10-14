@@ -14,7 +14,8 @@ export const elementString = {
     shoppingItem: 'shopping__item',
     shoppingCountValue: 'shopping__count-value',
     shoppingCount: 'shopping__count',
-
+    recipeLove: 'recipe__love',
+    likesLink: 'likes__link',
 };
 
 export const element = {
@@ -26,7 +27,8 @@ export const element = {
     resultPages: document.querySelector('.results__pages'),
     recipe: document.querySelector('.recipe'),
     shoppingList: document.querySelector('.shopping__list'),
-
+    likesIcon: document.querySelector('.likes__icon'),
+    likesList: document.querySelector('.likes__list'),
 
 };
 

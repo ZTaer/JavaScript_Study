@@ -10,3 +10,11 @@
     overflow:hidden;
     text-overflow:ellipsis;
 }
+.likes__name{
+    display:block;	
+    max-width:214px;
+    word-break:keep-all;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
