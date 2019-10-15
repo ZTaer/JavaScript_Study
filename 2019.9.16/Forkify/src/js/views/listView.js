@@ -1,7 +1,7 @@
 import { element, elementString } from './base';
 
 export const showList = ( items ) => {
-    // map()配合join能轻松将数据转换多个HTML模板( 等待笔记 )
+    // map()配合join能轻松将数据转换多个HTML模板( 完成笔记 )
     // number类型的input表单，step属性可以控制表单的单次加减数
     const modelHTML = items.map( cur => {
         cur = `

@@ -140,7 +140,7 @@ const controlRecipe = async () => {
  *  调整所需材料份数
  */
 
- // .matches( css选择 )判断是否为指定的CSS选择标签, 返回True/False( 等待笔记 )
+ // .matches( css选择 )判断是否为指定的CSS选择标签, 返回True/False( 完成笔记 )
     // a) 可使用css多选如: el.traget.matches( ' btn-dec, btn-dec * ' )
     // b) '.btn-dec *': 的意思为选中所有子类标签
 element.recipe.addEventListener( 'click', cur => {
@@ -167,7 +167,7 @@ element.recipe.addEventListener( 'click', cur => {
          * "喜欢"按钮
          */
         let recipeID = state.recipe.id;
-        // 主控程序注意全局状态new创建( 等待笔记 )
+        // 主控程序注意全局状态new创建( 完成笔记 )
             // 0. 一定要验证如果new已经创建，就没有在创建的必要。
         if( !state.likes ) state.likes = new Likes();
         if( state.likes.isLiked( recipeID ) ){

@@ -14,7 +14,7 @@ export default class Likes {
     }
 
     delLikeItem( id ){
-        // 在保存对象的数组中快速查找所需元素方法( 等待笔记 )
+        // 在保存对象的数组中快速查找所需元素方法( 完成笔记 )
         //      0. findIndex() 与 splice() 配合
         //          a) findIndex()找出索引值
         //              0. findIndex() 找到目标返回索引值, 否则返回-1
