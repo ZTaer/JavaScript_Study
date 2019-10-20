@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh" >
+
+    <head>
+		<meta charset="utf-8" >
+
+		<!-- 为兼容响应式 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+		
+<!-- ------------- 参数区 --------------- -->
+		<title>OO7_EJS</title>
+
+		<!-- SEO优化 -->
+		<meta name="keywords" content="标签1,标签2,标签3,标签4.....">
+		<meta name="description" content="XXXX(www.oo7.fun)XXXXXXXXXXXXXXX">
+
+
+<!-- ------------- 扩展区-必备 --------------- -->
+		<!-- cdn_icon -->
+		<!--
+			icon查询: https://fontawesome.com/icons?d=gallery
+		-->
+		<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.6.3/css/all.min.css" >
+		
+		<!-- bootstrap必备 -->
+		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+<!-- ------------- 扩展区-可选 --------------- -->
+		<!-- 滑动模块-可选 -->
+		<!--
+			效果查询: http://kenwheeler.github.io/slick/
+		-->
+		<link rel="stylesheet" href="https://cdn.staticfile.org/slick-carousel/1.9.0/slick.css" />
+		<link rel="stylesheet" href="https://cdn.staticfile.org/slick-carousel/1.9.0/slick-theme.css" />
+
+		<!-- 灯箱效果-可选 -->
+		<!--
+			效果查询: http://ashleydw.github.io/lightbox/
+		-->
+		<link rel="stylesheet" href="https://cdn.staticfile.org/ekko-lightbox/5.3.0/ekko-lightbox.css" integrity="sha256-HAaDW5o2+LelybUhfuk0Zh2Vdk8Y2W2UeKmbaXhalfA=" crossorigin="anonymous" />
+		
+		
+		<!-- 动画效果框架-可选 -->
+		<!--
+			效果查询: https://daneden.github.io/animate.css/
+			常用类: 
+				延迟动画: .delay-1s ... .delay-5s
+				时间动画: 
+					加速: .fast( 800ms ) .faster( 500ms )
+					减速: .slow( 2s ) .slower( 3s )
+				无限循环: .infinite
+			准备CSS: .oo7-animate{ opacity: 0; } 待动画标签加入类名.oo7-animate 
+		-->
+		<link rel="stylesheet" href="https://cdn.staticfile.org/animate.css/3.7.2/animate.css">
+
+
+<!-- ------------- 本页主CSS --------------- -->
+		<!-- 本地css,后面可以覆盖样式 
+        <link rel="stylesheet" href="../static/css/public.css">
+		-->
+		<link rel="stylesheet" href="./css/style.css">
+
+	</head>
+    <body data-spy="scroll" data-target=".navbar" data-offset="50" >
+<!-- ------------- 主内容区-BGN --------------- -->
+
+		<h1 class="fast" >test</h1>
+		<h1>tes2</h1>
+		<h1>tes3</h1>
+		<section style="height:120vh;"></section>
+		<section style="height:100px;" id="test" data-scroll-watch >
+			<div class="container">
+				<div class="row">
+					<a href="#" class="btn btn-danger oo7-animate">
+						test
+					</a>
+					<div class="card oo7-animate">
+						<div class="card-body">
+							<p>
+								2333
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div id="testvideo" >
+			<video id="background-video-tab" loop muted></video>
+			<div class="background-video-img"></div>
+			<div class="background-video-container"></div>
+     	</div>
+
+<!-- ------------- 主内容区-END --------------- -->
+
+<!-- ------------- 扩展区-必备-BGN --------------- -->
+		<!-- bootstrap必备 -->
+		<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script src="https://cdn.staticfile.org/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<!-- ------------- 扩展区-必备-END --------------- -->
+
+<!-- ------------- 扩展区-可选-BGN --------------- -->
+
+		<!-- 滑动轮播-可选 -->
+		<script src="https://cdn.staticfile.org/slick-carousel/1.9.0/slick.js" integrity="sha256-zUQGihTEkA4nkrgfbbAM1f3pxvnWiznBND+TuJoUv3M=" crossorigin="anonymous"></script>
+		
+		<!-- 灯箱效果-可选 -->
+		<script src="https://cdn.staticfile.org/ekko-lightbox/5.3.0/ekko-lightbox.min.js" integrity="sha256-Y1rRlwTzT5K5hhCBfAFWABD4cU13QGuRN6P5apfWzVs=" crossorigin="anonymous"></script>
+	  
+		<!-- OO7-JS-轻量级框架-可选 -->
+		<!--
+			源码参考: https://github.com/ZTaer/OO7GoldModl/
+		-->
+		<script src="./js/OO7EJS.v1.0.js" ></script>
+
+		<!-- 滚动监听-与动画效果配合-可选 -->
+		<!--
+			效果查询: https://daneden.github.io/animate.css/
+			常用语法: 开启监听的元素要有 data-scroll-watch 和 ID
+				示例: <section data-scroll-watch id="banner" ></section>
+		-->
+		<script src="https://cdn.jsdelivr.net/npm/scrollwatch@2.0.1/dist/ScrollWatch-2.0.1.min.js" integrity="sha256-jmgGQvZd2hgK8fxYGFYWPni/wP3c6/JkiMdUq5Ww3j8=" crossorigin="anonymous"></script>
+
+<!-- ------------- 扩展区-可选-END --------------- -->
+
+<!-- ------------- 本页主JS-BGN --------------- -->
+<!-- ------------- 本页主JS-END --------------- -->
+
+<!-- ------------- 初始化区-BGN --------------- -->
+		<script>
+			// 获取时间,使用时" <span id="year"></span> "对应id是核心
+			$('#year').text(new Date().getFullYear());
+
+			// 创建滚动效果 
+			$(".navbar a").on(  // 抓取跳转的a标签,要与目标位置对应
+				'click',
+				function(event){
+					if(this.hash !== ""){
+						event.preventDefault();
+						const hash = this.hash;
+
+						$('html, body').animate({
+							scrollTop: $(hash).offset().top
+							},
+							800, // 动画执行时间
+							function(){
+								window.location.hash = hash;
+							}
+						);
+					}
+			});
+
+			// 滑动轮播-可选
+			// 灯箱-可选
+			// 背景视频
+			let bv;
+			oo7.backgroundVideo( bv, '#testvideo', ['./img/11.mp4',''] );
+
+
+
+		</script>
+<!-- ------------- 初始化区-END --------------- -->
+	<script type="text/javascript" src="js/bundle.js"></script></body>    
+
+</html>

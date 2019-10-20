@@ -90,15 +90,11 @@ element.resultPages.addEventListener( 'click', e => {
     }
 } );
 
-// ***** 临时添加 *****
-if( !state.likes ) state.likes = new Likes();
+
 /**
  * 监听获取ID数据区域
  */
 const controlRecipe = async () => {
-    // 初始化"喜欢列表"按钮
-    likesView.toggleLikeMenu( state.likes.getLikesNum() );
-
     // window.location.hash 获取URL改变的HASH值( 完成笔记 )
     const id = window.location.hash.replace('#','');
     if(id){
@@ -140,7 +136,7 @@ const controlRecipe = async () => {
  *  调整所需材料份数
  */
 
- // .matches( css选择 )判断是否为指定的CSS选择标签, 返回True/False( 等待笔记 )
+ // .matches( css选择 )判断是否为指定的CSS选择标签, 返回True/False( 完成笔记 )
     // a) 可使用css多选如: el.traget.matches( ' btn-dec, btn-dec * ' )
     // b) '.btn-dec *': 的意思为选中所有子类标签
 element.recipe.addEventListener( 'click', cur => {
@@ -167,7 +163,7 @@ element.recipe.addEventListener( 'click', cur => {
          * "喜欢"按钮
          */
         let recipeID = state.recipe.id;
-        // 主控程序注意全局状态new创建( 等待笔记 )
+        // 主控程序注意全局状态new创建( 完成笔记 )
             // 0. 一定要验证如果new已经创建，就没有在创建的必要。
         if( !state.likes ) state.likes = new Likes();
         if( state.likes.isLiked( recipeID ) ){
@@ -221,3 +217,27 @@ const reviseList = cur => {
 }
 
 element.shoppingList.addEventListener( 'click',reviseList );
+
+window.addEventListener( 'load', () => {
+    /**
+     * 初始化喜欢列表, 含本地存储处理
+     */
+    // 创建喜欢列表
+    state.likes = new Likes();
+    // 获取本地喜欢列表存储
+    state.likes.getLocalLikes();
+    // 判断是否渲染喜欢列表按钮
+    likesView.toggleLikeMenu( state.likes.getLikesNum() );
+    // 循环渲染HTML喜欢列表内容
+    state.likes.Likes.forEach( cur => likesView.showLikeItem( cur ));
+
+    /**
+     * 初始化购物车， 含本地存储处理
+     */
+    state.list = new List();
+    state.list.getLocalItems();
+    console.log( state.list );
+    listView.showList( state.list.items );
+
+} );
+

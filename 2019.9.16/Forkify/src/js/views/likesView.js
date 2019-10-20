@@ -3,7 +3,7 @@ import { elementString,element } from './base';
 // 切换喜欢按钮样式
 export const toggleLikeIcon = door => {
     const string = door == true ?  'icon-heart' : 'icon-heart-outlined';
-    // .setAttribute( '属性名称','属性值' )改变标签属性值( 等待笔记 )
+    // .setAttribute( '属性名称','属性值' )改变标签属性值( 完成笔记 )
     document.querySelector( `.recipe__love use` ).setAttribute('href',`img/icons.svg#${string}`);
 }
 
@@ -39,7 +39,7 @@ export const showLikeItem = likeItem => {
 }
 
 export const clearLikeItem = id => {
-    // .class[href*="#test"]获取所有.class有此属性href="值"(等待笔记)
+    // .class[href*="#test"]获取所有.class有此属性href="值"(完成笔记)
         // 0. 注意*=是指定所有的意思
     const tar = document.querySelector(`.${elementString.likesLink}[href*="#${id}"]`).parentNode;
     tar.parentNode.removeChild( tar );

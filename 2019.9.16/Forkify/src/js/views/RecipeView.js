@@ -8,7 +8,7 @@ const numFraction = num => {
     // 12 --> 12
     // 0.5 --> 1/2;
     // 1.5 --> 1 1/2;
-    // frNum = new Fraction( num );( 等待笔记 )
+    // frNum = new Fraction( num );( 完成笔记 )
         // 返回对象，分子，分母
         // frNum.numerator 获取分子
         // frNum.denominator 获取分母

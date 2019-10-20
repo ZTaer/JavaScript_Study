@@ -22,6 +22,7 @@
     } );
 */
 
+/*
 // 1. async实战请求天气数据 - Fetch/Promises/async( 推荐使用async与then配合 )
     // 0. async检错机制
         // try{ ...代码内容 }catch(error){ ...代码内容 }
@@ -44,3 +45,15 @@
         console.log(data);
     } )
     .catch( error => console.log(error) );
+*/
+
+// class内部函数调用
+    // 0. 调用方式: this.test();即可调用内部函数
+    // 1. 调用函数不分上下, 如下演示, 上方函数可以直接调用下方函数
+class Ptest{
+    a = () => this.b(); // 可正常调用
+    b = () => console.log( 'bbb' );
+}
+
+const test = new Ptest();
+test.b();
