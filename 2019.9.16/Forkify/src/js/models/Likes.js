@@ -7,10 +7,12 @@ export default class Likes {
         const item = {
             id,
             title,
-            auother,
+            publisher,
             img,
         }
         this.Likes.push( item );
+
+        this.saveLocalLikes();
     }
 
     delLikeItem( id ){
@@ -22,6 +24,7 @@ export default class Likes {
         const tar = this.Likes.findIndex( cur => cur.id == id );
         if( tar >= 0 ) this.Likes.splice( tar, 1 );
         
+        this.saveLocalLikes();
     }
 
     // 判断是否已经存在于喜欢列表中
@@ -32,6 +35,24 @@ export default class Likes {
     // 获取喜欢列表中的数量
     getLikesNum(){
         return this.Likes.length;
+    }
+
+    /**
+     *  目的: 喜欢列表中的记录保存在本地
+     */
+
+    // 0. 获取本地喜欢列表，有则加入现有列表
+    getLocalLikes(){
+        if ( localStorage.getItem( 'likes' ) ){
+            let localDate = JSON.parse( localStorage.getItem( 'likes' ) );
+            this.Likes = localDate;
+        }
+    }
+
+
+    // 1. 喜欢列表的每一次改变，与本地存储同步     
+    saveLocalLikes(){
+        localStorage.setItem( 'likes',JSON.stringify( this.Likes ) );
     }
 
 

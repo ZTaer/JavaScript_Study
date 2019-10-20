@@ -1,0 +1,10 @@
+@import "./_OO7BTS.v2.1";
+
+#testvideo{
+  height:800px;
+  @include background-video-init( '../img/video_cover.jpg' );
+}
+
+.oo7-animate{
+  opacity: 0;
+}

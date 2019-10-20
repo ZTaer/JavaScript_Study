@@ -90,15 +90,11 @@ element.resultPages.addEventListener( 'click', e => {
     }
 } );
 
-// ***** 临时添加 *****
-if( !state.likes ) state.likes = new Likes();
+
 /**
  * 监听获取ID数据区域
  */
 const controlRecipe = async () => {
-    // 初始化"喜欢列表"按钮
-    likesView.toggleLikeMenu( state.likes.getLikesNum() );
-
     // window.location.hash 获取URL改变的HASH值( 完成笔记 )
     const id = window.location.hash.replace('#','');
     if(id){
@@ -221,3 +217,27 @@ const reviseList = cur => {
 }
 
 element.shoppingList.addEventListener( 'click',reviseList );
+
+window.addEventListener( 'load', () => {
+    /**
+     * 初始化喜欢列表, 含本地存储处理
+     */
+    // 创建喜欢列表
+    state.likes = new Likes();
+    // 获取本地喜欢列表存储
+    state.likes.getLocalLikes();
+    // 判断是否渲染喜欢列表按钮
+    likesView.toggleLikeMenu( state.likes.getLikesNum() );
+    // 循环渲染HTML喜欢列表内容
+    state.likes.Likes.forEach( cur => likesView.showLikeItem( cur ));
+
+    /**
+     * 初始化购物车， 含本地存储处理
+     */
+    state.list = new List();
+    state.list.getLocalItems();
+    console.log( state.list );
+    listView.showList( state.list.items );
+
+} );
+
