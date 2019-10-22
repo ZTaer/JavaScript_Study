@@ -1,9 +1,10 @@
-import { Animate } from './models/OO7EJS.v1.1';
+import { OO7Ani } from './models/OO7EJS.v1.1';
 import watchTab from 'scrollwatch';
+
 
 // init
 const init = () => {
-    const oo7Animate = new Animate;
+    const oo7Animate = new OO7Ani;
 
     document.addEventListener('click', cur => {
         if( cur.target.localName == 'h1' ){
@@ -30,5 +31,4 @@ const init = () => {
 window.addEventListener( 'load', init );
 
 
-let bv;
-oo7.backgroundVideo( bv, '#testvideo', ['./img/11.mp4',''] );
+
