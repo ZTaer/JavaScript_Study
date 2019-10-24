@@ -37,7 +37,6 @@ const server = http.createServer( ( req, res ) => {
     res.end( ' 一切正常 ' );
 } );
 
-
 // 监听端口(test)
 server.listen( 1337, '127.0.0.1', () => {
     console.log(' 正常监听端口 ');
