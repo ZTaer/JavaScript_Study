@@ -1,5 +1,5 @@
 /**
- * 基本操作( 等待笔记 ) 
+ * 基本操作( 完成笔记 ) 
     // 0. 本地手动运行js文件: node xx.js
     // 1. 自动运行js文件:
         a) 安装nodemon: npm install nodemon -g
@@ -20,12 +20,12 @@ const laptopJson = fs.readFileSync( `${__dirname}/data/data.json`, 'utf-8' );
 // json格式转object格式
 const laptopDate = JSON.parse( laptopJson );
 
-// 创建路由( 等待笔记 )
+// 创建路由( 完成笔记 )
     // a) req: 为用户请求信息
     // b) res: 为服务器返回信息
 const server = http.createServer( ( req, res ) => {
 
-    // 获取URL链接( 等待笔记 )
+    // 获取URL链接( 完成笔记 )
         // 0. req.url如: 127.0.0.1:1337/test
             // a) 得: req.url == 'test'
         // 1. url.parse( req.url, true );解析url链接为对象
@@ -44,7 +44,7 @@ const server = http.createServer( ( req, res ) => {
      * 路由
      */
     if( pathName === '/pro' || pathName === '/' ){
-        // 创建返回包( 等待笔记 )
+        // 创建返回包( 完成笔记 )
             // a) .writeHead( 标识码, { 'Content-type', '文件类型;charset=编码格式' } )
                 // 0. 200 - 访问正常
                 // 1. 404 - 访问失败
@@ -68,7 +68,7 @@ const server = http.createServer( ( req, res ) => {
     else if( pathName === '/laptop' && id < laptopDate.length ){
         res.writeHead( 200, { 'Content-type': 'text/html;charset=utf-8' } );
         
-        // node.js-本地读取文件关于.readFile()与.readFileSync()的区别( 等待笔记 )
+        // node.js-本地读取文件关于.readFile()与.readFileSync()的区别( 完成笔记 )
             // 0. readFile()需要回调函数
                 // a) .readFile( 路径, 编码, 函数 );
             // 1. readFileSync()无需回调函数
@@ -101,7 +101,7 @@ server.listen( 1337, '127.0.0.1', () => {
 
 
 // 渲染模板函数 - 替换字符串
-// .replace配合正则,替换字符串内容( 等待笔记 )
+// .replace配合正则,替换字符串内容( 完成笔记 )
     // 正则匹配全文指定内容: /{%TEXT%}/g
 function replaceHTML( modelHtml, data ){
     let result = modelHtml.replace( /{%PRICE%}/g, data.price );
