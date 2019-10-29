@@ -218,30 +218,24 @@
     <div class="container">
         <h1>The Laptop Store!</h1>
         <figure class="laptop">
-            <p class="laptop__price">$3199</p>
-            <a href="overview.html" class="laptop__back"><span class="emoji-left">👈</span>Back</a>
+            <p class="laptop__price">${%PRICE%}</p>
+            <a href="/pro" class="laptop__back"><span class="emoji-left">👈</span>Back</a>
             <div class="laptop__hero">
-                <img src="data/img/macbook-pro-15.jpg" alt="" class="laptop__img">
+                <img src="{%IMAGE%}" alt="" class="laptop__img">
             </div>
-            <h2 class="laptop__name">Apple Macbook Pro 2018</h2>
+            <h2 class="laptop__name">{%PRODUCTNAME%}</h2>
             <div class="laptop__details">
-                <p><span class="emoji-left">🖥</span> 15-inch Retina display</p>
-                <p><span class="emoji-left">🧮</span> 6-core Intel i7, 8th generation</p>
-                <p><span class="emoji-left">💾</span> 1TB GB SSD of storage</p>
-                <p><span class="emoji-left">📦</span> 16GB of RAM</p>
+                <p><span class="emoji-left">🖥</span>{%SCREEN%}</p>
+                <p><span class="emoji-left">🧮</span>{%CPU%}</p>
+                <p><span class="emoji-left">💾</span>{%STORAGE%}</p>
+                <p><span class="emoji-left">📦</span>{%RAM%}</p>
             </div>
             <p class="laptop__description">
-                If you're after the latest and greatest laptop from Apple, we suggest you look into the 2018 model of
-                the 15-inch MacBook Pro with Touch Bar. The headline Touch Bar – a thin OLED display at the top of the
-                keyboard which can be used for any number of things, whether that be auto-suggesting words as you type
-                or offering Touch ID so you can log in with just your fingerprint – is of course included. It's
-                certainly retained Apple's sense of style, but it comes at a cost. This is a pricey machine, so you may
-                want to consider one of the Windows alternatives. But, if you're a steadfast Apple diehard, this is
-                definitely the best laptop for you!
+                {%DESCRIPTION%}
             </p>
             <p class="laptop__source">Source: <a href="https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361"
                     target="_blank">https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361</a></p>
-            <a href="#" class="laptop__link">Buy now for $3199 <span class="emoji-right">🥳 😍</span></a>
+            <a href="#" class="laptop__link">Buy now for ${%PRICE%} <span class="emoji-right">🥳 😍</span></a>
         </figure>
     </div>
 </body>
