@@ -3,6 +3,7 @@ import React,{ Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import { CardList } from './components/card-list/card-list.component';
 
 class App extends Component{
   constructor(){
@@ -27,14 +28,12 @@ class App extends Component{
     }
     getMonsters().then( cur => {
       this.setState( { monsters: cur.data } );
-      console.log( this.state  );
     } );
 
   }
   
   render(){
-    return(
-      // map()函数渲染JSX方法使用( 用于循环数组, 只不过在这里是的内容是JSX )( 等待笔记 )
+    // map()函数渲染JSX方法使用( 用于循环数组, 只不过在这里是的内容是JSX )( 等待笔记 )
         // 0. 使用map函数的优势:
           // a) react非常的聪明, 如果map循环的数据中有变化, 那么他只会渲染发生变化的内容, 不会全部重新渲染
           // b) 这样的方法大大提高了效率 
@@ -47,12 +46,10 @@ class App extends Component{
         // 2. map()无return写法 
           // { this.state.monsters.map( cur => <h1 key={ cur.id } > { cur.name } </h1> ) }
         // 3. map()有return写法, 如下:
+    console.log(this.state.monsters);
+    return(
       <div className="App">
-        {
-            this.state.monsters.map( cur => {
-              return <h1 key={ cur.id } > { cur.name } </h1>;
-            } )
-        }
+        <CardList monsters={this.state.monsters} />
       </div>
     );
   }
