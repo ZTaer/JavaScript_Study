@@ -12,7 +12,7 @@ export const CardList = props => {
     );
 };
 
-// 自定义标签属性传输,以及重用性( 等待笔记 )
+// 自定义标签属性传输,以及重用性( 完成笔记 )
     /**
     引入方:
         import { CardList } from '...';

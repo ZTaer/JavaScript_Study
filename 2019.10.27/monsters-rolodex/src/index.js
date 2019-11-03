@@ -4,12 +4,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-// ReactDOM.render()指定ID标签,渲染JSX内容到前端( 等待笔记 )
+// ReactDOM.render()指定ID标签,渲染JSX内容到前端( 完成笔记 )
     // 0. <App />: 自定义标签
     // 1. 使用方法: ReactDOM.render( <自定义标签 />, 渲染位置  );
 ReactDOM.render(<App />, document.getElementById('root'));
 
-// 自定义标签( 等待笔记 )
+// 自定义标签( 完成笔记 )
     // 0. 因为class开头大写, 自定义标签名称与class名相同
     // 1. 可以使用自定义标签的情况:
         // a) 类情况: class Xxx extends Component{ render( return( JSX ) ); }
@@ -21,7 +21,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
         // a) 自定义标签( JSX -> 自定义标签 -> HTML ): 
     // 4. 关于JSX名称要开头大写
 
-// 合理的文件结构( 等待笔记 )
+// 合理的文件结构( 完成笔记 )
     // 0. webpack最终将会把他们打包一起
     // 0. 关于JSX文件结构化:
         // a) 类名.文件夹.jsx
