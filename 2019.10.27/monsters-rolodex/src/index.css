@@ -5,9 +5,22 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background: linear-gradient(
+    to left,
+    rgba( 7,27,85,1 ) 0%,
+      rgba( 0,128,128,1 ) 100%
+  );
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+h1{
+  font-family: 'ZCOOL KuaiLe', cursive;
+  font-size: 3rem;
+  color:#13d4d4;
 }

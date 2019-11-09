@@ -4,6 +4,8 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import { CardList } from './components/card-list/card-list.component';
+import { SearchBox } from './components/search-box/search-box.component';
+
 
 class App extends Component{
   constructor(){
@@ -31,6 +33,50 @@ class App extends Component{
       this.setState( { monsters: cur.data } );
     } );
 
+  }
+
+  /**
+   * react-class方法传递,class类中可以使用'箭头函数'
+   */
+  // 0. 原因: 在react中如果将class函数传递给其它作用域，普通class函数因无this会报错必须借用this.xxx.bind(this);才能正常传递使用
+  // 1. 作用: class中如果使用箭头函数，直接可以传递使用this.xxx;
+  // 2. 解析: 因为'箭头函数'可以继承父类的所有方法属性.因为他们同属于一个作用域
+  // 3. 实战:
+    /**
+     * import React,{Component} from 'react';
+     * 
+     * class App() extends Component{
+     *    constructor(){
+     *      super();
+     *      this.state = {
+     *        xx: '',     
+     *      };
+     *      
+     *      this.tt.bind( this ); // 普通方法, 有他才能正常传递使用
+     *    }
+     *    
+     *    // 普通方法
+     *    tt(){
+     *      this.setState({ xx: 'xxx' });   
+     *    }
+     *    
+     *    // 箭头函数方法
+     *    bb = ()=>{
+     *      this.setState({ xx: 'xxx' });   
+     *    }
+     * 
+     *    render(
+     *      <DivCard1 onChangeEvent={ this.tt } /> // 普通方法, 需bind()配合
+     *      <DivCard2 onChangeEvent={ this.bb } /> // 箭头函数方法, 直接调用
+     *    );
+     * }
+     */
+
+    // b) 箭头函数class类实战
+
+
+  searchChangeEvent = e => {
+    this.setState( { searchField: e.target.value } );
   }
   
   render(){
@@ -64,9 +110,8 @@ class App extends Component{
            * 2. 如: <input type='search' onChange={ e => { 注意: 改变this.state值会重新执行render函数 } } /> 
            */ 
       <div className="App">
-        <input type='search' placeholder='搜索怪物名称' onChange={ e => { 
-          this.setState( { searchField: e.target.value } )
-          } } />
+        <h1> 大怪物用户 </h1>
+        <SearchBox placeholder='搜索怪物名称' searchChangeEvent={ this.searchChangeEvent } />
         <CardList monsters={filterMonsters} />
       </div>
     );
