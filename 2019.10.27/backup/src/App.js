@@ -98,13 +98,13 @@ class App extends Component{
     const filterMonsters = monsters.filter( cur => cur.name.toLowerCase().includes( searchField.toLowerCase() ) ); // 过滤数组元素,小写字符串方便比较 
 
     return(
-          /***this.setState异步与回调函数( 等待笔记 )
+          /***this.setState异步与回调函数( 完成笔记 )
            * 0. this.setState( { 改变值 }, 改变后执行的函数 ) -> this.setState( { xxx: xxx }, ()=>{} );
            * 1. 因为this.setState( {}, function )为异步运行的，所以要在同setState下的，另写一个function确定修改值的准确性。异步可以保证其它js正常运行，可以直接应用到异步需求的搜索栏
            * 
             this.setState( { searchField: e.target.value }, ()=>{console.log(this.state)} )
            */
-          /***JSX属性onChange={}表单内容发生改变触发函数( 等待笔记 )
+          /***JSX属性onChange={}表单内容发生改变触发函数( 完成笔记 )
            * 0. onChange = { e => {} }
            * 1. e: 包含表单标签的属性，常用e.target.value获取表单输入值 
            * 2. 如: <input type='search' onChange={ e => { 注意: 改变this.state值会重新执行render函数 } } /> 
