@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> 在没有webpack的情况下使用react </title>
+</head>
+<body>
+    <div id="main-body">
+
+    </div>
+
+    
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script>
+
+        /**
+         * 在没有WebPack情况下使用React ( 完成笔记 )
+        */
+       // React.createElement()创建标签函数; - 无webpack
+            // 0. 三个参数React.createElement( '标签名称', {标签属性}, '标签内容' );
+                // a) 标签名称: 按照H5标准/或者React的自定义标签名称
+                // b) 标签属性: 按照JSX标准来 
+                    // 0. 例: { className: 'text-light display-2' } -> class="text-light display-2"
+                // c) 标签内容:
+                    // 0. 可以再次嵌套React.createElement()
+                    // 1. 字符串/或变量都可以
+                    // 2. 多个嵌套: React.createElement( 'div', { className: 'test' }, [ xxx, xxx ] );
+        // 实例: React.createElement()正常使用 
+        const App = ()=>{
+            return React.createElement( 'h1', {}, '测试React.createElement()函数使用'  );
+        }
+
+        // 实例: React.createElement()嵌套使用 
+        const App1 = () =>{
+            return React.createElement( 'div', {}, React.createElement( 'h2', { className: 'text-light display-2' } ), 'React.createElement()函数可以嵌套使用' );
+        }
+
+        // 实例: React.createElement()多个嵌套使用 
+        const App2 = ()=>{
+            return React.createElement( 'div', {}, [ React.createElement(App),React.createElement(App1),React.createElement(App1), ] );
+        }
+
+        /**
+         * function组件写法 - 无webpack ( 完成笔记 )
+        */
+            // 0. 只是以前return JSX的地方让React.createElement()代替
+        const Ftest = () => {
+            return React.createElement( 'p', {}, 'return JSX的地方, 都使用React.createElement()代替' );
+        }
+
+        /**
+         * class组件写法 - 无webpack ( 完成笔记 )
+        */
+            // 0. 只是以前return JSX的地方让React.createElement()代替
+        class App3 extends React.Component {
+            constructor(){
+                super();
+                this.state = {
+                    string: '无webpack, class组件写法',
+                };
+            }
+
+            render(){
+                return React.createElement( 'h3', {}, this.state.string );
+            }
+        }
+
+        /**
+         * 渲染组件ReactDOM.render()多条自定义标签渲染 - 无webpack  ( 完成笔记 )
+        */
+            // 0. 在没有webpack情况下: ReactDOM.render( 待渲染标签数组, 渲染位置 );
+                // a) 待渲染标签数组： 
+                    // 0. 需要React.createElement()配合使用
+                    // 1. 多个标签渲染: ReactDOM.render( [ xxx, xxx ], 位置 );
+                // b) 渲染位置: 起使用方式并没有变化 
+        ReactDOM.render( [React.createElement(App), React.createElement(App1), React.createElement(App2), React.createElement(App3) ], document.getElementById('main-body') );
+
+    </script>
+</body>
+</html>
