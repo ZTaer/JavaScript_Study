@@ -3,7 +3,7 @@ export default class Likes {
         this.Likes = [];
     }
 
-    addLikeItem( id, title, auother, img ){
+    addLikeItem( id, title, publisher, img ){
         const item = {
             id,
             title,
