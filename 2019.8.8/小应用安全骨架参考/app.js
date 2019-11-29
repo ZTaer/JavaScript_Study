@@ -36,15 +36,20 @@ var uiModule = ( function(){
 // 主空模块( 与模块建立联系,使用函数传递参数的方式，这样可以在函数内部修改模块名称，方便操作 - 不建议使用模块名称直接引用功能，这样会使代码阅读性大大降低 )
 var controlModule = ( function( data,ui ){
     
-    console.log( data.publickAdd(5,5) ); // 访问API接口功能
-    
+    const test = () => {
+        console.log( data.publickAdd(5,5) ); // 访问API接口功能
+    }
     
     return{
-
+        init: ()=>{
+            console.log('Start!!!');
+            test();
+        }
     }
 
 } )( dataModule,uiModule )
 /************ 主空模块-END  */
+controlModule.init();
 
 
 
