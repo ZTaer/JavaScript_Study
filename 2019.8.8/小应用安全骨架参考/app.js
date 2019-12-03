@@ -40,9 +40,15 @@ var controlModule = ( function( data,ui ){
         console.log( data.publickAdd(5,5) ); // 访问API接口功能
     }
     
+    // 监听
+    var setupEventLiteners = ()=>{
+        // 监听
+        window.addEventListener('load',  console.log('监听正常') );
+    }
     return{
         init: ()=>{
             console.log('Start!!!');
+            setupEventLiteners();
             test();
         }
     }
