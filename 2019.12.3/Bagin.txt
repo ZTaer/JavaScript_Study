@@ -1,0 +1,3 @@
+0. Decide on Components.: 决定使用什么组件
+1. Decide the State and where it lives.：决定数据在流的位置
+2. What changes when state changes.: 决定数据在什么情况下交互改变
