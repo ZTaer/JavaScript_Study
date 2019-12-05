@@ -4,21 +4,14 @@ import './App.scss';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container-fluid">
+      <div className="test">
+        <h1 className="display-1 m-0 text-center py-5" >
+          Test
+        </h1>
+      </div>
+      <div className="test2" ></div>
+      <div className="test3" ></div>
     </div>
   );
 }
