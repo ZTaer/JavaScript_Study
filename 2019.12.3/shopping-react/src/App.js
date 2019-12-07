@@ -1,16 +1,101 @@
 import React from 'react';
-
-import { Switch,Route } from 'react-router-dom';
-
+import { Switch,Route,Link } from 'react-router-dom';
 import HomePage from './pages/homepage/homepage.component';
 
-// 测试路由
+// 测试路由 - 2
+const TestPage = props => ( <div> <h2 className="display-2" > { props.match.params.proName }: 临时产品页面 </h2></div> );
+
+function App() {
+  return (
+    <div className="App">
+      <Switch>
+        <Route exact={ true } path='/' component={HomePage} />
+        <Route path='/shop/:proName' component={TestPage} />
+      </Switch>
+    </div>
+  );
+}
+
+// 测试路由 - 1 
+// 关于Route标签传递的参数props( 完成笔记 )
+  // 0. match属性对象:
+    // a) url: 保存‘当前’在浏览器中的url链接( 仅限于保存符合路由规则的url,想要完整的url信息请看props.location.pathname属性解析 )
+      // 0. 常用于创建动态路径( 具体看下方实战代码 )
+    // b) path: 保存在Route标签中的path属性内容
+      // 0. 如: <Route path='/pro/:proID' component={ProTextTest} /> 那么 props.match.path == '/pro/:proID';
+    // c) isExact: 当url符合path规定的路由路径时为True, 否则为false
+    // d) params: 常用于它的参数来配置'动态路由'页面跳转
+      // 0. 常与Route标签中 path='/:xxx'下的':xxx'符号配合, 因为它能让:xxx变为params的属性
+      // 1. 如: 
+        /**
+         * 路由配置: <Route path='/pro/:proID' component={ProTextTest} />
+         * url访问: xxxx/pro/123
+         * 那么params对象属性有: params = { proID: 123 }
+         * **/
+  // 1. history属性对象:
+    // a) history下有很多函数属性,目前最常用的为push函数,用于跳转指定url页面,与Link标签功能相似
+    // b) push(): 跳转指定url
+      // 0. 如: <button onClick={ ()=> props.history.push('/pro') } > 产品页面 </button>
+  // 2. location属性对象:
+    // a) pathname: 保存完整的‘当前url信息’
+      // 0. 如: 
+        /**
+         * 路由规则: <Route path='/pro/:proID' component={ProTextTest} />
+         * 访问域名: http://localhost:3000/pro/123123/123123
+         */
+        // a) props.location.pathname = "/pro/123123/123123" ;
+        // c) props.match.url = "/pro/123123";
+        // b) 与match.url的区别: 在于pathname保留完整的url信息，但math.url只保存符合路由规则的url信息
+// Link标签库：直接跳转到指定url( 完成笔记 )
+  // 0. 如: <Link to="/" > 返回主页 </Link> 
+  // 1. 在前端界面将被渲染为‘a标签’
+/*
+const HomePageTest = props => {
+  console.log( '1',props );
+  return ( 
+    <div> 
+      <h2 className="display-1" > 主页 </h2>
+      <button onClick={ ()=> props.history.push('/pro') } > 产品页面 </button>
+    </div> 
+  );
+}
+const ProTest = props => {
+  console.log( '2',props );
+  return ( 
+      <div> 
+        <h2 className="display-1" > 产品页 </h2>
+        <Link to="/" > 返回主页 </Link>      
+
+        <Link to={ `${props.match.url}/13` } > 产品13 - match.url实战 </Link>      
+        <Link to={ `${props.match.url}/14` } > 产品14 - match.url实战 </Link>      
+      </div> 
+    );
+}
+const ProTextTest = props => { 
+  console.log( '3',props );
+  return ( <div> <h2 className="display-1" > 产品详情页ID: { props.match.params.proID } </h2></div> ); 
+}
+
+function App() {
+  return (
+    <div className="App">
+      <Switch>
+        <Route exact path='/' component={HomePageTest} />
+        <Route exact path='/pro' component={ProTest} />
+        <Route path='/pro/:proID' component={ProTextTest} />
+      </Switch>
+    </div>
+  );
+}
+*/
+/*
+// 测试路由 - 0
 const HatsPage = () => ( <div> <h2 className="display-2" > TEST - Router </h2></div> );
 const TestPage = () => ( <div> <h2 className="display-2" > TEST2 - Router </h2></div> );
 
 function App() {
   return (
-    // Route标签使用:( 等待笔记 )
+    // Route标签使用:( 完成笔记 )
       // 0. 模型: <Route exact={true/false} path="/" component={JSX} >默认3个参数
       // 1. exact属性:
         // a) exact为是否开启精确路由访问
@@ -33,5 +118,5 @@ function App() {
     </div>
   );
 }
-
+*/
 export default App;
