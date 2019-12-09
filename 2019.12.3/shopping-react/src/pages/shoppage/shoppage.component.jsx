@@ -14,7 +14,7 @@ class ShopPage extends React.Component  {
 
     render(){
         console.log( shopData );
-        // 对象解构法 - 创建对象属性变量并赋值( 等待笔记 )
+        // 对象解构法 - 创建对象属性变量并赋值( 完成笔记 )
             // 0. const { collectionShop } = this.state; 相当于 const collectionShop = this.state.collectionShop;
             // 1. 注意属性名称与变量名称一致，以及注意大括号。
         const { collectionShop } = this.state;
