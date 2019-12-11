@@ -3,6 +3,7 @@ import "./sign-in.style.scss";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
+import { signInWithGoogle } from "../../firebase/firebase.config";
 
 class SignIn extends React.Component {
     constructor(){
@@ -65,10 +66,14 @@ class SignIn extends React.Component {
                         name="password" 
                         value={this.state.password} required  
                     />
-
-                    <CustomButton type="submit" >
-                        登陆
-                    </CustomButton>
+                    <div className="btn-sign">
+                        <CustomButton selfCss={`sign-width`} type="submit" >
+                            登陆
+                        </CustomButton>
+                        <CustomButton selfCss={`sign-width google-btn-color`}  onClick={ signInWithGoogle } >
+                            Google登陆
+                        </CustomButton>
+                    </div>
                 </form>
             </div>
         );

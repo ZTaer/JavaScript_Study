@@ -4,7 +4,7 @@
   height: 50px;
   letter-spacing: 0.5px;
   line-height: 50px;
-  padding: 0 35px 0 35px;
+  text-align: center;
   font-size: 15px;
   background-color: black;
   color: white;
@@ -13,7 +13,8 @@
   font-weight: bolder;
   border: none;
   cursor: pointer;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
+  border: 1px solid black;
 
   &:hover {
     background-color: white;

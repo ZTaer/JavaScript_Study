@@ -1,6 +1,7 @@
 import React from 'react';
 import "./header.styles.scss";
 import { Link } from "react-router-dom";
+import {auth} from "../../firebase/firebase.config";
 
 // React-React导入svg文件( 完成笔记 )
     // 0. import { ReactComponent as Logo } from "../../assets/crown.svg";
@@ -10,7 +11,8 @@ import { Link } from "react-router-dom";
     // 4. SVG的优势: svg图标，为矢量图，并且很小
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 
-const Header = () => {
+const Header = ({ currentUser }) => {
+   console.log( currentUser ); 
     return(
         <div className="header">
             <Link className="logo-container" to="/" >
@@ -23,12 +25,16 @@ const Header = () => {
                 <Link className="option" to="/shop" >
                     产品
                 </Link>
-                <Link className="option" to="/shop" >
+                <Link className="option" to="/tel" >
                     联系
                 </Link>
-                <Link className="option" to="/sign" >
-                    注册/登陆
-                </Link>
+                {
+                    currentUser 
+                    ? 
+                    ( <div className="option" onClick={ ()=>auth.signOut() } >退出</div> ) // 用户退出登陆( 完成笔记 )
+                    : 
+                    ( <Link className="option" to="/sign" >注册/登陆</Link> )
+                }
             </div>
         </div>
     );

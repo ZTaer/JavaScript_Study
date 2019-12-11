@@ -5,6 +5,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+  font-family: 'Open Sans Condensed';
 
   .logo-container {
     height: 100%;
@@ -18,6 +19,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    cursor: pointer;
 
     .option {
       padding: 10px 15px;

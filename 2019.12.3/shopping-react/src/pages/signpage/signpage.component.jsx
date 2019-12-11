@@ -5,7 +5,9 @@ import SignIn from '../../components/sign-in/sign-in.component';
 
 const SignPage = () => {
     return (
-        <SignIn />
+        <div className="sign-content">
+            <SignIn className="signIn" />
+        </div>
     );
 }
 

@@ -6,24 +6,54 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shoppage/shoppage.component';
 import SignPage from './pages/signpage/signpage.component';
 
+import { auth } from './firebase/firebase.config';
+
 // 测试路由 - 2
 const TestPage = props => ( <div> <h2 className="display-2" > { props.match.params.proName }: 临时产品页面 </h2></div> );
+const TelPage = props => ( <div> <h2 className="display-2" > { props.match.params.proName }: 等待建设页面 </h2></div> );
 // 在Switch标签外不受路由影响 - 无论页面如何变化,组件依然显示存在( 完成笔记 ) 
     // 0. 把导航栏放在switch之外，这样导航栏将一直存在。不会受路由的控制 
     // 1. 这是一个非常非常重要的功能 - 不受页面刷新影响方法
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Switch>
-        <Route exact path='/' component={HomePage} />
-        <Route exact path='/shop' component={ShopPage} />
-        <Route path='/shop/:proName' component={TestPage} />
-        <Route path='/sign' component={SignPage} />
-      </Switch>
-    </div>
-  );
+
+class App extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      currentUser: null,
+    }
+  }
+  unsubscribeFromAuth = null; // Google登陆验证防内存泄漏( 完成笔记 )
+  
+  // 获取登陆用户信息( 完成笔记 )
+  componentDidMount(){
+    this.unsubscribeFromAuth = auth.onAuthStateChanged( user => {
+      this.setState({ currentUser: user });
+      console.log( user );
+    } );
+  }
+
+  // 卸载组件时,退出登陆( 完成笔记 )
+  componentWillUnmount(){
+    this.unsubscribeFromAuth(); // class中赋值骚操作,相当于this.unsubscribeFromAuth = null;( 完成笔记 )
+  }
+
+  render(){
+    return(
+      <div className="App">
+        <Header currentUser={ this.state.currentUser } />
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/shop' component={ShopPage} />
+          <Route path='/shop/:proName' component={TestPage} />
+          <Route path='/sign' component={SignPage} />
+          <Route path='/tel' component={TelPage} />
+        </Switch>
+      </div>
+    );
+  }
+
 }
+
 
 // 测试路由 - 1 
 // 关于Route标签传递的参数props( 完成笔记 )
