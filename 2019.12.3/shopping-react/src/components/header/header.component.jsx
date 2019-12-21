@@ -3,6 +3,9 @@ import "./header.styles.scss";
 import { Link } from "react-router-dom";
 import {auth} from "../../firebase/firebase.config";
 
+// connect函数使react组件可以访问redux存储( 完成笔记 )
+import { connect } from 'react-redux';
+
 // React-React导入svg文件( 完成笔记 )
     // 0. import { ReactComponent as Logo } from "../../assets/crown.svg";
     // 1. 因为文件为jsx文件格式，所以需要借用 ReactComponent 这是规则，
@@ -12,7 +15,6 @@ import {auth} from "../../firebase/firebase.config";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 
 const Header = ({ currentUser }) => {
-   console.log( currentUser ); 
     return(
         <div className="header">
             <Link className="logo-container" to="/" >
@@ -40,5 +42,53 @@ const Header = ({ currentUser }) => {
     );
 }
 
-export default Header;
+const mapStateToProps = state => {
+    return {
+        currentUser: state.user.currentUser,
+    }
+};
+
+// React-Redux: connect()函数,用于交互redux数据( 完成笔记 )
+    // 0. connect( mapStateToProps, mapDispatchToProps );
+    // 1. mapStateToProps: 用于获取redux数据,默认值为null
+        // a) store更新的任何时候mapStateToProps都将被调用,换句话说保持数据更新
+        // b) 他返回必须是一个对象类型
+        // c) 其返回的对象变量，可直接在当前组件中使用。
+        // d) 使用方式：
+            // 0. class获取传输的Redux变量:
+                /**
+                    import { connect } from 'react-redux';
+                    class xxx {
+                        this.props.currentUser; // 通过this.props.xxxx获取
+                    }
+
+                    const mapStateToProps = state => ({
+                        currentUser: state.user.currentUser,
+                    });
+
+                    export default connect(mapStateToProps)(App);
+                 */
+            // 1.函数传输的Redux变量
+                /***
+                    import { connect } from 'react-redux';
+                    const Header = ({ currentUser }) => {
+                        currentUser; // 需要函数接受一下对应变量名称，即可正常使用
+                    }
+                    export default connect(mapStateToProps)(Header);
+                 */
+    // 2. mapDispatchToProps: 用于传输参数并执行Actions从而改变redux数据
+        // a) 调度redux对应组件actions函数 
+        // b) dispatch( actions函数 )，让redux知道我们要执行actions函数,用于改变数据
+        // c) 使用方式:
+            /***
+                import { connect } from 'react-redux';
+                import { setCurrentUser } from './redux/user/user.actions';
+
+                const mapDispatchToProps = dispatch => ({
+                    setCurrentUser: user => dispatch( setCurrentUser(user) ),
+                });
+
+                export default connect(null, mapDispatchToProps)(App);
+             */
+export default connect(mapStateToProps)(Header);
 

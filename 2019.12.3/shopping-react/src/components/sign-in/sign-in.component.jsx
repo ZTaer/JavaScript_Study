@@ -3,24 +3,35 @@ import "./sign-in.style.scss";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
-import { signInWithGoogle } from "../../firebase/firebase.config";
+import { signInWithGoogle, auth } from "../../firebase/firebase.config";
 
 class SignIn extends React.Component {
-    constructor(){
-        super();
+    // withRouter在class中的用法( 完成笔记 )
+        // 通过this.props就能访问当前页面的路由信息
+        // 如: this.props.history; this.props.match;
+    constructor(props){
+        super(props);
         this.state = {
             email:'',
             password:'',
-        }
+        };
     }
-
     // React处理from提交数据( 完成笔记 )
         // 0. form准备: <form onSubmit={this.handleSubmit}></form>
         // 1. 注意: cur.preventDefault()函数的本质为,阻止默认事件发生,好由React来处理form数据
         // 1. 函数准备: 如下 - cur为接受的form数据
-    handleSubmit = cur => {
+    handleSubmit = async cur => {
         cur.preventDefault();    
-        this.setState( { email:'', password:'' } );
+        try{
+            // firebase登陆用户函数( 完成笔记 )
+                // 0. signInWithEmailAndPassword(email,password)
+            await auth.signInWithEmailAndPassword( this.state.email, this.state.password );
+            this.setState( { email:'', password:'' } ); // 登陆完,要初始化
+        }
+        catch(err){
+            alert(err.message);
+        }
+        
     }
 
     // React处理input改变数据( 完成笔记 )
@@ -40,6 +51,11 @@ class SignIn extends React.Component {
         this.setState( {[name]: value} );
     }
     // 感悟: 感觉React组件,就像是一个一个函数一样( 完成笔记 )
+
+    test = () => {
+        this.setState({ test: true, text1: '登陆成功!' });
+    }
+
     render(){
         return(
             <div className="sign-in">

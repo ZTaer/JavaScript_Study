@@ -1,12 +1,15 @@
 import React from 'react';
-import { Switch,Route,Link } from 'react-router-dom';
+import { Switch,Route,Link,Redirect } from 'react-router-dom';
 
 import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shoppage/shoppage.component';
 import SignPage from './pages/signpage/signpage.component';
 
-import { auth } from './firebase/firebase.config';
+import { auth, createUserProfileDocument } from './firebase/firebase.config';
+
+import { connect } from 'react-redux';
+import { setCurrentUser } from './redux/user/user.actions';
 
 // 测试路由 - 2
 const TestPage = props => ( <div> <h2 className="display-2" > { props.match.params.proName }: 临时产品页面 </h2></div> );
@@ -16,19 +19,31 @@ const TelPage = props => ( <div> <h2 className="display-2" > { props.match.param
     // 1. 这是一个非常非常重要的功能 - 不受页面刷新影响方法
 
 class App extends React.Component {
-  constructor(){
-    super();
-    this.state = {
-      currentUser: null,
-    }
-  }
+
   unsubscribeFromAuth = null; // Google登陆验证防内存泄漏( 完成笔记 )
   
   // 获取登陆用户信息( 完成笔记 )
   componentDidMount(){
-    this.unsubscribeFromAuth = auth.onAuthStateChanged( user => {
-      this.setState({ currentUser: user });
-      console.log( user );
+    const { setCurrentUser } = this.props;
+
+    this.unsubscribeFromAuth = auth.onAuthStateChanged( async user => {
+
+      // 如果用户登陆
+      if( user ){
+        // firebase-onSnapshot()监听文档对象(快照对象)方便数据更新(  完成笔记)
+          // 0. onSnapshot(props=>{xx}) 用于监听快照对象,如果数据发生变化,方便数据变化时实时更新
+          // 1. props用于传递快照对象的数据,于监听快照对象无疑
+        const userRef = await createUserProfileDocument( user ); // React什么周期组件内,可以使用await等待异步数据(  完成笔记)
+        userRef.onSnapshot( props => {
+          setCurrentUser({
+            id: props.id,
+            ...props.data()
+          });
+        } );
+      }
+
+      // 注意:此乃谷歌原始配置信息
+      setCurrentUser( user );
     } );
   }
 
@@ -40,12 +55,23 @@ class App extends React.Component {
   render(){
     return(
       <div className="App">
-        <Header currentUser={ this.state.currentUser } />
+        <Header />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/shop' component={ShopPage} />
           <Route path='/shop/:proName' component={TestPage} />
-          <Route path='/sign' component={SignPage} />
+          {
+            // 关于路由render属性的功能( 完成笔记 )
+              // 0. 用法: <Route exact path render={()=> <自定义标签 />} >
+              // 1. 有render属性则不能有component属性
+              // 2. 必需要有exact属性
+            // 关于路由Redirect的使用,重定向指定页面( 完成笔记 )
+              // 0. 导入Redirect: import { Switch,Route,Link,Redirect } from 'react-router-dom';
+              // 1. 使用方式<Redirect to='路由位置'>,直要被渲染将直接跳转指定路由位置
+              // 2. 实列( 当用户登陆后,则将无法访问注册/登陆页面 ):
+          }
+          <Route exact path='/sign' render={ ()=> this.props.currentUser ? <Redirect to='/' /> : <SignPage />  } />
+          
           <Route path='/tel' component={TelPage} />
         </Switch>
       </div>
@@ -158,4 +184,12 @@ function App() {
   );
 }
 */
-export default App;
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch( setCurrentUser(user) ),
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

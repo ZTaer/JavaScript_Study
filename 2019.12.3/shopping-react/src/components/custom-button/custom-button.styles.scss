@@ -1,3 +1,5 @@
+@import"../../assets/_OO7BTS.v2.2";
+
 .custom-button {
   min-width: 165px;
   width: auto;
@@ -15,7 +17,7 @@
   cursor: pointer;
   letter-spacing: 2px;
   border: 1px solid black;
-
+  @include img-transition(0.3);
   &:hover {
     background-color: white;
     color: black;
