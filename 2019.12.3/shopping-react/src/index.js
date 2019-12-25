@@ -1,12 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+
+/**
+ * redux获取组件访问权(完成笔记)
+ */
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
 import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// 展示路由功能的基础标签( 完成笔记 )
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// Redux初始化标签必备,获取组件访问权( 完成笔记 )
+ReactDOM.render(
+    // React-Redux: Provider标签一定要传递store,否则容易报错( 完成笔记 )
+    <Provider store={store} >
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Provider>
+    ,
+    document.getElementById('root')
+);
+
