@@ -5,53 +5,34 @@ import './custom-modal.style.scss';
 import Modal from 'react-modal';
 import CustomButton from '../custom-button/custom-button.component';
 
+import {connect} from 'react-redux';
+import { handleCloseModal,handleOpenModal } from '../../redux/modal/modal.actions';
+
 // 锁定显示的父类标签(必备)
 var appElement = document.querySelector('body');
 Modal.setAppElement(appElement);
 
 class CustomModal extends React.Component {
-    constructor(props){
-     super(props);
-     this.state = {
-         showModal: this.props.door,
-         text: this.props.children,
-     } 
-    }
-
-    // 核心 - 只要出现更新内容,则将出现渲染
-    handleOpenModal = ()=> {
-        this.setState({ showModal: true });
-    }
-    
-    handleCloseModal = ()=> {
-        this.setState({ showModal: false });
-    }
-
-    componentDidMount(){
-        this.setState({ door: this.props.door , text: this.props.children });
-    }
 
     render(){
+        const { handleCloseModal,handleOpenModal,showModal,text } = this.props;
         return(
             <div className="custom-modal" >
-                <CustomButton onClick={ this.handleOpenModal } selfCss={`custom-modal-btn`}>
-                    开启弹窗
-                </CustomButton>
                 <Modal 
-                isOpen={this.state.showModal}
+                isOpen={showModal}
                 contentLabel="onRequestClose Example"
-                onRequestClose={this.handleCloseModal}
+                onRequestClose={handleCloseModal}
                 className="Modal"
                 overlayClassName="Overlay"
                 >
                     <div className="modal-title">
-                        <button className="modal-btn" onClick={this.handleCloseModal}>
+                        <button className="modal-btn" onClick={handleCloseModal}>
                             X
                         </button>
                     </div>
                     <div className="modal-content">
                         <p>
-                            { this.state.text }
+                            { text }
                         </p>
                     </div>
                 </Modal>
@@ -60,5 +41,14 @@ class CustomModal extends React.Component {
     };
 
 }
+const mapStateToProps = ({ modal: { showModal,text } }) => ({
+    showModal,
+    text,
+});
 
-export default CustomModal;
+const mapDispatchToProps = dispatch => ({
+    handleOpenModal: text => dispatch(handleOpenModal(text)),
+    handleCloseModal: () => dispatch(handleCloseModal()),
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(CustomModal) ;

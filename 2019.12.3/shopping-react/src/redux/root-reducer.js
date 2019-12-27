@@ -4,7 +4,11 @@
 import { combineReducers } from 'redux';
 
 import userReducer from './user/user.reducer';
+import cartReducer from './cart/cart.reducer';
+import modalReducer from './modal/modal.reducer';
 
 export default combineReducers({
     user: userReducer,
+    cart: cartReducer,
+    modal: modalReducer,
 });

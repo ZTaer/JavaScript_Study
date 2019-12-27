@@ -3,8 +3,17 @@ import "./header.styles.scss";
 import { Link } from "react-router-dom";
 import {auth} from "../../firebase/firebase.config";
 
+import { createStructuredSelector } from 'reselect';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
+import { selectUserCurrentUser } from '../../redux/user/user.selectors';
+
 // connect函数使react组件可以访问redux存储( 完成笔记 )
 import { connect } from 'react-redux';
+import  CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
+
+import CustomModal from '../custom-modal/custom-modal.component';
+import { handleOpenModal } from '../../redux/modal/modal.actions';
 
 // React-React导入svg文件( 完成笔记 )
     // 0. import { ReactComponent as Logo } from "../../assets/crown.svg";
@@ -14,9 +23,15 @@ import { connect } from 'react-redux';
     // 4. SVG的优势: svg图标，为矢量图，并且很小
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, hidden, handleOpenModal }) => {
     return(
         <div className="header">
+
+            <CustomModal/>
+            <button onClick={ ()=>handleOpenModal('123') } >
+                使用Redux的方法测试弹窗
+            </button>
+
             <Link className="logo-container" to="/" >
                 <Logo className="logo" />
             </Link>
@@ -37,16 +52,17 @@ const Header = ({ currentUser }) => {
                     : 
                     ( <Link className="option" to="/sign" >注册/登陆</Link> )
                 }
+                <div className="option">
+                    <CartIcon/>
+                </div>
             </div>
+            {
+                hidden ? <CartDropdown  /> : null
+            }
         </div>
     );
 }
 
-const mapStateToProps = state => {
-    return {
-        currentUser: state.user.currentUser,
-    }
-};
 
 // React-Redux: connect()函数,用于交互redux数据( 完成笔记 )
     // 0. connect( mapStateToProps, mapDispatchToProps );
@@ -90,5 +106,15 @@ const mapStateToProps = state => {
 
                 export default connect(null, mapDispatchToProps)(App);
              */
-export default connect(mapStateToProps)(Header);
+// 多级对象调用方法，多级嵌套对象调用方法( 等待笔记 )
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectUserCurrentUser,
+    hidden: selectCartHidden,
+});
+
+const mapDispatchToProps = dispatch => ({
+    handleOpenModal: text => dispatch(handleOpenModal(text)),
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(Header);
 
