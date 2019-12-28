@@ -11,6 +11,9 @@ import { auth, createUserProfileDocument } from './firebase/firebase.config';
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
 
+import { createStructuredSelector } from 'reselect';
+import { selectUserCurrentUser } from './redux/user/user.selectors';
+
 // 测试路由 - 2
 const TestPage = props => ( <div> <h2 className="display-2" > { props.match.params.proName }: 临时产品页面 </h2></div> );
 const TelPage = props => ( <div> <h2 className="display-2" > { props.match.params.proName }: 等待建设页面 </h2></div> );
@@ -184,8 +187,8 @@ function App() {
   );
 }
 */
-const mapStateToProps = state => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = createStructuredSelector ({
+  currentUser: selectUserCurrentUser,
 });
 
 const mapDispatchToProps = dispatch => ({

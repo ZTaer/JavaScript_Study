@@ -1,3 +1,5 @@
+@import "../../assets/_OO7BTS.v2.2";
+
 .collection-item {
   width: 23%;
   display: flex;
@@ -14,6 +16,9 @@
     background-size: cover;
     background-position: center;
     margin-bottom: 5px;
+
+    @include display-flex();
+    @include xy-items(center,flex-end);
   }
 
   .collection-footer {
@@ -31,5 +36,28 @@
     .price {
       width: 10%;
     }
+  }
+
+  @include img-transition(0.3);
+  &:hover{
+    opacity: 0.8;
+
+    .collection-item-btn{
+      display: block;
+    }
+  }  
+}
+
+.collection-item-btn{
+  width:75%;
+  margin-bottom:1rem;
+  display: none;
+  &:hover{
+    background: rgba(255,255,255,0.6);
+  }
+  &:active{
+    @include img-transition(0.1);
+    background: red;  
+    color:#fff;
   }
 }

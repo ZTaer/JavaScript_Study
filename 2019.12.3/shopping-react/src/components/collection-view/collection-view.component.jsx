@@ -11,8 +11,8 @@ const CollectionView = ( {title,items} ) => {
                 {
                     items
                     .filter( (cur,index)=>index<4 ) // 通过索引值限制输出数量
-                    .map( ( {id, ...otherProps} )=>( 
-                        <CollectionItem key={id} {...otherProps} />
+                    .map( ( item )=>( 
+                        <CollectionItem key={item.id} item={item} />
                     ) )
                 }
             </div>
