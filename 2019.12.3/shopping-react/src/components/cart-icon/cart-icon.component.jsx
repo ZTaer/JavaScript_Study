@@ -19,7 +19,7 @@ const CartIcon = ({ toggleCartHidden,itemCount }) => {
 }
 // 使用reduce函数来计算购物车商品数量
 const mapStateToProps = state => ({
-    // select普通使用法(等待笔记)
+    // select普通使用法(完成笔记)
     itemCount: selectCartItemsCount(state),
 });
 

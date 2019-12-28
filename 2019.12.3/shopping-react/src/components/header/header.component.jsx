@@ -106,7 +106,6 @@ const Header = ({ currentUser, hidden, handleOpenModal }) => {
 
                 export default connect(null, mapDispatchToProps)(App);
              */
-// 多级对象调用方法，多级嵌套对象调用方法( 等待笔记 )
 const mapStateToProps = createStructuredSelector({
     currentUser: selectUserCurrentUser,
     hidden: selectCartHidden,

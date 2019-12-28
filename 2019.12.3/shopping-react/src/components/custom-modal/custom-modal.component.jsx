@@ -1,9 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './custom-modal.style.scss';
 
-import Modal from 'react-modal';
-import CustomButton from '../custom-button/custom-button.component';
+import Modal from 'react-modal'; // 弹窗必备导入
 
 import {connect} from 'react-redux';
 import { handleCloseModal,handleOpenModal } from '../../redux/modal/modal.actions';
@@ -19,11 +17,16 @@ class CustomModal extends React.Component {
         return(
             <div className="custom-modal" >
                 <Modal 
-                isOpen={showModal}
-                contentLabel="onRequestClose Example"
-                onRequestClose={handleCloseModal}
-                className="Modal"
-                overlayClassName="Overlay"
+                contentLabel="onRequestClose Example" // 弹窗说明
+                isOpen={showModal} // 布尔函数决定是否开启弹窗
+                onRequestClose={handleCloseModal} // 关闭弹窗函数用于初始化布尔值
+                closeTimeoutMS={0} // 弹窗打开时等待时间
+
+                className="Modal" // 自定弹窗本身css名称,默认css名称.ReactModal__Content
+                overlayClassName="Overlay" // 自定弹窗背景css名称,默认css名称.ReactModal__Overlay 
+
+                // onAfterOpen = {在弹窗打开后将运行的函数} 
+                // onAfterClose = {在弹窗关闭后将运行的函数}
                 >
                     <div className="modal-title">
                         <button className="modal-btn" onClick={handleCloseModal}>

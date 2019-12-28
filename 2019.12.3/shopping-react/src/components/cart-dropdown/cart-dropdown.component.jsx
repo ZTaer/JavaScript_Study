@@ -1,7 +1,7 @@
 import React from 'react';
 import "./cart-dropdown.styles.scss";
 
-// 便捷式select使用方式(等待笔记)
+// 便捷式select使用方式(完成笔记)
 import { createStructuredSelector } from 'reselect';
 import { selectCartItems } from '../../redux/cart/cart.selectors';
 
@@ -25,7 +25,7 @@ const CartDropdown = ({ cartItems }) => {
     );
 }
 
-// select便捷式使用法(等待笔记)
+// select便捷式使用法(完成笔记)
 const mapStateToprops = createStructuredSelector({
     cartItems: selectCartItems,
 })

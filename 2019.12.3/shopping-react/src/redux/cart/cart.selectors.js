@@ -1,5 +1,5 @@
 /***
- * xxx.selectors.js文件构建，与redux配合提高react性能(等待笔记)
+ * xxx.selectors.js文件构建，与redux配合提高react性能(完成笔记)
    0. 目的: 保证只有在redux数据改变时，才能重新渲染组件
    1. 总体来说select分，输入/输出
    2. 构建流程：
@@ -28,7 +28,7 @@ import { createSelector } from 'reselect';
 // 0. 输入头
 const selectCart = state => state.cart;
 
-// 1. select单个数据处理输出使用方式(等待笔记)
+// 1. select单个数据处理输出使用方式(完成笔记)
 export const selectCartItems = createSelector(
     [selectCart],
     cart => cart.cartItems,  
@@ -44,7 +44,7 @@ export const selectCartItemsCount = createSelector(
     cartItems => cartItems.reduce( (total,cur)=>total+cur.quantity,0 ),
 );
 
-// 2. select多个数据处理输出使用方式(等待笔记)
+// 2. select多个数据处理输出使用方式(完成笔记)
 /*
 const selectCart = state => state.cart;
 const selectUser = state => state.user;
