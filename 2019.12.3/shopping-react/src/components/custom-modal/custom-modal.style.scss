@@ -9,8 +9,6 @@
     bottom: 0px;
     margin:auto;
     
-    width:50%;
-    height:50%;
     background-color:#ccc;
     border:0;
 }
@@ -40,12 +38,12 @@
 .custom-modal-btn{
     outline: none;   
 }
-$h:200px;
+$h:250px;
 $cir: 25px;
 .Modal{
     outline: none; 
     min-width: 600px;
-    max-width:50%;
+    max-width:70%;
     max-height:70px+$h;
     background: #222;
     opacity: 0.9;
@@ -73,8 +71,10 @@ $cir: 25px;
         @include xy-items(center,center);
         height: $h - 35px;
         p{
+            padding:0.5rem;
             @include font-style(3rem,#fff,lighter,10px);
             margin:0;
+            text-align: center;
         }
     }
 }

@@ -44,6 +44,13 @@ export const selectCartItemsCount = createSelector(
     cartItems => cartItems.reduce( (total,cur)=>total+cur.quantity,0 ),
 );
 
+export const selectCartPriceTotal = createSelector(
+    [selectCartItems],
+    cartItems => cartItems.reduce( 
+        (total,cur)=>total+cur.quantity*cur.price,
+    0 ),   
+);
+
 // 2. select多个数据处理输出使用方式(完成笔记)
 /*
 const selectCart = state => state.cart;
