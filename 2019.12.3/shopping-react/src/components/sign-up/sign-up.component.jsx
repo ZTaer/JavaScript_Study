@@ -20,7 +20,7 @@ class SignUp extends React.Component {
     handleSubmit = async cur => {
         cur.preventDefault();
         const { displayName, email, password, confirmPassword } = this.state;
-        if( password != confirmPassword ){
+        if( password !== confirmPassword ){
             alert('二者密码不相同,请重新输入');
             return;
         }

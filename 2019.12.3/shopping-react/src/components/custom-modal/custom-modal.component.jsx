@@ -13,7 +13,7 @@ Modal.setAppElement(appElement);
 class CustomModal extends React.Component {
 
     render(){
-        const { handleCloseModal,handleOpenModal,showModal,text } = this.props;
+        const { handleCloseModal,showModal,text } = this.props;
         return(
             <Modal 
             contentLabel="onRequestClose Example" // 弹窗说明

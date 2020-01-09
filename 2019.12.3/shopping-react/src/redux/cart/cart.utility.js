@@ -1,5 +1,3 @@
-import CartItem from "../../components/cart-item/cart-item.component";
-
 // xx.utility.js专门写入,扩展函数(完成笔记)
 export const  addItemToCart = ( cartItems, additem ) => {
    const door = cartItems.find( cur => cur.id === additem.id );

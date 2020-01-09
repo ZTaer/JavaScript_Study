@@ -12,7 +12,7 @@ import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import { toggleCartHidden } from '../../redux/cart/cart.actions';
 
-// redux的dispatch()可以直接传递使用-便捷式使用dispatch(等待笔记)
+// redux的dispatch()可以直接传递使用-便捷式使用dispatch(完成笔记)
     // 0. redux的dispatch()可以直接传递使用
     // 1. 并且在只有mapStateToProps()的情况下
     // 2. dispatch()函数可以直接执行actions中的函数，非常方便
@@ -45,6 +45,6 @@ const mapStateToprops = createStructuredSelector({
     cartItems: selectCartItems,
 })
 
-// withRouter与redux的connect嵌套并不冲突(等待笔记)
+// withRouter与redux的connect嵌套并不冲突(完成笔记)
     // 0. 正常使用即可
 export default withRouter(connect(mapStateToprops)(CartDropdown));

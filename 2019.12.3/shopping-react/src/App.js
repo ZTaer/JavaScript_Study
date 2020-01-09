@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch,Route,Link,Redirect } from 'react-router-dom';
+import { Switch,Route,Redirect } from 'react-router-dom';
 
 import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
@@ -16,7 +16,6 @@ import { createStructuredSelector } from 'reselect';
 import { selectUserCurrentUser } from './redux/user/user.selectors';
 
 // 测试路由 - 2
-const TestPage = props => ( <div> <h2 className="display-2" > { props.match.params.proName }: 临时产品页面 </h2></div> );
 const TelPage = props => ( <div> <h2 className="display-2" > { props.match.params.proName }: 等待建设页面 </h2></div> );
 // 在Switch标签外不受路由影响 - 无论页面如何变化,组件依然显示存在( 完成笔记 ) 
     // 0. 把导航栏放在switch之外，这样导航栏将一直存在。不会受路由的控制 
@@ -62,8 +61,7 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route exact path='/shop' component={ShopPage} />
-          <Route path='/shop/:proName' component={TestPage} />
+          <Route path='/shop' component={ShopPage} />
           {
             // 关于路由render属性的功能( 完成笔记 )
               // 0. 用法: <Route exact path render={()=> <自定义标签 />} >

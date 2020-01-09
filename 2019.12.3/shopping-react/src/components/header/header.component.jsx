@@ -26,11 +26,11 @@ import { ReactComponent as Logo } from "../../assets/crown.svg";
 class Header extends React.Component {
 
     componentDidMount(){
-        // this.props.handleOpenModal("因暂且未掌握后端技术特使用GoogleFirebase代替后端存储验证,请阁下'翻墙'才能正常浏览此站点");
+       // this.props.handleOpenModal("因暂且未掌握后端技术特使用GoogleFirebase代替后端存储验证,请阁下'翻墙'才能正常浏览此站点");
     }
 
     render(){
-        const {currentUser, hidden, handleOpenModal} = this.props;
+        const {currentUser, hidden} = this.props;
         return(
             <div className="header">
 
