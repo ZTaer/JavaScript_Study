@@ -103,5 +103,5 @@ export const createUserProfileDocument = async ( userAuth, additionalData ) =>{
                 console.log( err );
             }
         }
-        return await userRef; // 传递获取的用户信息方便进行其它操作
+        return userRef; // 传递获取的用户信息方便进行其它操作
 };

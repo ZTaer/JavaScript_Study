@@ -13,33 +13,31 @@ Modal.setAppElement(appElement);
 class CustomModal extends React.Component {
 
     render(){
-        const { handleCloseModal,handleOpenModal,showModal,text } = this.props;
+        const { handleCloseModal,showModal,text } = this.props;
         return(
-            <div className="custom-modal" >
-                <Modal 
-                contentLabel="onRequestClose Example" // 弹窗说明
-                isOpen={showModal} // 布尔函数决定是否开启弹窗
-                onRequestClose={handleCloseModal} // 关闭弹窗函数用于初始化布尔值
-                closeTimeoutMS={0} // 弹窗打开时等待时间
+            <Modal 
+            contentLabel="onRequestClose Example" // 弹窗说明
+            isOpen={showModal} // 布尔函数决定是否开启弹窗
+            onRequestClose={handleCloseModal} // 关闭弹窗函数用于初始化布尔值
+            closeTimeoutMS={0} // 弹窗打开时等待时间
 
-                className="Modal" // 自定弹窗本身css名称,默认css名称.ReactModal__Content
-                overlayClassName="Overlay" // 自定弹窗背景css名称,默认css名称.ReactModal__Overlay 
+            className="Modal" // 自定弹窗本身css名称,默认css名称.ReactModal__Content
+            overlayClassName="Overlay" // 自定弹窗背景css名称,默认css名称.ReactModal__Overlay 
 
-                // onAfterOpen = {在弹窗打开后将运行的函数} 
-                // onAfterClose = {在弹窗关闭后将运行的函数}
-                >
-                    <div className="modal-title">
-                        <button className="modal-btn" onClick={handleCloseModal}>
-                            X
-                        </button>
-                    </div>
-                    <div className="modal-content">
-                        <p>
-                            { text }
-                        </p>
-                    </div>
-                </Modal>
-            </div>
+            // onAfterOpen = {在弹窗打开后将运行的函数} 
+            // onAfterClose = {在弹窗关闭后将运行的函数}
+            >
+                <div className="modal-title">
+                    <button className="modal-btn" onClick={handleCloseModal}>
+                        X
+                    </button>
+                </div>
+                <div className="modal-content">
+                    <p>
+                        { text }
+                    </p>
+                </div>
+            </Modal>
         );
     };
 

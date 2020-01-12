@@ -23,46 +23,50 @@ import { handleOpenModal } from '../../redux/modal/modal.actions';
     // 4. SVG的优势: svg图标，为矢量图，并且很小
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 
-const Header = ({ currentUser, hidden, handleOpenModal }) => {
-    return(
-        <div className="header">
+class Header extends React.Component {
 
-            <CustomModal/>
-            <button onClick={ ()=>handleOpenModal('123') } >
-                使用Redux的方法测试弹窗
-            </button>
+    componentDidMount(){
+       // this.props.handleOpenModal("因暂且未掌握后端技术特使用GoogleFirebase代替后端存储验证,请阁下'翻墙'才能正常浏览此站点");
+    }
 
-            <Link className="logo-container" to="/" >
-                <Logo className="logo" />
-            </Link>
-            <div className="options">
-                <Link className="option" to="/" >
-                    主页
-                </Link> 
-                <Link className="option" to="/shop" >
-                    产品
+    render(){
+        const {currentUser, hidden} = this.props;
+        return(
+            <div className="header">
+
+                <CustomModal/>
+
+                <Link className="logo-container" to="/" >
+                    <Logo className="logo" />
                 </Link>
-                <Link className="option" to="/tel" >
-                    联系
-                </Link>
-                {
-                    currentUser 
-                    ? 
-                    ( <div className="option" onClick={ ()=>auth.signOut() } >退出</div> ) // 用户退出登陆( 完成笔记 )
-                    : 
-                    ( <Link className="option" to="/sign" >注册/登陆</Link> )
-                }
-                <div className="option">
-                    <CartIcon/>
+                <div className="options">
+                    <Link className="option" to="/" >
+                        主页
+                    </Link> 
+                    <Link className="option" to="/shop" >
+                        产品
+                    </Link>
+                    <Link className="option" to="/tel" >
+                        联系
+                    </Link>
+                    {
+                        currentUser 
+                        ? 
+                        ( <div className="option" onClick={ ()=>auth.signOut() } >退出</div> ) // 用户退出登陆( 完成笔记 )
+                        : 
+                        ( <Link className="option" to="/sign" >注册/登陆</Link> )
+                    }
+                    <div className="option">
+                        <CartIcon/>
+                    </div>
                 </div>
+                {
+                    hidden ? <CartDropdown  /> : null
+                }
             </div>
-            {
-                hidden ? <CartDropdown  /> : null
-            }
-        </div>
-    );
+        );
+    }
 }
-
 
 // React-Redux: connect()函数,用于交互redux数据( 完成笔记 )
     // 0. connect( mapStateToProps, mapDispatchToProps );
