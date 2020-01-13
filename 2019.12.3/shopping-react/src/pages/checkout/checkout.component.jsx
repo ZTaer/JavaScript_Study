@@ -7,6 +7,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectCartPriceTotal, selectCartItems} from '../../redux/cart/cart.selectors';
 
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
+import StripeButton from '../../components/stripe-button/stripe-button.component';
 
 const CheckoutPage = ( {cartPriceTotal, cartItems} ) => {
     return(
@@ -52,6 +53,18 @@ const CheckoutPage = ( {cartPriceTotal, cartItems} ) => {
                 <span>
                     总和: ￥{cartPriceTotal}
                 </span>
+            </div>
+
+            <StripeButton price={cartPriceTotal} />
+            <div className="test-warning">
+                <p>
+                    <b>
+                        Stripe测试信用卡支付(因面试所用暂未激活Stripe支付)<br/>
+                    </b>
+                        <b>卡号:</b> 4242 4242 4242 4242 <br/>
+                        <b>密码:</b> 123 (任意3位) 
+                        <b>时间:</b> 01/20 (任意月/年)
+                </p>
             </div>
 
         </div>
