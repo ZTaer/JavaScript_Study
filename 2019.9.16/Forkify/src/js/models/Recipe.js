@@ -13,7 +13,7 @@ import { apiPassword, cors } from '../config';
     async getIdRecipe( id = this.id ){
         this.id = id;
         try{
-            const res = await axios(`${cors}https://www.food2fork.com/api/get?key=${apiPassword}&rId=${id}`);
+            const res = await axios(`${cors}https://forkify-api.herokuapp.com/api/get?rId=${id}`);
             const index = res.data.recipe;
             
             this.title = index.title;
