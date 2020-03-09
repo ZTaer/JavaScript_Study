@@ -108,7 +108,7 @@ export const showRecipe = ( data, toggleLikeIcon ) => {
                 <svg class="search__icon">
                     <use href="img/icons.svg#icon-shopping-cart"></use>
                 </svg>
-                <span>Add to shopping list</span>
+                <span>加入购物清单</span>
             </button>
         </div>
 

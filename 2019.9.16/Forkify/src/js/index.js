@@ -129,8 +129,8 @@ const controlRecipe = async () => {
 
 // window.addEventListener( 'hashchange',function ); 监听URL改变触发函数( 完成笔记 )
 // window.addEventListener( 'load',function ); 网页加载时触发函数( 完成笔记 )
-// ['hashchange','load'].forEach( e => window.addEventListener( e, controlRecipe ) );
-['hashchange'].forEach( e => window.addEventListener( e, controlRecipe ) );
+['hashchange','load'].forEach( e => window.addEventListener( e, controlRecipe ) );
+// ['hashchange'].forEach( e => window.addEventListener( e, controlRecipe ) );
 
 /**
  *  调整所需材料份数
@@ -239,5 +239,7 @@ window.addEventListener( 'load', () => {
     console.log( state.list );
     listView.showList( state.list.items );
 
+    // 默认页面显示
+    controlSearch();
 } );
 

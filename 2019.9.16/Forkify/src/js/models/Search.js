@@ -12,7 +12,7 @@ export default class Search {
     async getSearchResult( searchContact = this.searchContact ){
         this.searchContact = searchContact;
         try{
-            const recipe = await axios(`${cors}https://www.food2fork.com/api/search?key=${apiPassword}&q=${searchContact}`);
+            const recipe = await axios(`${cors}https://forkify-api.herokuapp.com/api/search?q=${searchContact}`);
             this.result = recipe.data.recipes;
 
         }catch(error){

@@ -14,7 +14,12 @@ import rootReducer from './root-reducer';
 
 // 中间件: 因为中间件后期要添加很多,所以需要解构符来配合
 
-const middlewares = [ logger ];
+const middlewares = [ ];
+
+if (process.env.NODE_ENV === 'development') {
+    middlewares.push(logger);
+}
+
 const store = createStore( rootReducer, applyMiddleware(...middlewares) );
 
 // redux-persist的store配置( 完成笔记 )
