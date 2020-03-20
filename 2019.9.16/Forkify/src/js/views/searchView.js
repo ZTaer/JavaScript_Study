@@ -44,13 +44,13 @@ export const pageHtml = ( page, type ) =>`
         <svg class="search__icon">
             <use href="img/icons.svg#icon-triangle-${ type == 'next' ? 'right' : 'left' }"></use>
         </svg>
-        <span>Page ${ type == 'next' ? page + 1 : page - 1 }</span>
+        <span>页面 ${ type == 'next' ? page + 1 : page - 1 }</span>
     </button>
 `;
 
 // 逻辑决定渲染按钮
 export const showPageButton = ( page, recipeNum, showRecipeNum ) => {
-    const pages = recipeNum / showRecipeNum;
+    const pages = Math.ceil(recipeNum / showRecipeNum);
     const next = 'next',prev = 'prev';
     let result;
     
@@ -62,7 +62,7 @@ export const showPageButton = ( page, recipeNum, showRecipeNum ) => {
         // 只有上一页按钮
         result = pageHtml( page, prev );
     }
-    else if( page > 1 && page < pages ){
+    else if( page < pages ){
         // 二个按钮都显示( 骚姿势 - 一次渲染二个HTML模板的 )      
         result = `
             ${ pageHtml( page, prev ) }
