@@ -1,0 +1,9 @@
+.sass-button{
+    width:120px;
+    height:50px;
+    color:blue;
+    &.sass-button-click{
+        color:palevioletred;
+        font-weight: bold;
+    }
+}
