@@ -1,0 +1,19 @@
+// SCSS引入字体( 完成笔记 )
+    // a) 为保证浏览器的兼容性，同一个字体，需要引入不同文件格式
+@font-face {
+    font-family:'NS';
+    font-weight: 500;
+    src: url('../public/fonts/NotoSansSC-Medium-Alphabetic.woff2') format('woff2'),
+    url('../public/fonts/NotoSansSC-Medium-Alphabetic.woff') format('woff'),
+    url('../public/fonts/NotoSansSC-Medium-Alphabetic.ttf') format('ttf');
+}
+
+body{
+    font-family: NS; // 字体使用
+    letter-spacing: 1px;
+    p{
+        font-size: 1rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+}
