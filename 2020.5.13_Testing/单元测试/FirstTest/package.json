@@ -1,0 +1,15 @@
+{
+  "name": "FirstTest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}

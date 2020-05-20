@@ -1,0 +1,18 @@
+@font-face {
+    font-family:'NS';
+    font-weight: 500;
+    src: url('../public/fonts/NotoSansSC-Medium-Alphabetic.woff2') format('woff2'),
+    url('../public/fonts/NotoSansSC-Medium-Alphabetic.woff') format('woff'),
+    url('../public/fonts/NotoSansSC-Medium-Alphabetic.ttf') format('ttf');
+}
+
+body{
+    font-family: NS;
+    letter-spacing: 2px;
+    pre{
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        font-family: NS;
+    }
+}
+
