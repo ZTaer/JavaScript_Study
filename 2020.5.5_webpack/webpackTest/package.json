@@ -7,10 +7,11 @@
     "build": "webpack"
   },
   "dependencies": {
+    "@babel/preset-react": "^7.9.4",
     "file-loader": "^6.0.0",
+    "handlebars": "^4.7.6",
     "node-sass": "^4.14.1",
-    "sass-loader": "^8.0.2",
-    "handlebars": "^4.7.6"
+    "sass-loader": "^8.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
