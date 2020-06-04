@@ -1,0 +1,1 @@
+type TypeStringNumber = string | number;
