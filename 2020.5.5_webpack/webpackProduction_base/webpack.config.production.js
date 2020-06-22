@@ -27,6 +27,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(png|jpg)$/,
+                exclude: /node_modules/,
                 use: {
                     loader: 'file-loader',
                     options: {
@@ -37,12 +38,14 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+                exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,'css-loader'
                 ]
             },
             {
                 test: /\.scss$/,
+                exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,'css-loader','sass-loader'
                 ]
@@ -60,6 +63,7 @@ module.exports = {
             },
             {
                 test: /\.(ttf|woff|woff2)$/,
+                exclude: /node_modules/,
                 use: {
                     loader: 'file-loader',
                     options: {
