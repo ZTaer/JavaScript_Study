@@ -1,0 +1,23 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+h1{
+    background-color: blue;
+    width:300px;
+    position: fixed;
+    right:0px;
+    bottom:0px;
+    margin:0px;
+    padding: 0px;
+}
+#test .container-fluid .row{
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+.test-target{
+    background-color: red;
+    height: 20rem;
+    height: unset;
+}
