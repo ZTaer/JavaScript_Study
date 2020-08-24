@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> 滑动轮播 </title>
+
+        <!-- css-BGN -->
+        <link rel="stylesheet" href="https://cdn.staticfile.org/slick-carousel/1.9.0/slick.min.css">
+        <link rel="stylesheet" href="https://cdn.staticfile.org/slick-carousel/1.9.0/slick-theme.min.css">
+
+        <link rel="stylesheet" href="./styles/css/index.css">
+
+        <!-- css-END -->
+    </head>
+    <body>
+       
+        <div id="bg-video-test" class="intro-window-img"> 
+            <video class="background-video-tab" loop muted></video>
+            <div class="background-video-img" ></div>
+            <div class="background-video-container">
+                <h1></h1>
+            </div>
+        </div>
+
+        <h1>
+            Banner
+        </h1>
+
+        <h1>
+            小的轮播图
+        </h1>
+        <div class="autoplay">
+            <div class="autoplay-item" >
+                <div class="container">
+                    我是嵌套
+                    <h2>
+                        1
+                    </h2>
+                </div>
+            </div>
+            <div class="autoplay-item" >
+                <div class="container">
+                    我是嵌套
+                    <h2>
+                        2
+                    </h2>
+                </div>
+            </div>
+            <div class="autoplay-item" >
+                <div class="container">
+                    我是嵌套
+                    <h2>
+                        3
+                    </h2>
+                </div>
+            </div>
+            <div class="autoplay-item" >
+                <div class="container">
+                    我是嵌套
+                    <h2>
+                        4
+                    </h2>
+                </div>
+            </div>
+            <div class="autoplay-item" >
+                <div class="container">
+                    我是嵌套
+                    <h2>
+                        5
+                    </h2>
+                </div>
+            </div>
+            
+        </div>
+        
+
+        <div id="long">
+            123
+        </div>
+
+
+        <!-- js-BGN -->
+        <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.staticfile.org/jquery-migrate/3.3.1/jquery-migrate.min.js"></script>
+        <script src="https://cdn.staticfile.org/slick-carousel/1.9.0/slick.min.js"></script>
+
+        <!--oo7-js框架-->
+        <script src="./styles/js/oo7-nv-bts.v0.2.3.js"></script>
+
+        <!-- js-END -->
+        <script>
+            console.log("---start---");
+            $('.autoplay').slick({
+                // 切换按钮
+                prevArrow: `<button class='slick-button slick-button-right' >下一个</button>` ,
+                nextArrow: `<button class='slick-button slick-button-left' >上一个</button>`, 
+
+                slidesToShow: 4,        // 显示数量
+                slidesToScroll: 1,      // 切换数量
+                autoplay: true,         // 自动播放
+                autoplaySpeed: 2000,    // 切换时间
+
+                // 小点
+                dots: true,
+                dotsClass: "slick-dots slick-dots-test ",
+
+                // 垂直
+                vertical:true, 
+                verticalSwiping: true,  // 垂直滑动
+            });
+
+            // 背景动态视频
+            let bvInit = new oo7Ani.BackgroundVideoInit();
+            oo7Ani.backgroundVideo( 
+                bvInit,                     // 初始化 - 游戏规则
+                '#bg-video-test',           // 父类标签名称
+                ['./styles/images/banner6.mp4']  // 视频路径
+            );
+        </script>
+    </body>
+</html>
