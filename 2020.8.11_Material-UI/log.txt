@@ -1,0 +1,119 @@
+YouTube 资源
+    #1( 完成笔记 )
+        a) 7:13 - Material-UI的属性库:
+            0. palette: 颜色属性主题
+            1. typography:  字体属性主题
+        b) 8:52 - CreateMuiTheme组件: 构建自定义组题组件，根据"Material-ui属性库"修改成自己的主题
+        c) 9:02 - ThemeProvider组件: 使用自定义主题组件
+        d) 12:54 - Typography组件: 主题组件库的使用
+        e) 14:20 - makeStyles/useStyles函数: 构建css属性, 作用与组件 
+    #2( 完成笔记 )
+        a) 2:14 - 文档搜索"App Bar"至导航栏文档
+        b) 5:39 - Material-UI安装库
+            0. 核心: yarn add @material-ui/core
+            1. 图标: yarn add @material-ui/icon
+            2. 样式: yarn add @material-ui/styles
+            3. 注意事项: 要删除React默认的'严格模式'因为严格模式下Material-ui并不完全兼容
+        c) 14:10 - Grid组件: 响应式布局，xs < sm < md < lg < xl
+            0. xs: 最小
+            1. xl: 最大
+            2. 其余属性屏幕分辨率监听，与Bootstarp4差不多
+        d) 16:07 - AppBar组件: 导航栏，positon决定导航栏的占位
+        e) 20:08 - flex:1; 待实验
+            0. flex:1; - 占用空间平均分布
+            1. flex:1; - 占用空间100%，如果遇到其它原生则自适应    
+        f) 24:50 - Card组件套装: 构建布局使用
+            0. spacing: 操控间隔
+        g) 28:47 - IconButton组件: 作用使icon可单击, 没有他icon只是图标 
+    #3( 完成笔记 )
+        a) 8:51 - makeStyles动态css的使用
+        b) 11:38 - [theme.breakpoints.up("sm")]的用法，根据屏幕宽度做出动态css
+        c) 14:07 - makeStyles: classNames写入多个classes的方法到React默认的className
+    #4( 等待笔记 )
+        a) 5:10 - Button组件: componet={Link}属性 可以与 react-router-dom 的Link联用, 并to属性可直接作用在Button上
+        b) 10:46 - ButtonGroup组件：以及注意区分"Tabs组件"
+    #5( 等待笔记 )
+        a) 1:35 - Typography组件: aligin属性，
+        b) 3:58 - Typography组件: noWrap属性，文本不换行
+        c) 4:38 - Typography组件: variant属性，文本样式, 具体请看官方文档
+        d) 6:26 - Typography组件: variantMapping属性，即可以切换文本样式，也可以切换组件标签类型
+    #6( 等待笔记 )
+        a) 3:22 - theme主题: breakpoints属性: 配置xs,sm,md,lg,xl等...
+        b) 5:05 - theme主题: 
+            0. palette属性: 配置颜色等...
+            1. typography属性: 配置字体样式，如字体类型，字体标签样式等..
+        c) 13：59 - breakpoints属性: 配合up等函数，在指定sm..等其它宽度下做出不同的css样式
+        d) 15:20 - useTheme可以在组件中快速访问theme属性
+        e) 16:39 - palette属性: { type: "dark" }可以设定为黑暗模式
+    #7( 等待笔记 )
+        a) 0:56 - Paper组件: 当为dark模式时，Paper将变为深色
+        b) 2:23 - Paper组件: elevation属性, 属性值越大，阴影越高越重
+        c) 3:32 - Paper组件: square属性，默认为false，Paper边框为圆角，为true时则为，边框为方角
+    #8( 等待笔记 )
+        a) 2:33 - 配置Dark主题，Paper组件会跟随，模式转换而改变颜色主题, 并非常聪明的检测字体颜色，转变为适合显示的颜色 
+        b) 1:43 - 配合Switch切换按钮，动态的配置，dark与light模式
+        c) 8:01 - 多种主题配置写法
+    #9( 等待笔记 )
+        a) 00:00 - 总体介绍了，可以仿制一部分官方推荐的页面，不过收费模板页面才能更加体现技术
+    #10( 等待笔记 )
+        a) 9:02 - Grid组件 - container下配合spacing属性可以达到控制item间隙的效果
+        b) 15:48 - Grid组件 - direction属性：可切换排序方向就是flex的那个属性；Divider组件 - 分割线组件
+    #11( 等待笔记 ) 
+        a) 1:16 - flexBox学习站点: http://flexboxfroggy.com/
+        b) 6:17 - Grid组件 - flex用法演示，在官方文档中
+    #12( 等待笔记 )
+        a) 4:55 - CardHeader组件：avatar放置头像组件
+        b) 6:19 - CardHeader组件API
+        c) 9:56 - Collapse组件：折叠内容组件，通过属性in的Boolean来是否展开折叠
+        d) 10:48 - CardActionArea组件：可以让其中的子标签，有“涟漪”的动画效果
+    #13( 等待笔记 )
+        a) 2:45 - Table组件( 非常重要 - 核心 )
+        b) 3:44 - createData函数：构造表哥数据格式
+        c) 4:34 - TableContainer组件: 使用componet属性转换为Paper组件，以此保证，table组件可适用于各种组题
+        d) 10:36 - Table组件非常重要，官方示例都模仿一遍
+    #31( 等待笔记 )
+        a) 1:24 - vscoode辅助工具代码片段
+        b) 4:31 - 构建快捷代码片段, ctrl+shift+p --> 输入snippet
+        c) 5:44 - json构建代码片段
+        d) 7:07 - vscode插件: reactjs code snippets, Material-UI snippets
+        e) 9:00 - muiButton代码片段快捷实列
+        f) 12:16 - muiXXX代码片段，会根据不同的import方式来导入
+        g) 常用代码片段快捷键:
+            0. 代码块:
+                a) rafce --> 快捷创建 - react基本解构
+                b) rce --> 快捷创建 - react, class基本解构
+                c) rcredux --> 快捷创建 - class的react+redux基本结构
+                d) rfcredux --> 快捷创建 - 函数的react+redux基本结构
+                e) reduxmap --> 快捷创建 - redux的mapStateToProps以及mapDispatchToProps
+                g) rxaction --> 快捷创建 - redux的action
+                h) rxreducer --> 快捷创建 - redux的reducer
+            1. 代码片段:
+                a) clg --> 快捷输入 - console.log(object);
+                a) clo --> 快捷输入 - console.log('object :>> ', object);
+                a) cer --> 快捷输入 - console.error(object); 
+                a) cin --> 快捷输入 - console.info(object);
+                a) cwa --> 快捷输入 - console.warn(object);
+
+                b) imp --> 快捷输入 - import moduleName from 'module';
+                b) imn --> 快捷输入 - import "xxx"
+                b) imd --> 快捷输入 - import {  } from 'module'
+                
+                c) exp --> 快捷输入 - export default xxx
+                c) enf --> 快捷输入 - export函数
+
+                d) nfn --> 快捷输入 - 构造const箭头函数
+                d) anfn --> 快捷输入 - 构造非const箭头函数
+
+                e) fof --> 快捷输入 - 构造for of
+                e) fin --> 快捷输入 - 构造for in
+
+                f) dob --> 快捷输入 - 对象解构const {propertyName} = objectToDestruct
+                f) dar --> 快捷输入 - 数组解构const {propertyName} = objectToDestruct
+
+                g) imrs --> 快捷输入 - 快捷导入react hook, import React, { useState } from 'react'
+                g) imrse --> 快捷输入 - 快捷导入react hook, import React, { useState } from 'react'
+
+                h) redux --> 快捷输入 - import { connect } from 'react-redux'
+
+                i) cdm --> 快捷输入 - react生命周期componentDidMount
+                i) cwn --> 快捷输入 - react生命周期componentWillUnmount

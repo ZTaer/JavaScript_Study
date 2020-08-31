@@ -19,12 +19,6 @@ const useStyles = makeStyles({
     appbarLogoPostion: {
         marginLeft: "auto",
     },
-    link:{
-        textDecoration: "none",   
-        fontSize:"0.9rem",
-        letterSpacing: "2px",
-        color:"#000",
-    }
 });
 
 const HeaderMuiTest = () => {
@@ -37,21 +31,19 @@ const HeaderMuiTest = () => {
                 <Typography variant="h6" >
                     Material-UI
                 </Typography>
-                <Link className={classes.link} to="/" >
-                    <Button color="inherit" >
-                        主页
-                    </Button> 
-                </Link>
-                <Link className={classes.link} to="/shop" >
-                    <Button color="inherit" >
-                        商品
-                    </Button> 
-                </Link>
-                <Link className={classes.link} to="/test" >
-                    <Button color="inherit" >
-                        实验
-                    </Button> 
-                </Link>
+
+                <Button color="inherit" component={Link} to="/" >
+                    主页
+                </Button> 
+
+                <Button color="inherit" component={Link} to="/shop" >
+                    商品
+                </Button> 
+
+                <Button color="inherit" component={Link} to="/test" >
+                    实验
+                </Button> 
+              
                 <Button className={ classes.appbarLogoPostion } >
                     <AvatarMuiTest/>
                 </Button>
