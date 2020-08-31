@@ -66,3 +66,20 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+0. v2Ray( 仅供研究参考学习 )
+   a) v2Ray官方: 
+        0. Github: https://github.com/v2ray/v2ray-core
+        1. 官方网站: https://www.v2ray.com/
+   b) 一键安装脚本:
+        0. 233boy( 在子分支 ): https://github.com/233boy/v2ray
+   c) 多用户管理现成项目:
+        0. Ehco1996( Readme.md有相关Youtube教程 ):
+            a) 后台面板: https://github.com/Ehco1996/django-sspanel
+            b) 接口交互: https://github.com/Ehco1996/v2scar
+            c) 技术特点: 后台为python的django,前端为原生开发
+        1. Sspanel-uim( SSR - wiki )
+            a) wike: https://github.com/sspanel-uim/Wiki
+            b) 技术特点: 后台未知，前端为vue开发
+            c) 此项目好像是面向SSR方向的
