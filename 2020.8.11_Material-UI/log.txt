@@ -117,3 +117,19 @@ YouTube 资源
 
                 i) cdm --> 快捷输入 - react生命周期componentDidMount
                 i) cwn --> 快捷输入 - react生命周期componentWillUnmount
+        f) VSCODE - 快捷键:
+            0. 切换到文件资源管理器: Ctrl + Shift + E 
+                a) 重命名: F2
+                b) 复制/粘贴: Ctrl+C / Ctrl+V
+                c) 删除: delete
+                d) 折叠隐藏/展开: 箭头左键/箭头右键
+            1. 打开文件所在位置: Alt+Shift+R
+            2. 新终端: Ctrl+Shift+`
+                a) 拆分终端: Ctrl+Shift+5
+                b) 隐藏/显示终端: Ctrl+`
+            3. 打开新的vscode: Ctrl+Shift+N
+            4. 切换注释: Ctrl+/
+            5. 切换折叠: Ctrl+K+L
+            6. 拆分文件编辑器: Ctrl+\
+                a) vim下可以使用: Ctrl+w来切换不同文件编辑器窗口
+                b) vim下可以使用: :q 来退出打开的文件
