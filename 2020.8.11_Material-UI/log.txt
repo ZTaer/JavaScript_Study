@@ -1,4 +1,4 @@
-YouTube 资源
+YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVmsZ0d_9Zsg_DnIP_xwr&index=1
     #1( 完成笔记 )
         a) 7:13 - Material-UI的属性库:
             0. palette: 颜色属性主题
@@ -29,15 +29,16 @@ YouTube 资源
         a) 8:51 - makeStyles动态css的使用
         b) 11:38 - [theme.breakpoints.up("sm")]的用法，根据屏幕宽度做出动态css
         c) 14:07 - makeStyles: classNames写入多个classes的方法到React默认的className
-    #4( 等待笔记 )
+    #4( 完成笔记 )
         a) 5:10 - Button组件: componet={Link}属性 可以与 react-router-dom 的Link联用, 并to属性可直接作用在Button上
         b) 10:46 - ButtonGroup组件：以及注意区分"Tabs组件"
-    #5( 等待笔记 )
+            0. Popper组件( 等待研究 )
+    #5( 完成笔记 )
         a) 1:35 - Typography组件: aligin属性，
         b) 3:58 - Typography组件: noWrap属性，文本不换行
         c) 4:38 - Typography组件: variant属性，文本样式, 具体请看官方文档
         d) 6:26 - Typography组件: variantMapping属性，即可以切换文本样式，也可以切换组件标签类型
-    #6( 等待笔记 )
+    #6( 完成笔记 )
         a) 3:22 - theme主题: breakpoints属性: 配置xs,sm,md,lg,xl等...
         b) 5:05 - theme主题: 
             0. palette属性: 配置颜色等...

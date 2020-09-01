@@ -2,7 +2,16 @@ import React from 'react'
 
 import ButtonGroupPopperMuiTest from "../buttonGroup-popper-mui-test/buttonGroup-popper-mui-test.component";
 /**
- * ButtonGroup组件: ( 等待笔记 )
+ * ButtonGroup组件: ( 完成笔记 )
+ *      a) variant属性: 改变按钮样式
+ *          0. variant="text" - 文本型按钮组
+ *          1. variant="outlined" - 边框型按钮组
+ *          2. variant="contained" - 实体型按钮组
+ *      b) size属性: "large", "medium", "small"
+ *      c) orientation属性: 掌控按钮组排序方向, 水平方向'horizontal', 垂直方向'vertical'
+ *      d) disableElevation属性: 清除按钮阴影
+ *      e) fullWidth属性: 占据宽度100% 
+ *      f) disabled属性: 禁用按钮组
  */
 
 import { 
@@ -28,7 +37,7 @@ const useStyles = makeStyles(( theme )=>({
 
 const ButtonGroupMuiTest = () => {
     /**
-     * useTheme函数 - 方便获取主题theme对象( 等待笔记 )
+     * useTheme函数 - 方便获取主题theme对象( 完成笔记 )
      *      a) variant属性: 
      *          0. variant="text": 文本类型按钮组
      *          1. variant="outlined": 边框类型的
