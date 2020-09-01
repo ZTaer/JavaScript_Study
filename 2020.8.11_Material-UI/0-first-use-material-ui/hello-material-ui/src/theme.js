@@ -10,8 +10,11 @@ import { green } from "@material-ui/core/colors";
 
 const theme = createMuiTheme({
 
-    // 0. palette颜色属性
+    // 0. palette颜色属性   
+    //      a) 方便操控颜色主题属性
+    //      b) type属性: 'dark'黑夜模式，'light'白天模式
     palette: {
+        type: "dark",   
         primary: green,
         secondary: {
             main: "#000"
@@ -19,7 +22,7 @@ const theme = createMuiTheme({
         text: {
             primary: "#8848"
         },
-    }
+    },
     // 1. spacing间距值属性，默认为8px
     //   a) 默认使用方式: 
     //      0. spacing( 2 ); --> 8 * 2 = 16px
@@ -30,6 +33,15 @@ const theme = createMuiTheme({
     //      0. spacing(2) --> 2 * 2 = 4px
     //   d) 自定义功能: spacing: props => `${ 0.5 * props }rem`;
     //      1. spacing(2) --> 0.5 * 2 = 1rem
+
+    // 2. typography字体样式配置属性( 完成笔记 )
+    //      a) 更多属性: https://material-ui.com/customization/default-theme/#default-theme
+    //      b) 在此属性中, 根据官方文档, 可以修改默认的字体样式
+    typography:{
+        h1:{
+            fontSize: '10rem',
+        }
+    }
 });
 
 export default theme;

@@ -1,6 +1,6 @@
 import React,{ useState } from 'react'
 /**
- * ButtonGroup组件：有下拉菜单的按钮组, 与Popper配合( 等待笔记 )
+ * ButtonGroup组件：有下拉菜单的按钮组, 与Popper配合( 等待研究 )
  */
 import { 
     ButtonGroup,
