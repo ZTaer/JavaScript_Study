@@ -14,7 +14,7 @@ const theme = createMuiTheme({
     //      a) 方便操控颜色主题属性
     //      b) type属性: 'dark'黑夜模式，'light'白天模式
     palette: {
-        type: "dark",   
+        type: "light",   
         primary: green,
         secondary: {
             main: "#000"

@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./test-pages.styles.scss";
 /**
  * 组件
  */
@@ -10,6 +10,9 @@ import AppBarMuiTest from "../../components/app-bar-mui-test/app-bar-mui-test.co
 import MakeStylesMuiTest from "../../components/makeStyles-mui-test/makeStyles-mui-test.component";
 import StyledComponentsMuiTest from "../../components/styledComponents-mui-test/styledComponents-mui-test.component";
 import ButtonGroupMuiTest from '../../components/buttonGroup-mui-test/buttonGroup-mui-test.component'
+import PaperMuiTest from '../../components/paper-mui-test/paper-mui-test.component'
+import DividerMuiTest from "../../components/divider-mui-test/divider-mui-test.component";
+import TableMuiTest from "../../components/table-mui-test/table-mui-test.component";
 
 const TestPages = () => {
     return(
@@ -52,6 +55,23 @@ const TestPages = () => {
                 ButtonGroup组件
             </h2>
             <ButtonGroupMuiTest />
+
+            <h2>
+                Paper组件
+            </h2>
+            <PaperMuiTest />
+
+            <h2>
+                Divider组件
+            </h2>
+            <DividerMuiTest />
+
+            <h2
+                className="marginTop"                
+            >
+                Table组件
+            </h2>
+            <TableMuiTest />
         </div>
     );
 };
