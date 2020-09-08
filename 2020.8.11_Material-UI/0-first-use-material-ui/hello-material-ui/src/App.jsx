@@ -5,7 +5,7 @@ import { Switch, Route } from "react-router-dom";
  * 组件
  */
 import HomePages from "./pages/home-pages/home-pages.component";
-import ShopPages from "./pages/shop-pages/home-pages.component";
+import ShopPages from "./pages/shop-pages/shop-pages.component";
 import TestPages from "./pages/test-pages/test-pages.component";
 import CutPages from "./pages/cut-pages/cut-pages.component";
 import HeaderMuiTest from "./components/header-mui-test/header-mui-test.component";

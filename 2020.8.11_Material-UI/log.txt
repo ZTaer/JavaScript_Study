@@ -46,33 +46,39 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
         c) 13：59 - breakpoints属性: 配合up等函数，在指定sm..等其它宽度下做出不同的css样式
         d) 15:20 - useTheme可以在组件中快速访问theme属性
         e) 16:39 - palette属性: { type: "dark" }可以设定为黑暗模式
-    #7( 等待笔记 )
+    #7( 完成笔记 )
         a) 0:56 - Paper组件: 当为dark模式时，Paper将变为深色
         b) 2:23 - Paper组件: elevation属性, 属性值越大，阴影越高越重
         c) 3:32 - Paper组件: square属性，默认为false，Paper边框为圆角，为true时则为，边框为方角
-    #8( 等待笔记 )
+    #8( 完成笔记 )
         a) 2:33 - 配置Dark主题，Paper组件会跟随，模式转换而改变颜色主题, 并非常聪明的检测字体颜色，转变为适合显示的颜色 
         b) 1:43 - 配合Switch切换按钮，动态的配置，dark与light模式
         c) 8:01 - 多种主题配置写法
-    #9( 等待笔记 )
+    #9( 等待研究 )
         a) 00:00 - 总体介绍了，可以仿制一部分官方推荐的页面，不过收费模板页面才能更加体现技术
-    #10( 等待笔记 )
+    #10( 完成笔记 )
         a) 9:02 - Grid组件 - container下配合spacing属性可以达到控制item间隙的效果
         b) 15:48 - Grid组件 - direction属性：可切换排序方向就是flex的那个属性；Divider组件 - 分割线组件
-    #11( 等待笔记 ) 
+    #11( 完成笔记 ) 
         a) 1:16 - flexBox学习站点: http://flexboxfroggy.com/
         b) 6:17 - Grid组件 - flex用法演示，在官方文档中
-    #12( 等待笔记 )
+    #12( 完成笔记 )
         a) 4:55 - CardHeader组件：avatar放置头像组件
         b) 6:19 - CardHeader组件API
         c) 9:56 - Collapse组件：折叠内容组件，通过属性in的Boolean来是否展开折叠
         d) 10:48 - CardActionArea组件：可以让其中的子标签，有“涟漪”的动画效果
-    #13( 等待笔记 )
+    #13( 等待笔记 - 等待研究 )
         a) 2:45 - Table组件( 非常重要 - 核心 )
         b) 3:44 - createData函数：构造表哥数据格式
         c) 4:34 - TableContainer组件: 使用componet属性转换为Paper组件，以此保证，table组件可适用于各种组题
         d) 10:36 - Table组件非常重要，官方示例都模仿一遍
-    #31( 等待笔记 )
+    #20( 等待笔记 - 等待研究 )
+        a) 11:08 - Table分页组件: 分页公式切片算法
+        b) 12:45 - Table分页填充: 渲染空余高度，填充table
+        c) 13:40 - Table分页填充: 公式算法
+        d) 经验教训：看似复杂复杂的代码, 其实拆分出后, 围绕的原理并不复杂
+        e) Table实战项目( 视频教程在各分支中 ):  https://github.com/ZTaer/basic-react-form/tree/master
+    #31( 完成笔记 )
         a) 1:24 - vscoode辅助工具代码片段
         b) 4:31 - 构建快捷代码片段, ctrl+shift+p --> 输入snippet
         c) 5:44 - json构建代码片段
