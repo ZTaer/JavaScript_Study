@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
  * 本地组件
  */
 import CardMuiTest from "../../components/card-mui-test/card-mui-test.component";
+import TestTable from "../../components/table-pagination-mui-test-exercise-1/table-pagination-mui-test-exercise-1.component";
 /**
  * makeStyle函数: theme传值( 完成笔记 )
  *      a) 可直接访问theme属性，或者其中的函数
@@ -54,6 +55,7 @@ const ShopPages = () => {
                 </Grid>
                 <Grid item  md={2} />
             </Grid>
+            <TestTable />
         </div>
     );
 };
