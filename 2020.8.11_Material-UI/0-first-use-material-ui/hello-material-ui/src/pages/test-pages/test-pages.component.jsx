@@ -13,6 +13,9 @@ import ButtonGroupMuiTest from '../../components/buttonGroup-mui-test/buttonGrou
 import PaperMuiTest from '../../components/paper-mui-test/paper-mui-test.component'
 import DividerMuiTest from "../../components/divider-mui-test/divider-mui-test.component";
 import TableMuiTest from "../../components/table-mui-test/table-mui-test.component";
+import TablePagintionMuiTest from '../../components/table-pagination-mui-test/table-pagination-mui-test.component';
+import TablePagintionMuiTestExercise1 from '../../components/table-pagination-mui-test-exercise-1/table-pagination-mui-test-exercise-1.component';
+import TablePagintionSelectMuiTest from '../../components/table-pagination-select-mui-test/table-pagination-select-mui-test.component';
 
 const TestPages = () => {
     return(
@@ -72,6 +75,20 @@ const TestPages = () => {
                 Table组件
             </h2>
             <TableMuiTest />
+            <h2>
+                Table组件 - 带分页
+            </h2>
+            <TablePagintionMuiTest />
+
+            <h2>
+                Table组件 - 带分页 - 练习1
+            </h2>
+            <TablePagintionMuiTestExercise1 />
+
+            <h2>
+                Table组件 - 带分页 - 带多选
+            </h2>
+            <TablePagintionSelectMuiTest />
         </div>
     );
 };

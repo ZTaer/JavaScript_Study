@@ -67,17 +67,18 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
         b) 6:19 - CardHeader组件API
         c) 9:56 - Collapse组件：折叠内容组件，通过属性in的Boolean来是否展开折叠
         d) 10:48 - CardActionArea组件：可以让其中的子标签，有“涟漪”的动画效果
-    #13( 等待笔记 - 等待研究 )
+    #13( 等待笔记 - 完成研究 )
         a) 2:45 - Table组件( 非常重要 - 核心 )
         b) 3:44 - createData函数：构造表哥数据格式
         c) 4:34 - TableContainer组件: 使用componet属性转换为Paper组件，以此保证，table组件可适用于各种组题
         d) 10:36 - Table组件非常重要，官方示例都模仿一遍
-    #20( 等待笔记 - 等待研究 )
+    #20( 等待笔记 - 完成研究 )
         a) 11:08 - Table分页组件: 分页公式切片算法
         b) 12:45 - Table分页填充: 渲染空余高度，填充table
         c) 13:40 - Table分页填充: 公式算法
         d) 经验教训：看似复杂复杂的代码, 其实拆分出后, 围绕的原理并不复杂
         e) Table实战项目( 视频教程在各分支中 ):  https://github.com/ZTaer/basic-react-form/tree/master
+        f) Table组件多选( 等待研究 )
     #31( 完成笔记 )
         a) 1:24 - vscoode辅助工具代码片段
         b) 4:31 - 构建快捷代码片段, ctrl+shift+p --> 输入snippet
