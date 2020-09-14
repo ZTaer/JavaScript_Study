@@ -248,6 +248,10 @@ export default function EnhancedTable() {
    * e) Array.slice(): 获取数组切片
    *    0. Array.slice( 开始值, 结束值 ): 获取数组片段
    *    1. Array.slice( 值 ): 只获取'值后'的数组元素
+   *    2. Array.slice高级用法
+   *      a) a = [ 1,2,3,4 ]
+   *      b) a.slice(1) ---> [2,3,4]: 单个值数字代表开始截取的位置
+   *      c) a.slice(0,-1) ---> [1,2,3]: -1在slice中代表倒数第一的位置
    */
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);     // 0. 验证元素是否已经存在selected中
