@@ -14,10 +14,12 @@ import { BrowserRouter } from 'react-router-dom';     // react-router-dom
 import ThemeHocProvider from './theme/theme-hoc-provider.component';
 
 ReactDOM.render(
+  <React.StrictMode>
     <BrowserRouter>
       <ThemeHocProvider>  
         <App />
       </ThemeHocProvider>
-    </BrowserRouter>,
+    </BrowserRouter>
+  </React.StrictMode>,
   document.getElementById('root')
 );

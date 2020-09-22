@@ -9,7 +9,7 @@ import React from 'react'
  *          0. 'elevation'阴影版组件，
  *          1. 'outlined'边框版组件( 边框版无阴影,且elevation属性无效 )
  *      e) square属性: 当为true时，边角为直角( 默认边角为圆角 )
- *      f) 改变主题:( 等待研究 )
+ *      f) 改变主题:( 完成研究 )
  *          0. Paper组件背景/字体颜色会变化
  */
 import { Paper,Typography } from '@material-ui/core'

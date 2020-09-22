@@ -5,7 +5,7 @@ import React from "react";
  *      a) postion属性: 位置 
  *          0. 'fixed': 固定位置
  *          1. 'static': 静态位置 
- *  ToolBar组件: 配合导航栏( 等待研究 )
+ *  ToolBar组件: 配合导航栏( 完成研究 )
  */         
 import {
     AppBar,

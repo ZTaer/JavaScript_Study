@@ -1,7 +1,8 @@
 import React from 'react';
 
 /**
- * 6. 构建: TablePagination的ActionsComponent( 等待笔记 )
+ * 6. 构建: TablePagination的ActionsComponent( 完成笔记 )
+ *    a) 用于TablePagination组件的ActionsComponent属性
  */
 import {  
     IconButton,
@@ -72,7 +73,7 @@ const TablePaginationActionsExercise1 = (props) => {
             >
               {
                 /**
-                 * 7. 关于为什么使用theme.direction: 为了配合Material-UI的镜像方向属性功能( 等待笔记 )
+                 * 7. 关于为什么使用theme.direction: 为了配合Material-UI的镜像方向属性功能( 完成笔记 )
                  */
                 theme.direction !== "rtl" ? <FirstPageIcon /> : <LastPageIcon />
               }

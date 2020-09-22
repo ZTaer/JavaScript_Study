@@ -1,7 +1,7 @@
 import React,{ useState, useRef, useEffect } from 'react';
 
 /**
- * Table组件 - Table换页练习( 等待笔记 )
+ * Table组件 - Table换页练习( 完成笔记 )
  */
 import { 
     Table,
@@ -49,7 +49,7 @@ const TablePaginationMuiTestExercise1 = () => {
      *      a) page: 当前页
      *      b) rowsPerPage: 每页显示行数
      *      c) emptyRows: 每页显示空行数高度
-     *          0. Math.min( 1,2 ): 比较并返回最小值, 此时返回结果为1( 等待笔记 )
+     *          0. Math.min( 1,2 ): 比较并返回最小值, 此时返回结果为1( 完成笔记 )
      *          1. 核心算法: 
      *             a) 目的: 获取指定页面的行数
      *             b) 需补充行数 = 要求每页最大行数 - Math.min( 要求每页最大行数, 对应页数据数量 ) 
@@ -84,7 +84,7 @@ const TablePaginationMuiTestExercise1 = () => {
                 <TableBody>
                     {
                         /**
-                         * 2. Array.slice分页核心算法( 等待笔记 )
+                         * 2. Array.slice分页核心算法( 完成笔记 )
                          *      a) 解析: Array.slice( 当前页数组元素开头数, 当前页数组元素结尾数 ) = 当前页数据
                          */
                         rows
@@ -122,6 +122,22 @@ const TablePaginationMuiTestExercise1 = () => {
                         {
                             /**
                              * 4. TablePagination组件: Table分页渲染组件
+                             *      a) 注意: TablePagination要嵌套在TableRow之内，否则将报错
+                             *      b) 参数解析
+                             *          0. 数据类
+                             *              count={ rows.length } - 数据总数量
+                             *              page={page} - 当前页数
+                             *              rowsPerPage={rowsPerPage} - 每页渲染最大行数
+                             *          1. 下拉框类
+                             *              labelRowsPerPage="xxx" - 下拉框的label说明          
+                             *              rowsPerPageOptions = {[xxx]} -下拉框选项 
+                             *              onChangeRowsPerPage = { handleChangeRowsPerPage } - 改变"每页渲染最大行数"逻辑
+                             *              SelectProps={{}} - 直接写入props到核心标签
+                             *          2. 页面信息类 
+                             *              labelDisplayedRows={()=>``} - 格式化当前页面信息
+                             *          3. 逻辑操控类
+                             *              ActionsComponent={组件} - 格式化翻页按钮( 翻页按钮渲染 - 核心 )
+                             *              onChangePage={handleChangePage} - 翻页逻辑
                              */
                         }
                         <TablePagination 
@@ -139,7 +155,7 @@ const TablePaginationMuiTestExercise1 = () => {
                             onChangeRowsPerPage = { handleChangeRowsPerPage }
                             SelectProps={{                                                
                                 inputProps: { 'aria-label': '下拉框props' },
-                                native: true
+                                native: true // 优化显示下拉框
                             }}
 
                             // c) 信息类: 当前数据信息，以及当前页面信息

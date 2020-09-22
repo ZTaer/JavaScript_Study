@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * Table组件: 有分页( 等待笔记 )
+ * Table组件: 有分页( 完成笔记 )
  */
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -20,7 +20,7 @@ import {
 } from '@material-ui/core';
 
 /**
- * 配合TablePagination组件: ActionsComponent属性( 等待笔记 )
+ * 配合TablePagination组件: ActionsComponent属性( 完成笔记 )
  *    a) 作用: 渲染翻页按钮
  */
 import TablePaginationActions from "./table-pagination-actions.child-component";
@@ -142,7 +142,7 @@ const CustomPaginationActionsTable = () => {
               onChangePage={handleChangePage}                             // onChangePage属性: 配合ActionsComponent属性，功能为改变页数
 
               /**
-               * 文案操控属性( 等待笔记 )
+               * 文案操控属性( 完成笔记 )
                *    0. labelRowsPerPage属性: Select下拉菜单的开头文案
                *    1. labelDisplayedRows属性: 换页细节文案
                *        a) 注意: 默认值就为函数, 并且参数固定

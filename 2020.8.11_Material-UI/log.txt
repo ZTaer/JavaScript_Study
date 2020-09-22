@@ -1,3 +1,11 @@
+Material-UI官方文档:
+    2020.9.21 - ( 等待笔记 ): 
+        0. Checkbox配合FormGroup
+        1. FormControl以及FormLabel简单的介绍
+        2. 利用解构，查看ReactDom标签属性方法
+        3. Switch组件: 开关组件
+        4. 有label名称的Switch组件
+
 YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVmsZ0d_9Zsg_DnIP_xwr&index=1
     #1( 完成笔记 )
         a) 7:13 - Material-UI的属性库:
@@ -67,18 +75,74 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
         b) 6:19 - CardHeader组件API
         c) 9:56 - Collapse组件：折叠内容组件，通过属性in的Boolean来是否展开折叠
         d) 10:48 - CardActionArea组件：可以让其中的子标签，有“涟漪”的动画效果
-    #13( 等待笔记 - 完成研究 )
+    #13( 完成笔记 - 完成研究 )
         a) 2:45 - Table组件( 非常重要 - 核心 )
         b) 3:44 - createData函数：构造表哥数据格式
         c) 4:34 - TableContainer组件: 使用componet属性转换为Paper组件，以此保证，table组件可适用于各种组题
         d) 10:36 - Table组件非常重要，官方示例都模仿一遍
-    #20( 等待笔记 - 完成研究 )
+        e) 补充研究( 等待研究 ):
+            0. Table套装,细节研究补充
+            1. Tooltips组件
+            2. Checkbox组件
+            3. TableSortLabel组件
+    #14( 等待研究 )
+        a) 8:46 - Router history配置( 有疑惑 )
+        b) 
+    #15( 等待笔记 )
+        a) 3:17 - 搜索组件在Aoobar中，个人构建时可以用搜索导航栏代替更好
+        b) 10:17 - 基本布局，这个布局可以不按照视频来搞，自由发挥
+    #16( 等待笔记 )
+        a) 3:04 - CircularProgress组件: 加载器组件
+        b) 产品API官方文档: https://pokeapi.co/
+        c) 12:18 - 单个产品路由
+        d) 18:26 - 单个产品页面渲染，以及mock图片链接获取方式
+        e) 18:51 - 注意: react组件的return( <> xxx </> )骗取react为单个容器方法( 等待笔记 )
+    #17( 等待笔记 )
+        a) 6:54 - axios请求加工产品数据 
+        b) 9:44 - 加载产品的3种状态
+            0. 数据正在加载 --> 渲染加载器
+            1. 数据请求成功 --> 渲染产品
+            2. 数据请求不存在或者失败 --> 渲染报错信息
+        c) 11:23 - 3种状态渲染逻辑实现( 有点6 - 需研究 )
+        d) 12:52 - 单个产品请求数据
+    #18( 等待笔记 )
+        a) 5:07 - 当进行有主题更换的web程序时，尽量从mui调色板中获取颜色，方便变化, fade函数( 等待实验 )
+        b) 5:59 - 主要调整书写，搜索栏的样式
+        c) 7:24 - combo box 搜索组件，有配合预加载数据进行自动搜索功能
+        d) 7:50 - algolia搜索API( 第三方辅助搜索引擎 )
+        e) 11:04 - &&渲染方法( 等待研究 )，当前用于渲染过滤器内容。
+        f) 非常重要: &&渲染方法( 等待研究 ), 以及后端获取数据渲染的3种状态渲染。
+    #19( 等待笔记 )
+        a)  00:00 - Tabs组件的使用
+        b)  5:41 - 经过在次验证, aria-label属性确实为，备注功能
+        c)  6:22 - Tabs组件
+        d) 14:58 - Tabs组件基础写法
+        e) 15:30 - CssBaseLine组件，可以填充导航栏的高度，以此在不受导航栏影响的情况下，完整渲染页面
+        f) 21:31 - Tabs与路由结合
+        g) 22:40 - Tabs成功与路由结合
+    #20( 完成笔记 - 完成研究 )
         a) 11:08 - Table分页组件: 分页公式切片算法
         b) 12:45 - Table分页填充: 渲染空余高度，填充table
         c) 13:40 - Table分页填充: 公式算法
         d) 经验教训：看似复杂复杂的代码, 其实拆分出后, 围绕的原理并不复杂
         e) Table实战项目( 视频教程在各分支中 ):  https://github.com/ZTaer/basic-react-form/tree/master
-        f) Table组件多选( 等待研究 )
+        f) Table组件多选( 完成研究 )
+    #21( 等待笔记 )
+        a) 00:00 - Drawer抽屉组件( 非常重要 - 核心 )
+        b) 3:50 - Drawer有3种类型
+            0. 临时Drawer: 弹出的Drawer将为专注模式，背景会变暗，只能对Drawer进行操作
+            1. 持久Drawer: 通过按钮或者其他交互模式召唤出Drawer进行操作
+            2. 永久Drawer: 一直显示着Drawer
+        c) 4:50 - Drawer组件属性:
+            0. variant属性：操控Drawer类型
+            1. anchor属性: 操控Drawer弹出的位置
+        d) 7:18 - ListItem组件应用于Drawer组件中
+        e) 10:00 - Drawer API: 
+            0. onClose函数操控组件关闭
+        f) 14:43 - 构建的Drawer组件配置位置
+        g) 17:32 - 给Drawer设定固定宽度
+        h) 22:02 - 重新构建数据结构来渲染，Drawer中的选项, 含Icon和text
+        i) 25:44 - 给Drawer选项配置路由
     #31( 完成笔记 )
         a) 1:24 - vscoode辅助工具代码片段
         b) 4:31 - 构建快捷代码片段, ctrl+shift+p --> 输入snippet

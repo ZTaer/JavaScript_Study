@@ -22,7 +22,7 @@ const useStyles1 = makeStyles((theme) => ({
 }));
 
 /**
- * 构建: 配合ActionsComponent属性的换页组件( 等待笔记 )
+ * 构建: 配合ActionsComponent属性的换页组件( 完成笔记 )
  * 
  */
 //   a) 自定义化: 保证换页按钮的自定义化
@@ -95,7 +95,7 @@ const TablePaginationActions = (props) => {
 
 
 /**
- * propType函数: 效验数据类型, 模仿Ts( 等待笔记 )
+ * propType函数: 效验数据类型, 模仿Ts( 完成笔记 )
  *    a) 引入( React默认自带 - 无需安装 ): import PropTypes from 'prop-types';
  *    b) 作用: 模仿ts效验数据类型
  */
