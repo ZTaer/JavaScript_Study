@@ -86,33 +86,47 @@ function EnhancedTableHead(props) {
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
+            /**
+             * 追踪 - 7
+             *    a) indeterminate属性: true时为部分勾选图标渲染
+             *    b) checked属性: true时为全部勾选图标渲染
+             */
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
             inputProps={{ 'aria-label': 'select all desserts' }}
           />
         </TableCell>
-        {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'default'}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
+        {
+          /**
+           * 追踪 - 10
+           *    a) 渲染Table标题部分
+           *    b) 重要的是排序研究
+           *    c)  
+           */
+          headCells.map((headCell) => (
+            <TableCell
+              key={headCell.id}
+              align={headCell.numeric ? 'right' : 'left'}
+              padding={headCell.disablePadding ? 'none' : 'default'}
+              sortDirection={orderBy === headCell.id ? order : false}
             >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <span className={classes.visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                </span>
-              ) : null}
-            </TableSortLabel>
-          </TableCell>
-        ))}
+              <TableSortLabel
+                // active={orderBy === headCell.id}
+                active={true}
+                direction={orderBy === headCell.id ? order : 'asc'}
+                onClick={createSortHandler(headCell.id)}
+              >
+                {headCell.label}
+                {orderBy === headCell.id ? (
+                  <span className={classes.visuallyHidden}>
+                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                  </span>
+                ) : null}
+              </TableSortLabel>
+            </TableCell>
+          ))
+        }
       </TableRow>
     </TableHead>
   );
@@ -151,7 +165,11 @@ const useToolbarStyles = makeStyles((theme) => ({
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
   const { numSelected } = props;
-
+  /**
+   * 追踪 - 9
+   *    a) numSelected: 为selected的总长度，也就是全部选中的数量
+   *    b) 下方，根据numSelected来做渲染逻辑
+   */
   return (
     <Toolbar
       className={clsx(classes.root, {
@@ -228,6 +246,13 @@ export default function EnhancedTable() {
     setOrderBy(property);
   };
 
+  /**
+   * 追踪 - 8
+   *    a) 全选函数
+   *    b) checked为组件手动添加的属性
+   *      0. true时: 将rows元素中的name全部添加到selected中
+   *      1. false时: 将selected初始化
+   */
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelecteds = rows.map((n) => n.name);
@@ -238,7 +263,7 @@ export default function EnhancedTable() {
   };
 
   /**
-   * 追踪 - 5( 等待笔记 )
+   * 追踪 - 5( 完成笔记 )
    * a) 选中元素加工至selected核心逻辑
    *    0. name不存在: 添加元素至selected
    *    1. name已存在: 删除元素至selected
@@ -309,6 +334,12 @@ export default function EnhancedTable() {
             aria-label="enhanced table"
           >
             <EnhancedTableHead
+              /**
+               * 追踪 - 6
+               * Table项头部
+               *    a) 功能全选/全不选
+               *    b) 排序
+               */
               classes={classes}
               numSelected={selected.length}
               order={order}

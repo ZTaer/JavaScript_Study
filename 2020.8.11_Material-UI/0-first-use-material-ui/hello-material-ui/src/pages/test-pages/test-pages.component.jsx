@@ -16,6 +16,9 @@ import TableMuiTest from "../../components/table-mui-test/table-mui-test.compone
 import TablePagintionMuiTest from '../../components/table-pagination-mui-test/table-pagination-mui-test.component';
 import TablePagintionMuiTestExercise1 from '../../components/table-pagination-mui-test-exercise-1/table-pagination-mui-test-exercise-1.component';
 import TablePagintionSelectMuiTest from '../../components/table-pagination-select-mui-test/table-pagination-select-mui-test.component';
+import TablePagintionSelectMuiTestExercise2 from '../../components/table-pagination-select-mui-test-exercise-2/table-pagination-select-mui-test-exercise-2.component';
+import CheckboxMuiTest from '../../components/checkbox-mui-test/checkbox-mui-test.component';
+import TooltipMuiTest from '../../components/tooltips-mui-test/tooltips-mui-test.component';
 
 const TestPages = () => {
     return(
@@ -89,6 +92,22 @@ const TestPages = () => {
                 Table组件 - 带分页 - 带多选
             </h2>
             <TablePagintionSelectMuiTest />
+
+            <h2>
+                Table组件 - 带分页 - 带多选 - 练习2
+            </h2>
+            <TablePagintionSelectMuiTestExercise2 />
+
+            <h2>
+                Checkbox组件
+            </h2>
+            <CheckboxMuiTest />
+
+            <h2>
+                Tooltip组件
+            </h2>
+            <TooltipMuiTest />
+
         </div>
     );
 };

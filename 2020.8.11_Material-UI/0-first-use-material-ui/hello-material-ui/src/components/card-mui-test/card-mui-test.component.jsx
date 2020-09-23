@@ -37,7 +37,7 @@ import {
     *       c) unmountOnExit属性: 当属性in为true时显示组件,否则隐藏组件
     *       d) collapsedHeight属性: 组件默认高度设定,当unmountOnExit为false时起作用
     *       e) disableStrictModeCompat属性: 为了兼容性
-    *       f) children属性( 等待研究 )
+    *       f) children属性( 完成研究 )
     *       g) component属性: 你懂的
     *   1. 配合展示:
     *       a) 动画交互按钮 --> 如下方的,旋转收缩按钮示例
@@ -210,7 +210,7 @@ export default function SimpleCard() {
             // collapsedHeight="107px"             // collapsedHeight属性: 组件默认高度设定,当unmountOnExit为false时起作用
             // component="div"                     
             // disableStrictModeCompat             // disableStrictModeCompat属性: 为了兼容性
-            // children                         ( 等待研究 )
+            // children                         ( 完成研究 )
         >
             <CardContent>
             <Typography paragraph>Method:</Typography>
