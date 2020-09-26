@@ -40,13 +40,10 @@ const SwitchCustomTheme = ({
     )
 };
 
-
 const mapDispatchToProps = dispatch => ({
     changeDefaultTheme: ()=>dispatch(changeDefaultTheme()),
     changeDarkTheme: ()=>dispatch(changeDarkTheme()),
     changeGreenTheme: ()=>dispatch(changeGreenTheme()),
 });
-
-
 
 export default connect( null, mapDispatchToProps )(SwitchCustomTheme);

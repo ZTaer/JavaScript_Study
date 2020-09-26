@@ -94,6 +94,7 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
     #16( 等待笔记 )
         a) 3:04 - CircularProgress组件: 加载器组件
         b) 产品API官方文档: https://pokeapi.co/
+            0. 图片: https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png
         c) 12:18 - 单个产品路由
         d) 18:26 - 单个产品页面渲染，以及mock图片链接获取方式
         e) 18:51 - 注意: react组件的return( <> xxx </> )骗取react为单个容器方法( 等待笔记 )
@@ -143,6 +144,41 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
         g) 17:32 - 给Drawer设定固定宽度
         h) 22:02 - 重新构建数据结构来渲染，Drawer中的选项, 含Icon和text
         i) 25:44 - 给Drawer选项配置路由
+    #22( 等待笔记 )
+        a) 00:00 - Breadcrumbs组件: 面包屑导航
+        b) 3:39 - event.preventDefault()终止默认事件，执行React设定的事件
+        c) 4:22 - Breadcrumbs组件: 
+            0. separator属性: separator=">"属性设定Link之间隔离符类型,可以是字符串，也可以是Icon
+        d) 6:22 - Breadcrumbs与路由结合，官方例子并不是最好的列子, 不过视频中的A老师会提供更好的例子
+        e) 21:17 - Breadcrumbs组件配合路由，构建拆分链接逻辑，并渲染到Breadcrumbs中
+            0. 例如当前链接为: /join/designer
+            1. 拆分链接后渲染组件跳转的链接为: ( "/" > "/join" > "/join/designer" )
+            2. 以上放逻辑循环类推
+        f) 23:37 - 通过"索引值"来判断渲染"当前链接"样式, 当前链接是尾部
+    #23( 等待笔记 )
+        a) 00:00 - Hidden组件
+        b) 2:57 - 其实这个组件，个人感脚，研究官方API即可
+        c) 3:48 - 各种xs,sm,md,lg,xl窗口大小标准
+    #24( 等待笔记 )
+        a) 00:00 - Snackbars组件，小提示框( 非常重要 - 核心 )
+        b) 3:55 - 3个重要的属性
+            0. open属性: true时显示，提示框
+            1. autoHideDuration属性: 提示框关闭时间设定
+            2. onClose属性: 要放置关闭提示框的操控逻辑，就是操控open变量属性的逻辑
+        c) 6:01 - Alert组件配合Snackbars组件，可以显示出不同种类的弹窗，如'错误'，'警报', '成功' 等...Snackbars组件默认为白色背景
+        d) 19:36 - 将Snackbars+Alert组件+Redux: 配合形成了一个小实例，不过这里使用了react-redux的useDispatch来执行action 
+        e) 20:05 - 配置Snackbars组件：配置Snackbars组件到App.js方便在程序的全局显示
+    #25( 等待笔记 )
+        a) 00:00 - Accordion组件: 手风琴组件，比较实用的组件
+        b) 4:15 - Accordion组件搭配辅助的组件
+        c) 6:00 - Accordion的TransitionProps属性对手风琴组件的优化，性能好，seo优化好
+        d) 9:02 - 辅助组件:
+            0. AccordionSummary组件：存放手风琴标题/Icon
+            1. AccordionDetails组件: 存放手风琴被折叠的内容细节
+        e) 11:27 - flexBasis属性，来跳转手风琴标题中，备注的间距，算是一个小细节吧 
+        f) 14:44 - 手风琴单独展开显示效果：Accordion组件中的expanded, onChange属性逻辑决定，需要解析实验
+        g) 19:41 - A老师，通过数据结构来，迭代，手风琴组件，这样确实更加容易解析，手风琴结构
+            0. 注意: map迭代时，不要忘记key
     #31( 完成笔记 )
         a) 1:24 - vscoode辅助工具代码片段
         b) 4:31 - 构建快捷代码片段, ctrl+shift+p --> 输入snippet

@@ -1,44 +1,69 @@
-import React,{useEffect,useCallback} from 'react';
-import IndexPeople from '../../components/index-people/index-people.component';
-import SwitchCustomTheme from '../../components/switch-custom-theme/switch-custom-theme.component';
+import React,{useEffect} from 'react';
 
-// redux-saga
+/**
+ * 第三方库
+ */
+import {  
+    Grid,
+} from '@material-ui/core';
 import { connect } from 'react-redux';
-import { fetchPeopleReduxSagaStart } from '../../redux/people/people.action';
+import { createStructuredSelector } from 'reselect';
 
-// react-router-dom
-import { Link } from 'react-router-dom';
+/**
+ * 本地组件
+ */
+import BkmItem from '../../components/bkm-item/bkm-item.component';
+import { selectBkmSimpleData, selectErrorMsg, selectIsFetching } from '../../redux/bkm/bkm.selectors';
+import { fetchBkmStart } from '../../redux/bkm/bkm.action';
+import Spinner from '../../components/spinner/spinner.component';
 
-const Index = ({ fetchPeopleReduxSagaStart }) => {
+/**
+ * Css相关
+ */
+import { homepagesUseStyles } from './homepages.mui.styles';
 
-    const test = useCallback(()=>{
-        fetchPeopleReduxSagaStart();
-    },[fetchPeopleReduxSagaStart]);
+const HomePages = (props) => {
+    const { fetchBkmStart, bkmData, isFetching, errorMsg } = props;
+
+    const classes = homepagesUseStyles();
 
     useEffect(()=>{
-        test();
-    },[test]);
+        if( !bkmData && !errorMsg ){
+            fetchBkmStart();
+        }
+    },[]);
 
-    return (
-        <div className="index">
-            <Link to={"/example"} >example</Link>
-            <IndexPeople target={"L"} />
-            <p style={{
-                color: "fff",
-                fontSize: "1rem",
-                letterSpacing: "1px",
-            }} >
-                0. 挂载: constructor() --》 componentWillMount() --》 render() --》 componentDidMount()<br/>
-                1. 更新: shouldComponentUpdate() --》 render() --》 componentDidUpdate()<br/>
-                2. 卸载: componetWillUnmout()<br/>
-            </p>
-            <SwitchCustomTheme />
-        </div>
+    return isFetching ? 
+    ( <Spinner /> ) :
+    (
+        <Grid container  >
+            {
+                bkmData.map( cur => {
+                    return(
+                        <Grid item xs={6} sm={4} md={3} lg={2} className={ classes.proItem } key={cur.id}>
+                            <BkmItem 
+                                title = {cur.title}
+                                linkUrl = {`/bkm/${cur.id}`}
+                                imageUrl = {cur.imageUrl} 
+                                itemId = {cur.id}
+                            />
+                        </Grid>
+                    );
+                } )
+            }
+        </Grid>
     );
 };
 
-const mapDispatchToProps = dispatch => ({
-    fetchPeopleReduxSagaStart: ()=> dispatch(fetchPeopleReduxSagaStart()), 
-});
+const mapStateToProps = createStructuredSelector({
+    bkmData: selectBkmSimpleData,
+    isFetching: selectIsFetching,
+    errorMsg: selectErrorMsg, 
+}); 
 
-export default connect( null,mapDispatchToProps )(Index);
+const mapDispatchToProps =  ( dispatch ) => ({
+    fetchBkmStart: ()=>dispatch(fetchBkmStart()),   
+})
+
+
+export default connect( mapStateToProps, mapDispatchToProps )(HomePages);
