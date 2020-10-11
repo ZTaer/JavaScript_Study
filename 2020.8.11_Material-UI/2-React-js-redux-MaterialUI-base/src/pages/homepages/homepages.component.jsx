@@ -13,7 +13,7 @@ import { createStructuredSelector } from 'reselect';
  * 本地组件
  */
 import BkmItem from '../../components/bkm-item/bkm-item.component';
-import { selectBkmSimpleData, selectErrorMsg, selectIsFetching } from '../../redux/bkm/bkm.selectors';
+import { selectBkmFilterData, selectErrorMsg, selectIsFetching } from '../../redux/bkm/bkm.selectors';
 import { fetchBkmStart } from '../../redux/bkm/bkm.action';
 import Spinner from '../../components/spinner/spinner.component';
 
@@ -56,7 +56,7 @@ const HomePages = (props) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-    bkmData: selectBkmSimpleData,
+    bkmData: selectBkmFilterData,
     isFetching: selectIsFetching,
     errorMsg: selectErrorMsg, 
 }); 

@@ -95,9 +95,11 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
         a) 3:04 - CircularProgress组件: 加载器组件
         b) 产品API官方文档: https://pokeapi.co/
             0. 图片: https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png
+            1. 单个宝可梦API: https://pokeapi.co/api/v2/pokemon/${id}
         c) 12:18 - 单个产品路由
         d) 18:26 - 单个产品页面渲染，以及mock图片链接获取方式
         e) 18:51 - 注意: react组件的return( <> xxx </> )骗取react为单个容器方法( 等待笔记 )
+        f) 宝可梦开发项目路径: ./2-React-js-redux-MaterialUI-base ( 已开发完成 )
     #17( 等待笔记 )
         a) 6:54 - axios请求加工产品数据 
         b) 9:44 - 加载产品的3种状态

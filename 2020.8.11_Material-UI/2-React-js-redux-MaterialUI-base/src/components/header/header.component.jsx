@@ -7,21 +7,22 @@ import {
     AppBar,
     Toolbar,
     IconButton,
-    InputBase,
     Typography,
 
     Hidden,
 } from '@material-ui/core';
 
 import {  
-    Search as SearchIcon,
     Home as HomeIcon,
 } from '@material-ui/icons';
+
+import { withRouter } from 'react-router-dom';
 
 /**
  * 本地组件
  */
 import ChangeThemeButton from '../change-theme-button/change-theme-button.component';
+import Search from '../search/search.component';
 
 /**
  * css相关
@@ -31,7 +32,7 @@ import { useStyles } from './header.mui.styles';
 /**
  * 核心组件
  */
-const Header = () => {
+const Header = ({ history }) => {
     const classes = useStyles();
     const [search, setSearch] = useState("")
 
@@ -48,6 +49,7 @@ const Header = () => {
                     className={classes.menuButton}
                     color="inherit"
                     aria-label="open drawer"
+                    onClick={ () => history.push("/") }
                 >
                     <HomeIcon />
                 </IconButton>
@@ -59,22 +61,8 @@ const Header = () => {
                 </Hidden>
                 <div style={{marginLeft:"auto"}} ></div>
 
-                <div className={classes.search}>
-                    <div className={classes.searchIcon}>
-                    <SearchIcon />
-                    </div>
-                    <InputBase
-                        value={search}
-                        onChange={handleSearchValue} 
-                        placeholder="搜索名称..."
-                        classes={{
-                            root: classes.inputRoot,
-                            input: classes.inputInput,
-                        }}
-                        inputProps={{ 'aria-label': 'search' }}
-                    />
-                </div>
-
+                <Search />
+          
                 <div className={classes.themeButton} >
                     <ChangeThemeButton />
                 </div>
@@ -84,4 +72,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default withRouter(Header);

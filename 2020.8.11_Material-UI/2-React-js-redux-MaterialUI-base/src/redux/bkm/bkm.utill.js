@@ -9,3 +9,29 @@ export const bkmSimpleData_utill = (props) => {
         };
     });
 };
+
+export const bkmItemSimpleData_utill = ( props ) => {
+    const { id, name, height, weight } = props;
+    return {
+        id,
+        name,
+        height,
+        weight,
+        imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${parseInt(id)}.png`
+    };
+};
+
+export const bkmFilterData_utill = ( target, dataArray ) => {
+    let result = [];
+    
+    // 无搜索内容时
+    if( !target ){
+        return dataArray;
+    }
+    // 有搜索内容时
+    else if( target && dataArray instanceof Array ){
+        result = dataArray.filter( item => (item.title).includes( target ) );   
+    }
+
+    return result;
+};

@@ -1,8 +1,7 @@
-import { takeLatest, call, all, put, race, delay, select } from 'redux-saga/effects';
+import { takeLatest, call, all, put, race, delay } from 'redux-saga/effects';
 import { bkmActionTypes } from './bkm.types';
-import { fetchBkmFailure, fetchBkmSuccess, fetchBkmItemSuccess, fetchBkmItemFailure } from './bkm.action';
+import { fetchBkmFailure, fetchBkmSuccess } from './bkm.action';
 import axios from 'axios';
-import { selectBkmItemId } from './bkm.selectors';
 
 /**
  * 函数区
@@ -24,19 +23,6 @@ export function* fetchBkmStartReduxSaga(){
     }
 };
 
-export function* fetchBkmItemStartReduxSaga(){
-    try{
-      const itemId = yield select( selectBkmItemId );
-      const fetchData = yield axios(`https://pokeapi.co/api/v2/pokemon/${itemId}`);  
-      yield put(fetchBkmItemSuccess( fetchData.data ));
-    }
-    catch(err){
-        yield put( fetchBkmItemFailure(err) );
-        alert(err);
-    }
-};
-
-
 /**
  * 监听区
  */
@@ -44,16 +30,11 @@ export function* onFetchBkmStart() {
     yield takeLatest( bkmActionTypes.FETCH_BKM_LIST_START, fetchBkmStartReduxSaga )
 };
 
-export function* onFetchBkmItemStart() {
-    yield takeLatest( bkmActionTypes.FETCH_BKM_ITEM_START, fetchBkmItemStartReduxSaga )
-}
-
 /**
  * 执行区
  */
 export function* bkmSaga(){
     yield all([
         call(onFetchBkmStart),
-        call(onFetchBkmItemStart),
     ]);
 };
