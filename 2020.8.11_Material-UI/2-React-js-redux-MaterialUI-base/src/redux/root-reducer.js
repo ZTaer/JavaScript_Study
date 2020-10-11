@@ -9,6 +9,7 @@ import storage from 'redux-persist/lib/storage';
 // reducer
 import peopleReducer from './people/people.reducer';
 import customThemeReducer from './custom-theme/custom-theme.reducer';
+import bkmReducer from './bkm/bkm.reducer';
 
 // redux-persist
 const persistConfig = {
@@ -20,6 +21,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
     people: peopleReducer,
     customTheme: customThemeReducer,
+    bkm: bkmReducer,
 });
 
 export default persistReducer( persistConfig, rootReducer );

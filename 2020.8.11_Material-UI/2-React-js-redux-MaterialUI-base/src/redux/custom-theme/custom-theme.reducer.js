@@ -2,7 +2,7 @@ import { customThemeActionTypes } from './custom-theme.types';
 import { ThemeIndexType } from '../../theme/theme-hoc-provider.component.jsx';
 
 const INITIAL_STATE = {
-    customTheme: ThemeIndexType.DEFAULT_THEME,
+    customTheme: ThemeIndexType.DARK_THEME,
 };
 
 const customThemeReducer = ( state = INITIAL_STATE, action ) => {
