@@ -40,7 +40,7 @@ const SelectTableHead = (props) => {
       <TableCell padding="checkbox">
         <Checkbox
           /**
-           * 9. CheckBox组件: 选中组件( 等待研究 )
+           * 9. CheckBox组件: 选中组件( 完成研究 )
            *    a) indeterminate属性: true非全选状态
            *    b) checked属性: true为选中状态
            *    c) inputProps属性: 给input传属性
@@ -62,7 +62,7 @@ const SelectTableHead = (props) => {
             >
               <TableSortLabel
                 /**
-                 * TableSortLabel组件: 配合Table的排序组件( 等待笔记 )
+                 * TableSortLabel组件: 配合Table的排序组件( 完成笔记 )
                  *    a) active属性: true时显示排序按钮
                  *    b) direction属性: "asc" 默认方向渲染Icon | "desc" 倒置方向渲染Icon
                  *    c) hideSortIcon属性: true时隐藏Icon按钮，但没有active属性权重高

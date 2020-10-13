@@ -22,7 +22,7 @@ export function* fetchPeopleReduxSagaStart(){
         yield put( fetchPeopleFailure(err) );
     }
 };
-// Redux Saga请求超时写法 - race超时写法( 等待笔记 )
+// Redux Saga请求超时写法 - race超时写法( 完成笔记 )
     // 0. 核心: race函数
     // 1. 模型: const { posts, timeout } = yield race({ posts: 请求数据函数, timeout: delay(设定超时时间) });
 export function* fetchPeopleReduxSagaTimeOutStart(){
