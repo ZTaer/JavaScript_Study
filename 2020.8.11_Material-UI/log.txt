@@ -5,6 +5,15 @@ Material-UI官方文档:
         2. 利用解构，查看ReactDom标签属性方法
         3. Switch组件: 开关组件
         4. 有label名称的Switch组件
+    2020.10.13 - ( 任务顺序 - 等待笔记 )
+        0. Switch组件: 进行研究并做笔记
+        1. 渲染方式:
+            a) #16 react组件的return( <> xxx </> )骗取react为单个容器方法
+            b) #18 &&渲染方法, 以及后端获取数据渲染的3种状态渲染
+            c) #17 3种状态渲染逻辑实现
+        2. #16 CircularProgress组件: 加载器组件, 进行研究并做笔记
+        3. Tooltip组件: 提示, 进行研究并做笔记
+        4. 完成以上任务，即可进行 #19 以及之后的研究学习中
 
 YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVmsZ0d_9Zsg_DnIP_xwr&index=1
     #1( 完成笔记 )
@@ -40,7 +49,7 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
     #4( 完成笔记 )
         a) 5:10 - Button组件: componet={Link}属性 可以与 react-router-dom 的Link联用, 并to属性可直接作用在Button上
         b) 10:46 - ButtonGroup组件：以及注意区分"Tabs组件"
-            0. Popper组件( 等待研究 )
+            0. Popper组件( 完成研究 )
     #5( 完成笔记 )
         a) 1:35 - Typography组件: aligin属性，
         b) 3:58 - Typography组件: noWrap属性，文本不换行
@@ -80,15 +89,14 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
         b) 3:44 - createData函数：构造表哥数据格式
         c) 4:34 - TableContainer组件: 使用componet属性转换为Paper组件，以此保证，table组件可适用于各种组题
         d) 10:36 - Table组件非常重要，官方示例都模仿一遍
-        e) 补充研究( 等待研究 ):
+        e) 补充研究( 完成研究 ):
             0. Table套装,细节研究补充
             1. Tooltips组件
             2. Checkbox组件
             3. TableSortLabel组件
     #14( 等待研究 )
         a) 8:46 - Router history配置( 有疑惑 )
-        b) 
-    #15( 等待笔记 )
+    #15( 完成笔记 )
         a) 3:17 - 搜索组件在Aoobar中，个人构建时可以用搜索导航栏代替更好
         b) 10:17 - 基本布局，这个布局可以不按照视频来搞，自由发挥
     #16( 等待笔记 )
@@ -106,15 +114,15 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
             0. 数据正在加载 --> 渲染加载器
             1. 数据请求成功 --> 渲染产品
             2. 数据请求不存在或者失败 --> 渲染报错信息
-        c) 11:23 - 3种状态渲染逻辑实现( 有点6 - 需研究 )
+        c) 11:23 - 3种状态渲染逻辑实现( 有点6 - 需研究 - 等待笔记 )
         d) 12:52 - 单个产品请求数据
     #18( 等待笔记 )
         a) 5:07 - 当进行有主题更换的web程序时，尽量从mui调色板中获取颜色，方便变化, fade函数( 等待实验 )
         b) 5:59 - 主要调整书写，搜索栏的样式
         c) 7:24 - combo box 搜索组件，有配合预加载数据进行自动搜索功能
         d) 7:50 - algolia搜索API( 第三方辅助搜索引擎 )
-        e) 11:04 - &&渲染方法( 等待研究 )，当前用于渲染过滤器内容。
-        f) 非常重要: &&渲染方法( 等待研究 ), 以及后端获取数据渲染的3种状态渲染。
+        e) 11:04 - &&渲染方法( 完成研究 )，当前用于渲染过滤器内容。
+        f) 非常重要: &&渲染方法( 完成研究 - 等待笔记 ), 以及后端获取数据渲染的3种状态渲染。
     #19( 等待笔记 )
         a)  00:00 - Tabs组件的使用
         b)  5:41 - 经过在次验证, aria-label属性确实为，备注功能
@@ -181,6 +189,25 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
         f) 14:44 - 手风琴单独展开显示效果：Accordion组件中的expanded, onChange属性逻辑决定，需要解析实验
         g) 19:41 - A老师，通过数据结构来，迭代，手风琴组件，这样确实更加容易解析，手风琴结构
             0. 注意: map迭代时，不要忘记key
+    #26( 等待笔记 )
+        a) 00:00 - Appbar组件详解
+        b) 2:51 -  Toolbar组件对Appbar非常重要
+        c) 10:31 - 下拉菜单按钮配合Menu组件,构建下拉选项 
+        d) 20:00 - useMediaQuery() hooks 判断当前屏幕断点;
+        e) 27:28 - A老师是将，下拉菜单与路由结合，当屏幕大于sm时，以按钮为路由，当屏幕小于sm时，以下拉菜单为路由 
+    #27( 等待笔记 )
+        a) 00:00 - A老师讲了一些学习方法
+    #28( 等待笔记 )
+        a) 00:00 - Forms + Formik表单组件( 非常重要 - 核心 )
+        b) 2:11 - Formik组件的目的：是为了辅助Forms进行逻辑效验, 默认的MUI表单只有样式显示，无效验
+        c) 3:54 - 使用Formik所需安装组件
+            0. 注意: 也要按照xxx Lab组件
+        d) 8:07 - Formik Github有codebox实例项目
+            0. Formik标签核心有4个点:
+                a) initialValues: 放置初始值
+                b) validate
+                c) onSubmit
+                d) render
     #31( 完成笔记 )
         a) 1:24 - vscoode辅助工具代码片段
         b) 4:31 - 构建快捷代码片段, ctrl+shift+p --> 输入snippet

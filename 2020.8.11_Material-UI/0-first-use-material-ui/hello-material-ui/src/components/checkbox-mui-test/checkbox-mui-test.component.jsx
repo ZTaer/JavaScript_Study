@@ -25,7 +25,7 @@ const CheckboxMuiTest = () => {
             </h3>
             <Checkbox 
                 /**
-                 * Checkbox组件: 属性解析( 等待笔记 )
+                 * Checkbox组件: 属性解析( 完成笔记 )
                  */
                 // a) 基本参数类
                 id="xxIdName"           // id属性: 只是普普通通的htmlid
@@ -52,14 +52,14 @@ const CheckboxMuiTest = () => {
             </h3>
             <FormGroup 
                 /**
-                 * FormGroup组件: 通常用于表单布局, 当作布局容器( 等待笔记 )
+                 * FormGroup组件: 通常用于表单布局, 当作布局容器( 完成笔记 )
                  *      a) row属性: 当为false时为垂直排序方向，true则为水平排序方向
                  */
                 row={true} 
             >
                 <FormControlLabel
                     /**
-                     * FormControlLabel组件: 增加表单label( 等待笔记 ) 
+                     * FormControlLabel组件: 增加表单label( 完成笔记 ) 
                      *      0. 作用: 增加表单label通常与Radio,Switch,Checkbox组件配合
                      *      1. label类:
                      *          a) label属性: 你懂得

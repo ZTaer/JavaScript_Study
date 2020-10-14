@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{ useState } from 'react';
 
 /**
  * 第三方库
@@ -12,7 +12,6 @@ import {
 } from '@material-ui/icons';
 
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import { withRouter } from 'react-router-dom';
  
 /**
@@ -25,8 +24,7 @@ import { searchInputNameBkm } from '../../redux/bkm/bkm.action';
  */
 import { searchStyles } from './search.mui.styles';
 
-const Search = ({ searchInputNameBkm, history }) => {
-
+const Search = ({ searchInputNameBkm, history, match }) => {
     const classes = searchStyles();
     const [search, setSearch] = useState("")
 
@@ -35,7 +33,9 @@ const Search = ({ searchInputNameBkm, history }) => {
      */
     const handleSearchValue = (event) => {
         setSearch( event.target.value );
-        history.push("/");
+        if( !match.isExact ){
+            history.push("/");
+        }
         searchInputNameBkm( event.target.value );
     };
 
@@ -58,11 +58,8 @@ const Search = ({ searchInputNameBkm, history }) => {
     )
 };
 
-const mapStateToProps = createStructuredSelector({
-});
-
 const mapDispatchToProps =  ( dispatch ) => ({
     searchInputNameBkm: ( data ) => dispatch( searchInputNameBkm(data) ),
 })
 
-export default connect( mapStateToProps, mapDispatchToProps )( withRouter(Search)); 
+export default connect( null, mapDispatchToProps )( withRouter(Search)); 
