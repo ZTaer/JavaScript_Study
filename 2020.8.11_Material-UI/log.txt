@@ -1,19 +1,23 @@
 Material-UI官方文档:
-    2020.9.21 - ( 等待笔记 ): 
+    2020.9.21 - ( 完成笔记 ): 
         0. Checkbox配合FormGroup
         1. FormControl以及FormLabel简单的介绍
         2. 利用解构，查看ReactDom标签属性方法
         3. Switch组件: 开关组件
         4. 有label名称的Switch组件
-    2020.10.13 - ( 任务顺序 - 等待笔记 )
+    2020.10.13 - ( 任务顺序 - 完成笔记 )
         0. Switch组件: 进行研究并做笔记
-        1. 渲染方式:
+            a) Customized: 定制化MUI组件研究
+        1. 关于Material-UI组件定制化解决方案: ( 完成笔记 )
+            a) 根据不同的定制化组件，进行，官方文档查询
+            b) 在根据官方实列，的withStyles修改对应的css
+        2. 渲染方式:
             a) #16 react组件的return( <> xxx </> )骗取react为单个容器方法
             b) #18 &&渲染方法, 以及后端获取数据渲染的3种状态渲染
             c) #17 3种状态渲染逻辑实现
-        2. #16 CircularProgress组件: 加载器组件, 进行研究并做笔记
-        3. Tooltip组件: 提示, 进行研究并做笔记
-        4. 完成以上任务，即可进行 #19 以及之后的研究学习中
+        3. #16 CircularProgress组件: 加载器组件, 进行研究并做笔记
+        4. Tooltip组件: 提示, 进行研究并做笔记
+        5. 完成以上任务，即可进行 #19 以及之后的研究学习中
 
 YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVmsZ0d_9Zsg_DnIP_xwr&index=1
     #1( 完成笔记 )
@@ -99,30 +103,30 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
     #15( 完成笔记 )
         a) 3:17 - 搜索组件在Aoobar中，个人构建时可以用搜索导航栏代替更好
         b) 10:17 - 基本布局，这个布局可以不按照视频来搞，自由发挥
-    #16( 等待笔记 )
+    #16( 完成笔记 )
         a) 3:04 - CircularProgress组件: 加载器组件
         b) 产品API官方文档: https://pokeapi.co/
             0. 图片: https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png
             1. 单个宝可梦API: https://pokeapi.co/api/v2/pokemon/${id}
         c) 12:18 - 单个产品路由
         d) 18:26 - 单个产品页面渲染，以及mock图片链接获取方式
-        e) 18:51 - 注意: react组件的return( <> xxx </> )骗取react为单个容器方法( 等待笔记 )
+        e) 18:51 - 注意: react组件的return( <> xxx </> )骗取react为单个容器方法( 完成笔记 )
         f) 宝可梦开发项目路径: ./2-React-js-redux-MaterialUI-base ( 已开发完成 )
-    #17( 等待笔记 )
+    #17( 完成笔记 )
         a) 6:54 - axios请求加工产品数据 
         b) 9:44 - 加载产品的3种状态
             0. 数据正在加载 --> 渲染加载器
             1. 数据请求成功 --> 渲染产品
             2. 数据请求不存在或者失败 --> 渲染报错信息
-        c) 11:23 - 3种状态渲染逻辑实现( 有点6 - 需研究 - 等待笔记 )
+        c) 11:23 - 3种状态渲染逻辑实现( 有点6 - 需研究 - 完成笔记 )
         d) 12:52 - 单个产品请求数据
-    #18( 等待笔记 )
+    #18( 完成笔记 )
         a) 5:07 - 当进行有主题更换的web程序时，尽量从mui调色板中获取颜色，方便变化, fade函数( 等待实验 )
         b) 5:59 - 主要调整书写，搜索栏的样式
         c) 7:24 - combo box 搜索组件，有配合预加载数据进行自动搜索功能
         d) 7:50 - algolia搜索API( 第三方辅助搜索引擎 )
         e) 11:04 - &&渲染方法( 完成研究 )，当前用于渲染过滤器内容。
-        f) 非常重要: &&渲染方法( 完成研究 - 等待笔记 ), 以及后端获取数据渲染的3种状态渲染。
+        f) 非常重要: &&渲染方法( 完成研究 - 完成笔记 ), 以及后端获取数据渲染的3种状态渲染。
     #19( 等待笔记 )
         a)  00:00 - Tabs组件的使用
         b)  5:41 - 经过在次验证, aria-label属性确实为，备注功能
@@ -270,3 +274,25 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
             6. 拆分文件编辑器: Ctrl+\
                 a) vim下可以使用: Ctrl+w来切换不同文件编辑器窗口
                 b) vim下可以使用: :q 来退出打开的文件
+    #32 补充: ( 等待笔记 )
+        a) Transitions: 动画组件
+        b) Dialog: 弹窗组件
+
+
+# WEB Game Devlopemnt( 等待笔记 )
+    a) 参考链接: https://www.youtube.com/watch?v=aVTYxHL45SA
+        0. 6:36: 流行的开发引擎，unity, unreal, cocos, 这些引擎都支持HTML5
+        1. 8:30: Web Assembly: 具说是一个高性能web语言
+        2. 8:43: Construct: Web游戏引擎
+            a) 官网: http://construct.net
+            b) 底层: 其实也是用了web assembly
+        3. 9:17: WebGL: 渲染引擎
+        4. 10:26: Web Audio API 操控音乐
+        5. 10:55: Sonic Boom 音频编程
+        6. 12:53: 优秀的产品可以自我销售
+        7. 16:50: 每增加1秒的加载，将失去20%的用户
+        8. 17:47: Unity Project Tiny
+            a) 官网: http://unity3d.com/tiny
+        9. 参考: 贪吃蛇网页版，让玩家快速进入游戏
+
+        

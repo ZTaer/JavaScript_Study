@@ -19,6 +19,10 @@ import TablePagintionSelectMuiTest from '../../components/table-pagination-selec
 import TablePagintionSelectMuiTestExercise2 from '../../components/table-pagination-select-mui-test-exercise-2/table-pagination-select-mui-test-exercise-2.component';
 import CheckboxMuiTest from '../../components/checkbox-mui-test/checkbox-mui-test.component';
 import TooltipMuiTest from '../../components/tooltips-mui-test/tooltips-mui-test.component';
+import SwitchMuiTest from '../../components/switch-mui-test/switch-mui-test.component';
+import CircularProgressMuiTest from '../../components/circular-progress-mui-test/circular-progress-mui-test.component';
+import LinearProgressMuiTest from '../../components/linear-progress-mui-test/linear-progress-mui-test.component';
+import DrawerMuiTest from '../../components/drawer-mui-test/drawer-mui-test.component';
 
 const TestPages = () => {
     return(
@@ -107,6 +111,26 @@ const TestPages = () => {
                 Tooltip组件
             </h2>
             <TooltipMuiTest />
+
+            <h2>
+                Switch组件
+            </h2>
+            <SwitchMuiTest />
+
+            <h2>
+                CircularProgress组件
+            </h2>
+            <CircularProgressMuiTest />
+
+            <h2>
+                LinearProgress组件
+            </h2>
+            <LinearProgressMuiTest />
+
+            <h2>
+                Drawer组件
+            </h2>
+            <DrawerMuiTest />
 
         </div>
     );
