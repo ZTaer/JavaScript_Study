@@ -127,7 +127,7 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
         d) 7:50 - algolia搜索API( 第三方辅助搜索引擎 )
         e) 11:04 - &&渲染方法( 完成研究 )，当前用于渲染过滤器内容。
         f) 非常重要: &&渲染方法( 完成研究 - 完成笔记 ), 以及后端获取数据渲染的3种状态渲染。
-    #19( 等待笔记 )
+    #19( 完成笔记 )
         a)  00:00 - Tabs组件的使用
         b)  5:41 - 经过在次验证, aria-label属性确实为，备注功能
         c)  6:22 - Tabs组件
@@ -142,7 +142,7 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
         d) 经验教训：看似复杂复杂的代码, 其实拆分出后, 围绕的原理并不复杂
         e) Table实战项目( 视频教程在各分支中 ):  https://github.com/ZTaer/basic-react-form/tree/master
         f) Table组件多选( 完成研究 )
-    #21( 等待笔记 )
+    #21( 等待研究 )
         a) 00:00 - Drawer抽屉组件( 非常重要 - 核心 )
         b) 3:50 - Drawer有3种类型
             0. 临时Drawer: 弹出的Drawer将为专注模式，背景会变暗，只能对Drawer进行操作
@@ -158,7 +158,7 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
         g) 17:32 - 给Drawer设定固定宽度
         h) 22:02 - 重新构建数据结构来渲染，Drawer中的选项, 含Icon和text
         i) 25:44 - 给Drawer选项配置路由
-    #22( 等待笔记 )
+    #22( 完成笔记 )
         a) 00:00 - Breadcrumbs组件: 面包屑导航
         b) 3:39 - event.preventDefault()终止默认事件，执行React设定的事件
         c) 4:22 - Breadcrumbs组件: 
@@ -169,11 +169,11 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
             1. 拆分链接后渲染组件跳转的链接为: ( "/" > "/join" > "/join/designer" )
             2. 以上放逻辑循环类推
         f) 23:37 - 通过"索引值"来判断渲染"当前链接"样式, 当前链接是尾部
-    #23( 等待笔记 )
+    #23( 完成笔记 )
         a) 00:00 - Hidden组件
         b) 2:57 - 其实这个组件，个人感脚，研究官方API即可
         c) 3:48 - 各种xs,sm,md,lg,xl窗口大小标准
-    #24( 等待笔记 )
+    #24( 完成笔记 )
         a) 00:00 - Snackbars组件，小提示框( 非常重要 - 核心 )
         b) 3:55 - 3个重要的属性
             0. open属性: true时显示，提示框
@@ -182,7 +182,7 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
         c) 6:01 - Alert组件配合Snackbars组件，可以显示出不同种类的弹窗，如'错误'，'警报', '成功' 等...Snackbars组件默认为白色背景
         d) 19:36 - 将Snackbars+Alert组件+Redux: 配合形成了一个小实例，不过这里使用了react-redux的useDispatch来执行action 
         e) 20:05 - 配置Snackbars组件：配置Snackbars组件到App.js方便在程序的全局显示
-    #25( 等待笔记 )
+    #25( 完成笔记 )
         a) 00:00 - Accordion组件: 手风琴组件，比较实用的组件
         b) 4:15 - Accordion组件搭配辅助的组件
         c) 6:00 - Accordion的TransitionProps属性对手风琴组件的优化，性能好，seo优化好
@@ -193,7 +193,7 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
         f) 14:44 - 手风琴单独展开显示效果：Accordion组件中的expanded, onChange属性逻辑决定，需要解析实验
         g) 19:41 - A老师，通过数据结构来，迭代，手风琴组件，这样确实更加容易解析，手风琴结构
             0. 注意: map迭代时，不要忘记key
-    #26( 等待笔记 )
+    #26( 等待研究 )
         a) 00:00 - Appbar组件详解
         b) 2:51 -  Toolbar组件对Appbar非常重要
         c) 10:31 - 下拉菜单按钮配合Menu组件,构建下拉选项 
@@ -201,7 +201,7 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
         e) 27:28 - A老师是将，下拉菜单与路由结合，当屏幕大于sm时，以按钮为路由，当屏幕小于sm时，以下拉菜单为路由 
     #27( 等待笔记 )
         a) 00:00 - A老师讲了一些学习方法
-    #28( 等待笔记 )
+    #28( 等待研究 )
         a) 00:00 - Forms + Formik表单组件( 非常重要 - 核心 )
         b) 2:11 - Formik组件的目的：是为了辅助Forms进行逻辑效验, 默认的MUI表单只有样式显示，无效验
         c) 3:54 - 使用Formik所需安装组件
@@ -274,12 +274,12 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
             6. 拆分文件编辑器: Ctrl+\
                 a) vim下可以使用: Ctrl+w来切换不同文件编辑器窗口
                 b) vim下可以使用: :q 来退出打开的文件
-    #32 补充: ( 等待笔记 )
+    #32 补充: ( 完成笔记 )
         a) Transitions: 动画组件
         b) Dialog: 弹窗组件
 
 
-# WEB Game Devlopemnt( 等待笔记 )
+# WEB Game Devlopemnt( 等待研究 )
     a) 参考链接: https://www.youtube.com/watch?v=aVTYxHL45SA
         0. 6:36: 流行的开发引擎，unity, unreal, cocos, 这些引擎都支持HTML5
         1. 8:30: Web Assembly: 具说是一个高性能web语言
