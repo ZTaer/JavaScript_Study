@@ -26,7 +26,7 @@ const HeaderMuiTest = () => {
     const classes = useStyles();
 
     return (
-        <AppBar color="default"  >
+        <AppBar color="default"  style={{ zIndex: 9999 }}  >
             <Toolbar >
                 <Typography variant="h6" >
                     Material-UI
@@ -42,6 +42,10 @@ const HeaderMuiTest = () => {
 
                 <Button color="inherit" component={Link} to="/test" >
                     实验
+                </Button> 
+
+                <Button color="inherit" component={Link} to="/testDrawerPermanent" >
+                    实验 - Drawer - 持久性页面
                 </Button> 
               
                 <Button className={ classes.appbarLogoPostion } >
