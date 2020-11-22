@@ -142,7 +142,7 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
         d) 经验教训：看似复杂复杂的代码, 其实拆分出后, 围绕的原理并不复杂
         e) Table实战项目( 视频教程在各分支中 ):  https://github.com/ZTaer/basic-react-form/tree/master
         f) Table组件多选( 完成研究 )
-    #21( 等待研究 )
+    #21( 等待笔记 )
         a) 00:00 - Drawer抽屉组件( 非常重要 - 核心 )
         b) 3:50 - Drawer有3种类型
             0. 临时Drawer: 弹出的Drawer将为专注模式，背景会变暗，只能对Drawer进行操作
@@ -199,7 +199,7 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
         c) 10:31 - 下拉菜单按钮配合Menu组件,构建下拉选项 
         d) 20:00 - useMediaQuery() hooks 判断当前屏幕断点;
         e) 27:28 - A老师是将，下拉菜单与路由结合，当屏幕大于sm时，以按钮为路由，当屏幕小于sm时，以下拉菜单为路由 
-    #27( 等待笔记 )
+    #27( 等待研究 )
         a) 00:00 - A老师讲了一些学习方法
     #28( 等待研究 )
         a) 00:00 - Forms + Formik表单组件( 非常重要 - 核心 )

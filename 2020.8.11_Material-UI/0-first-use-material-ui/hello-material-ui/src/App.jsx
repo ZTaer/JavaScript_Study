@@ -9,6 +9,7 @@ import ShopPages from "./pages/shop-pages/shop-pages.component";
 import TestPages from "./pages/test-pages/test-pages.component";
 import CutPages from "./pages/cut-pages/cut-pages.component";
 import HeaderMuiTest from "./components/header-mui-test/header-mui-test.component";
+import TestDrawerPermanent from "./components/drawer-mui-test/drawer-permanent-test.component";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route exact={true} path="/shop" component={ShopPages} />
         <Route exact={true} path="/test" component={TestPages} />
         <Route exact={true} path="/cut" component={CutPages} />
+        <Route exact={true} path="/testDrawerPermanent" component={TestDrawerPermanent} />
       </Switch>
     </div>
   );

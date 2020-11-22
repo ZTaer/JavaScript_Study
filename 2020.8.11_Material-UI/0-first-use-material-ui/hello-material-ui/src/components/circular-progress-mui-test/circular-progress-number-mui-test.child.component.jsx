@@ -34,7 +34,7 @@ const CircukarProgressNumberMuiTest = ( props ) => {
                 justifyContent="center"
                 alignItems="center"
             >
-                <Typography color="default" variant="caption" >
+                <Typography color="primary" variant="caption" >
                     {progress}%
                 </Typography>
             </Box>
