@@ -3,7 +3,7 @@ import React from 'react';
 const ObjectAssign = () => {
 
     /**
-     * Object.assign(): 合并枚举对象( 等待笔记 )
+     * Object.assign(): 合并枚举对象( 完成笔记 )
      *      a) 合并对象:
      *          0. 合并对象注意的问题: Object.assign( target, ...otherObj ), target将被改变 ( 将改变目标原对象 )
      *          1. 属性覆盖: 相同属性的对象属性将被覆盖

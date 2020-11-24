@@ -27,14 +27,14 @@ const  DrawerMuiTest = () => {
     const [openState, setOpenState] = useState(false)
 
     /**
-     * React组件下: 双箭头函数,逻辑便捷式调用写法 ( 等待笔记 )
+     * React组件下: 双箭头函数,逻辑便捷式调用写法 ( 完成笔记 )
      */
     const handleControlDrawer = ( state ) => () => {
         setOpenState( state );
     };
 
     /**
-     * Drawer组件: ( 等待笔记 )
+     * Drawer组件: ( 完成笔记 )
      *      a) 属性:
      *          0. variant属性: Drawer显示模式
      *              a) temporary参数( 默认 ): 临时状态 - 背景变黑, 只可操控Drawer部分, 操作其它关闭Drawer
