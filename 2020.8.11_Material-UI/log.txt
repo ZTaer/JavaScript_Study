@@ -142,7 +142,7 @@ YouTube资源: https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVm
         d) 经验教训：看似复杂复杂的代码, 其实拆分出后, 围绕的原理并不复杂
         e) Table实战项目( 视频教程在各分支中 ):  https://github.com/ZTaer/basic-react-form/tree/master
         f) Table组件多选( 完成研究 )
-    #21( 等待笔记 )
+    #21( 完成笔记 )
         a) 00:00 - Drawer抽屉组件( 非常重要 - 核心 )
         b) 3:50 - Drawer有3种类型
             0. 临时Drawer: 弹出的Drawer将为专注模式，背景会变暗，只能对Drawer进行操作

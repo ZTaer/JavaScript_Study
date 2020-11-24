@@ -12,7 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import MailIcon from '@material-ui/icons/Mail';
 
 /**
- * Drawer: 持久性Drawer | 固定Drawer( 等待笔记 )
+ * Drawer: 持久性Drawer | 固定Drawer( 完成笔记 )
  *      a) flex布局: 搭配持久性Drawer核心属性
  *          0. 结构
  *              a) div.container: 容器主要开启flex布局
@@ -92,10 +92,10 @@ const  TestDrawerPermanent = () => {
                     只是文本内容
                 </Typography>
                 <Grid container direction="row" >
-                    <Grid item  style={{ height:"100px", backgroundColor: "red", flexShrink: 0, width: "240px", }} >
+                    <Grid item  style={{ height:"100px", backgroundColor: "pink", flexShrink: 0, width: "240px", }} >
                         1
                     </Grid>
-                    <Grid item  style={{ height:"100px", backgroundColor: "green", flexGrow: 1, }} >
+                    <Grid item  style={{ height:"100px", backgroundColor: "yellow", flexGrow: 1, }} >
                         2
                     </Grid>
                 </Grid>
