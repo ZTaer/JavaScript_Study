@@ -1,5 +1,5 @@
 /**
- * module.exports导出匿名函数 | 使可在全局索引使用( 等待笔记 )
+ * module.exports导出匿名函数 | 使可在全局索引使用( 完成笔记 )
  */
 
 module.exports = ( temp, proItemData ) => {

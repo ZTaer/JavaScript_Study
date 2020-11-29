@@ -2,7 +2,7 @@ const fs = require("fs");
 const { setImmediate } = require("timers");
 
 /**
- * 异步实验( 等待笔记 )
+ * 异步实验( 完成笔记 )
  *      a) 默认异步顺序队列
  *          0. timer队列
  *          1. I/O队列( 虽然他位居第二，但是通常执行较为缓慢，实际情况要比Immediate慢 )
