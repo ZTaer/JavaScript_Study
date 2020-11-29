@@ -1,6 +1,6 @@
 
 /**
- * 简单的node.js页面项目示例( 等待笔记 )
+ * 简单的node.js页面项目示例( 完成笔记 )
  *      a) 核心: 替换字段页面模板
  */
 
@@ -9,11 +9,11 @@ const fs = require("fs");
 const url = require("url");
 
 
-// 配合module.exports导入匿名函数使用( 等待笔记 )
+// 配合module.exports导入匿名函数使用( 完成笔记 )
 const replaceTemplates = require("./module/replace-template.module");
 
 /**
- * slugify库: 字符串加工库( 等待笔记 )
+ * slugify库: 字符串加工库( 完成笔记 )
  *      a) 文档参考npm: https://www.npmjs.com/package/slugify
  */
 const slugify = require("slugify");
@@ -31,7 +31,7 @@ const proCard_templates = fs.readFileSync( `${__dirname}/templates/product-card.
 const server = http.createServer( ( req, res ) => {
 
     /**
-     * url库：解析url内容( 等待笔记 )
+     * url库：解析url内容( 完成笔记 )
      *      0. 导入: const url = require("url");
      *      1. url.parse: 解析url内容
      *          a) 模型:  url.parse( "访问的url", true )
