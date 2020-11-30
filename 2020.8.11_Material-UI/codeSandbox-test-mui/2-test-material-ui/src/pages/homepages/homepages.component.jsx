@@ -13,6 +13,8 @@ const Index = ({ fetchPeopleReduxSagaStart }) => {
   }, [fetchPeopleReduxSagaStart]);
 
   useEffect(() => {
+    // debugger; // 开启debug调试语法 --> 然后在浏览器中调试( 完成笔记 )
+    console.log('debug :>> ');
     test();
   }, [test]);
 
