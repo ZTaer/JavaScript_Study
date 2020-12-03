@@ -1,0 +1,15 @@
+{
+  "name": "5-streams",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon old-index.js",
+    "start-em": "nodemon emitter.server.js",
+    "start-hem": "nodemon http-emitter.server.js",
+    "start-hstr": "nodemon http-streams.server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
