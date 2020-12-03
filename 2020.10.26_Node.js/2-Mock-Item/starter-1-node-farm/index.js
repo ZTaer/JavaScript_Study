@@ -1,13 +1,12 @@
 
 /**
- * 简单的node.js页面项目示例( 完成笔记 )
- *      a) 核心: 替换字段页面模板
+ * 简单的node.js页面项目示例( 完成笔记 ) 
+ *     a) 核心: 替换字段页面模板
  */
 
 const http = require("http");
 const fs = require("fs");
 const url = require("url");
-
 
 // 配合module.exports导入匿名函数使用( 完成笔记 )
 const replaceTemplates = require("./module/replace-template.module");
