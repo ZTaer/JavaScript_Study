@@ -1,0 +1,17 @@
+{
+  "name": "hello-express",
+  "version": "1.0.0",
+  "description": "学习express和node.js以及MDB",
+  "main": "app.js",
+  "author": "OO7",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "scripts": {
+    "test": "nodemon app.js"
+  }
+}

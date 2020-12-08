@@ -1,5 +1,5 @@
 /**
- * 观察者模式实战: EventEmitter( 等待笔记 )
+ * 观察者模式实战: EventEmitter( 完成笔记 )
  *      a) 注意: 感觉像是在模拟node.js http服务模式 ( 目前已发现作用 )
  *      b) Emitter事件库:  const EventsEmitter = require('events');
  * 

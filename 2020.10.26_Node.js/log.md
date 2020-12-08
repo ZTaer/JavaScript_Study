@@ -214,13 +214,13 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         e) 13:57 - 加密时间统计, 以此方便判断，循环事件是否被阻塞
         f) 15:22 - 配置线程池数量( 最大128 ), 在配合时间统计，以此判断线程池对事件的影响
         g) 17:00 - 同步加密函数, 配合时间统计，用于测试被阻塞时的状态
-    # 34( 等待笔记 )
+    # 34( 完成笔记 )
         a) 00:00 - node.js 事件监听体系
             0. event emitter: 事件发射器 | 发起一个请求
             1. event listener: 监听事件
             2. attached callback function: 通过回调函数，返回请求结果
         b) 2:52 - 观察者模式流程图
-    # 35( 等待笔记 )
+    # 35( 完成笔记 )
         a) 00:00 - 观察者模式实战: 感觉像是在模拟node.js http服务模式
         b) 1:56 - 模拟: 促发事件
         c) 3:38 - 观察者模式源码实验: 以及监听事件写法
@@ -231,7 +231,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
             1. server.on("request", ()=>{}): 回调发送请求的逻辑
             2. server.on("close", ()=>{}): 回调关闭服务的逻辑
         g) 13:32 - 构建完毕简易的http服务
-    # 36( 等待笔记 - TODO: 核心 )
+    # 36( 完成笔记 - TODO: 核心 )
         a) 00:00 - 流介绍
         b) 1:29 - 流的概念
             0. 目的: 无需接受完整文件，即可进行加工处理，大大提高了工作效率，降低了资源占用
@@ -244,7 +244,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
             1. 可写入流
             2. 双工流: web socket，用于聊天工具
             1. 转换流: 可读写, 其实zlib Gzip就是对流的一种加工
-    # 37( 等待笔记 - TODO: 核心 )
+    # 37( 完成笔记 - TODO: 核心 )
         a) 00:00 - 实战流
             0. 注意: 实战时，是用的观察者模式，并传统的模式
         b) 4:09 - 方法一: 传统的fs读取文件发送( 文件较大时，不推荐使用 ) 
@@ -255,9 +255,10 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         e) 11:16 - 修正: 状态码修改，语法错误
         f) 13:02 - 方法三: 最佳的流构建方式
         g) 15:43 - 管道流方法，源码
-    # 38( 等待笔记 )
-        a) 00:00 - 
-    # 流额外知识: ( 等待笔记 )
+    # 38( 完成笔记 )
+        a) 00:00 - 导入/导出第三方库
+        b) 4:07 - 3种导入库的方式流程图
+    # 流额外知识: ( 完成笔记 )
         a) 第三方框架: 处理流有rtmp/hls/webrtc
             0. webrtc前端处理流的方式
         b) 回调地狱: 未找到解决方案( 等待研究 )
@@ -265,6 +266,106 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         d) req以及res的简称:
             0. 请求 - request req 
             1. 响应 - response res
+    # 39( 等待笔记 )
+        a) 00:00 - 实战: 导入导出模块, require/exports
+        b) 1:46 - console.log( arguments ); 打印: 当前可调用库
+        c) 3:30 - 打印: require底层的一些信息
+        d) 7:00 - module.exports实战演示
+        e) 7:34 - module.exports另外一种导出方式，实战演示
+        f) 11:27 - exports配合require导入多个函数
+        g) 15:09 - require配合module.exports另类调用方式( 新奇 )
+    # 40( 无需笔记 )
+        a) 00:00 - 主要目标学习异步函数
+    # 41( 等待笔记 )
+        a) 00:00 - 回调地狱写法演示( 生产环境切忽使用 )
+        b) 5:14 - 安装superagent超级代理库
+        c) 7:49 - 使用superagent库，请求api数据
+        d) 9:26 - 将获取到的数据，保存在本地
+            0. API测试: https://dog.ceo/api/breed/husky/images/random
+            1. API测试: `https://dog.ceo/api/breed/${狗的种类}/images/random`
+        e) 10:51 - 处理回调函数错误写法
+    # 42( 等待笔记 )
+        a) 00:00 - promise解决，地狱回调写法
+        b) 5:47 - 因为superagent本身为promise故可以直接使用then等进处理，catch进行错误处理
+    # 43( 等待笔记 )
+        a) 00:00 - promise解决，地狱回调写法2, 以回调函数示例 
+        b) 5:39 - promise代替回调函数写法( 避免地狱回调写法 - 核心 )
+        c) 8:44 - promise，writeFile代替回调写法
+        d) 10:09 - 使用，promise避免地狱回调, 写法
+        e) 12:57 - 完善的promise避免地狱回调, 写法
+        e) 14:26 - 完整的promise避免地狱回调, 写法
+    # 44( 等待笔记 )
+        a) 00:00 - 使用async/await避免地狱回调
+        b) 6:31 - promise配合async，解决地狱回调写法，更加的简洁。 
+        c) 7:39 - 完整的，async配合promise地狱回调解决方法
+    # 45( 等待笔记 )
+        a) 00:00 - async细节补充
+        b) 6:12 - 细节补充: 即使async报错，也将执行，之后的then事件( 注意: async默认返回的为promise故可使用then进行搭配 )
+        c) 7:43 - throw err; 故意引发错误，进行错误抓取
+        d) 9:15 - 异步的IIFF: 做一些异步执行顺序测试
+    # 46( 等待笔记 )
+        a) 00:00 - 同时进行多个promise异步等待
+        b) 2:59 - await配合Promise.all([])进行多个promise异步等待
+        c) 4:18 - Promise.all将返回一个数组类型的，获取的异步数据
+        d) 5:36 - 将数据结果，写入到本地 
+    # 47( 无需笔记 )
+        a) 00:00 - 准备学习express
+    # 48( 无需笔记 )
+        a) 00:00 - express简介: node.js开发框架，方便开发
+    # 49( 完成笔记 )
+        a) 00:00 - Postman测试API工具必备
+        b) 0:48 - 官网下载: https://www.postman.com/downloads/
+            0. 官方文档: https://learning.postman.com/docs/getting-started/introduction/
+    # 50( 等待笔记 )
+        a) 00:00 - 配置基本的路由
+        b) 2:25 - 初始化npm配置( 比较标准 )
+        c) 3:09 - 安装express@4版本，切忽安装5版本
+        d) 8:47 - 启动: express hello word 程序接口
+        e) 9:32 - 通过postman初步测试express构建的接口
+        f) 11:11 - express发送json数据类型 
+        g) 14:20 - express构建post类型api
+    # 51( 等待笔记 )
+        a) 00:00 - RESTful API 接口体系( TODO: 核心 )
+            0. API行业标准
+            1. 5个规范: 
+                a) 清晰的API分为逻辑资源
+                b) 结构化URL
+                c) 使用标准的HTTP方法,请求/发送数据的方法
+                d) JSON格式数据交互( 通常情况 )
+                e) 无状态RESTful API标准 | 聪明的逻辑
+        b) 3:25 - RESTful API 规范
+        c) 8:51 - 请求、发送数据不同类型的意义
+        d) 11:31 - 合理的URL接口，以及请求/发送包的类型
+        e) 13:30 - JSON格式标准
+        f) 15:50 - 无状态RESTful API标准:
+            0. 注意: 区别于传统的API标准，RESTful API无状态标准
+            1. 区别: 与前端约定好特定的路由，用于获取对应的数据，无需后端记录前一步接口信息做逻辑，可以直接根据当前前端信息直接做逻辑
+            2. 比如: 请求不同分页数据
+    # 52( 等待笔记 ) 
+        a) 00:00 - 未来项目展示 | 处理Get请求
+        b) 3:51 - 注意url: 有api版本 ( 非常智慧的习惯 )
+        c) 10:33 - mock本地json数据，构建get请求
+        d) 11:16 - 增加新的属性参数
+    # 53( 等待笔记 )
+        a) 00:00 - 处理POST请求
+        b) 2:58 - 使用express的中间件: 方便express加工，请求/发送的数据，也方便玩家调用数据
+            0. 配置中间件: app.use( express.json() );
+        c) 4:06 - postman建立项目
+        d) 4:21 - postman保存实例
+        e) 5:59 - postman在post请求下增加，入参方式
+        f) 6:23 - 接受到post的入参: 因为express中间件的原因，故已将自动转为js对象格式
+        g) 8:55 - 加工post的入参，因为没有数据库创建id，故手动创建id，后进行数据加工
+        h) 11:33 - 将加工后的数据，保存本地( 因为没有数据库 )
+            0. 注意: 状态码
+                a) 200 - 表示, 正常
+                b) 201 - 表示, 已创建 | 一般用于服务器响应请求
+        i) 13:16 - 写入数据后，做出post响应返回数据
+        j) 14:24 - 因为数据库，故无法即时更新数据并返回, 又因为fs读取文件的方式，故需要重启服务器，才能保存数据实时性( 实验环境 )
+    # 54( 等待笔记 )
+        a) 
+
+
+
 
 
 </pre>

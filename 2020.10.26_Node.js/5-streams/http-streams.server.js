@@ -1,15 +1,15 @@
 /**
- * 流: 实验 ( 等待笔记 )
+ * 流: 实验 ( 完成笔记 )
  *      a) 发送数据的3种方式
  *      b) 方式一: 传统的fs读取文件发送( 文件较大时，不推荐使用 )
  *      c) 方式二: 流读取文件方式，并传输，源码
  *      d) 方式三: 最佳的流构建方式( 推荐使用 )
+ *          
  */
 
  const http = require('http');
  const url = require('url');
  const fs = require('fs');
-const { runInNewContext } = require('vm');
 
  const server = http.createServer();
 
@@ -72,9 +72,11 @@ const { runInNewContext } = require('vm');
         /**
          * 方式三: 最佳的流构建方式
          *      a) 注意: 推荐使用，并且无需xxx.on来处理事件，因为pipe将自动处理
-         * 解决: 中文乱码问题 ( 等待笔记 - 核心 )
-         *      a) 设定包头为utf8格式，防止乱码
-         *      b) 源码: res.writeheader(200,{"content-type":"text/html;charset=utf8"})
+         * 解决: 中文乱码问题 ( 完成笔记 - 核心 )
+         *      b) 设定包头为utf8格式，防止乱码
+         *          0. 源码: res.writeheader(200,{"content-type":"text/html;charset=utf8"})
+         *      c) 处理流: xxx = fs.createReadStream(`文件路径`); ( 核心函数 )
+         *      d) 管道流: xxx.pipe( res ); ( 核心函数 )
          */
         const streamsData = fs.createReadStream(`${__dirname}/txt/test.txt`);
         res.writeHead( 200, {

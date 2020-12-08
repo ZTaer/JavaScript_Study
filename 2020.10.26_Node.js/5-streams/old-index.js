@@ -4,7 +4,7 @@ const fs = require('fs');
 const url = require('url');
 
 /**
- * 流: 实验 ( 等待笔记 )
+ * 流: 实验 ( 取消笔记 )
  *      a) 发送数据的3种方式
  *      b) 方式一: 传统的fs读取文件发送( 文件较大时，不推荐使用 )
  *      c) 方式二: 流读取文件方式，并传输，源码
@@ -61,7 +61,7 @@ const server = http.createServer( ( req, res ) => {
         /**
          * 方式三: 最佳的流构建方式
          *      a) 注意: 推荐使用，并且无需xxx.on来处理事件，因为pipe将自动处理
-         * 解决: 中文乱码问题 ( 等待笔记 - 核心 )
+         * 解决: 中文乱码问题 ( 取消笔记 - 核心 )
          *      a) 设定包头为utf8格式，防止乱码
          *      b) 源码: res.writeHeader(200,{"Content-type":"text/html;charset=utf8"})
          */
