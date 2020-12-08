@@ -1,7 +1,7 @@
 console.log('http-em');
 
 /**
- * 观察者模式: 构建的http服务( 等待笔记 )
+ * 观察者模式: 构建的http服务( 完成笔记 )
  *      0. 注意: 是一种新的写法，期区别在于，功能逻辑函数，并没写道回调函数内。
  *      1. http服务来源: const http = require('http'); 
  *      2. 核心: http库构建的server, 配合server.on()执行相关逻辑
@@ -13,7 +13,7 @@ const url = require('url');
 // a) 构建: http服务
 const server = http.createServer();     // 注意: 不写回调函数，区别于传统写法，使用观察者模式
 
-// b) server.on(): 响应逻辑类型( 等待笔记 )
+// b) server.on(): 响应逻辑类型( 完成笔记 )
 //      0. "request"类型: 响应请求逻辑
 //          a) 模型: server.on( "request", ( req, res ) => {} );
 //          b) 应用: 主要应用于，响应请求服务相关逻辑
