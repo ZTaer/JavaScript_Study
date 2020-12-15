@@ -1,5 +1,5 @@
 /**
- * 实战: 导入模块, require( 等待笔记 )
+ * 实战: 导入模块, require( 完成笔记 )
  */
  const TestExport = require("./test.class.module.exports");  
  const { addNum, killNum } = require("./test.function.exports");

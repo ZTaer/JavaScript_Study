@@ -266,7 +266,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         d) req以及res的简称:
             0. 请求 - request req 
             1. 响应 - response res
-    # 39( 等待笔记 )
+    # 39( 完成笔记 )
         a) 00:00 - 实战: 导入导出模块, require/exports
         b) 1:46 - console.log( arguments ); 打印: 当前可调用库
         c) 3:30 - 打印: require底层的一些信息
@@ -276,7 +276,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         g) 15:09 - require配合module.exports另类调用方式( 新奇 )
     # 40( 无需笔记 )
         a) 00:00 - 主要目标学习异步函数
-    # 41( 等待笔记 )
+    # 41( 完成笔记 )
         a) 00:00 - 回调地狱写法演示( 生产环境切忽使用 )
         b) 5:14 - 安装superagent超级代理库
         c) 7:49 - 使用superagent库，请求api数据
@@ -284,26 +284,26 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
             0. API测试: https://dog.ceo/api/breed/husky/images/random
             1. API测试: `https://dog.ceo/api/breed/${狗的种类}/images/random`
         e) 10:51 - 处理回调函数错误写法
-    # 42( 等待笔记 )
+    # 42( 完成笔记 )
         a) 00:00 - promise解决，地狱回调写法
         b) 5:47 - 因为superagent本身为promise故可以直接使用then等进处理，catch进行错误处理
-    # 43( 等待笔记 )
+    # 43( 完成笔记 )
         a) 00:00 - promise解决，地狱回调写法2, 以回调函数示例 
         b) 5:39 - promise代替回调函数写法( 避免地狱回调写法 - 核心 )
         c) 8:44 - promise，writeFile代替回调写法
         d) 10:09 - 使用，promise避免地狱回调, 写法
         e) 12:57 - 完善的promise避免地狱回调, 写法
         e) 14:26 - 完整的promise避免地狱回调, 写法
-    # 44( 等待笔记 )
+    # 44( 完成笔记 )
         a) 00:00 - 使用async/await避免地狱回调
         b) 6:31 - promise配合async，解决地狱回调写法，更加的简洁。 
         c) 7:39 - 完整的，async配合promise地狱回调解决方法
-    # 45( 等待笔记 )
+    # 45( 完成笔记 )
         a) 00:00 - async细节补充
         b) 6:12 - 细节补充: 即使async报错，也将执行，之后的then事件( 注意: async默认返回的为promise故可使用then进行搭配 )
         c) 7:43 - throw err; 故意引发错误，进行错误抓取
         d) 9:15 - 异步的IIFF: 做一些异步执行顺序测试
-    # 46( 等待笔记 )
+    # 46( 完成笔记 )
         a) 00:00 - 同时进行多个promise异步等待
         b) 2:59 - await配合Promise.all([])进行多个promise异步等待
         c) 4:18 - Promise.all将返回一个数组类型的，获取的异步数据
@@ -316,7 +316,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         a) 00:00 - Postman测试API工具必备
         b) 0:48 - 官网下载: https://www.postman.com/downloads/
             0. 官方文档: https://learning.postman.com/docs/getting-started/introduction/
-    # 50( 等待笔记 )
+    # 50( 完成笔记 )
         a) 00:00 - 配置基本的路由
         b) 2:25 - 初始化npm配置( 比较标准 )
         c) 3:09 - 安装express@4版本，切忽安装5版本
@@ -324,7 +324,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         e) 9:32 - 通过postman初步测试express构建的接口
         f) 11:11 - express发送json数据类型 
         g) 14:20 - express构建post类型api
-    # 51( 等待笔记 )
+    # 51( 完成笔记 )
         a) 00:00 - RESTful API 接口体系( TODO: 核心 )
             0. API行业标准
             1. 5个规范: 
@@ -341,13 +341,13 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
             0. 注意: 区别于传统的API标准，RESTful API无状态标准
             1. 区别: 与前端约定好特定的路由，用于获取对应的数据，无需后端记录前一步接口信息做逻辑，可以直接根据当前前端信息直接做逻辑
             2. 比如: 请求不同分页数据
-    # 52( 等待笔记 ) 
+    # 52( 完成笔记 ) 
         a) 00:00 - 未来项目展示 | 处理Get请求
         b) 3:51 - 注意url: 有api版本 ( 非常智慧的习惯 )
         c) 10:33 - mock本地json数据，构建get请求
         d) 11:16 - 增加新的属性参数
-    # 53( 等待笔记 )
-        a) 00:00 - 处理POST请求
+    # 53( 完成笔记 )
+        a) 00:00 - 处理POST请求 "增加" - 数据
         b) 2:58 - 使用express的中间件: 方便express加工，请求/发送的数据，也方便玩家调用数据
             0. 配置中间件: app.use( express.json() );
         c) 4:06 - postman建立项目
@@ -361,10 +361,84 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
                 b) 201 - 表示, 已创建 | 一般用于服务器响应请求
         i) 13:16 - 写入数据后，做出post响应返回数据
         j) 14:24 - 因为数据库，故无法即时更新数据并返回, 又因为fs读取文件的方式，故需要重启服务器，才能保存数据实时性( 实验环境 )
-    # 54( 等待笔记 )
-        a) 
-
-
+    # 54( 完成笔记 )
+        a) 00:00 - 响应URL参数: "查询" - 返回的数据
+        b) 4:01 - url带参方式:
+            0. 多个带参
+            1. 可选带参
+            2. 这种url带参方式，有一个就够了，在多不容易管控
+        c) 5:17 - 模拟数据库，根据url带来的id，来查询对应id数据
+        d) 6:25 - 将id字符串类型转为number类型，string*1 转换为 number 类型，是js的一个小技巧
+        e) 10:22 - 当查询到无数据时，返回404失败信息，配合find来做逻辑，不建议使用tour.length的写法
+        f) 11:41 - 修正为配合find做404逻辑( 推荐 )
+    # 55( 完成笔记 )
+        a) 00:00 - 参数更新接口: "更新" - 更新对应id的数据
+            0. 包类型: patch - 常用于更新数据逻辑
+        b) 5:43 - 只做了响应逻辑，并未做写入逻辑，目的只是用于测试模拟API
+    # 56( 完成笔记 )
+        a) 00:00 - 删除接口
+            0. 包类型: delete - 常用于删除逻辑
+        b) 1:33 - delete逻辑，注意返回规范:
+            0. 规范一: 包状态码为204 - 代表无内容的意思
+            1. 规范二: 删除成功返回{ status: "success", data: null }
+    # 57( 完成笔记 )
+        a) 00:00 - 重构代码，使其更加规范化，提高维护性
+        b) 1:36 - 重构: 返回全部数据逻辑
+        c) 2:12 - 重构: 返回指定id数据逻辑
+        d) 3:26 - 重构: 以此类推的重新构建
+        e) 5:48 - 更优化路由逻辑写法: app.route("url").get(逻辑).post(逻辑) ( 推荐使用 )
+    # 58( 完成笔记 )
+        a) 00:00 - express中间件: 理论知识
+    # 59( 完成笔记 )
+        a) 00:00 - 构建自己的express中间件
+        b) 6:15 - 构建自己的中间件函数，并且证明测试实验，中间件与API接口的执行顺序
+        c) 7:59 - 中间件: 加工接受的包，增加时间属性，并且利用到API接口逻辑
+    # 60( 完成笔记 )
+        a) 00:00 - 使用第三方中间件
+        b) 1:06 - 安装morgan: yarn add morgan --dev
+        c) 2:30 - 便于维护性: 进行代码格式化分区
+        d) 6:20 - 使用中间件: app.use( morgan( 'dev' ) )功能，渲染接受包的信息: 
+            0. 例如: GET /XXXX 200 5.00ms - 8745
+            1. 解析: 包类型 路由 状态码 耗费时间 - 包的大小
+        e) 7:18 - 通常morgan('dev')作用:
+            0. 提高开发便捷性
+            1. 写入日志
+        f) 8:13 - express常用文档: 
+            0. express函数文档: http://expressjs.com/en/4x/api.html
+            1. 中间件文档: http://expressjs.com/en/resources/middleware.html
+    # 61( 完成笔记 )
+        a) 00:00 - 构建user相关的API接口
+        b) 2:53 - 构建user相关API路由
+        c) 4:46 - 构建user相关的api逻辑( 模拟逻辑 )
+        d) 5:56 - 在postman里构建: 结构化的测试API的节点
+    # 62( 完成笔记 )
+        a) 00:00 - express下更好路由写法
+        b) 4:29 - 中间件express.Router(): 更好的路由写法
+        c) 6:54 - 中间件express.Router(): 改进user路由
+    # 63( 完成笔记 )
+        a) 00:00 - 更好的文件结构
+        b) 3:32 - 创建: routes文件夹: 放置api路由
+            0. 注意: api逻辑以后将放置: controllers文件夹
+        c) 8:51 - 创建: controllers文件夹: 放置api逻辑，用于配合api路由
+            0. 使用MVC结构: model view controller
+        d) 9:53 - 改进api逻辑导出方式，方便调用
+        e) 11:35 - 将api逻辑调用至api路由: 方便配合
+            0. 当前演示有二种调用方法
+        f) 13:18 - user的api逻辑同上
+        g) 15:46 - 创建: server.js
+            0. 作用: 
+                a) 存放express接口监听逻辑
+                b) 数据库配置相关
+                c) 错误处理相关
+                d) 环境变量相关
+            1. 注意: app的导入/导出
+        h) 16:24 - 改写package.json的nodemon的启动方式
+    # 64( 完成笔记 | 已实战位置 )
+        a) 00:00 - 局部中间件使用: 入参中间件改写
+        b) 3:48 - 局部中间件: express.Router().param: 获取url入参
+            0. 注意: 仅在指定url起作用的'中间件' ( 非常棒 )
+        c) 7:55 - 在逻辑区, 构建入参抓取逻辑
+        d) 8:11 - 路由入参，中间件处理，调用逻辑区，入参抓取逻辑
 
 
 

@@ -1,5 +1,5 @@
 /**
- * 实战: exports导出模块 ( 等待笔记 )
+ * 实战: exports导出模块 ( 完成笔记 )
  */
 
 exports.addNum = ( input1, input2 ) => {
