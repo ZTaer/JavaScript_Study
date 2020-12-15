@@ -3,10 +3,10 @@ const fs = require('fs');
 const superagent = require('superagent');
 
 /**
- * 回调地狱写法演示( 生产环境切忽使用 )( 等待笔记 )
+ * 回调地狱写法演示( 生产环境切忽使用 )( 完成笔记 )
  *      a) API测试文档: https://dog.ceo/dog-api/breeds-list
  * 
- * 安装superagent超级代理库: 类似于axios( 等待笔记 )
+ * 安装superagent超级代理库: 类似于axios( 完成笔记 )
  *      a) 安装: yarn add superagent 
  *      b) 使用方式: 因为superagent本身为promise故可以直接使用then等进处理，catch进行错误处理
  */
@@ -35,7 +35,7 @@ const superagent = require('superagent');
 
 
  /**
-  * 解决: 地狱回调 ( 等待笔记 ) 
+  * 解决: 地狱回调 ( 完成笔记 ) 
   *     0. 方式一: 单纯的使用promise ( 不推荐 )
   *     1. 方式二: promise配合async ( 推荐 )
   *         a) 总体思路:
@@ -43,7 +43,7 @@ const superagent = require('superagent');
   *             1. 第二步: 配合async/await书写逻辑
   */
 
-  // a) 方式一: Promise改进回调函数( 核心 | 等待笔记 )
+  // a) 方式一: Promise改进回调函数( 核心 | 完成笔记 )
   //    0. 目的: 避免回调写法，修正为promise做逻辑
   const readFilePro = ( fileUrl ) => {
       return new Promise( ( resolve, reject ) => {
@@ -103,7 +103,7 @@ const superagent = require('superagent');
   console.log(' 执行顺序测试 - 5 ');
 
   /**
-   * await配合Promise.all([])进行多个promise异步等待 ( 等待笔记 )
+   * await配合Promise.all([])进行多个promise异步等待 ( 完成笔记 )
    */
    const getDogData2 = async () => {
       try{
