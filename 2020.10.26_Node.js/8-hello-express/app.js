@@ -1,7 +1,6 @@
-
 /**
  * 简易的标准API逻辑模拟 | 有代码规范化 | 有高级路由 | 有数据结构规范化 ( 完成笔记 )
- * 
+ *
  *      a) 有数据结构规范化
  *          0. app.js
  *              a) 全局中间件
@@ -26,20 +25,31 @@ const tourRoute = require('./routes/tour.routes');
  */
 const app = express();
 
-app.use( express.json() );
 
-app.use( ( req, res, next ) => {
+// express设定前端文件目录( 完成笔记 )
+//      a) 目的: 可访问html...相关前端文件
+//      b) 使用express.static()中间件: 开放public文件夹
+app.use(express.static(`${__dirname}/public`));
+
+app.use(express.json());
+
+app.use((req, res, next) => {
     console.log('全局中间件!');
     req.nowTime = new Date().toISOString();
     next();
-} );
+});
 
-app.use( morgan('dev') );
+// 应用环境变量 ( 完成笔记 )
+//      a) 由环境变量决定: 是否启用morgan日志功能
+//      b) 以下: 当为开发环境时启动morgan功能
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+}
 
 /**
  * 1. 全局路由 - 区域:
  */
-app.use("/api/v1/tours", tourRoute);
-app.use("/api/v1/user", userRoute);
+app.use('/api/v1/tours', tourRoute);
+app.use('/api/v1/user', userRoute);
 
 module.exports = app;

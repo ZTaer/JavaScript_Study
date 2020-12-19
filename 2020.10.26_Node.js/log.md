@@ -433,14 +433,84 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
                 d) 环境变量相关
             1. 注意: app的导入/导出
         h) 16:24 - 改写package.json的nodemon的启动方式
-    # 64( 完成笔记 | 已实战位置 )
+    # 64( 完成笔记 )
         a) 00:00 - 局部中间件使用: 入参中间件改写
         b) 3:48 - 局部中间件: express.Router().param: 获取url入参
             0. 注意: 仅在指定url起作用的'中间件' ( 非常棒 )
         c) 7:55 - 在逻辑区, 构建入参抓取逻辑
         d) 8:11 - 路由入参，中间件处理，调用逻辑区，入参抓取逻辑
-
-
+    # 65( 完成笔记 )
+        a) 00:00 - 链接多个中间件写法
+        b) 5:10 - 构建: 指定路由api中间件，用于api的逻辑效验
+            0. 状态码400: 入参效验失败
+        c) 7:03 - 多中间件写法作用:
+            0. 验证用户是否登陆
+            1. 效验入参是否正确
+            2. 验证用户权限是否达标
+    # 66( 完成笔记 )
+        a) 00:00 - express设定前端文件目录
+        b) 2:30 - 目的: 可访问html...相关前端文件
+            0. 使用express.static()中间件: 开放public文件夹
+        c) 2:50 - 域名访问，前端文件
+    # 67( 完成笔记 )
+        a) 00:00 - 环境变量
+            0. 目的: 方便根据不同的，环境变量，做一些逻辑，如访问不同的数据库等...
+        b) 2:36 - app.get('dev'): 打印当前环境变量
+        c) 3:37 - process.env: 访问查看全局变量
+        d) 7:48 - 构建config.env环境配置文件
+        e) 8:00 - vsocde插件: DotEnv, 有助于配置文件高亮显示
+        f) 9:40 - dotenv库: 使项目利用config.env配置文件
+            0. 安装dotenv: yarn add dotenv
+            1. 使用dotenv，应用config.env配置文件
+            2. 启动项目后: console.log( process.env );即可查看到应用的配置信息
+        g) 10:29 - console.log( process.env );即可查看到应用的配置信息
+        h) 12:19 - 发挥环境变量的作用:
+            0. 根据环境变量: 做一些逻辑，如是否启用morgan等中间件功能
+        i) 14:32 - 修正: 代码位置，config配置在app之前运行
+        j) 15:59 - 不建议在package.json使用，命令行的方法设定环境变量
+            0. 推荐: 分别构建，生产环境/开发环境的, config文件
+    # 68( 完成笔记 | 已实战位置 )
+        a) 00:00 - Eslint & prettier 配置
+        b) 1:39 - 安装eslint: 突出开发语法错误
+        c) 1:52 - 安装prettier
+        d) 5:12 - 安装辅助，eslint，开发的库，目的是突出显示语法错误
+            0. 安装: yarn add eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-config-airbnb eslint-plugin-node eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react --dev
+        e) 8:25 - 格式化工具
+            0. ESLint官网配置规则参考: https://eslint.org/docs/rules/
+            1. Prettier官网: https://prettier.io/
+        f) 9:31 - 注意: PROBLEMS命令窗口，可以查看eslint报错位置
+        g) 11:31 - ESlint规则演示: 
+            0. 不进行console.log代码警告
+            1. 变量没使用报错 ( 建议关闭 )
+            2. const变量使用错误报错
+        h) 12:11 - Eslint会配合vscode显示: 文件错误数量，以及位置
+    # 69( 无需笔记 )
+        a) 00:00 - MongoDb介绍
+    # 70( 完成笔记 )
+        a) 00:00 - MongoDb介绍
+    # VsCode编程习惯配置 - 配合ESlint | 可兼容prettier( 默认禁用prettier | 完成笔记 )
+        a) 安装必备组件:
+            0. 安装: yarn add eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-config-airbnb eslint-plugin-node eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react --dev 
+        b) 配置: .eslintrc.json
+            0. 配置相应eslint规则
+        c) vscode配置:
+            0. LF格式设定: 
+                a) 编辑setting.json --> "files.eol": "\n",
+            1. 关闭根据文件读取格式配置:
+                a) 编辑setting.json --> "editor.detectIndentation": false, 
+            2. 设定默认缩进为4个空格:
+                a) 设置搜索: "editor.tabSize" --> 写入: 4
+            3. 设定默认格式化规则为ESLINT
+                a) 右键js代码内，弹出的菜单: 选择"格式化文档方式" --> 选择eslint选项
+            4. 设定自动格式:
+                a) 保存自动格式化
+                    0. 设置搜索: "editor.formatOnSave" --> 勾选
+                b) 快捷键自动格式化
+                    0. 快捷键: Shift + Alt + F
+        d) eslint问题查询，以及快速自动解决方法
+            0. 在问题命令窗，查看错误，右击错误icon，选择autoFix all选项进行自动修复
+            1. 使用上方vscode配置, 将根据eslint自动格式化
+            
 
 </pre>
 
