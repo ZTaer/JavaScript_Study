@@ -469,7 +469,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         i) 14:32 - 修正: 代码位置，config配置在app之前运行
         j) 15:59 - 不建议在package.json使用，命令行的方法设定环境变量
             0. 推荐: 分别构建，生产环境/开发环境的, config文件
-    # 68( 完成笔记 | 已实战位置 )
+    # 68( 完成笔记 )
         a) 00:00 - Eslint & prettier 配置
         b) 1:39 - 安装eslint: 突出开发语法错误
         c) 1:52 - 安装prettier
@@ -488,6 +488,12 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         a) 00:00 - MongoDb介绍
     # 70( 完成笔记 )
         a) 00:00 - MongoDb介绍
+        b) 1:14 - MongoDB与传统数据库的区别:
+            0. 非关系数据库( NoSql ) !== 关系数据库
+            1. 集合 !== 表
+            2. Bson文档格式( 与json格式类似 ) !== 行数
+        c) 4:18 - MongoDB能做什么?
+        d) 7:39 - 关系数据库与，非关系数据库区别( 等待研究 )
     # VsCode编程习惯配置 - 配合ESlint | 可兼容prettier( 默认禁用prettier | 完成笔记 )
         a) 安装必备组件:
             0. 安装: yarn add eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-config-airbnb eslint-plugin-node eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react --dev 
@@ -510,7 +516,151 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         d) eslint问题查询，以及快速自动解决方法
             0. 在问题命令窗，查看错误，右击错误icon，选择autoFix all选项进行自动修复
             1. 使用上方vscode配置, 将根据eslint自动格式化
+    # 71( 完成笔记 )
+        a) 00:00 - macOs安装MongoDB
+    # 72( 完成笔记 )
+        a) 00:00 - windows安装MongoDB
+        b) 1:27 - 下载MongoDB: https://www.mongodb.com/try/download/community
+        c) 3:54 - 安装完MongoDB后，创建文件结构
+            0. 构建路径: C:\data\db
+        d) 5:14 - 运行MongoDB, 在power shell中
+            0. 启动路径: MongoDB/sever/x.0/bin
+            1. ./mongod.exe: 启动数据库
+            2. ./mongo.exe: 数据库shell
+        e) 6:27 - 通过shell测试数据库是否正常
+        f) 8:10 - 配置系统环境变量，使mongod.exe在全局即可调用
+            0. setting界面搜索"env"
+            1. 高级 --> 环境变量 --> 系统环境变量 --> 编辑'path'选项
+            2. 增加MongoDB安装所在的: mongod.exe文件目录路径
+            3. 即可在全局运行mongod.exe 或者 mongo.exe以启动数据库
+    # 73( 完成笔记 )
+        a) 00:00 - 创建本地数据库
+        b) 0:36 - 启动MongoDB的shell命令: mongo
+        c) 4:09 - 建立数据库，并增加一条数据 ( 注意: 此时并无数据建模 )
+            0. 启动数据库shell: mongo
+            1. 建立数据库: use xxx-name
+            2. 传入数据: db.xxxName.insertMany({对象数据})
+                a) db === 当前数据库
+                b) xxxName === 合集名称
+                c) insertMany() === mongo写入数据命令
+            3. 二种写入数据库，的方法
+                a) insertOne({xxx})
+                b) insertMany({xxx})
+        d) 6:23 - 查看当前数据库中指定合集数据: db.xxxName.find() | 当前数据库下的.合集名称.find()
+            0. show dbs: 查看当前创建的数据库: 默认有3个 admin , config , local
+            1. use xxxName: 可以切换不同的数据库，也可以创建数据库
+            2. show collections: 查看当前数据库下合集
+        e) 7:04 - 退出数据库: quit()
+    # 74( 完成笔记 )
+        a) 00:00 - MongoDB Shell | 写入数据 | 创建文档
+            0. 掌握mongo shell原因是: MongoDB可以适用与任何语言做数据库，不仅仅只是node.js
+        b) 3:53 - 写入数据库shell命令
+            0. mongo | 启动MongoDB Shell
+            1. show dbs | 显示当前数据库
+            2. use xxxName | 切换到指定数据库、创建数据库
+            3. db.xxxCollectionName.insertMany([ {xxx}, {yyy} ]) | 写入多条数据，MongoDB将自动创建_id
+            4. db xxxCollectionName.find() | 显示xxxCollectionName合集内容
+    # 75( 完成笔记 )
+        a) 00:00 - MongoDB Shell | 查询文档
+        b) 1:43 - 过滤字符串 , 查询过滤字段内容:
+            0. db.xxxCollectionName.find(): 查询合集内容
+            1. db.xxxCollectionName.find({ xxxName: "xxx" }): 查询过滤指定字段内容
+        c) 4:24 - 运算符过滤 , 单条过滤条件 | $lte
+            0. db.xxxCollectionName.find({ price: {$lte: 500  } })
+                a) 目的: 过滤出低于或者等于500的price值
+            1. $lte === <=
+        d) 5:35 - 运算符过滤 && 多条过滤条件 : | $lt, $gte
+            0. db.xxxCollectionName.find({ price: {$lt: 500  }, rating: {$gte: 4.8 } })
+                a) 目的: 过滤出低于500的price值, 并且, rating大于或者等于4.8值以上, 的数据
+            1. $lt === <
+            2. $gte === >=
+        e) 10:00 - 运算符过滤 || 多条过滤条件 : | $or
+            0. db.xxxCollectionName.find({ $or: [ {price: {$lt: 500  }}, {rating: {$gte: 4.8 } ]} )
+                a) 目的: 过滤出，低于500的price值，或者，rating大于4.8值以上，的数据
+            1. $or === ||
+            2. $gt === >
+        f) 11:55 - 运算符过滤 , 仅保留指定字段 : | 
+            0. db.xxxCollectionName.find({ $or: [ { price: {$lt: 500  }, rating: {$gte: 4.8 } ], { name: 1 } }) ( 等待研究 )
+                a) 目的: 
+                    0. 过滤出，低于500的price值，或者，rating大于4.8值以上，的数据
+                    1. 过滤出的数据，仅保留name字段 ( 注意: _id无法删除必须要有 )
+    # 76( 完成笔记 )
+        a) 00:00 - MongoDB Shell | 更新文档
+        b) 2:48 - db.xxxCollectionName.updateOne({ name: "xxxx" }, { $set: { price: 666 } } ) 
+            0. 模型: db.xxxCollectionName.updateOne( {筛选目标} , { $set: { 更新内容 } } )
+            1. 目的: 更新一项，过滤出目标，进行price值更新
+        c) 4:09 - 练习: 过滤出price大于500，评分大于或者等于4.8
+            0. db.tour.find( { price: { $gt: 500 }, rating: { $gte: 4.8 } } )
+        d) 6:27 - db.xxxCollectionName.updateMany( { price: { $gt: 500 }, rating: { $gte: 4.8 } }, { $set: { premium: 666 } } )
+            0. 模型: db.xxxCollectionName.updateMany( {筛选目标} , { $set: { 更新内容 } } )
+            1. 目的: 更新多项, 过滤出目标，增加premium属性
+        e) 7:18 - 替换过滤出的数据: db.xxxCollectionName.replaceOne(); 用法类似 ( 等待研究 )
+    # 77( 完成笔记 )
+        a) 00:00 - MongoDB Shell | 删除文档
+        b) 1:30 - db.xxxCollectionName.deleteMany({ rating: { $lt: 4.8 } }); 
+            0. 模型: db.xxxCollectionName.deleteMany( {筛选删除目标} )
+            1. 目的: 过滤条件，删除多项
+        c) 2:15 - 删库跑路: db.xxxCollectionName.deleteMany( {} )
+            0. 目的: 匹配所有的文档，进行删除
+    # 78( 完成笔记 )
+        a) 00:00 - compress可视化MongoDB数据库 
+        b) 0:40 - compress下载: https://www.mongodb.com/try/download/compass 
+        c) 2:22 - compress链接MongoDB本地数据库
+        d) 3:51 - 使用compress工具, 注入数据, 输入时可切换输入的数据类型
+        e) 6:28 - 使用compress工具，过滤数据
+    # 79( 完成笔记 )
+        a) 00:00 - MongoDB Atlas 远程数据库托管
+        b) 1:54 - 官网: https://www.mongodb.com/cloud/atlas
+        c) 2:23 - MongoDB Atlas: 创建一个新的项目
+        d) 3:11 - 配置集群，默认免费
+        e) 4:18 - 构建集群成功
+    # 80( 完成笔记 | 已实战位置 )
+        a) 00:00 - compress: 链接我们的远程数据库
+        b) 0:18 - 单机connet按钮配置ip，以及密码
+        c) 0:51 - 配置ip，以及账号，以及随机密码
+        d) 1:45 - 选择链接方式为compress
+        e) 1:56 - 复制生成的链接到compress
+        f) 2:42 - compress的connet选项，将自动填入内容，在填写密码即可，链接到远程数据库
+        g) 3:07 - 构建新的数据库
+        h) 4:14 - 在线上查看我们，在本地写入的数据
+        i) 5:28 - 配置链接数据库的ip白名单
+        j) 5:42 - MongoShell: 链接我们的远程数据库
+        k) 6:28 - 复制链接，到本地MongoShell, 执行
+            0. 注意: 退出已连接本地数据库的shell
+            1. show dbs 检测数据库是否正常
+    # MongoShell命令总结( 完成笔记 )
+        a) mongo.exe | 启动mongo shell
+        b) 清屏: cls
+        c) 创建/切换数据库: use xxx-xxx
+        d) 突出Shell: quit()
+        e) 查看当前状态类命令:
+            0. show dbs | 查看当前数据库
+            1. db | 查看当前所在数据库
+            2. show collections | 查看当前所在数据库文档
+        f) 查询类命令:
+            0. db.xxxCollectionsName.find() | 查询当前合集内容
+                a) 过滤类型:
+                    0. 单条件数据过滤: db.xxxCollectionsName.find( { title: "xxx" } )
+                    1. 多条件&&数据过滤:  db.xxxCollectionsName.find( { price: {$lte: 500}, rating: {$gte: 4.5} } )
+                    2. 多条件||数据过滤:  db.xxxCollectionsName.find( $or:[ {price: {$lte:500}}, {rating: {$gte:4.5}} ] )
+                    3. 多条件||数据过滤,仅保留指定字段: db.xxxCollectionsName.find( $or:[ {price: {$lte:500}}, {rating: {$gte:4.5}} ], {title:1})
+                b) 过滤符:
+                    0. $gte === >=
+                    1. $gt === >
+                    2. $lte === <=
+                    3. $lt === <
+                    4. $or === ||
+        g) 写入类命令:
+            0. db.xxxCollectionsName.insertOne({}) | 写入一条数据
+            1. db.xxxCollectionsName.insertMany([{},{}]) | 写入多条数据
+        h) 更新类命令:
+            0. db.xxxCollectionsName.updateOne({过滤条件},{ $set:{ 更新内容 } }) | 更新单条数据
+            1. db.xxxCollectionsName.updateMany({过滤条件},{ $set:{ 更新内容 } }) | 更新多条数据
+            2. db.xxxCollectionName.replaceOne(); 用法类似 ( 等待研究 )
+        i) 删除类命令: 
+            0. db.xxxCollectionName.deleteOne({过滤条件}) | 删除单条数据
+            1. db.xxxCollectionName.deleteMany({过滤条件}) | 删除多条数据
+            2. db.xxxCollectionName.deleteMany({}) | 删除所有的数据 ( 注意: 危险，此乃删库跑路必备命令 )
             
-
 </pre>
 
