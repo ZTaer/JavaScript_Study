@@ -661,6 +661,75 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
             0. db.xxxCollectionName.deleteOne({过滤条件}) | 删除单条数据
             1. db.xxxCollectionName.deleteMany({过滤条件}) | 删除多条数据
             2. db.xxxCollectionName.deleteMany({}) | 删除所有的数据 ( 注意: 危险，此乃删库跑路必备命令 )
+    # 81( 无需笔记 )
+        a) 00:00 - Mongoose库: 作用将node.js与MongoDB数据库相结合使用
+    # 82( 等待笔记 )
+        a) 00:00 - Node.js连接远程数据库/本地数据库
+        b) 0:42 - Node.js连接远程数据库, 获取连接配置信息
+        c) 0.49 - 更详细的演示，复制url连接，注意url键值变量替换
+        d) 1:58 - 连接url键值替换:
+            0. mongodb+srv://oo7:<password>@cluster0-test-oo7.yeesp.mongodb.net/<dbname>?retryWrites=true&w=majority
+            1. <password>: 密码
+            2. <dbname>: 数据库名称
+        e) 3:49 - config.env配置: 本地数据库，以及远程数据库，信息
+            0. 注意: 也就是说，node.js是可以连接多个数据库的
+        f) 4:43 - 安装: mongoose@5版本
+            0. 命令: yarn add mongoose 
+        g) 7:02 - server.js: 远程数据库URL加工: 环境变量数据，替换PASSWORD
+        h) 9:01 - server.js: Node.js结合Mongoose配置远程数据库逻辑
+        i) 11:01 - server.js: Node.js结合Mongoose配置本地数据库逻辑 
+        j) 12:16 - 初始化数据库, 防止出错，准备填充数据
+    # 83( 无需笔记 )
+        a) 00:00 - 什么是Mongoose?
+    # 84( 等待笔记 )
+        a) 00:00 - mongoose.Scheme构建数据模型
+            0. 目的: 声明数据结构
+        b) 6:02 - 构建tour数据的mongoose.Scheme数据模型
+    # 85( 等待笔记 )
+        a) 00:00 - 创建文档 | 数据写入到数据库，以及mongoose.Scheme强大的效验功能测试
+        b) 4:40 - mongoose存储数据: .save() 数据存入数据库中, 有错误处理逻辑
+        c) 6:27 - mongoose.Scheme发挥了作用: 阻止不正确的写入数据方式 ( 核心: 牛逼 )
+        d) 6:47 - mongoose.Scheme属性: unique | 值唯一
+    # 86( 无需笔记 )
+        a) 00:00 - 后端架构MVC
+    # 87( 等待笔记 )
+        a) 00:00 - 构建MVC架构的程序
+        b) 2:00 - Models: 放置mongoose.model，的mongoose.Scheme
+        c) 3:06 - Controllers: 导入mongoose.Scheme使用
+        d) 4:22 - Controllers: 删除无用的代码
+        e) 5:58 - routes: 调整无用的中间件
+    # 88( 等待笔记 )
+        a) 00:00 - .create(): 构建新的数据，写入至数据库
+            0. .save(): 功能类似
+        b) 8:38 - 构建API: 新建数据接口，并做错误处理逻辑
+            0. 400状态码: 代表处理错误
+        c) 9:46 - PostMan测试API接口: 成功情况测试
+            0. mongoose.Scheme会直接无视，没有在Scheme定义过的入参( 核心: 我喜欢 )
+        d) 10:34 - PostMan测试API接口: 失败情况测试
+        e) 11:34 - 此错误处理逻辑，提示信息: 生产环境，不可使用
+    # 89( 等待笔记 )
+        a) 00:00 - 查询文档 | 查询数据库 | 文档查询
+        b) 2:57 - .find(): 查询数据
+        c) 5:15 - 通过中间件拿到url的入参id，进行文档查询
+            0. .findById(): 通过id查询数据
+        d) 6:49 - .findById数据库底层规则写法
+    # Mongoose命令总结:
+        a) Scheme语法总结:
+            0.    
+        b) 功能函数总结:
+            1. 
+    # 90( 等待笔记 )
+        a) 00:00 - 更新文档 | 修改数据库
+        b) 6:41 - Mongoose官方文档: https://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate
+            0. 文档规范示意:
+                a) 在new对象使可用: Model.prototype.xxx();
+        c) 9:58 - 根据url提供的id，更新指定id数据，并有效验逻辑
+    # 91( 等待笔记 )
+        a) 00:00 - 删除文档 | 删除数据库中的内容
+        b) 2:22 - 删除指定id数据库逻辑
+
+        
+        
             
 </pre>
 
