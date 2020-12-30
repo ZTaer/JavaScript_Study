@@ -1,25 +1,36 @@
-// 查看环境变量 ( 完成笔记 )
-//     a) 配置环境变量:
-//          0. 安装: yarn add dotenv
-//          1. 配置环境: dotenv.config({ path: "config file 路径" });
-//     b) 注意代码位置: 尽量靠前，防止出bug
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 
-dotenv.config({ path: './config.produce.env' });
+dotenv.config({ path: "./config.produce.env" });
 // dotenv.config({ path: "./config.development.env" });
 
-const app = require('./app');
-
 /**
- * 2. 全局端口服务 - 区域
+ * Mongoose: Node.js连接MongoDB的中间人 | 注意: 当前为测试功能代码块 ( 完成笔记 - 核心 )
+ *      0. 目的: Node.js连接MongoDB的中间人
+ *      1. 安装: yarn add mongoose
+ *      2. mongoose.connect(): 连接数据库
+ *          a) 模型: mongoose.connect( mdb链接, 功能属性参数 )
+ *          b) 功能属性参数:
+ *              0. useNewUrlParser: true,
+ *              1. useCreateIndex: true,
+ *              2. useFindAndModify: false,
  */
 
-// 查看环境变量 ( 完成笔记 )
-console.log('app.get(env)', app.get('env')); // 当前开发环境: 环境变量
-console.log('process.env', process.env); // 访问查看全局变量
+const mongoose = require("mongoose");
+const app = require("./app");
 
-// 应用环境变量 ( 完成笔记 )
-//      a) 由环境变量决定监听的端口
+// a) 数据库链接
+const DB_NETWORK = process.env.MONGODB_NETWORK;
+const DB_LOCAL = process.env.MONGODB_LOCAL;
+
+// b) 连接数据库
+mongoose.connect(
+    DB_NETWORK, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+    },
+).then((data) => console.log("连接成功!"));
+
 const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`http://127.0.0.1:${port}`);

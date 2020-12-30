@@ -1,118 +1,111 @@
-const fs = require('fs');
+const Tour = require("../models/tour.models");
 
-const tour = JSON.parse(fs.readFileSync(`${__dirname}/../data/tours.json`, 'utf-8'));
-
-// 局部中间件: 提前处理错误逻辑( 完成笔记 )
-//      a) 提出处理错误逻辑: 避免逐个的在接口逻辑中写入，处理错误逻辑，提高便捷性
+// 局部中间件: 提前处理错误逻辑
 exports.checkId = (req, res, next, value) => {
-    console.log('局部中间件value', value);
-
-    const id = value;
-    const tourItem = tour.find((item) => item._id === id);
-
-    if (!id || !tourItem) {
-        return res.status(404).json({ // 核心
-            status: 'fail',
-            data: `Not find ${id} !`,
-        });
-    }
-
     next();
 };
 
 // Get: 返回所有的tour数据
-exports.getAllTours = (req, res) => {
-    console.log('返回所有的数据!');
-
-    res.status(200).json({
-        status: 'success',
-        nowTime: req.nowTime,
-        data: tour,
-    });
+// model.prototype.find({}): 查询文档所有的内容 | 查询数据库内容 ( 完成笔记 )
+//      0. 注意: model.prototype.find({ mongodb运算符 }): 根据运算符,查询文档内容 | 查询数据库内容
+exports.getAllTours = async (req, res) => {
+    try {
+        const TourData = await Tour.find({});
+        res.status(200).json({
+            status: "success",
+            data: TourData,
+        });
+    } catch (err) {
+        res.status(400).json({
+            status: "fail",
+            error: err,
+        });
+    }
 };
 
 // Get: 根据ID查询数据逻辑
-exports.getItemTours = (req, res) => {
-    console.log('响应逻辑req.params', req.params);
-
-    const { id } = req.params;
-    const tourItem = tour.find((item) => item._id === id);
-
-    if (!id || !tourItem) {
-        res.status(404).json({
-            status: 'fail',
-            data: 'Not find !',
+// model.prototype.findById(id): 根据id查询文档内容 | 根据id查询数据库内容 ( 完成笔记 )
+exports.getItemTours = async (req, res) => {
+    try {
+        const tourItem = await Tour.findById(req.params.id);
+        res.status(200).json({
+            status: "success",
+            data: tourItem,
+        });
+    } catch (err) {
+        res.status(400).json({
+            status: "fail",
+            error: err,
         });
     }
-
-    res.status(200).json({
-        status: 'success',
-        data: tourItem,
-    });
 };
 
-// 构建: 指定路由api中间件，用于api的逻辑效验( 完成笔记 )
+// 构建: 指定路由api中间件，用于api的逻辑效验
 exports.checkToursBody = (req, res, next) => {
-    // 用于测试 - 多中间件逻辑执行顺序
-    console.log('效验: 局部中间件1');
-    req.xx = 1;
+    next();
+};
 
-    // 效验入参( 完成笔记 )
-    const { name, array } = req.body;
-    if (!name && array instanceof Array) {
-        return res.status(400).json({ // 状态码400: 入参效验失败( 完成笔记 )
-            status: 'fail',
-            data: '入参错误!',
+
+/**
+ * Post逻辑: Post入参配合Mongoose.Schema添加数据到MongoDB数据库 ( 完成笔记 )
+ *      a)  model.prototype.create(): 写入文档 | 写入数据至数据库
+ *      b)  model.prototype.save(): 与create功能相似
+ *      c)  注意: 返回错误信息，生产环境下不可模仿
+ *      d)  Mongoose.Schemea具有强大的效验功能( 核心: 我喜欢 )
+ */
+exports.getAddItemTours = async (req, res) => {
+    try {
+        const reqBody = req.body;
+        const newTour = await Tour.create(reqBody);
+        res.status(200).json({
+            status: "success",
+            data: newTour,
+        });
+    } catch (err) {
+        res.status(400).json({
+            status: "fail",
+            error: err,
         });
     }
-
-    next();
-};
-
-exports.checkToursBody2 = (req, res, next) => {
-    console.log('效验: 局部中间件2', req.xx);
-    next();
-};
-
-// Post: 增加数据逻辑
-exports.getAddItemTours = (req, res) => {
-    console.log('响应: 逻辑');
-
-    const reqBody = req.body;
-    const id = tour.length + 1;
-    const newArray = [...tour];
-    newArray.push({ _id: id, ...reqBody });
-
-    fs.writeFile(`${__dirname}/../data/tours.json`, JSON.stringify(newArray), 'utf-8', (err) => {
-        if (err) return console.log('err', err);
-
-        res.status(201).json({
-            status: 'successs',
-            data: {
-                newArray: newArray,
-            },
-        });
-    });
 };
 
 // Patch: 数据更新逻辑
-//      0. 注意: 只是模拟更新逻辑
-//      1. 包类型: patch - 常用于更新数据逻辑
-exports.updateItemTours = (req, res) => {
-    res.status(200).json({
-        status: 'success',
-        data: {
-            tour: 'Update success !',
-        },
-    });
+// model.prototype.findByIdAndUpdate( id, 更新内容, 属性配置 ): 根据id更新文档内容 | 根据id更新数据库内容 ( 完成笔记 )
+//      a) 属性配置:、
+//          0. new属性: 代表确定要更新数据
+//          1. runvalidators属性: 并且效验更新的数据
+exports.updateItemTours = async (req, res) => {
+    try {
+        const updateTour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
+            new: true, // new属性: 代表确定要更新数据
+            runvalidators: true, // runvalidators属性: 并且效验更新的数据
+        });
+        res.status(200).json({
+            status: "success",
+            data: updateTour,
+        });
+    } catch (err) {
+        res.status(400).json({
+            status: "fail",
+            error: err,
+        });
+    }
 };
 
 // Delete: 删除数据逻辑
-//      0. 注意: 只是模拟更新逻辑
-//      1. 包类型: delete - 常用于删除逻辑
-exports.deleteItemTours = (req, res) => {
-    res.status(204).json({
-        status: 'success',
-        data: null,
-    });
+// model.prototype.findByIdAndDelete( id ): 根据id删除文档内容 | 根据id删除数据库内容 ( 完成笔记 )
+//      0. 注意: 状态码204, 不返回任何数据
+exports.deleteItemTours = async (req, res) => {
+    try {
+        const deleteTour = await Tour.findByIdAndDelete(req.params.id);
+        res.status(204).json({
+            status: "success",
+            data: deleteTour,
+        });
+    } catch (err) {
+        res.status(404).json({
+            status: "fail",
+            error: err,
+        });
+    }
 };
