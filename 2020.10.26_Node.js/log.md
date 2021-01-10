@@ -713,18 +713,25 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         c) 5:15 - 通过中间件拿到url的入参id，进行文档查询
             0. .findById(): 通过id查询数据
         d) 6:49 - .findById数据库底层规则写法
-    # Mongoose命令总结:
+    # Mongoose命令总结( 完成笔记 - 长期维护 ):
         a) Scheme语法总结:
             0. new mongoose.Schema({ ...xxx }): 构建Schema
             1. 属性功能:
                 a) type: 指定数据类型
-                  0. String: 字符串类型
-                  1. Number: 数字类型
-                  2. Bollen: 布尔类型
+                    0. String: 字符串类型
+                    1. Number: 数字类型
+                    2. Bollen: 布尔类型
+                    3. [xxx]: xxx Array类型
+                        a) [Date]: 时间Array类型
+                        b) [String]: 字符串Array类型
+                        c) [Number]: 数字Array类型
                 b) required: 是否必填
-                  0. 报错提示写法: [ true, '报错信息' ]
+                    0. 报错提示写法: [ true, '报错信息' ]
                 c) unique: 是否唯一
-                  1. 意思: 当前属性，不可重复出现在数据库中 
+                    1. 意思: 当前属性，不可重复出现在数据库中 
+                d) trim: 清除字符串，二端空格
+                e) default: 默认值
+                f) select: 永远限制不展示字段, 设定select: false无论任何情况都将不输出此字段数据
             2. 实战参考: JavaScript_Study\2020.10.26_Node.js\9-node-mongodb\models\tour.models.js 
         b) 功能函数总结:
             0. mongoose.connect( mdb链接, 功能属性参数 ): 连接数据库
@@ -735,20 +742,125 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
                 d) model.prototype.findById(id): 根据id查询文档内容 | 根据id查询数据库内容 
                 e) model.prototype.findByIdAndUpdate( id, 更新内容, 属性配置 ): 根据id更新文档内容 | 根据id更新数据库内容
                 f) model.prototype.findByIdAndDelete( id ): 根据id删除文档内容 | 根据id删除数据库内容
+                g) model.prototype.sort(): 根据字段排序
+                h) model.prototype.select(): 限制字段
+                i) model.prototype.skip().limit(): 分页
+                    0. model.prototype.skip(): 跳跃数据
+                    1. model.prototype.limit(): 限制数据数量
+                j) model.prototype.countDocuments(): 统计查询数据结果 
     # 90( 完成笔记 )
         a) 00:00 - 更新文档 | 修改数据库
         b) 6:41 - Mongoose官方文档: https://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate
             0. 文档规范示意:
                 a) 在new对象使可用: Model.prototype.xxx();
         c) 10:21 - 根据url提供的id，更新指定id数据，并有效验逻辑
-    # 91( 完成笔记 | 已实战位置 )
+    # 91( 完成笔记 )
         a) 00:00 - 删除文档 | 删除数据库中的内容
         b) 2:22 - 删除指定id数据库逻辑
-    # 92( 等待笔记 )
-        a) 00:00 - 
+    # 92( 完成笔记 )
+        a) 00:00 - 根据实际数据，构建Mongoose.Schema
+        b) 0:47 - PostMan获取真实数据
+        c) 1:31 - PostMan存获取的json数据
+        d) 3:18 - 开始: 根据真实数据，构建Mongoose.Schema
+        e) 5:32 - Mongoose.Schema语法: 
+            0. default: 设定默认值
+        f) 6:43 - Mongoose.Schema语法:
+            0. trim: 清除字符串二端空格
+        g) 11:03 - Mongoose.Schema语法:
+            0. required: 强制性填写数据 ( 写法特殊 )
+                a) 模型: required: [ true, " 报错信息 " ]
+            1. Mongoose.Schema数据类型:
+                a) type: [String] | 数组类型数据结构, 例如: [ "xxx","yyy" ]
+        h) 13:01 - Mongoose.Schema数据类型:
+            0. type: Date | 日期类型
+            1. type: [ Date ] | 数组日期类型
+            2. 推荐: 存储时间戳, 例如: Date.now()
+        i) 15:00 - 添加真实的数据，用于验证Mongoose.Schema是否正常工作 ( 注意: 删除id字段 )
+    # 93( 完成笔记 )
+        a) 00:00 - 导入开发数据至MongoDB
+        b) 2:38 - 构建导入数据库数据，脚本
+            0. 脚本功能
+                a) 连接数据库，且有写入权限
+                b) 读取mock数据，写入数据库中
+                c) Mongoose.Schema要监控写入的数据
+        c) 7:32 - 构建: 删除数据脚本函数
+        d) 9:07 - 修正: 文件路径读取错误的问题
+        e) 10:09 - js脚本入参:
+            0. process.argv全局变量: 查询运行脚本入参
+        f) 11:23 - 根据入参做逻辑
+        g) 12:35 - process.exit()全局变量函数: 脚本退出
+        h) 14:20 - 修正mock数据错误
+    # 94( 完成笔记 ) 
+        a) 00:00 - API基本过滤写法: 构建url过滤api功能
+        b) 2:13 - PostMan带url入参，使用方法
+        c) 3:36 - req.query获取url入参 ( 核心 )
+        d) 4:46 - 调处nodemon日志, 方便开发
+        e) 6:09 - 注意: api数据结构，非常的标准化
+            0. 当查询数据时:{ 
+                status: '状态', 
+                result: 查询结果数量, 
+                data: { xxx: [ 数据 ] } 
+            }
+        f) 7:50 - 查询数据二种方式: 当前为特殊的mongoose写法第二种，某些情况非常有用( 等待研究 )
+        g) 12:57 - forEach过滤写法,配合delete运算符 ( 核心 )
+            0. 目的: 过滤出不在指定范围内的字段数据
+            1. 核心: delete运算符 
+        h) 13:40 - forEach配合delete过滤结果
+        i) 15:03 - 这种写法的目的: 是为了扩展api更能更加的方便
+        j) 18:35 - 初步查询构建, 注意: 未完整版
+    # 95( 完成笔记 )
+        a) 00:00 - API高级过滤写法: 更好的API ( 注意: 当前为非安全API )
+        b) 2:59 - 命令高级过滤，老师想打造一个高级过滤API，配合MongoDB查询命令
+            0. 疑问: 
+                a) 高级过滤API虽然强大，那如何考虑性能问题?
+                b) 既然可以使用mongodb命令，那安全问题如何解决?
+            1. 核心: 实现此功能的核心，在于，url加入mongodb过滤运算符，并做相应逻辑
+        c) 7:25 - 目的: 将指定过滤运算符，通过正则进行加工替换，加工成Mongodb过滤命令
+            0. 注意: 正则解析，记得搞笔记
+        d) 8:58 - url入参，过滤命令转换成功
+        e) 9:31 - 非安全: url入参高级过滤查询数据代码
+        g) 10:52 - 非安全: 高级过滤API使用演示
+    # 96( 完成笔记 )
+        a) 00:00 - API排序写法:
+        b) 3:38 - 基本的排序写法: Model.prototype.sort();
+        c) 4:42 - 默认sort为升序，注意入参，加-号为降序
+        d) 8:18 - 为第二排序条件做实验，将字段数据相等的值，进行不等，方便观测排序结果
+        e) 8:47 - 多排序条件: 代码实际运行结果
+        f) 8:58 - 多排序条件代码: 这里以price为第一排序条件，ratingsAverage为第二排序条件
+            0. 注意: Model.prototype.sort(); 默认为升序，url入参加‘-’号时为降序
+        g) 10:03 - 默认为: 数据创建时间排序
+    # 97( 完成笔记 )
+        a) 00:00 - API限制数据字段写法: 仅需要指定字段数据
+        b) 4:01 - 限制字段逻辑
+        c) 4:13 - 限制字段逻辑测试
+        d) 4:41 - 注意: url参数'-'删除数据指定字段
+        e) 5:54 - 永远限制不展示字段: 在Mongoose.Schema设定select: false无论任何情况都将不输出此字段数据 
+    # 98( 完成笔记 )
+        a) 00:00 - API分页写法: 
+        b) 4:24 - mongoose分页函数用法
+        c) 6:14 - 设定默认分页为1，数据数量限制为100
+        d) 8:04 - 构建分页代码
+        e) 9:01 - 分页实战演示
+        f) 9:35 - 处理: 超出分页范围请求逻辑
+        g) 13:04 - 处理: 超出分页范围请求逻辑代码
+    # 99( 完成笔记 )
+        a) 00:00 - API针对业务要求，别名路由获取数据，写法: 如最评分最好的5条路线
+            0. 单独设定一个路由，通过配置默认参数，来获取数据
+        b) 1:57 - 评分最好的5条路线: 无别名路由情况下，请求参数
+        c) 4:05 - 配置别名路由中间件: 方便加工url入参
+        d) 6:34 - 中间件代码: 增加url入参
+        e) 8:04 - 别名路由实战演示
+    # 100( 完成笔记 | 已实战位置 )
+        a) 00:00 - 重构API: 使维护性以及灵活性更强
+            0. 我靠，竟然用class来重构，我不喜欢
+        b) 7:48 - 功能转移进class，并使用class方法来调用函数
+        c) 8:21 - 返回整个calss
+        d) 10:44 - 删除主动报错逻辑
+        e) 11:08 - 提示: class的入参: this.query === Tour.find()查询函数 | this.queryString === req.query传url入参
+        f) 15:08 - 将class api 单独放入到 utils 文件夹中，并导入使用 ( 等待研究 )
+    # 101( 等待笔记 )
+        a) 00:00 - 聚合管道
 
-        
-        
-            
+
 </pre>
 
