@@ -1,0 +1,56 @@
+{
+    "extends": [
+        "airbnb",
+        "plugin:node/recommended"
+    ],
+    "rules": {
+        "prettier/prettier": "off",
+        "spaced-comment": "off",
+        "no-console": "warn",
+        "consistent-return": "off",
+        "func-names": "off",
+        "object-shorthand": "off",
+        "no-process-exit": "off",
+        "no-param-reassign": "off",
+        "no-return-await": "off",
+        "no-underscore-dangle": "off",
+        "class-methods-use-this": "off",
+        "prefer-destructuring": [
+            "error",
+            {
+                "object": true,
+                "array": false
+            }
+        ],
+        "no-unused-vars": [
+            "error",
+            {
+                "argsIgnorePattern": "req|res|next|val"
+            }
+        ],
+        "no-multiple-empty-lines": [
+            "warn",
+            {
+                "max": 3
+            }
+        ],
+        "indent": [
+            "warn",
+            4
+        ],
+        "key-spacing": [
+            1,
+            {
+                "beforeColon": false,
+                "afterColon": true
+            }
+        ],
+        "quotes": [
+            "warn",
+            "double",
+            {
+                "allowTemplateLiterals": true
+            }
+        ]
+    }
+}
