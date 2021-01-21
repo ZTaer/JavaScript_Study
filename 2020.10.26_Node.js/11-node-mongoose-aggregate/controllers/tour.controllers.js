@@ -255,7 +255,7 @@ exports.aliasTopMiddlewareTours = async (req, res, next) => {
 };
 
 /**
- * 聚合管道计算 | 聚合管道查询 ( 等待笔记 )
+ * 聚合管道计算 | 聚合管道查询 ( 完成笔记 )
  *      a) 核心: model.prototype.aggregate([]);
  *      b) 聚合管道运算符:
  *          0. 主要功能类运算符
@@ -316,7 +316,7 @@ exports.getTourStats = async (req, res) => {
 };
 
 /**
- * 聚合管道计算 | 业务逻辑实战模拟 ( 等待笔记 )
+ * 聚合管道计算 | 业务逻辑实战模拟 ( 完成笔记 )
  *      a) 业务目的: 算出那个月份，旅游团数量多
  *          0. name代表: 旅游团名称
  *      b) 聚合运算符:
@@ -334,7 +334,7 @@ exports.getTourStats = async (req, res) => {
  *          6. $limit - 限制数据量
  *      c) 时间相关运算符，官方文档: https://docs.mongodb.com/manual/reference/operator/aggregation/#date-expression-operators
  *      d) 多读读官方文档将掌握更多骚操作: https://docs.mongodb.com/manual/reference/operator/aggregation/
- * node.js接受入参总结: ( 等待笔记 )
+ * node.js接受入参总结: ( 完成笔记 )
  *      a) req.params - 接受路由入参:
  *          0. 路由: "/xxx/:year"
  *          1. 访问: "/xxx/2008"
@@ -356,7 +356,7 @@ exports.getMonthlyPlan = async (req, res) => {
                 $unwind: "$startDates",
             },
             {
-                // $match: 范围性查询数据 | 时间范围查询数据 ( 等待笔记 )
+                // $match: 范围性查询数据 | 时间范围查询数据 ( 完成笔记 )
                 //      a) 目的: 查询本年度范围数据
                 $match: {
                     startDates: {

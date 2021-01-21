@@ -211,7 +211,7 @@ exports.updateItemTours = async (req, res) => {
     try {
         const updateTour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
             new: true, // new属性: 代表确定要更新数据
-            runvalidators: true, // runvalidators属性: 并且效验更新的数据
+            runValidators: true, // runvalidators属性: 并且效验更新的数据
         });
         res.status(200).json({
             status: "success",
