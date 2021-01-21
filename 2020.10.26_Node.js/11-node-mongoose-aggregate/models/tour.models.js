@@ -3,7 +3,7 @@ const slugify = require("slugify");
 const validator = require("validator");
 
 /**
- * Mongoose.Schema: 强大的数据效验功能 | 临时总结  ( 等待笔记 )
+ * Mongoose.Schema: 强大的数据效验功能 | 临时总结  ( 完成笔记 )
  *      a) new mongoose.Schema({ ...xxx }): 构建Schema
  *      b) {}属性功能:
  *          0. type: 指定数据类型
@@ -43,7 +43,7 @@ const tourSchema = new mongoose.Schema({
         maxlength: [30, "长度不能超过30"],
         minlength: [5, "长度不能小于5"],
         /**
-         * 构建: 自定义效验器, 配合第三方库validator( 等待笔记 )
+         * 构建: 自定义效验器, 配合第三方库validator( 完成笔记 )
          *      a) 第三方效验库( 已内置mongoose ): https://github.com/validatorjs/validator.js
          *          0. 安装: yarn add validator
          *          1. 注意: 虽然已经内置validator, 但依然要安装才能使用
@@ -92,7 +92,7 @@ const tourSchema = new mongoose.Schema({
     priceDiscount: {
         type: Number,
         /**
-         * 构建: 自定义效验器( 等待笔记 )
+         * 构建: 自定义效验器( 完成笔记 )
          *      a) 注意:
          *          0. 效验函数只能返回true/false, true代表效验通过，false代表效验失败
          *          1. this.xxx读取相应字段入参，只能在mongoose.schema淫威下使用
@@ -144,13 +144,13 @@ const tourSchema = new mongoose.Schema({
         default: false,
     },
 },
-{ // 定义虚拟属性，mongoose.schema增加入参: 允许虚拟属性输出 ( 等待笔记 )
+{ // 定义虚拟属性，mongoose.schema增加入参: 允许虚拟属性输出 ( 完成笔记 )
     toJSON: { virtuals: true }, // 虚拟属性变为真实
     toObject: { virtuals: true }, // 虚拟属性可被输出
 });
 
 /**
- * 定义虚拟属性，并根据真实属性计算，并将虚拟属性输出 ( 等待笔记 )
+ * 定义虚拟属性，并根据真实属性计算，并将虚拟属性输出 ( 完成笔记 )
  *      a) 注意:
  *          0. 回调函数必须使用function，这样才能正常的使用this来获取指定字段数据
  *          1. 虚拟属性是不会存储在数据库中的
@@ -161,7 +161,7 @@ tourSchema.virtual("testVirtualDuration").get(function () {
 });
 
 /**
- * mongoose: 存储中间件 | 文档中间件 | post hooks ( 等待笔记 )
+ * mongoose: 存储中间件 | 文档中间件 | post hooks ( 完成笔记 )
  *      a) xxxxSchema.pre("save",function(){}): 保存数据时促发
  *      b) 注意:
  *          0. insertMany()不会促发此中间件
@@ -180,7 +180,7 @@ tourSchema.pre("save", function (next) {
 });
 
 /**
- * mongoose: 查询中间件( 等待笔记 )
+ * mongoose: 查询中间件( 完成笔记 )
  *      a) xxxxSchema.pre("find",function( next ){}): 查询数据前促发
  *          0. 注意: 仅save命令时，才能被中间件截获
  *      b) xxxxSchema.pre(/^find/,function( next ){}): 查询数据前促发
@@ -203,13 +203,13 @@ tourSchema.pre(/^find/, function (next) { // 正则中间件抓取方法, vip客
 });
 
 tourSchema.post(/^find/, function (docs, next) {
-    console.log(`FindTime: ${Date.now() - this.start}ms`); // 计算查询消耗时间 ( 等待笔记 )
+    console.log(`FindTime: ${Date.now() - this.start}ms`); // 计算查询消耗时间 ( 完成笔记 )
     // console.log("docs", docs);
     next();
 });
 
 /**
- * mongoose: 聚合中间件( 等待笔记 )
+ * mongoose: 聚合中间件( 完成笔记 )
  *      a) this.pipeline(): 包含聚合运算符数组, 可进行编辑, 以此到达中间件加工的目的
  *          0. 聚合中间件: 通过this.pipeline拦截，聚合命令，并做相应逻辑，从而过滤掉隐秘客户数据
  *      b) 中间件的作用: 避免多余的重复代码 ( 中间件的意义 - 核心 )

@@ -732,6 +732,11 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
                 d) trim: 清除字符串，二端空格
                 e) default: 默认值
                 f) select: 永远限制不展示字段, 设定select: false无论任何情况都将不输出此字段数据
+                g) maxLength | minLength : 字符串最大最小长度效验
+                h) min | max : 效验数字，最大，最小值
+                i) enum枚举值: 仅允许存储指定字符串
+                    0. 注意: 仅支持String类型，不支持Number类型
+                    1. 使用规范: { values: ["xxx","yyy"], message: "错误信息" }
             2. 实战参考: JavaScript_Study\2020.10.26_Node.js\9-node-mongodb\models\tour.models.js 
         b) 功能函数总结:
             0. mongoose.connect( mdb链接, 功能属性参数 ): 连接数据库
@@ -850,7 +855,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         c) 4:05 - 配置别名路由中间件: 方便加工url入参
         d) 6:34 - 中间件代码: 增加url入参
         e) 8:04 - 别名路由实战演示
-    # 100( 完成笔记 | 已实战位置 )
+    # 100( 完成笔记 )
         a) 00:00 - 重构API: 使维护性以及灵活性更强
             0. 我靠，竟然用class来重构，我不喜欢
         b) 7:48 - 功能转移进class，并使用class方法来调用函数
@@ -858,9 +863,114 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         d) 10:44 - 删除主动报错逻辑
         e) 11:08 - 提示: class的入参: this.query === Tour.find()查询函数 | this.queryString === req.query传url入参
         f) 15:08 - 将class api 单独放入到 utils 文件夹中，并导入使用 ( 等待研究 )
-    # 101( 等待笔记 )
-        a) 00:00 - 聚合管道
-
-
+    # 101( 完成笔记 )
+        a) 00:00 - 聚合管道计算 | 初步进行数据分析 ( 核心 - 屌爆 )
+        b) 10:44 - Model.prototype.aggregate([]);魔法
+            0. 计算数据平均值，最大值，最小值
+            1. 运算符文档: https://docs.mongodb.com/manual/reference/operator/aggregation/match/
+        c) 11:42 - 构建路由，方便测试api数据
+        d) 12:38 - 聚合计算查询: 也需要await
+        e) 13:04 - 聚合计算查询: 测试成功
+        f) 14:29 - 聚合计算查询: $sum:1 加数据数量计算，"$sum: $字段名" 以及数量总和计算
+        g) 14:45 - 测试api
+        h) 16:12 - 根据difficulty进行数据分析 ( 魔法级别 - 核心 )
+        i) 16:19 - 根据ratingAverage进行数据分析  ( 魔法级别 - 核心 )
+        j) 16:25 - 测试api
+        k) 17:35 - $toUpper运算符: 大写字段
+        l) 18:47 - $sort: 升序排序
+        m) 19:30 - $ne: 不等于运算符，其match数据结果将不包含指定字段
+        n) 19:47 - 测试api 
+        o) 19:57 - 注意: 聚合管道计算查询，可以进行多次match查询计算
+    # 102( 完成笔记 )
+        a) 00:00 - 聚合管道计算 | 数据分析解决业务逻辑 ( 核心 - 屌爆 )
+            0. 业务要求: 计算年度中，最忙的几个月时间
+        b) 2:11 - 构建: api路由
+        c) 7:08 - 解构运算符: $unwind, 通过解构指定字段数组，迭代出多条数据，方便进行数据分析
+            0. 例: { name: 123, start: [1,2,3] }
+                a) $unwind计算后: { name: 123, start: 1 } { name: 123, start: 2 } { name: 123, start: 3 } 
+        d) 9:52 - $match运算符: 配合$gte,$lte匹配过滤出，符合指定日期范围内的数据
+        e) 11:05 - 时间相关运算符，官方文档: https://docs.mongodb.com/manual/reference/operator/aggregation/#date-expression-operators
+        f) 12:46 - $month运算符，提取时间字段，月份，在进行$group数据分析
+        g) 14:06 - $push运算符: 构建数组类型数据，因为有多种旅游团
+        h) 16:45 - $project运算符: 删除指定字段
+            0. $sort - 在根据numTourStart字段数据，进行降序
+        i) 17:26 - $limit运算符: 限制数据量，依然起作用
+        j) 18:53 - 多读读官方文档将掌握更多骚操作: https://docs.mongodb.com/manual/reference/operator/aggregation/
+    # 103( 完成笔记 )
+        a) 00:00 - mongoose: 虚拟属性
+        b) 4:35 - mongoose.schema增加入参: 允许虚拟属性输出
+            0.  { 
+                    toJSON: { virtuals: true }, // 虚拟属性变为真实
+                    toObject: { virtuals: true } // 虚拟属性可被输出
+                }
+        b) 4:58 - 定义虚拟属性，并根据真实属性计算，并将虚拟属性输出
+            0. 注意: 虚拟属性是不会存储在数据库中的
+    # 104( 完成笔记 )
+        a) 00:00 - mongoose: 存储中间件 | 文档中间件 | post hooks
+        b) 2:26 - mongoose.pre('save',function): .save .create 保存前，促发中间件
+            0. 注意: insertMany()不会促发此中间件
+            1. this: 代表当前准备存储的数据 ( 核心 )
+        c) 4:49 - 保存数据: 用于测试是否促发了mongoose中间件
+        d) 5:42 - mongoose中间件: 构建代码，并将即将保存的数据，打印出
+        e) 6:19 - 安装: yarn add slugify
+        f) 8:39 - mongoose中间件: 也需要next()来执行下一步
+        g) 9:08 - 将新增字段补充到mongoose.schema
+        h) 12:59 - mongoose.post('save'function): 响应返回给前端数据时促发
+            0. 注意: 中间件可以有多个 --> 中间件next() --> 在去执行其他中间件 --> 如果无其他中间件则回归到主逻辑 ( 核心 )
+    # 105( 完成笔记 )
+        a) 00:00 - mongoose: 查询中间件 
+        b) 1:55 - mongoose.pre('find',function); 实例: 构建隐藏vip客户数据
+        c) 2:36 - 配置secreTour的mongoose.schema,方便配合查询中间件做逻辑
+        d) 4:48 - 查询中间件，在某条数据，检测到secreTour为true时，通过$ne运算符进行屏蔽数据
+            0. 目的: 使secreTour 为true时，单挑数据, 不会出现在Model.prototype.find()数据查询结果中
+            1. 注意: 
+                a) 中间件拦截不到的逻辑，有可能被查询, 比如Model.prototype.findId(), 需要其他相应逻辑处理
+                b) secreTour字段,的mongoose.schema的配置
+        e) 5:01 - 测试api
+        f) 7:10 - 查询中间件流程: 客户端api发起查询请求 --> 查询中间件 --> api逻辑 --> 返回数据
+        g) 8:55 - 处理查询中间件，非find可查询隐秘数据问题:
+            0. 处理方式一: 正则表达式 ( 推荐 )
+                a) 正则: /^find/ - 匹配所有以find开头的字段
+            1. 处理方式二: 对应findxx函数做相应中间件逻辑 ( 不推荐 )
+        h) 9:45 - mongoose中间件查询文档: https://mongoosejs.com/docs/middleware.html#types-of-middleware
+        i) 13:41 - mongoose.post(/^find/, function): 查询结束时，此中间件将被调用
+            0. 可用来处理查询结果逻辑
+            1. 也可以计算，数据库查询时间
+    # 106( 完成笔记 )
+        a) 00:00 - mongoose: 聚合中间件
+        b) 1:04 - mongoose.pre('aggregate',function)实例: 接着在聚合这里，处理隐秘vip客户数据，的逻辑
+            0. 因为: 数据分析时将隐秘客户信息数据一起，分析了， 现将隐秘客户数据排除
+        c) 1:45 - 中间件的作用: 避免多余的重复代码 ( 中间件的意义 - 核心 )
+        d) 5:42 - 聚合中间件: 通过this.pipeline拦截，聚合命令，并做相应逻辑，从而过滤掉隐秘客户数据
+            0. this.pipeline()可以查看到，当前准备执行的"聚合运算符"数组
+            1. .unshift(): 在数组末尾加入相应，"聚合运算符命令"，做相应逻辑
+                a) .unshift()为标准的处理array的js函数，并非是第三方, 参考es5
+    # 107( 完成笔记 )
+        a) 00:00 - 数据验证 - 内置验证器
+        b) 1:03 - 非常重要: 黄金准则 - 不直接接受用户输入的数据，为了安全性必须要做好数据效验, 以及清理无用数据
+        c) 3:28 - mongoose.schema数据效验:
+            0. maxLength | minLength - 字符串最大最小长度效验
+        d) 4:09 - 测试api
+        e) 5:03 - 关闭效验: 则更新api接口，数据通过，但是建议开启效验
+        f) 6:38 - mongoose.schema数据效验:
+            0. min | max - 效验数字，最大，最小值
+        g) 8:59 - mongoose.schema数据效验: 
+            0. enum枚举值: 仅允许存储指定字符串
+            1. 注意: 仅支持String类型，不支持Number类型
+    # 108( 完成笔记 | 已实战位置 )
+        a) 00:00 - 自定义验证器
+        b) 5:02 - 构建: 自定义效验器
+            0. 注意: 效验函数只能返回true/false, true代表效验通过，false代表效验失败
+            1. VALUE: 能抓取到，对应的入参
+        c) 6:26 - 注意: this.xxx读取相应字段入参，只能在mongoose.schema淫威下使用
+        d) 7:56 - 第三方效验库( 已内置mongoose ): https://github.com/validatorjs/validator.js
+            0. 注意: 虽然已经内置validator, 但依然要安装才能使用
+        e) 9:48 - 安装validator: yarn add validator
+        f) 10:03 - 导入validator效验
+        g) 11:38 - 第三方库validator的使用:
+            0. validator.isAlpha: 验证字符串是否仅包含字母
+        h) 11:56 - 测试api，第三方库validator
+            0. 如果name字段中，包含数字则效验不通过
+        
 </pre>
 

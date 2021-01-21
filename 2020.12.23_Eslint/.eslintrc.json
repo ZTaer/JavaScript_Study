@@ -37,6 +37,21 @@
         "indent": [
             "warn",
             4
-        ]
+        ],
+        "key-spacing": [
+            1,
+            {
+                "beforeColon": false,
+                "afterColon": true
+            }
+        ],
+        "quotes": [
+            "warn",
+            "double",
+            {
+                "allowTemplateLiterals": true
+            }
+        ],
+        "no-throw-literal": "warn"
     }
 }

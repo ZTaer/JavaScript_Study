@@ -16,13 +16,13 @@ const router = express.Router();
 
 
 /**
- * 聚合管道计算 | 业务逻辑实战模拟 ( 等待笔记 )
+ * 聚合管道计算 | 业务逻辑实战模拟 ( 完成笔记 )
  */
 router.route("/monthly-plan/:year")
     .get(getMonthlyPlan);
 
 /**
- *  聚合管道计算 | 聚合管道查询,配置路由,方便测试API ( 等待笔记 )
+ *  聚合管道计算 | 聚合管道查询,配置路由,方便测试API ( 完成笔记 )
  */
 router.route("/get-tour-aggregate")
     .get(getTourStats);
