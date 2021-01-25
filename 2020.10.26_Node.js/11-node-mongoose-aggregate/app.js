@@ -47,4 +47,15 @@ if (process.env.NODE_ENV === "development") {
 app.use("/api/v1/tours", tourRoute);
 app.use("/api/v1/user", userRoute);
 
+/**
+ * 处理不存在的路由地址 ( 等待笔记 )
+ *      a) 注意: 处理不存在路由逻辑，要放置在，路由最下方，否则其他路由将无法正常执行
+ */
+app.all("*", (req, res, next) => {
+    res.status(404).json({
+        status: "fail",
+        data: "无此路由!",
+    });
+});
+
 module.exports = app;

@@ -973,14 +973,14 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
             0. 如果name字段中，包含数字则效验不通过
     # 109( 无需笔记 )
         a) 00:00 - express处理错误简介
-    # 110( 等待笔记 )
+    # 110( 完成笔记 )
         a) 00:00 - ndb调试工具
         b) 1:05 - 安装ndb: npm install ndb --global --save-dev | yarn add ndb --dev
         c) 2:25 - 配置package.json, debug
         d) 4:00 - ndb工具编辑代码，与vscode编辑代码同步
         e) 5:01 - 打断点，并运行当前代码
         f) 6:29 - node.js 5个基本状态信息变量
-        g) 7:36 - 调试器右侧Scope --> Local --> app --> _router --> stack: 查看当前express堆栈信息
+        g) 7:36 - 调试器右侧Scope --> Local --> app --> _router --> stack: 查看当前中间件堆栈信息
         h) 8:52 - 调试器右侧Scope --> Global --> process --> env: 存储着当前环境变量
         i) 11:58 - 断点调试: 这里可直接看到，当前代码的变量参数
             0. 断点: 代码将执行到断点时，停止执行
@@ -998,7 +998,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         c) 5:42 - 测试逻辑
         d) 6:43 - 注意: 处理不存在路由逻辑，要放置在，路由最下方，否则其他路由将无法正常执行
         e) 6:53 - 测试逻辑
-    # 112( 等待笔记 )
+    # 112( 完成笔记 )
         a) 00:00 - 处理错误概述
         b) 2:50 - 错误类型:
             0. 操作错误：
@@ -1028,7 +1028,6 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         k) 10:58 - 测试逻辑
     # 115( 等待笔记 )
         a) 00:00 - 抓捕异步函数中的错误
-        b) 
 
         
 </pre>
