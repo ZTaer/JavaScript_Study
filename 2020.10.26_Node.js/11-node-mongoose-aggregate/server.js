@@ -23,13 +23,17 @@ const DB_NETWORK = process.env.MONGODB_NETWORK;
 const DB_LOCAL = process.env.MONGODB_LOCAL;
 
 // b) 连接数据库
+
+console.log("数据库连接中...");
 mongoose.connect(
     DB_NETWORK, {
         useNewUrlParser: true,
         useCreateIndex: true,
         useFindAndModify: false,
+        useUnifiedTopology: true,
     },
-).then((data) => console.log("数据库连接成功!"));
+).then((data) => console.log("数据库连接成功!"))
+    .catch((err) => console.log("数据库连接失败!", err));
 
 const port = process.env.PORT;
 app.listen(port, () => {
