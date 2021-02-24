@@ -12,7 +12,8 @@ class AppError extends Error {
 
         this.statusCode = statusCode;
         this.status = `${statusCode}`.startsWith(4) ? "fail" : "error";
-        this.isOperational = true; // 伏笔 ( 等待研究 - 目前了解模糊 )
+        // this.isOperational作用: 错误处理组件, true时返回正常报错信息，false返回通用型报错信息，避免泄露开发报错信息 ( 完成笔记 )
+        this.isOperational = true;
 
         Error.captureStackTrace(this, this.constructor); // 报告错误堆栈信息 ( 等待研究 - 目前了解模糊 )
     }

@@ -202,6 +202,14 @@ exports.updateItemTours = catchAsync(async (req, res, next) => {
 // Delete: 删除数据逻辑
 exports.deleteItemTours = catchAsync(async (req, res, next) => {
     const deleteTour = await Tour.findByIdAndDelete(req.params.id);
+
+    // api逻辑中使用: 主动报错逻辑，并提供报错信息，以及状态码改变 ( 完成笔记 )
+    //      a) 使用: AppError传递错误信息 - 给全局错误处理中间件
+    //      b) 处理流程: catchAsync的next --> AppError --> 全局错误中间件
+    if (!deleteTour) {
+        return next(new AppError("Not find this id!", 404));
+    }
+
     res.status(204).json({
         status: "success",
         data: deleteTour,
