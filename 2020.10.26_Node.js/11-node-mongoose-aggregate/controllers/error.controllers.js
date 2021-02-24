@@ -1,7 +1,7 @@
 const AppError = require("../utils/app-error.utils");
 
 /**
- * 函数构建: 处理数据库报错信息 ( 等待笔记 )
+ * 函数构建: 处理数据库报错信息 ( 完成笔记 )
  *      a) 注意: return new AppError()错误, 方便加工处理
  */
 
@@ -17,15 +17,24 @@ const handleMongoErrorRepeatedFields = (err) => {
     return new AppError(msg, 400);
 };
 
+// 第三种错误: ValidationError 在写入以及更新,数据库时报错
+//      a) 注意: 因为错误类型不止一个，所以要便利字段，来恢复错误信息
+const handleValidationError = (err) => {
+    const errorMesageArray = Object.values(err.errors).map((cur) => ` ${cur.path}: ${cur.message} `); // 遍历总结错误信息
+
+    const msg = `错误参数: ${errorMesageArray.join("|")}`;
+    return new AppError(msg, 400);
+};
+
 /**
- * 完善错误处理组件, 根据不同环境返回报错信息 | 完善AppError错误处理组件 ( 等待笔记 )
+ * 完善错误处理组件, 根据不同环境返回报错信息 | 完善AppError错误处理组件 ( 完成笔记 )
  *      a) 完善错误处理组件, 根据不同环境返回报错信息
  *          0. err - 完整的报错信息
  *          1. err.statusCode - 错误状态码信息
  *          2. err.message - 错误信息
  *          3. err.status - 错误状态信息
  *          4. err.stack - 错误堆栈信息 ( 注意: 仅开发环境返回此数据 )
- * 启用伏笔: AppError下的 this.isOperational ( 等待笔记 )
+ * 启用伏笔: AppError下的 this.isOperational ( 完成笔记 )
  *      a) this.isOperational作用: true时返回正常报错信息，false返回通用型报错信息，避免泄露开发报错信息 ( 核心 )
  */
 
@@ -66,7 +75,7 @@ module.exports = (err, req, res, next) => {
     // 根据不同环境区分报错逻辑，方便开发
     if (process.env.NODE_ENV === "produce") {
         /**
-         * 逻辑构建: 处理数据库报错信息 ( 等待笔记 )
+         * 逻辑构建: 处理数据库报错信息 ( 完成笔记 )
          *      0. 3种数据库保存类型
          *          a) 第一种错误: casterror 因数据库返回的错误信息演示
          *          b) 第二种错误: MongoError Mongoose效验错误类型
@@ -83,6 +92,8 @@ module.exports = (err, req, res, next) => {
         // 第二种错误: MongoError Mongoose效验错误类型
         //      0. error.code === 11000: 代表重复字段错误
         if (error.code === 11000) error = handleMongoErrorRepeatedFields(error);
+        // 第三种错误: ValidationError 在写入以及更新,数据库时报错
+        if (errorType.startsWith("ValidationError")) error = handleValidationError(error);
 
         handleSendErrorMsgPro(res, error);
     } else if (process.env.NODE_ENV === "development") {

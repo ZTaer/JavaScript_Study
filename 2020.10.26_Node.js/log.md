@@ -1041,12 +1041,12 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
                 a) async函数删除try catch
                 b) 增加next入参, 方便高阶函数抓取错误
         i) 14:04 - 测试逻辑
-    # 116( 等待笔记 )
+    # 116( 完成笔记 )
         a) 00:00 - 增加404错误
         b) 1:33 - 错误演示: 切忌不可将catchAsync在route下使用，因为有的一些方法是同步的，一些方法是异步的，不容易debug
             0. 尽量将catchAsync写在controllers下
         c) 6:04 - 使用: 主动报错逻辑，并提供报错信息，以及状态码改变
-    # 117( 等待笔记 )
+    # 117( 完成笔记 )
         a) 00:00 -完善AppError错误处理组件 
         b) 2:15 - 完善错误处理组件, 根据不同环境返回报错信息
             0. err - 完整的报错信息
@@ -1059,7 +1059,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
             目的: 避免将一些开发环境报错信息，返回给生产环境用户
         e) 6:06 - this.isOperational作用: true时返回正常报错信息，false返回通用型报错信息，避免泄露开发报错信息
         f) 7:49 - 方便开发查看报错信息console.err()
-    # 118( 等待笔记 )
+    # 118( 完成笔记 )
         a) 00:00 - 处理数据库报错信息
             0. 3种数据库保存类型 - 当前
             1. 注意: 效验错误类型，根据error.stack下的开头字符串进行错误类型效验 ( 原视频中错误属性name已在新版本消失 )
@@ -1080,13 +1080,13 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
                 b) 通过相应的函数逻辑处理，修改error属性
                 c) 返回error对象属性信息
         g) 8:48 - 启动生产环境，老师的为mac可以用命令，windows手动更改变量环境吧
-    # 119( 等待笔记 | 已实战位置 )
+    # 119( 完成笔记 )
         a) 00:00 - 第二种错误: MongoError Mongoose效验错误类型 | 处理重复字段数据库报错逻辑
         b) 1:17 - 处理因重复字段数据库报错逻辑
             0. 核心: error.code === 11000: 代表重复字段错误
         c) 5:43 - 构建: 处理因重复字段数据库报错函数逻辑
             0. 注意: 正则是用于抓取，重复字段关键字
-    # 120( 等待笔记 )
+    # 120( 完成笔记 )
         a) 00:00 - 第三种错误: ValidationError 在写入以及更新,数据库时报错 | 处理mongoose验证错误
         b) 2:36 - ValidationError错误类型: mongoose错误
         c) 2:59 - 根据ValidationError错误类型做错误处理逻辑
@@ -1097,7 +1097,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
             0. 轻微错误
             1. 中级错误
             2. 严重错误
-    # 121( 等待笔记 )
+    # 121( 完成笔记 )
         a) 00:00 - 处理express之外的错误，比如数据库连接失败 | 最后的安全网
         b) 2:33 - 数据库连接: 抓取错误位置
         c) 3:37 - 监听错误: 未处理拒绝对象 | unhandled rejection
@@ -1106,7 +1106,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
             0. server.close(()=>{}) - 关闭服务
             1. process.exit(1) - 退出程序
             2. 生产环境: 使用第三方工具来重启服务
-    # 122( 等待笔记 )
+    # 122( 完成笔记 )
         a) 00:00 - 处理未捕获异常错误 | 最后的安全网
         b) 2:08 - 最后的安全网: process.on( 'uncaughtException', (err)=>console.log(err) );
         c) 2:53 - 优化错误打印结果
@@ -1118,8 +1118,10 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         h) 6:59 - 测试错误处理逻辑
         i) 8:14 - 介绍 - 中间件错误逻辑顺序
         j) 8:34 - 开发环境: 测试错误逻辑，能打印具体错误信息
-    # 123( 等待笔记 )
-
+    # 123( 等待笔记 | 已实战位置 )
+        a) 00:00 - 身份验证，授权和安全性
+            0. JSON Web Tokens | 效验技术
+        b) 
 
 </pre>
 
