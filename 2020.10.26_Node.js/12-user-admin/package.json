@@ -1,0 +1,37 @@
+{
+    "name": "hello-express",
+    "version": "1.0.0",
+    "description": "学习express和node.js以及MDB",
+    "main": "app.js",
+    "author": "OO7",
+    "license": "MIT",
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "mongoose": "^5.11.8",
+        "morgan": "^1.10.0",
+        "slugify": "^1.4.6",
+        "validator": "^13.5.2"
+    },
+    "devDependencies": {
+        "eslint": "^7.15.0",
+        "eslint-config-airbnb": "^18.2.1",
+        "eslint-config-prettier": "^7.0.0",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-prettier": "^3.3.0",
+        "eslint-plugin-react": "^7.21.5",
+        "ndb": "^1.1.5",
+        "nodemon": "^2.0.6",
+        "prettier": "^2.2.1"
+    },
+    "scripts": {
+        "start": "nodemon server.js",
+        "start-base": "nodemon app-base.js",
+        "debug": "ndb server.js"
+    },
+    "engines": {
+        "node": ">=10.0.0"
+    }
+}
