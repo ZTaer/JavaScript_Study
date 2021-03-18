@@ -1139,7 +1139,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         a) 00:00 - 完善加密密码逻辑
         b) 3:23 - schema: 自定义效验，二次确定密码
             0. return true - 通过验证，否则则相反
-            1. 更新密码: 注册新用户时，以及密码重新保存更新时
+            1. 注意: 创建/保存数据时，校验起作用。
         c) 5:08 - 测试注册用户api邮箱效验逻辑
         d) 5:46 - 测试注册用户api密码效验逻辑
         e) 6:26 - 注意: 永远不要在数据库中存储普通密码
@@ -1179,7 +1179,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     # 128( 等待笔记 )
         a) 00:00 - 注册用户
         b)  3:22 - 修复用户注册安全漏洞
-        c) 5:14 - 安装jsonwebtoken
+        c) 5:14 - 安装jsonwebtoken: yarn add jsonwebtoken
         d) 6:00 - jsonwebtoken - github文档
         e) 7:34 - 导入jsonwebtoker至auth controller
         f) 8:48 - 构建token
@@ -1195,12 +1195,41 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     # 129( 等待笔记 )
         a) 00:00 - 登陆用户
         b) 3:20 - 构建: 初步构建基本的登陆逻辑
+            0. 第一步: 验证用户是否输入，email和密码
+            1. 第二步: 验证email和密码的正确性
+            2. 第三步: 如果一切正确，则发送token
         c) 5:18 - 临时发送mock的token数据，测试登陆接口是否可相应
         d) 5:43 - 设定，登陆接口路由
-        e) 7:07 - 测试登陆api
+        e) 6:47 - 测试登陆api
+        f) 7:26 - 登陆逻辑在特定条件下return next()的原因: 
+            0. 确保逻辑立即结束完成
+            1. 防止因在同一个controller逻辑下，因二次res而报错
         f) 9:26 - mongoose schema 将passwrod设为select: false, 使接口无法发出密码到外界
-        g) 11:57 - 标准逻辑上一套
-        h) 等待补充。。。。
+        g) 11:57 - 构建: 查询用户逻辑, 复用的tour查询逻辑
+        h) 12:07 - 测试查询用户逻辑
+        i) 12:58 - 查询指定的登陆用户数据:
+            0. 注意: 因mongoose schema限制了password输出: 故使用.select("+password")来指定数据输出
+            1. 模型: User.findOne({email}).select("+password");
+                a) 含义: 根据email查询用户数据，并指定一定要输出password字段数据, 方便用户验证
+        j) 13:42 - 输出用户查询结果，方便验证逻辑正确性
+        k) 16:47 - 注意: mongoose schema 将指定字段设为select: false时, 在mongoose.schema下也无法使用this.password来调用
+        l) 18:21 - 构建: 通用性验证用户逻辑方便调用，在Model下 | 构建: 通用性逻辑方便调用
+            0. 注意: 尽量使用异步逻辑
+            1. 验证密码思路: 
+                a) 用户提交密码
+                b) 进行加密
+                c) 然后与数据库中密码对比验证
+            2. bcrypt.compare( 提交的密码，数据库密码 ): 对比验证，返回true则通过
+        m) 19:25 - 使用: 在Model下构建的通用性验证密码逻辑
+            0. 模型: user.xxx();
+        n) 20:13 - 构建: 验证密码失败逻辑
+            0. 状态码: 401, 代表用户授权失败
+            1. 失败原因: 用户查询不到，以及用户密码错误
+        o) 21:52 - 节约性能的，验证用户逻辑
+        p) 23:12 - 构建: 根据用户id构建输出token逻辑，方便调用 ( controller下 )
+        q) 23:34 - 完整的无状态登陆用户逻辑( 未来将完善 )
+        r) 25:08 - 清除user数据，验证测试，注册用户/登陆用户，逻辑
+    # 130( 等待笔记 )
         
 
 
