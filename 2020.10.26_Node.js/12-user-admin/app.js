@@ -16,7 +16,10 @@ app.use(express.static(`${__dirname}/public`));
 app.use(express.json());
 
 app.use((req, res, next) => {
-    console.log("全局中间件!");
+    /**
+     * 查看: header信息 | 包头信息 ( 等待笔记 )
+     */
+    console.log("全局中间件!", req.headers);
     req.nowTime = new Date().toISOString();
     next();
 });

@@ -42,6 +42,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "password error"],
         minlength: 6,
+        select: false, //  安全策略: mongoose schema 将passwrod设为select: false, 使接口无法发出密码到外界 ( 等待笔记 )
     },
     passwordConfirm: {
         type: String,
@@ -79,6 +80,21 @@ userSchema.pre("save", async function (next) {
     this.passwordConfirm = undefined;
     next();
 });
+
+/**
+ * 构建: schema下的方法函数 ( 等待笔记 )
+ * 构建: schema method 通用性逻辑 ( 等待笔记 )
+ * 构建: 校验密码逻辑 ( 等待笔记 )
+ *      0. 注意: 尽量使用异步逻辑
+ *      1. 验证密码思路:
+ *          a) 用户提交密码
+ *          b) 进行加密
+ *          c) 然后与数据库中密码对比验证
+ *      2. bcrypt.compare( 提交的密码，数据库密码 ): 对比验证，返回true则通过
+ */
+userSchema.methods.correctPassword = async function (postPassword, userPassowrd) {
+    return await bcrypt.compare(postPassword, userPassowrd); // true 密码正确
+};
 
 const User = mongoose.model("users", userSchema);
 
