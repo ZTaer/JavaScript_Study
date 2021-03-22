@@ -1,17 +1,20 @@
 const fs = require("fs");
+const catchAsync = require("../utils/catch-async.utils");
+const User = require("../models/user.models");
+const AppError = require("../utils/app-error.utils");
 
 const tour = JSON.parse(fs.readFileSync(`${__dirname}/../data/tours.json`, "utf-8"));
 
 // user相关API模拟
-exports.getAllUser = (req, res) => {
-    console.log("返回所有的数据!");
+exports.getAllUser = catchAsync(async (req, res, next) => {
+    const data = await User.find();
 
     res.status(200).json({
         status: "success",
-        nowTime: req.nowTime,
-        data: "all user!",
+        results: data.length,
+        data,
     });
-};
+});
 
 
 exports.getItemUser = (req, res) => {
