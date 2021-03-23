@@ -56,6 +56,9 @@ const userSchema = new mongoose.Schema({
             message: " password !== passwordConfirm ",
         },
     },
+    passwordChangeAt: {
+        type: Date,
+    },
 });
 
 
@@ -84,6 +87,9 @@ userSchema.pre("save", async function (next) {
 /**
  * 构建: schema下的方法函数 ( 等待笔记 )
  * 构建: schema method 通用性逻辑 ( 等待笔记 )
+ *      0. 使用: await 查询后的结果.xxxx();
+ *      1. 所以: this.xxx指向的是, 查询后的结果数据, 并非是上放的mongoose schema下的数据
+ *      2. 注意: 在使用时，如果为异步逻辑，一定不要忘记使用await
  * 构建: 校验密码逻辑 ( 等待笔记 )
  *      0. 注意: 尽量使用异步逻辑
  *      1. 验证密码思路:
@@ -91,9 +97,27 @@ userSchema.pre("save", async function (next) {
  *          b) 进行加密
  *          c) 然后与数据库中密码对比验证
  *      2. bcrypt.compare( 提交的密码，数据库密码 ): 对比验证，返回true则通过
+ * 构建: 判断用户密码是否修改 < token发行时间( 等待笔记 )
+ *      0. 目的: 比较时间, 验证用户是否修改密码, 防止为过期的token
+ *      1. jwt创建时间 < 修改密码时间 ---> 代表用户修改了密码，用户需重新登陆，重新生成token
+ *      2. xxx.getTime()/1000; 时间戳( ms ) --> 转换 --> 时间戳( 秒 )
  */
+// 校验密码逻辑
 userSchema.methods.correctPassword = async function (postPassword, userPassowrd) {
     return await bcrypt.compare(postPassword, userPassowrd); // true 密码正确
+};
+
+// 构建: 判断用户密码是否修改 < token发行时间
+//      a) return false 用户未修改密码，无需重新登陆
+//      b) jwt创建时间 < 修改密码时间 ---> 代表用户修改了密码，用户需重新登陆，重新生成token
+//      c) xxx.getTime()/1000; 时间戳( ms ) --> 转换 --> 时间戳( 秒 )
+userSchema.methods.changePasswordAfter = async function (JWTiat) {
+    let result = false;
+    if (this.passwordChangeAt) {
+        const passwordChangeTime = parseInt(this.passwordChangeAt.getTime() / 1000, 10); // 时间戳转换
+        result = passwordChangeTime > JWTiat;
+    }
+    return result;
 };
 
 const User = mongoose.model("users", userSchema);

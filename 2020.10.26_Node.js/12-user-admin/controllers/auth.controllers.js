@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const { promisify } = require("util");
 const User = require("../models/user.models");
 const catchAsync = require("../utils/catch-async.utils");
 const AppError = require("../utils/app-error.utils");
@@ -22,7 +23,7 @@ const handleOutputToken = (userId) => jwt.sign(
 // 注册逻辑
 exports.userSinUp = catchAsync(async (req, res, next) => {
     const {
-        email, phone, name, photo, password, passwordConfirm,
+        email, phone, name, photo, password, passwordConfirm, passwordChangeAt,
     } = req.body;
 
 
@@ -33,6 +34,7 @@ exports.userSinUp = catchAsync(async (req, res, next) => {
         photo, // 选填
         password, // 必填
         passwordConfirm, // 必填
+        passwordChangeAt,
     });
 
     /**
@@ -104,13 +106,14 @@ exports.userLogIn = catchAsync(async (req, res, next) => {
 });
 
 /**
- * 构建: 保护路线, 访问路线必须登陆，并验证token正确性
+ * 构建: 保护路线, 访问路线必须登陆，并验证token正确性( 等待笔记 )
  *      a) 保护思路: 路由加中间件验证逻辑
  *      b) JWT验证用户逻辑顺序
  *          0. 获取token
  *          1. 验证token
  *          2. 验证用户是否正确
  *          3. 签发token后，检测用户是否修改了密码
+ *          4. 授予访问受保护路线的权限 - 铺垫
  *      c)
  */
 
@@ -119,6 +122,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     //      a) 验证包头authorization是否存在token
     //          0. 存在: 则保存token
     //          1. 不存在: 则报错
+    //          2. 从req.headers.authorization( 包头 ): 获取token信息
     let token = "";
     if (
         req.headers.authorization && req.headers.authorization.startsWith("Bearer")
@@ -127,13 +131,42 @@ exports.protect = catchAsync(async (req, res, next) => {
     }
     if (!token) {
         return next(new AppError("not log in", 401));
+        // TODO: SSS
     }
 
     // 1. 验证token
+    //      a) 主要目的: 验证token
+    //          0. 解码: 如果token解码成功，则返回用户id以及token签发有效期
+    //              a) decoded { id: '6058a7595e444f46501c0ec3', iat: 1616425497, exp: 1624201497 }
+    //          1. 验证: 在验证用户
+    //      b) 验证token: jwt.verify()
+    //      c) promisify: 能直接获得异步回调结果, 简化逻辑
+    //          0. 来源: const { promisify } = require("util");
+    //      d) 注意:
+    //          0. 当jwt错误时，要构建错误逻辑: "JsonWebTokenError"
+    //          1. 当jwt有效时间过期时，要构建错误逻辑: "TokenExpiredError"
+    //              a) 注意: 新版本可能依然是 "JsonWebTokenError"
+    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+    console.log(`decoded`, decoded);
 
     // 2. 验证用户是否正确
+    //      a) 主要目的: 验证用户是否存在，防止token存在，用户不存在的情况
+    const freshUser = await User.findById(decoded.id);
+    if (!freshUser) {
+        return next(new AppError(" The user belonging to this token does no longer exist! ", 401));
+    }
 
     // 3. 签发token后，检测用户是否修改了密码
-    console.log(`protext 中间件`);
+    //      a) 逻辑流程:
+    //          0. 构建: 需要用户修改密码时间字段
+    //          1. 构建: 通用性逻辑, 验证比较，token发行时间与用户修改密码时间，判断是否为过期token
+    //              a) 是: 要求用户重新登陆
+    //              b) 否: 通行
+    if (await freshUser.changePasswordAfter(decoded.iat)) {
+        return next(new AppError(" token error , please log in again ", 401));
+    }
+
+    // 4. 授予访问受保护路线的权限 - 铺垫
+    req.user = freshUser;
     next();
 });

@@ -26,6 +26,8 @@ const handleValidationError = (err) => {
     return new AppError(msg, 400);
 };
 
+const handleJwtError = () => new AppError("error token , please log in again!", 401);
+
 /**
  * 完善错误处理组件, 根据不同环境返回报错信息 | 完善AppError错误处理组件 ( 完成笔记 )
  *      a) 完善错误处理组件, 根据不同环境返回报错信息
@@ -94,6 +96,14 @@ module.exports = (err, req, res, next) => {
         if (error.code === 11000) error = handleMongoErrorRepeatedFields(error);
         // 第三种错误: ValidationError 在写入以及更新,数据库时报错
         if (errorType.startsWith("ValidationError")) error = handleValidationError(error);
+
+        /**
+         * 陆续增加的错误处理逻辑( 等待笔记 )
+         *      a) 识别堆栈错误信息，进行对应的错误处理逻辑
+         * 增加JWT相关的错误处理逻辑( 等待笔记 )
+         */
+        // 错误: jwt错误时促发
+        if (errorType.startsWith("JsonWebTokenError") || errorType.startsWith("TokenExpiredError")) error = handleJwtError();
 
         handleSendErrorMsgPro(res, error);
     } else if (process.env.NODE_ENV === "development") {
