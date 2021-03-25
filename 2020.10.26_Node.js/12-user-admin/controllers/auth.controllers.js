@@ -17,7 +17,7 @@ const handleOutputToken = (userId) => jwt.sign(
 );
 
 /**
- * 构建: API注册用户逻辑 ( 等待笔记 )
+ * 构建: API注册用户逻辑 ( 完成笔记 )
  */
 
 // 注册逻辑
@@ -38,7 +38,7 @@ exports.userSinUp = catchAsync(async (req, res, next) => {
     });
 
     /**
-     * 构建: token | 初步签署构建JWT ( 等待笔记 )
+     * 构建: token | 初步签署构建JWT ( 完成笔记 )
      *      a) jwt.sign( {}, "", {} ); ( 核心 )
      *          0. 入参: paylad, secret, config
      *              a) payload: 就是jwt组成部分之一
@@ -58,7 +58,7 @@ exports.userSinUp = catchAsync(async (req, res, next) => {
 
 
 /**
- * api用户登陆逻辑( 等待笔记 )
+ * api用户登陆逻辑( 完成笔记 )
  *      a) 注意:
  *          0. 特定条件下return next()的原因
  *              a) 确保逻辑立即结束完成
@@ -89,7 +89,7 @@ exports.userLogIn = catchAsync(async (req, res, next) => {
     //              b) 进行加密
     //              c) 然后与数据库中密码对比验证
     //          2. bcrypt.compare( 提交的密码，数据库密码 ): 对比验证，返回true则通过
-    // 使用: schema method 通用性逻辑 ( 等待笔记 )
+    // 使用: schema method 通用性逻辑 ( 完成笔记 )
     //      a) 注意: schema method引入使用方式, 且为异步函数
     //      b) 模型: xxx.correctPassword
     const findResult = await User.findOne({ email }).select("+password");
@@ -106,7 +106,7 @@ exports.userLogIn = catchAsync(async (req, res, next) => {
 });
 
 /**
- * 构建: 保护路线, 访问路线必须登陆，并验证token正确性( 等待笔记 )
+ * 构建: 保护路线, 访问路线必须登陆，并验证token正确性( 完成笔记 )
  *      a) 保护思路: 路由加中间件验证逻辑
  *      b) JWT验证用户逻辑顺序
  *          0. 获取token

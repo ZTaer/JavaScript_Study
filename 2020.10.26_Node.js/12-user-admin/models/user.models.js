@@ -3,7 +3,7 @@ const validator = require("validator");
 const bcrypt = require("bcryptjs");
 
 /**
- * 构建用户模型( 等待笔记 - 核心 )
+ * 构建用户模型( 完成笔记 - 核心 )
  *      a) 总体逻辑流程:
  *          0. 构建schema: 用户mongoose.schema
  *              a) 构建: 通过schema中间件加密password
@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "password error"],
         minlength: 6,
-        select: false, //  安全策略: mongoose schema 将passwrod设为select: false, 使接口无法发出密码到外界 ( 等待笔记 )
+        select: false, //  安全策略: mongoose schema 将passwrod设为select: false, 使接口无法发出密码到外界 ( 完成笔记 )
     },
     passwordConfirm: {
         type: String,
@@ -63,7 +63,7 @@ const userSchema = new mongoose.Schema({
 
 
 /**
- * 构建: 通过schema中间件加密password( 等待笔记 )
+ * 构建: 通过schema中间件加密password( 完成笔记 )
  *      0. 防止重复加密: 当密码没有修改时不进行加密
  *          a) this.isModified() mongose schema自带的效验是否改变逻辑
  *      1. 使用bcrypt.hash方法
@@ -85,19 +85,19 @@ userSchema.pre("save", async function (next) {
 });
 
 /**
- * 构建: schema下的方法函数 ( 等待笔记 )
- * 构建: schema method 通用性逻辑 ( 等待笔记 )
+ * 构建: schema下的方法函数 ( 完成笔记 )
+ * 构建: schema method 通用性逻辑 ( 完成笔记 )
  *      0. 使用: await 查询后的结果.xxxx();
  *      1. 所以: this.xxx指向的是, 查询后的结果数据, 并非是上放的mongoose schema下的数据
  *      2. 注意: 在使用时，如果为异步逻辑，一定不要忘记使用await
- * 构建: 校验密码逻辑 ( 等待笔记 )
+ * 构建: 校验密码逻辑 ( 完成笔记 )
  *      0. 注意: 尽量使用异步逻辑
  *      1. 验证密码思路:
  *          a) 用户提交密码
  *          b) 进行加密
  *          c) 然后与数据库中密码对比验证
  *      2. bcrypt.compare( 提交的密码，数据库密码 ): 对比验证，返回true则通过
- * 构建: 判断用户密码是否修改 < token发行时间( 等待笔记 )
+ * 构建: 判断用户密码是否修改 < token发行时间( 完成笔记 )
  *      0. 目的: 比较时间, 验证用户是否修改密码, 防止为过期的token
  *      1. jwt创建时间 < 修改密码时间 ---> 代表用户修改了密码，用户需重新登陆，重新生成token
  *      2. xxx.getTime()/1000; 时间戳( ms ) --> 转换 --> 时间戳( 秒 )

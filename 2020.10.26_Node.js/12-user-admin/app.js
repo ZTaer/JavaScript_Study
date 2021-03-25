@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.use((req, res, next) => {
     /**
-     * 查看: header信息 | 包头信息 ( 等待笔记 )
+     * 查看: header信息 | 包头信息 ( 完成笔记 )
      */
     console.log("全局中间件!", req.headers);
     req.nowTime = new Date().toISOString();

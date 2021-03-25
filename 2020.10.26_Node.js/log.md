@@ -1121,21 +1121,21 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
 # 123( 无需笔记 )
     a) 00:00 - 身份验证，授权和安全性
         0. JSON Web Tokens | 效验技术
-# 124( 等待笔记 )
+# 124( 完成笔记 )
     a) 00:00 - 用户建模
     b) 6:04 - 构建user mongoose schema
         0. 注意: 邮箱效验，使用的validator.isEmail第三方库
     c) 9:09 - 构建password mongoose schema
     d) 9:47 - 细节: mongoose schema导出, 注意开头大写, 规范
     e) 
-# 125( 等待笔记 )
+# 125( 完成笔记 )
     a) 00:00 - 构建新用户接口
     b) 4:13 - 构建: 基本的创建新用户controller
         0. 注意: 写入数据库方法.create()
     c) 7:52 - 配置注册user路由
     d) 9:33 - 测试注册用户api
     e) 10:32 - 查看数据库是否存在注册的用户
-# 126( 等待笔记 )
+# 126( 完成笔记 )
     a) 00:00 - 完善加密密码逻辑
     b) 3:23 - schema: 自定义效验，二次确定密码
         0. return true - 通过验证，否则则相反
@@ -1161,7 +1161,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     k) 16:45 - 测试加密逻辑
         0. 注意: 二次确认密码，不在存储数据库字段中
     l) 18:10 - 重复密码 - 经过哈希处理，加密后也会变的不同
-# 127( 等待笔记 )
+# 127( 完成笔记 )
     a) 00:00 - 使用JWT( Json Web Tokens )进行身份效验
         0. 目的: 登陆用户可访问资源，非登陆用户不可访问
     b) 3:55 - https: 为了防止JWT泄露, 安全性，一定要使用https
@@ -1176,7 +1176,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
             d) 注意: header & payload 无加密，任何人都可以查看数据
             e) JWT组合: header+payload+secret+signature = JWT
     d) 7:57 - JWT效验流程图
-# 128( 等待笔记 )
+# 128( 完成笔记 )
     a) 00:00 - 注册用户
     b)  3:22 - 修复用户注册安全漏洞
     c) 5:14 - 安装jsonwebtoken: yarn add jsonwebtoken
@@ -1192,7 +1192,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     i) 13:48 - 测试注册逻辑
     j) 14:41 - jwt.io - 测试JWT是否有效 ( jwt debug 站点 )
         0. 注意: debug jwt token时，删除payload下的，iat/exp( 发布时间/到期时间 )保证debug正常
-# 129( 等待笔记 )
+# 129( 完成笔记 )
     a) 00:00 - 登陆用户
     b) 3:20 - 构建: 初步构建基本的登陆逻辑
         0. 第一步: 验证用户是否输入，email和密码
@@ -1228,7 +1228,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     p) 23:12 - 构建: 根据用户id构建输出token逻辑，方便调用 ( controller下 )
     q) 23:34 - 完整的无状态登陆用户逻辑( 未来将完善 )
     r) 25:08 - 清除user数据，验证测试，注册用户/登陆用户，逻辑
-# 130( 等待笔记 | 已实战位置 )
+# 130( 完成笔记 )
     a) 00:00 - 保护路线 | 访问路线必须登陆，并验证token正确性
     b) 1:18 - 保护思路: 路由加中间件验证逻辑 
     c) 2:33 - 构建: 保护中间件位置, auth controller下
@@ -1243,7 +1243,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     h) 8:47 - postman修改包头
     i) 12:57 - JWT: 获取token，并验证token是否存在
         0. 状态码: 401, 代表用户授权失败
-# 131( 等待笔记 )
+# 131( 完成笔记 | 已实位置 )
     a) 00:00 - 保护路线 | 验证token
     b) 1:48 - JWT: 验证jwt secret
     c) 3:33 - 回调获取验证结果:
@@ -1270,7 +1270,6 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     r) 28:33 - 构建: 验证用户是否修改了密码逻辑,return false没修改，return true为修改
     s) 29:18 - 完成第四步逻辑，用户密码修改，重新登陆，重新生成token
     t) 30:40 - 同感校验后，授权访问路线, req.user = freshUser未来铺垫属性
-
     
 
 
