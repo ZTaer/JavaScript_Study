@@ -6,8 +6,9 @@ const AppError = require("../utils/app-error.utils");
 const tour = JSON.parse(fs.readFileSync(`${__dirname}/../data/tours.json`, "utf-8"));
 
 // user相关API模拟
-exports.getAllUser = catchAsync(async (req, res, next) => {
+exports.getAllUser = catchAsync(async (_req, res, next) => {
     const data = await User.find();
+    if (!data) return next(new AppError("get all user error", 400));
 
     res.status(200).json({
         status: "success",
