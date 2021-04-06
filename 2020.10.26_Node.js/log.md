@@ -1243,7 +1243,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     h) 8:47 - postman修改包头
     i) 12:57 - JWT: 获取token，并验证token是否存在
         0. 状态码: 401, 代表用户授权失败
-# 131( 完成笔记 | 已实位置 )
+# 131( 完成笔记 )
     a) 00:00 - 保护路线 | 验证token
     b) 1:48 - JWT: 验证jwt secret
     c) 3:33 - 回调获取验证结果:
@@ -1270,7 +1270,70 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     r) 28:33 - 构建: 验证用户是否修改了密码逻辑,return false没修改，return true为修改
     s) 29:18 - 完成第四步逻辑，用户密码修改，重新登陆，重新生成token
     t) 30:40 - 同感校验后，授权访问路线, req.user = freshUser未来铺垫属性
-    
+# 132( 完成笔记 )
+    a) 00:00 - postman高级玩法
+    b) 02:03 - 设定环境变量:
+        0. 设定环境变量，方便索引使用
+        1. 设定url，写不同的域名, 方便切换环境开发测试
+    c) 7:25 - postman: test标签，写测试自动化语法, 将获取的属性值加入到，全局环境变量中
+        0. 目的: 获取的token放入到环境变量
+        1. 获取: 获取返回值变量属性
+    d) 8:24 - postman: 查看自动化语法，是否起作用，将指定属性，加入到全局环境变量
+    e) 9:54 - postman: 使用全局环境变量token
+# 133( 等待笔记 )
+    a) 00:00 - 用户权限设定
+    b) 2:37 - 增加用户授权中间件
+    c) 4:36 - mongoose schema 设定用户角色, 可根据不同项目实际清空创建角色
+    d) 6:18 - 中间件: 设定路线仅有指定用户有访问权限
+    e) 11:47 - 中间件: 用户权限controller中间件
+    f) 12:50 - 使用普通用户，测试带权的delete接口
+    g) 13:40 - 无权测试
+        0. 状态码: 403, 代表无权限
+# 134( 等待笔记 )
+    a) 00:00 - 密码重置
+    b) 2:11 - 路由: 设定忘记密码路由，重置密码路由
+    c) 3:56 - 忘记密码: 逻辑
+    d) 5:42 - 引用crypto, 用于生成简单的令牌
+    e) 7:22 - 此令牌不可明文存储于数据库中，防止hacker
+    f) 9:01 - 设定，重置密码令牌字段，以及重置令牌有效时间字段, 如10min
+    g) 10:02 - 构建: 生成重置令牌，schema中间件
+        0. 注意加密逻辑，以及，生成的有效时间逻辑
+    h) 15:07 - 修正路由
+    i) 16:13 - 构建: 重置密码逻辑
+        0. 生成重置token密码: 由a901结尾
+        1. user.save({ validateBeforeSave: false }); 代表无视校验存储
+# 135( 等待笔记 | 已实位置 )
+    a) 00:00 - node.js发送电子邮件: nodemailer
+    b) 1:15 - 构建email.utils.js
+    c) 2:49 - 基本的email逻辑
+    d) 5:58 - 配置Gmail: 但是不推荐，因为每天发送超过500邮件，就会标记为垃圾邮件
+    f) 6:56 - mailtrap: 注册邮件服务商开发API
+    g) 8:29 - 全局环境变量，配置mailtrap要求的配置
+    h) 11:38 - 基本的邮件逻辑
+        0. nodemailer配置查看: https://mailtrap.io/inboxes/1269629/messages
+    i) 额外Youtube:
+        0. nodemailer发送演示: https://www.youtube.com/watch?v=nF9g1825mwk
+            a) 26:06 - 使用smtp server邮件服务
+        1. 搭建smtp sever邮件服务: 
+            a) 简易版: https://www.youtube.com/watch?v=_pJt5zLxPtc
+            b) 详细版: https://www.youtube.com/watch?v=N7BmgJWnztk
+    j) 18:33 - 拼接修改密码相关信息，并发送邮件
+    k) 20:25 - 增加防错逻辑
+    l) 21:43 - 测试重置密码逻辑
+# 136( 等待笔记 - 80% )
+    a) 00:00 - 设置新的密码
+    b) 2:44 - 基本的，重置密码逻辑
+    c) 3:39 - 为了验证"重置密码token"的正确性，需重新加密计算
+    d) 6:22 - 判断"重置密码token"是否存在，并且判断有效时间是否过期，一切正常则继续重置密码逻辑，否则报错
+    e) 9:06 - 重置密码后，从数据库中，删除"重置密码token"以及"token"有效时间，并重新生成jwt token
+    f) 10:12 - 测试逻辑
+    g) 10:27 - 重邮件拿区，临时修改密码链接
+    h) 11:13 - 测试重置密码逻辑
+    i) 12:14 - 注意: 使用数据库的.save()逻辑
+        0. 原因: 数据库操控使用.save: 因为能够促发mongoose schema的校验逻辑以及中间件
+        1. 不可使用: .update逻辑，无法促发校验逻辑以及中间件
+    j) 15:14 - 构建中间件: 加工... ( 等待研究 )
+
 
 
         

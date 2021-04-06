@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
+const crypto = require("crypto");
 
 /**
  * 构建用户模型( 完成笔记 - 核心 )
@@ -59,6 +60,17 @@ const userSchema = new mongoose.Schema({
     passwordChangeAt: {
         type: Date,
     },
+    role: {
+        type: String,
+        enum: ["admin", "user", "guide", "leader-guide"], // enum: mongose schema枚举类型,保存的数据只能使用指定字段( 等待笔记 )
+        default: "user",
+    },
+    /**
+     * 设定: 重置密码令牌字段，以及重置令牌有效时间字段, 如10min( 等待笔记 )
+     *      a) 用于: 重置密码逻辑
+     */
+    passwordResetToken: String,
+    passwordResetExpires: Date,
 });
 
 
@@ -118,6 +130,25 @@ userSchema.methods.changePasswordAfter = async function (JWTiat) {
         result = passwordChangeTime > JWTiat;
     }
     return result;
+};
+
+/**
+ * 构建: 生成重置令牌，schema中间件( 等待笔记 )
+ *      0. 生成重置令牌: 利用crypto生成token
+ *      1. 加密: 加密重置令牌，并保存到数据库
+ *      2. 有效时间: 并设定令牌有效，时间为10min, 并存入数据中, 方便后续逻辑加工
+ *      3. 注意:
+ *          0. 重置令牌必须要加密存储
+ *          1. 重置令牌必须要有效时间
+ */
+userSchema.methods.createPasswordResetToken = async function () {
+    const resetToken = crypto.randomBytes(32).toString("hex"); // 生成token
+    this.passwordResetToken = crypto.createHash("sha256").update(resetToken).digest("hex"); // 加密存储token
+    // 设定有效时间: 当前时间~10分钟后
+    //      a) 60 * 1000: 代表一分钟 ( 单位为ms )
+    this.passwordResetExpires = Date.now() + 10 * (60 * 1000);
+
+    return resetToken;
 };
 
 const User = mongoose.model("users", userSchema);
