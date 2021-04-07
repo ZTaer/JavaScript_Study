@@ -11,7 +11,7 @@ const router = express.Router();
 router.route("/forgotpassword")
     .post(authControllers.forgotPassword);
 
-router.route("/resetPassword")
+router.route("/resetpassword/:resetTokenId")
     .post(authControllers.resetPassword);
 
 router.route("/login")

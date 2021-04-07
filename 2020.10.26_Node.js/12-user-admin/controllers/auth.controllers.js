@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
+const crypto = require("crypto");
 const User = require("../models/user.models");
 const catchAsync = require("../utils/catch-async.utils");
 const AppError = require("../utils/app-error.utils");
@@ -250,6 +251,37 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 /**
  * 构建: 重置密码逻辑( 等待笔记 )
  */
-exports.resetPassword = catchAsync((req, res, next) => {
-    next();
+exports.resetPassword = catchAsync(async (req, res, next) => {
+    console.log(`req.params`, req.params);
+    // 0. 获取"重置令牌"
+    const { resetTokenId } = req.params;
+    const { password, passwordConfirm } = req.body;
+    const encryptResetTokenId = crypto.createHash("sha256").update(resetTokenId).digest("hex");
+
+    // 1. 对比重置令牌
+    //      a) 验证方式:
+    //          0. url获取的令牌加密后 === 数据库中的已加密重置令牌
+    //          1. 当前时间 < 数据库中的有效期时间10min
+    //      b) 通过: 令牌相同则重置密码
+    //      c) 不通过: 则返回错误信息, 终止逻辑
+    const user = await User.findOne({
+        passwordResetToken: encryptResetTokenId,
+        passwordResetExpires: { $gt: Date.now() },
+    });
+    if (!user) { return next(new AppError("user not find!", 400)); }
+
+    // 2. 更新改变密码时间( 此逻辑放置中间件最佳 )
+    user.password = password;
+    user.passwordConfirm = passwordConfirm;
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save();
+
+    // 3. 发送新生成的jwt
+    const token = handleOutputToken(user._id);
+
+    res.status(200).json({
+        status: "success",
+        data: token,
+    });
 });
