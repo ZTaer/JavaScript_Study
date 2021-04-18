@@ -1450,7 +1450,11 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     e) 3:16 - 配置: 防御参数污染逻辑
     f) 5:17 - 配置: 参数白名单，在白名单中的参数，将不进行去重
     g) 8:12 - 手动白名单，为暂时保持代码简洁性
-# 146( 等待笔记 )
+# 146( 无需笔记 )
+    a) 00:00 - 数据建模
+# 147( 等待笔记 - 20% )
+    a) 00:00 - MongoDB数据建模 
+    b) 
     
 
 
