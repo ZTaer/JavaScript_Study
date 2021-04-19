@@ -6,6 +6,12 @@ const router = express.Router();
 
 
 /**
+ * 构建: 更新当前用户密码: 验证当前密码正确性, 在修改密码 ( 不通过邮箱修改密码 - 等待笔记 )
+ */
+router.route("/updatepassword")
+    .post(authControllers.protect, authControllers.updatePassword);
+
+/**
  * 构建: 重置/忘记密码路由 ( 等待笔记 )
  */
 router.route("/forgotpassword")

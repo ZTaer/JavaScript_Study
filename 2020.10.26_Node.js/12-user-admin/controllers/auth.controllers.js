@@ -18,6 +18,23 @@ const handleOutputToken = (userId) => jwt.sign(
     },
 );
 
+
+// 构建: 通用方法, 发送用户新生成的token逻辑( 等待笔记 )
+//      a) 构建原因: 此方法重复使用地方较多
+const handleCpuCreateTokenSendTo = (user, statusCode = 200, res) => {
+    try {
+        const token = handleOutputToken(user._id);
+        res.status(statusCode).json({
+            status: "success",
+            token,
+            data: { user },
+        });
+    } catch {
+        console.warn("handleCpuCreateTokenSend error");
+    }
+};
+
+
 /**
  * 构建: API注册用户逻辑 ( 完成笔记 )
  */
@@ -49,13 +66,7 @@ exports.userSinUp = catchAsync(async (req, res, next) => {
      *                  0. expiresIn: 设定token到期时间 ( 放置环境变量 )
      *
      */
-    const token = handleOutputToken(newUser._id);
-
-    res.status(201).json({
-        status: "success",
-        token,
-        data: newUser,
-    });
+    handleCpuCreateTokenSendTo(newUser, "201", res);
 });
 
 
@@ -100,11 +111,7 @@ exports.userLogIn = catchAsync(async (req, res, next) => {
     }
 
     // 第三步: 如果一切正确，则生成新的token并发送token
-    const token = handleOutputToken(findResult._id);
-    res.status(200).json({
-        status: "success",
-        token,
-    });
+    handleCpuCreateTokenSendTo(findResult, "200", res);
 });
 
 /**
@@ -249,7 +256,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 });
 
 /**
- * 构建: 重置密码逻辑( 等待笔记 )
+ * 构建: token重置密码逻辑( 等待笔记 )
  */
 exports.resetPassword = catchAsync(async (req, res, next) => {
     console.log(`req.params`, req.params);
@@ -278,10 +285,46 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     await user.save();
 
     // 3. 发送新生成的jwt
-    const token = handleOutputToken(user._id);
+    handleCpuCreateTokenSendTo(user, "201", res);
+});
 
-    res.status(200).json({
-        status: "success",
-        data: token,
-    });
+/**
+ * 更新当前用户密码: 验证当前密码正确性, 在修改密码 ( 不通过邮箱修改密码 - 等待笔记 )
+ *      0. 查询用户是否存在
+ *          a) 注意: 查询用户时，需要输出password用于校验密码正确性
+ *      1. mongoose验证当前密码是否正确 ( 核心 )
+ *          a) await user.correctPassword(password, user.password): true代表密码正确，否则错误
+ *              0. 注意: 为异步
+ *              1. 注意: 此函数并非官方函数，此乃构建的中间件通用性逻辑方法, 方便校验密码, 具体查看user.models.js
+ *          b) user: 为查询结果
+ *      2. 如果密码正确，则更新保存密码
+ *          a) 注意: 这里一定要用save()保存，方便mongoose.schema拦截校验密码格式
+ *      3. 发送新的JWT TOKEN
+ *          a) 原因: 只要用户密码有变动，都要重新生成token
+ */
+exports.updatePassword = catchAsync(async (req, res, next) => {
+    // 0. 查询用户是否存在
+    //      a) 注意: 查询用户时，需要输出password用于校验密码正确性
+    const user = await User.findById(req.user.id).select("+password");
+    if (!user) return next(new AppError("user not find!", 400));
+
+    // 1. mongoose验证当前密码是否正确 ( 核心 )
+    //      a) await user.correctPassword(password, user.password): true代表密码正确，否则错误
+    //          0. 注意: 为异步
+    //          1. 注意: 此函数并非官方函数，此乃构建的中间件通用性逻辑方法, 方便校验密码, 具体查看user.models.js
+    //      b) user: 为查询结果
+    const { password, passwordConfirm, passwordUpdate } = req.body;
+    if (!(await user.correctPassword(password, user.password))) {
+        return next(new AppError(" password error! ", 401));
+    }
+
+    // 2. 如果密码正确，则更新保存密码
+    //      a) 注意: 这里一定要用save()保存，方便mongoose.schema拦截校验密码格式
+    user.password = passwordUpdate;
+    user.passwordConfirm = passwordConfirm;
+    await user.save();
+
+    // 3. 发送新的JWT TOKEN
+    //      a) 原因: 只要用户密码有变动，都要重新生成token
+    handleCpuCreateTokenSendTo(user, "201", res);
 });
