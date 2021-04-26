@@ -4,6 +4,18 @@ const authControllers = require("../controllers/auth.controllers");
 
 const router = express.Router();
 
+/**
+ * 构建: 注销用户
+ */
+router.route("/deletecurrentuser")
+    .post(authControllers.protect, authControllers.deleteCurrentUser);
+
+/**
+ * 构建: 更新当前用户个人信息路由
+ */
+router.route("/updatecurrentuser")
+    .post(authControllers.protect, authControllers.updateCurrentUser);
+
 
 /**
  * 构建: 更新当前用户密码: 验证当前密码正确性, 在修改密码 ( 不通过邮箱修改密码 - 等待笔记 )

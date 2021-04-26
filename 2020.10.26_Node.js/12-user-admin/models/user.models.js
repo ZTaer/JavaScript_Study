@@ -71,6 +71,24 @@ const userSchema = new mongoose.Schema({
      */
     passwordResetToken: String,
     passwordResetExpires: Date,
+    /**
+     * 代表用户状态: 注销当前用户( 等待笔记 )
+     *      0. 基本逻辑: 用户注销，其实并为在数据库中，真正的删除，只是改变一种昨天字段active: true/false, 方便用户在未来重新激活账号
+     */
+    active: {
+        type: Boolean,
+        default: true,
+        select: false,
+    },
+});
+
+/**
+ * 构建: 不查询注销用户( 等待笔记 )
+ *      0. 过滤: 用户active false时
+ */
+userSchema.pre(/^find/, function (next) {
+    this.find({ active: { $ne: false } }); // 当vipTour字段为true时，不输出此数据 ( 核心 )
+    next();
 });
 
 

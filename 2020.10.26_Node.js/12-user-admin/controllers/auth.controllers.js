@@ -21,16 +21,51 @@ const handleOutputToken = (userId) => jwt.sign(
 
 // 构建: 通用方法, 发送用户新生成的token逻辑( 等待笔记 )
 //      a) 构建原因: 此方法重复使用地方较多
+// 扩展: 通过Cookie发送JWT( 等待笔记 )
+//      a)原因: 为了安全性JWT不可存储在localStorage
+//      b) Cookie是什么: 服务器发送给前端一串字符串
+//      c) res.cookie( cookie键值, cookie内容, cookie选项 ): 发送cookie方法 ( 核心 )
+//          0. Cookie选项:
+//              a) expires: Cookie过期时间
+//                  0. 配置环境变量: Cookie过期时间
+//                  1. 设置90天的有效期: 注意转换为ms单位
+//              b) secure: true; 仅在加密安全的链接上发送Cookie( https )
+//                  0. 注意: 建议仅生产模式，启用
+//              c) httpOnly: true; 使浏览器无法修改Cookie( 预防XSS攻击 )
+//      d) 前端Cookie接受逻辑: 后端发送Cookie后, 不同字段名称为追加模式，同字段名称为替换模式 ( 核心 )
 const handleCpuCreateTokenSendTo = (user, statusCode = 200, res) => {
     try {
         const token = handleOutputToken(user._id);
+
+        const cookieOption = {
+            expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
+            httpOnly: true,
+        };
+        if (process.env.NODE_ENV === "produce") cookieOption.secure = true; // 仅在生产模式，开启此安全选项
+
+        res.cookie("JWT", token, cookieOption); // 发送Cookie ( 核心 )
+
+        user.password = undefined; // 防止密码泄露
+
         res.status(statusCode).json({
             status: "success",
-            token,
             data: { user },
         });
     } catch {
         console.warn("handleCpuCreateTokenSend error");
+    }
+};
+
+const handleCpuFilterKeyNameDate = (objectDate, ...keyName) => {
+    try {
+        const result = {};
+        Object.keys(objectDate).forEach((item) => {
+            if (keyName.includes(item)) result[item] = objectDate[item];
+        });
+        return result;
+    } catch {
+        console.warn("handleCpuFilterKeyNameDate error");
+        return {};
     }
 };
 
@@ -328,3 +363,65 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
     //      a) 原因: 只要用户密码有变动，都要重新生成token
     handleCpuCreateTokenSendTo(user, "201", res);
 });
+
+
+/**
+ * 构建: 更新当前用户个人信息( 等待笔记 )
+ *      a) 注意: 防密码更新
+ *      b) 不校验存储数据方式: ( 核心 )
+ *          0. Xxx.save({ validateBeforeSave: false });
+ *          1. Xxx.findByIdAndUpdate( 用户id, 保存的object字段数据, 配置  );
+ *              a) 配置: { new: true, runValidators: true }
+ *                  0. new: true --> 返回更新后的Object数据
+ *                  1. runValidators: true --> 更新的数据，要经过mongoose.schema校验
+ */
+exports.updateCurrentUser = catchAsync(async (req, res, next) => {
+    // 0. 防密码更新
+    const { password, passwordConfirm } = req.body;
+    if (password || passwordConfirm) {
+        return next(new AppError("Prohibit changing password!", 401));
+    }
+
+    // 1. 更新用户个人信息
+    const updateUser = await User.findByIdAndUpdate(req.user.id, handleCpuFilterKeyNameDate(req.body, "name", "phone"), {
+        new: true,
+        runValidators: true,
+    });
+
+    res.status(200).json({
+        status: "success",
+        data: updateUser,
+    });
+});
+
+/**
+ * 构建: 注销当前用户( 等待笔记 )
+ *      0. 基本逻辑: 用户注销，其实并为在数据库中，真正的删除，只是改变一种昨天字段active: true/false, 方便用户在未来重新激活账号
+ */
+exports.deleteCurrentUser = catchAsync(async (req, res, next) => {
+    const { password } = req.body;
+    const userId = req.user.id;
+
+    // 0. 查询用户是否存在
+    const user = await User.findById(userId).select("+password");
+    if (!user) {
+        return next(new AppError("User does not exist!", 400));
+    }
+
+    // 1. 验证用户密码是否正确
+    if (!(await user.correctPassword(password, user.password))) {
+        return next(new AppError("password error!", 401));
+    }
+
+    // 2. 改变当前用户active状态为false
+    //      a) false代表注销用户
+    //      b) true代表正常用户
+    user.active = false;
+    await user.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+        status: "success",
+        data: user,
+    });
+});
+
