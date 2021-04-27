@@ -62,17 +62,17 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ["admin", "user", "guide", "leader-guide"], // enum: mongose schema枚举类型,保存的数据只能使用指定字段( 等待笔记 )
+        enum: ["admin", "user", "guide", "leader-guide"], // enum: mongose schema枚举类型,保存的数据只能使用指定字段( 完成笔记 )
         default: "user",
     },
     /**
-     * 设定: 重置密码令牌字段，以及重置令牌有效时间字段, 如10min( 等待笔记 )
+     * 设定: 重置密码令牌字段，以及重置令牌有效时间字段, 如10min( 完成笔记 )
      *      a) 用于: 重置密码逻辑
      */
     passwordResetToken: String,
     passwordResetExpires: Date,
     /**
-     * 代表用户状态: 注销当前用户( 等待笔记 )
+     * 代表用户状态: 注销当前用户( 完成笔记 )
      *      0. 基本逻辑: 用户注销，其实并为在数据库中，真正的删除，只是改变一种昨天字段active: true/false, 方便用户在未来重新激活账号
      */
     active: {
@@ -83,7 +83,7 @@ const userSchema = new mongoose.Schema({
 });
 
 /**
- * 构建: 不查询注销用户( 等待笔记 )
+ * 构建: 不查询注销用户( 完成笔记 )
  *      0. 过滤: 用户active false时
  */
 userSchema.pre(/^find/, function (next) {
@@ -151,7 +151,7 @@ userSchema.methods.changePasswordAfter = async function (JWTiat) {
 };
 
 /**
- * 构建: 生成重置令牌，schema中间件( 等待笔记 )
+ * 构建: 生成重置令牌，schema中间件( 完成笔记 )
  *      0. 生成重置令牌: 利用crypto生成token
  *      1. 加密: 加密重置令牌，并保存到数据库
  *      2. 有效时间: 并设定令牌有效，时间为10min, 并存入数据中, 方便后续逻辑加工

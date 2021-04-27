@@ -19,9 +19,9 @@ const handleOutputToken = (userId) => jwt.sign(
 );
 
 
-// 构建: 通用方法, 发送用户新生成的token逻辑( 等待笔记 )
+// 构建: 通用方法, 发送用户新生成的token逻辑( 完成笔记 )
 //      a) 构建原因: 此方法重复使用地方较多
-// 扩展: 通过Cookie发送JWT( 等待笔记 )
+// 扩展: 通过Cookie发送JWT( 完成笔记 )
 //      a)原因: 为了安全性JWT不可存储在localStorage
 //      b) Cookie是什么: 服务器发送给前端一串字符串
 //      c) res.cookie( cookie键值, cookie内容, cookie选项 ): 发送cookie方法 ( 核心 )
@@ -217,7 +217,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 
 
 /**
- * 构建: 用户权限验证逻辑( 等待笔记 )
+ * 构建: 用户权限验证逻辑( 完成笔记 )
  *      a) role: ["xxx"]为数据类型，此为es6入参写法
  *      b) req.user.role: 只所以能获取到，用户信息，是因为在上放中间件做了铺垫，将查询到的user信息保存在了req中
  *      c) 状态码: 403, 代表无权限
@@ -233,7 +233,7 @@ exports.restrictTo = (...role) => (req, res, next) => {
 
 
 /**
- * 构建: 忘记密码逻辑( 等待笔记 )
+ * 构建: 忘记密码逻辑( 完成笔记 )
  *      0. 获取用户的email
  *      1. 生成重置密码token
  *          a) 注意: token一定要限制有效时间，默认10min
@@ -291,7 +291,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 });
 
 /**
- * 构建: token重置密码逻辑( 等待笔记 )
+ * 构建: token重置密码逻辑( 完成笔记 )
  */
 exports.resetPassword = catchAsync(async (req, res, next) => {
     console.log(`req.params`, req.params);
@@ -324,7 +324,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 });
 
 /**
- * 更新当前用户密码: 验证当前密码正确性, 在修改密码 ( 不通过邮箱修改密码 - 等待笔记 )
+ * 更新当前用户密码: 验证当前密码正确性, 在修改密码 ( 不通过邮箱修改密码 - 完成笔记 )
  *      0. 查询用户是否存在
  *          a) 注意: 查询用户时，需要输出password用于校验密码正确性
  *      1. mongoose验证当前密码是否正确 ( 核心 )
@@ -366,7 +366,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
 
 /**
- * 构建: 更新当前用户个人信息( 等待笔记 )
+ * 构建: 更新当前用户个人信息( 完成笔记 )
  *      a) 注意: 防密码更新
  *      b) 不校验存储数据方式: ( 核心 )
  *          0. Xxx.save({ validateBeforeSave: false });
@@ -395,7 +395,7 @@ exports.updateCurrentUser = catchAsync(async (req, res, next) => {
 });
 
 /**
- * 构建: 注销当前用户( 等待笔记 )
+ * 构建: 注销当前用户( 完成笔记 )
  *      0. 基本逻辑: 用户注销，其实并为在数据库中，真正的删除，只是改变一种昨天字段active: true/false, 方便用户在未来重新激活账号
  */
 exports.deleteCurrentUser = catchAsync(async (req, res, next) => {

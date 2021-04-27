@@ -18,13 +18,13 @@ router.route("/updatecurrentuser")
 
 
 /**
- * 构建: 更新当前用户密码: 验证当前密码正确性, 在修改密码 ( 不通过邮箱修改密码 - 等待笔记 )
+ * 构建: 更新当前用户密码: 验证当前密码正确性, 在修改密码 ( 不通过邮箱修改密码 - 完成笔记 )
  */
 router.route("/updatepassword")
     .post(authControllers.protect, authControllers.updatePassword);
 
 /**
- * 构建: 重置/忘记密码路由 ( 等待笔记 )
+ * 构建: 重置/忘记密码路由 ( 完成笔记 )
  */
 router.route("/forgotpassword")
     .post(authControllers.forgotPassword);
@@ -45,7 +45,7 @@ router.route("/")
 router.route("/:id")
     .get(userControllers.getItemUser)
     .patch(userControllers.updateItemUser)
-    // 权限验证中间件逻辑，使用位置( 等待笔记 )
+    // 权限验证中间件逻辑，使用位置( 完成笔记 )
     //      a) 目前逻辑: 仅限admin类型用户访问此路线
     .delete(authControllers.protect, authControllers.restrictTo("admin"), userControllers.deleteItemUser);
 

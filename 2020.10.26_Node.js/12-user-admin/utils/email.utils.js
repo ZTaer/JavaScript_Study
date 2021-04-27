@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 /**
- * 构建: nodemailer发送email逻辑( 等待笔记 )
+ * 构建: nodemailer发送email逻辑( 完成笔记 )
  *      a) nodemailer: 第三方发送邮件库
  *          0. 安装: yarn add nodemailer
  *              a) 额外Youtube教程:

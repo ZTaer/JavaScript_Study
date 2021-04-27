@@ -1280,7 +1280,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         1. 获取: 获取返回值变量属性
     d) 8:24 - postman: 查看自动化语法，是否起作用，将指定属性，加入到全局环境变量
     e) 9:54 - postman: 使用全局环境变量token
-# 133( 等待笔记 )
+# 133( 完成笔记 )
     a) 00:00 - 用户权限设定
     b) 2:37 - 增加用户授权中间件
     c) 4:36 - mongoose schema 设定用户角色, 可根据不同项目实际清空创建角色
@@ -1289,7 +1289,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     f) 12:50 - 使用普通用户，测试带权的delete接口
     g) 13:40 - 无权测试
         0. 状态码: 403, 代表无权限
-# 134( 等待笔记 )
+# 134( 完成笔记 )
     a) 00:00 - 密码重置
     b) 2:11 - 路由: 设定忘记密码路由，重置密码路由
     c) 3:56 - 忘记密码: 逻辑
@@ -1302,7 +1302,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     i) 16:13 - 构建: 重置密码逻辑
         0. 生成重置token密码: 由a901结尾
         1. user.save({ validateBeforeSave: false }); 代表无视校验存储
-# 135( 等待笔记 )
+# 135( 完成笔记 )
     a) 00:00 - node.js发送电子邮件: nodemailer
     b) 1:15 - 构建email.utils.js
     c) 2:49 - 基本的email逻辑
@@ -1320,7 +1320,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     j) 18:33 - 拼接修改密码相关信息，并发送邮件
     k) 20:25 - 增加防错逻辑
     l) 21:43 - 测试重置密码逻辑
-# 136( 等待笔记 )
+# 136( 完成笔记 )
     a) 00:00 - 设置新的密码
     b) 1:50 - 令牌验证逻辑: url获取的未加密"重置令牌"与数据库存储的加密重置令牌，进行比较，是否相等
         0. token比较逻辑: 未加密令牌进行加密，在与数据库中的加密令牌比较，是否相等
@@ -1344,7 +1344,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         3. 目的: 记录密码修改更新时间
     m) 18:01 - 防止: token建立时间 > 密码改变时间, 故密码更新时间-1000ms
     n) 18:45 - 测试"重置令牌"过期后逻辑，是否正常
-# 137( 等待笔记 | 实战位置 )
+# 137( 完成笔记 )
     a) 00:00 - 更新当前用户密码: 验证当前密码正确性, 在修改密码 ( 不通过邮箱修改密码 ) 
     b) 2:46 - 基本逻辑
     c) 7:11 - 完善重置密码逻辑
@@ -1360,7 +1360,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     h) 14:40 - 修正: 密码验证逻辑
     i) 15:32 - 测试功能逻辑
     j) 16:02 - PostMan: 自动化更新token变量
-# 138( 等待笔记 )
+# 138( 完成笔记 )
     a) 00:00 - 更新当前用户数据: 
     b) 3:24 - 基本逻辑
     c) 3:48 - 步骤一: 防密码更新逻辑，更新密码则报错
@@ -1373,7 +1373,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     i) 17:34 - 过滤出指定字段，保证数据更新安全
     j) 18:15 - 完善的更新数据逻辑
     k) 19:40 - 测试逻辑是否正常
-# 139( 等待笔记 )
+# 139( 完成笔记 )
     a) 00:00 - 注销当前用户
         a) 基本逻辑: 用户注销，其实并为在数据库中，真正的删除，只是改变一种昨天字段active: true/false, 方便用户在未来重新激活账号
     b) 1:31 - mongoose.schema 增加用户活动字段: 用于标识是否为注销用户
@@ -1390,7 +1390,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
             a) Cookie: 浏览器只能接受，或者发送Cookie值，外部用户无法改变
         1. 清空用户表单值
         2. 设置特殊的http headers包头
-# 141( 等待笔记 )
+# 141( 完成笔记 | 实战位置 )
     a) 00:00 - 通过Cookie发送JWT
         0. 原因: 为了安全性JWT不可存储在localStorage
         1. Cookie: 服务器发送给前端一串字符串
@@ -1407,7 +1407,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     h) 8:47 - 在发送jwt token/发送Cookie做: 防密码暴露输出逻辑
     i) 9:11 - 查看全局接受的Cookie
         0. Cookie接受逻辑: 后端发送Cookie后, 不同字段名称为追加模式，同字段名称为替换模式 
-# 142( 等待笔记 )
+# 142( 完成笔记 )
     a) 00:00 - 实施限速 
     b) 0:59 - 安装: yarn add express-rate-limit
         0. 目的: 用于限制接口速率，以及屏蔽多次访问的IP
@@ -1417,19 +1417,20 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     f) 5:52 - 计数逻辑，将在服务重启后重置，或者约定时间到期重置 
     g) 6:35 - 测试限制逻辑
         0. 429状态码: 代表访问次数过多，遭到访问限制
-# 143( 等待笔记 )
+# 143( 完成笔记 )
     a) 00:00 - 设置安全性的http包头
     b) 0:26 - 安装: yarn add helmet
         0. 目的: 给http包头设置安全属性
     c) 2:18 - 配置安全的http头
     d) 3:17 - 限制包的大小，超过10kb将不接受
     e) 4:11 - 测试包头安全逻辑，多出了很多属性，浏览器可以理解这些安全属性
-# 144( 等待笔记 )
+# 144( 完成笔记 )
     a) 00:00 - 数据清理
         0. 目的: 防止hacker攻击
     b) 1:11 - 安全逻辑
         0. 防NoSql注入
         1. 防Xss跨站脚本攻击
+        2. 注意: 安全逻辑，放置express.json解析数据之后
     c) 2:26 - 演示NoSql注入攻击 ( 核心 )
         0. 直接管理员登陆
     d) 3:57 - 安装: yarn add express-mongo-sanitize
@@ -1441,7 +1442,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     h) 6:24 - 测试防御NoSql攻击
     i) 8:18 - 测试xss攻击
     j) 8:32 - 配置: 防御Xss攻击
-# 145( 等待笔记 )
+# 145( 完成笔记 )
     a) 00:00 - 防止参数污染
     b) 1:18 - 测试参数污染入参
     c) 2:05 - 污染参数演示: 当前有二个重复的入参，导致逻辑错误

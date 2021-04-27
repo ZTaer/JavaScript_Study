@@ -17,7 +17,7 @@ const ErrorControllers = require("./controllers/error.controllers");
 const app = express();
 
 /**
- * 设置安全性的http包头 ( 等待笔记 )
+ * 设置安全性的http包头 ( 完成笔记 )
  *      a) 目的: 设置安全性的http包头, 防xss攻击
  *      b) 安装: yarn add helmet
  *      c) 安全包头: 包头，多出了很多属性，浏览器可以理解这些安全属性
@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 /**
- * 同一IP访问次数限制( 等待笔记 )
+ * 同一IP访问次数限制( 完成笔记 )
  *      a) 目的: 屏蔽多次频繁访问的IP
  *      b) 安装: yarn add express-rate-limit
  *      c) 计数逻辑: 将在服务重启后重置，或者约定时间到期重置
@@ -48,11 +48,11 @@ app.use("/api", limiter);
 // 生成静态文件
 app.use(express.static(`${__dirname}/public`));
 
-// 解析req.body | 限制传输包的大小 ( 等待笔记 )
+// 解析req.body | 限制传输包的大小 ( 完成笔记 )
 app.use(express.json({ limit: "10kb" }));
 
 /**
- * 安全逻辑: 防御NoSql注入攻击，XSS攻击 ( 等待笔记 - 核心 )
+ * 安全逻辑: 防御NoSql注入攻击，XSS攻击 ( 完成笔记 - 核心 )
  *      a) 防御NoSQL
  *          0. 安装: yarn add express-mongo-sanitize
  *          1. 防御NoSql: 本质上是清除mongose运算符例$符号等...
@@ -64,7 +64,7 @@ app.use(mongoSanitize());
 app.use(xssClean());
 
 /**
- * 安全逻辑: 防止参数污染 ( 等待笔记 - 核心 )
+ * 安全逻辑: 防止参数污染 ( 完成笔记 - 核心 )
  *      a) 参数污染是什么: 重复的入参，导致逻辑错误等其他错误入参方式...
  *      b) 安装: yarn add hpp
  *      c) 防御逻辑: 入参去重
