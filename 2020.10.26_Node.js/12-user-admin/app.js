@@ -1,6 +1,11 @@
 const express = require("express");
 const morgan = require("morgan");
 
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
+const mongoSanitize = require("express-mongo-sanitize");
+const xssClean = require("xss-clean");
+const hpp = require("hpp");
 const userRoute = require("./routes/user.routes");
 const tourRoute = require("./routes/tour.routes");
 const AppError = require("./utils/app-error.utils");
@@ -11,9 +16,65 @@ const ErrorControllers = require("./controllers/error.controllers");
  */
 const app = express();
 
+/**
+ * 设置安全性的http包头 ( 完成笔记 )
+ *      a) 目的: 设置安全性的http包头, 防xss攻击
+ *      b) 安装: yarn add helmet
+ *      c) 安全包头: 包头，多出了很多属性，浏览器可以理解这些安全属性
+ *
+ */
+app.use(helmet());
+
+if (process.env.NODE_ENV === "development") {
+    app.use(morgan("dev"));
+}
+
+/**
+ * 同一IP访问次数限制( 完成笔记 )
+ *      a) 目的: 屏蔽多次频繁访问的IP
+ *      b) 安装: yarn add express-rate-limit
+ *      c) 计数逻辑: 将在服务重启后重置，或者约定时间到期重置
+ *      d) 429状态码: 代表访问次数过多，遭到访问限制
+ */
+// 允许同一个IP，在一小时内最大访问数为100次
+const limiter = rateLimit({
+    max: 100,
+    windowMs: 60 * 60 * 1000,
+    message: "Frequent visits, please try again in 1 hour!",
+});
+// 将限制IP逻辑，应用至对应路由
+app.use("/api", limiter);
+
+// 生成静态文件
 app.use(express.static(`${__dirname}/public`));
 
-app.use(express.json());
+// 解析req.body | 限制传输包的大小 ( 完成笔记 )
+app.use(express.json({ limit: "10kb" }));
+
+/**
+ * 安全逻辑: 防御NoSql注入攻击，XSS攻击 ( 完成笔记 - 核心 )
+ *      a) 防御NoSQL
+ *          0. 安装: yarn add express-mongo-sanitize
+ *          1. 防御NoSql: 本质上是清除mongose运算符例$符号等...
+ *      b) 防御XSS攻击
+ *          0. 安装: yarn add xss-clean
+ *      c) 注意: 安全逻辑，放置express.json解析数据之后
+ */
+app.use(mongoSanitize());
+app.use(xssClean());
+
+/**
+ * 安全逻辑: 防止参数污染 ( 完成笔记 - 核心 )
+ *      a) 参数污染是什么: 重复的入参，导致逻辑错误等其他错误入参方式...
+ *      b) 安装: yarn add hpp
+ *      c) 防御逻辑: 入参去重
+ *          0. 注意: 某些场景需要重复入参，则使用参数白名单，在白名单中的参数，将不进行去重
+ *      d) hpp({ whitelist:["白名单字段"] }): 在此字段，将不去重
+ */
+app.use(hpp({
+    whitelist: ["duration", "ratingsQuantity", "ratingsAverage", "difficulty", "price", "maxGroupSize"],
+}));
+
 
 app.use((req, res, next) => {
     /**
@@ -24,9 +85,7 @@ app.use((req, res, next) => {
     next();
 });
 
-if (process.env.NODE_ENV === "development") {
-    app.use(morgan("dev"));
-}
+
 
 /**
  * 1. 全局路由 - 区域:
