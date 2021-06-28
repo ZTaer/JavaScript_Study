@@ -162,7 +162,17 @@ exports.getAllToursClass = catchAsync(async (req, res, next) => {
 
 // Get: 根据ID查询数据逻辑
 exports.getItemTours = catchAsync(async (req, res, next) => {
-    const tourItem = await Tour.findById(req.params.id);
+    /**
+     *  populate: 填充数据普通写法 ( 完成笔记 )
+     *      a) 因mongoose.Schema.ObjectId存在，故使用populated来填充查询结果
+     *      b) 目的: 数据结构将不在返回id，包含查询id的结果
+     */
+    const tourItem = await Tour.findById(req.params.id).populate({
+        path: "guides", // path: 目标填充字段
+        select: "-__v -role", // select: 取消指定字段输出
+    });
+    // const tourItem = await Tour.findById(req.params.id);
+
     if (tourItem === null) {
         throw new AppError("no data!", 404); // 使用: AppError传递错误信息 - 给全局错误处理中间件 ( 完成笔记 )
     }
