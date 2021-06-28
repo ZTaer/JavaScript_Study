@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const slugify = require("slugify");
 const validator = require("validator");
+const User = require("./user.models");
 
 /**
  * Mongoose.Schema: 强大的数据效验功能 | 临时总结  ( 完成笔记 )
@@ -59,7 +60,7 @@ const tourSchema = new mongoose.Schema({
     },
     maxGroupSize: {
         type: Number,
-        required: [true, "duration is required!"],
+        required: [true, "maxGroupSize is required!"],
     },
     difficulty: {
         type: String,
@@ -143,6 +144,51 @@ const tourSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    /**
+     * 构建: 位置建模( 完成笔记 )
+     *      0. 确定所需属性, 保证脚本导入mock数据正确性
+     *      1. 脚本: 导入mock数据
+     */
+    startLocation: {
+        type: { // 注意: 当前type字段名，就为type，并非语法
+            type: "String",
+            default: "Point",
+            enum: ["Point"],
+        },
+        coordinates: [Number],
+        address: String,
+        description: String,
+    },
+    location: {
+        type: { // 注意: 当前type字段名，就为type，并非语法
+            type: "String",
+            default: "Point",
+            enum: ["Point"],
+        },
+        coordinates: [Number],
+        address: String,
+        description: String,
+    },
+    /**
+     * 构建: 建模( 嵌入 - 不推荐 ): 导游( 完成笔记 )
+     *      a) 注意: 因为嵌入模拟，故要写中间件查询
+     */
+    // guides: {
+    //     type: Array,
+    // },
+
+    /**
+     * 构建: 建模 - 导游数据模型( 引用 - 推荐 - 完成笔记 )
+     *      a) 目的: 此id为mongodb要求类型id，方便之后做查询引用逻辑
+     *      b) type: mongoose.Schema.ObjectId: mongoose schema id特殊写法, 方便查询
+     *      c) ref: 查询数据集
+     */
+    guides: [
+        {
+            type: mongoose.Schema.ObjectId,
+            ref: "users", // 查询数据集 ( 核心 )
+        },
+    ],
 },
 { // 定义虚拟属性，mongoose.schema增加入参: 允许虚拟属性输出 ( 完成笔记 )
     toJSON: { virtuals: true }, // 虚拟属性变为真实
@@ -209,6 +255,17 @@ tourSchema.post(/^find/, function (docs, next) {
 });
 
 /**
+ * populate: 填充数据中间件写法 ( 完成笔记 )
+ */
+tourSchema.pre(/^find/, function (next) {
+    this.populate({
+        path: "guides", // path: 目标填充字段
+        select: "-__v -role", // select: 取消指定字段输出
+    });
+    next();
+});
+
+/**
  * mongoose: 聚合中间件( 完成笔记 )
  *      a) this.pipeline(): 包含聚合运算符数组, 可进行编辑, 以此到达中间件加工的目的
  *          0. 聚合中间件: 通过this.pipeline拦截，聚合命令，并做相应逻辑，从而过滤掉隐秘客户数据
@@ -222,6 +279,16 @@ tourSchema.pre("aggregate", function (next) {
     this.pipeline().unshift({
         $match: { vipTour: { $ne: true } },
     });
+    next();
+});
+
+/**
+ * 构建: 查询导游中间件( 为嵌入建模使用 - 不推荐 )( 完成笔记 )
+ *      a) 注意: 因为嵌入模拟，故要写中间件查询
+ */
+tourSchema.pre("save", async function (next) {
+    const guidesPromises = this.guides.map(async (item) => await User.findById(item));
+    this.guides = await Promise.all(guidesPromises); // 群体等待异步执行完毕
     next();
 });
 

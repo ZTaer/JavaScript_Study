@@ -20,7 +20,7 @@ dotenv.config({ path: "../config.produce.env" });
 
 // a) 数据库休息
 const DB_NETWORK = process.env.MONGODB_NETWORK;
-const DB_LOCAL = process.env.MONGODB_LOCAL;
+// const DB_LOCAL = process.env.MONGODB_LOCAL;
 
 // b) 连接数据库
 mongoose.connect(
@@ -29,7 +29,8 @@ mongoose.connect(
         useCreateIndex: true,
         useFindAndModify: false,
     },
-).then((data) => console.log("script - 数据库连接成功!"));
+).then(() => console.log("script - 数据库连接成功!"))
+    .catch((error) => console.log("script - 数据库连接失败!", error));
 
 // 防止地狱回调读取数据
 const readFilePro = (fileUrl) => new Promise((resolve, reject) => {
@@ -44,7 +45,7 @@ const readFilePro = (fileUrl) => new Promise((resolve, reject) => {
 // d) 写入数据库
 const handleImportTourData = async () => {
     try {
-        const tourData = await readFilePro(`${__dirname}/tours-simple.json`);
+        const tourData = await readFilePro(`${__dirname}/tours.json`);
         await Tour.create(JSON.parse(tourData));
         console.log("写入成功!");
     } catch (err) {
