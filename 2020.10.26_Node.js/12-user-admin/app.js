@@ -6,6 +6,7 @@ const rateLimit = require("express-rate-limit");
 const mongoSanitize = require("express-mongo-sanitize");
 const xssClean = require("xss-clean");
 const hpp = require("hpp");
+const cookieParser = require("cookie-parser");
 const userRoute = require("./routes/user.routes");
 const tourRoute = require("./routes/tour.routes");
 const AppError = require("./utils/app-error.utils");
@@ -15,6 +16,11 @@ const ErrorControllers = require("./controllers/error.controllers");
  * 0. 全局中间件 - 区域:
  */
 const app = express();
+
+/**
+ * cookie相关 ( 等待笔记 )
+ */
+app.use(cookieParser());
 
 /**
  * 设置安全性的http包头 ( 完成笔记 )
