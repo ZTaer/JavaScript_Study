@@ -1523,17 +1523,99 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         0. 第一步: mongoose schema 构建用户id模型: mongoose.Schema.ObjectId
         1. 第二步: 构建查询填充中间件
 # 153( 等待笔记 )
-    a) 00:00 - 建模: 父引用
+    a) 00:00 - 建模: 评论数据模型( 父引用, 面对巨量数据 )
+    b) 1:18 - 评论数据结构:
+        0. 评论
+        1. 评分
+        2. 创建时间
+        3. 导游id
+        4. 用户id
+    c) 1:52 - 构建: 评论的schema, review.model.js
+    d) 3:49 - 构建: 评论shcema代码
+    e) 7:09 - 构建: 导游id，用户id
+        0. type: mongoose.Schema.ObjectId, mongoose快速的获取用户id游戏规则
+        1. ref: 'xxx', mongoose指定查询文档名称
+    f) 8:04 - mongoose.schema允许虚拟属性输出
+# 154( 等待笔记 )
+    a) 00:00 - 创建和获取评论
+    b) 4:24 - 构建review.controller.js: 查询全部评论API
+    c) 4:38 - 创建评论API
+    d) 7:24 - 配置: 评论路由主线路
+    e) 9:22 - 构建: review.routes.js: 配置评论相关子线路API路由
+    f) 14:55 - 测试: 创建评论API接口
+        0. 完善方案:
+            a) 需要用户登录，要知道用户准确id
+            b) 当前登录用户，于评论提交用户id要一致，防止请求被劫持，因此冒充其他用户评论
+    g) 16:23 - 测试: 查了全部评论API接口
+# 155( 等待笔记 )
+    a) 00:00 - 数据填充,评论模型
+    b) 3:48 - populate填充逻辑中间件
+        0. 多属性填充写法
+    c) 4:03 - 测试填充逻辑
+# 156( 等待笔记 )
+    a) 00:00 - 虚拟填充
+        0. 应用场景: 子知父，父不知子, 使父知子的查询方式
+        1. 示例: 这里以tour与review示例
+    b) 1:26 - 使父知子的查询方式: 有二种
+        0. 手动查询
+        1. 虚拟填充( mongoose )
+            a) 既能填充数据结构，又不会存储在数据库中
+            b) 原因: 无限增长的数组存储在数据库中，是很可怕的，不可行
+            c) 虚拟填充优势: 避免数据库存储无限延伸的数组，将所需引用的子项进行实时查询计算 
+    c) 2:58 - 以tour获取review示例 
+        0. 编辑tour的schema, 为虚拟填充做准备
+    d) 3:43 - 无限增长的数组添加的schema，不可行禁止此操作
+    e) 5:10 - 虚拟填充: 中间件
+        0. tourSchema.virtual("reviews",{
+            ref: "review" // 从review文档中查询
+            foreignField: "tour" // tour对应review中存储的id
+            localField: "_id" // 对应字段名称 ( 核心 - 是父与子联系查询的核心 )
+        })
+        1. 虚拟逻辑解析: 在返回的数据结构中，增加reviews字段, 此字段下的数据为，查询的对应id的子数据
+        2. 入参解析{
+            ref: "review" // 从review文档中查询
+            foreignField: "tour" // tour对应review中存储的id
+            localField: "_id" // 对应字段名称 ( 核心 - 是父与子联系查询的核心 )
+        }
+    f) 6:54 - 测试: 获取指定tour
+        0. 看下虚拟字段reviews是否增加
+        1. 此时在postman看来reviews并无数据，是因为，有了虚拟字段后，依然需要populate来逻辑加工填充
+    g) 7:46 - populate填充虚拟字段：加工单个获取tour的find逻辑
+        0. 与处理非填充字段无差
+    h) 9:48 - 清除多余的填充
+        0. 发现虚拟字段中，嵌套填充，可进行所需数据适当清除
+    i) 10:04 - 测试逻辑
+# 157( 等待笔记 )
+    a) 00:00 - 简易的嵌套路由
+        0. 嵌套路由应用实际情况
+        1. 提交tour评论url: POST /tour/xxxTourIdxxx/reviews
+        2. 获取tour评论url:  GET /tour/xxxTourIdxxx/reviews
+        3. 获取指定评论url:   GET /tour/xxxTourIdxxx/reviews/xxxUserIdxxx
+    b) 6:01 - tour路由下，导入review controller api逻辑, 做获取评论相关路由逻辑
+    c) 8:26 - 适应不同路线那入参
+        0. 从url那入参
+        1. 从正常入参中那
+        2. 目的: 适应多线路由，访问通个api逻辑
+    d) 11:18 - 修正在tour下的评论路由
+    e) 11:30 - 测试逻辑
+# 158( 等待笔记 )
+    a) 00:00 - express嵌套路由
+        0. 目的: 代替简易的嵌套路由
+    b) 2:23 - 实施express嵌套路由
+        0. 先导入评论路由
+    c) 3:25 - 配置路由: 原理同初始路由思路 
+    d) 5:20 - 评论路由: 配置mergeParams: true属性
+        0. 目的: 当前路由，方便获取其他路由的入参 ( 核心 )
+    e) 7:39 - 测试逻辑
+# 159( 等待笔记 )
+    a) 00:00 - 完善查询评论Get请求逻辑
+    b) 2:50 - 增加逻辑: 入参存在tourId则指定查询，否则查询全部评论
+    c) 4:05 - 测试逻辑
+# 160( 等待笔记 )
+    a) 00:00 - 
+
 
         
-
-    
-    
-
-
-
-
-
 
         
 </pre>
