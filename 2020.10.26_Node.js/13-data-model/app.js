@@ -21,7 +21,7 @@ const ErrorControllers = require("./controllers/error.controllers");
 const app = express();
 
 /**
- * cookie相关 ( 等待笔记 )
+ * cookie相关 ( 完成笔记 )
  */
 app.use(cookieParser());
 

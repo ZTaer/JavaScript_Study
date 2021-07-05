@@ -207,7 +207,7 @@ tourSchema.virtual("testVirtualDuration").get(function () {
 });
 
 /**
- * 虚拟填充 - mongoose( 等待笔记 )
+ * 虚拟填充 - mongoose( 完成笔记 )
  *      a) 应用场景: 子知父，父不知子, 使父知子的查询方式
  *      b) 使父知子的查询方式: 有二种
  *          0. 手动查询

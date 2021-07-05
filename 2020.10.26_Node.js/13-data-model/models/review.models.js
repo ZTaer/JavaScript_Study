@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 /**
- * 建模: 评论数据模型( 父引用, 面对巨量数据 - 等待笔记 )
+ * 建模: 评论数据模型( 父引用, 面对巨量数据 - 完成笔记 )
  *      a) 评论数据结构:
  *          0. 评论内容
  *          1. 评分
@@ -27,7 +27,7 @@ const reviewSchema = mongoose.Schema({
         default: Date.now(), // 默认为当前服务器时间
     },
     /**
-     * mongoose.Schema.ObjectId( 等待笔记 )
+     * mongoose.Schema.ObjectId( 完成笔记 )
      *      a) 目的: mongoose快速的获取用户id游戏规则, 为以后的数据填充做铺垫
      *      b) 解析:
      *          0. type: mongoose.Schema.ObjectId, mongoose快速的获取用户id游戏规则
@@ -51,7 +51,7 @@ const reviewSchema = mongoose.Schema({
 
 
 /**
- * populate多字段, 填充数据中间件写法 ( 等待笔记 )
+ * populate多字段, 填充数据中间件写法 ( 完成笔记 )
  *      a) 注意: select的用法，在笔记中有详细的介绍
  *      b) 注意: 对比填充数据前后截图( 截图 )
  */
