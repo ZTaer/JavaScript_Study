@@ -51,7 +51,7 @@ router.route("/:id")
 
 
 /**
- * 简易的嵌套路由( 不推荐 - 等待笔记 )
+ * 简易的嵌套路由( 不推荐 - 完成笔记 )
  *      a) 嵌套路由示例:
  *          0. 提交tour评论url: POST /tour/xxxTourIdxxx/reviews
  *          1. 获取tour评论url:  GET /tour/xxxTourIdxxx/reviews
@@ -61,7 +61,7 @@ router.route("/:id")
 router.route("/:tourId/reviews-sm").post(authControllers.protect, authControllers.restrictTo("user"), handleApiCreateReview);
 
 /**
- * express嵌套路由( 推荐 - 等待笔记 )
+ * express嵌套路由( 推荐 - 完成笔记 )
  *      a) 目的: 代替简易的嵌套路由
  *      b) 嵌套路由示例:
  *          0. 提交tour评论url: POST /tour/xxxTourIdxxx/reviews

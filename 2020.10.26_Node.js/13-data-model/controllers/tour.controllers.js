@@ -163,7 +163,7 @@ exports.getAllToursClass = catchAsync(async (req, res, next) => {
 // Get: 根据ID查询数据逻辑
 exports.getItemTours = catchAsync(async (req, res, next) => {
     /**
-     * 配合虚拟填充( 等待笔记 )
+     * 配合虚拟填充( 完成笔记 )
      *      a) 原因: 有了虚拟字段后，依然需要populate来逻辑加工填充
      *      b) 与处理非虚拟填充字段无差
      */

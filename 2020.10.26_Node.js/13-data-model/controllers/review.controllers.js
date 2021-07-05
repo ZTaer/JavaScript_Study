@@ -1,5 +1,5 @@
 /**
- * 构建: review.controller.js - 评论相关API逻辑 ( 等待笔记 )
+ * 构建: review.controller.js - 评论相关API逻辑 ( 完成笔记 )
  */
 
 const Review = require("../models/review.models");
@@ -9,7 +9,7 @@ const catchAsync = require("../utils/catch-async.utils");
 
 // 查询全部评论
 /**
- * 查询全部评论: 配合express嵌套路由逻辑( 等待笔记 )
+ * 查询全部评论: 配合express嵌套路由逻辑( 完成笔记 )
  *      a) 改进:
  *          0. 适应不同路线那入参
  *              a) 从url那入参
@@ -37,7 +37,7 @@ exports.handleApiGetAllReview = catchAsync(async (req, res, next) => {
 
 // 创建评论
 /**
- * 创建评论: 配合简易嵌套路由逻辑( 等待笔记 )
+ * 创建评论: 配合简易嵌套路由逻辑( 完成笔记 )
  *      a) 改进: 适应不同路线那入参
  *          0. 从url那入参
  *          1. 从正常入参中那
