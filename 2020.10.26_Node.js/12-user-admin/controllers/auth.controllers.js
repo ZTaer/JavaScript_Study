@@ -174,7 +174,7 @@ exports.protect = catchAsync(async (req, res, next) => {
         token = req.headers.authorization.split(" ")[1];
     } else if (req.cookies && req.cookies.JWT) {
         /**
-         * 从cookie验证获取token( 等待笔记 )
+         * 从cookie验证获取token( 完成笔记 )
          *      a) 注意: 需要安装 yarn add cookie-parser
          */
         token = req.cookies.JWT;
