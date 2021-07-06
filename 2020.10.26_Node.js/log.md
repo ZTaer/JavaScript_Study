@@ -1607,7 +1607,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     d) 5:20 - 评论路由: 配置mergeParams: true属性
         0. 目的: 当前路由，方便获取其他路由的入参 ( 核心 )
     e) 7:39 - 测试逻辑
-# 159( 完成笔记 - 实战位置 )
+# 159( 完成笔记 )
     a) 00:00 - 完善查询评论Get请求逻辑
     b) 2:50 - 增加逻辑: 入参存在tourId则指定查询，否则查询全部评论
     c) 4:05 - 测试逻辑
@@ -1622,7 +1622,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     g) 10:11 - 测试删除评论逻辑
     h) 11:35 - 使用: 通用删除逻辑, 应用至, 删除用户
     i) 12:50 - 测试删除用户逻辑
-# 161( 等待笔记 )
+# 161( 等待笔记 - 实战位置 )
     a) 00:00 - 构建: 通用型工厂函数, 更新和创建逻辑( 注意: 权衡维护成本 )
     b) 2:11 - 构建: 通用型更新逻辑
     c) 3:31 - 使用: 通用型更新逻辑，应用至，更新用户信息
@@ -1762,8 +1762,89 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     f) 9:07 - 测试逻辑: 小数处理
 # 170( 等待笔记 )
     a) 00:00 - 地理空间查询，在半径内查询游览 
-    b) 4:02 - 设定路由
-    c) 
+        0. 例: 查询半径300公里内的旅游
+    b) 1:49 - 路由解析:
+        0. 第一种路由: "/tours-within/:distance/center/:lathing/unit/:unit" --> "/tours-within/300/center/12,23/unit/mi"
+            a) distance: 距离
+            b) lathing: 坐标
+            c) unit: 单位 ( mi -> 英里 )
+        1. 第二种路由: "/tours-within?distance=300&lathing=12,23&unit=mi"
+    c) 4:02 - 设定路由
+    d) 5:47 - 空间查询api初步构建
+    e) 8:18 - 处理空间坐标入参
+        0. 状态码400 - 入参错误
+    f) 10:36 - 修正路由，书写错误
+    g) 10:44 - 测试路由，那入参是否正常
+    h) 16:34 - 单位入参加工:
+        0. 目的: 应对mongoose地理查询入参，为此做逻辑加工
+        1. 入参: radius( 弧度 ): 距离 / 地球半径 = 弧度 
+            a) 英里(mi): distance / 3963.2
+            b) 公里(km): distance / 6378.1 
+    i) 17:03 - mongoose地理空间运算符: ( 核心 )
+        0. 示例: Tour.find( { startLocation: { $geoWithin: { $centerSphere: [ [ 经度,纬度 ], 弧度 ] } } } )
+        1. $geoWithin: 对startLocaltion字段过滤
+        2. $centerSphere: 根据入参进行半径之内过滤查询
+    j) 18:18 - 增加startLocation空间坐标索引, 提高查询过滤性能
+        0. 注意: 索引单位, '2dsphere' -> 代表二维平面上的点, mongoose的游戏规则
+    k) 19:07 - debug调试
+        0. 原因: 空间api逻辑错误
+    l) 20:55 - debug到错误原因, $centerSphere 拼写错误
+    m) 21:43 - 测试逻辑
+    n) 23:34 - compass下的schema可以查看对数据库的字段分析, 以及空间地理位置坐标的分析
+        0. 注意: 删除无效的地理坐标，才能出现地图
+    o) 24:56 - 在地图中拖动，按住shift，可以看到过滤条件
+    p) 25:34 - compass schema 可以根据过滤条件的数据进行分析 ( 强大 )
+    q) 26:10 - 测试逻辑: 空间过滤
+    r) 26:36 - 通过compass schema验证测试结果正确性
+    s) 28:30 - mongoose地理空间运算符官方文档
+# 171( 等待笔记 )
+    a) 00:00 - 地理空间聚合 - 计算距离
+    b) 1:26 - 配置路由
+    c) 5:34 - 构建距离计算api函数
+    d) 6:33 - $geoNear用法:
+        0. 目的: 使用$geoNear计算空间坐标间的直线距离
+        1. 注意: $geoNear使用条件 
+            a) 索引: 需要 2d 或 2dsphere 索引
+            b) 聚合管道位置: 需在聚合管道第一个位置，否则会报错 
+        2. 当前场景已有startLocation为2dsphere索引，故可直接使用$geoNear来计算直线距离
+        3. 示例: const data = await Tour.aggregate([{ $geoNear: { near: { type: "Point", coordinaes: [ 经度, 纬度 ] }, distanceField: "字段名" } }])
+            a) 解析: 
+                0. near: 设定起点
+                1. distanceField: 返回的字段名称
+            b) 注意: 一定要注意$geoNear使用条件
+    e) 7:41 - 测试出现错误: $geoNear聚合管道不在第一位
+    f) 9:06 - 修正错误: 暂时暂时此中间件，保证$geoNear在聚合管道的第一位
+    g) 9:26 - 测试逻辑: 计算直线距离
+    h) 11:14 - 增加逻辑: 距离数据，转为单位为km，并返回数据仅保留指定字段
+        0. 转换m至km: $geoNear下的distanceMultiplier: 0.001 
+            a) 原因: 默认计算结果单位为m
+        1. $project目的: 仅保留指定字段
+    i) 11:24 - 测试逻辑: 转换km
+    j) 14:38 - 构建: 单位变量, km 、mi 为了单位转换 
+    k) 14:44 - 应用单位变量
+    l) 15:06 - 测试逻辑: 通过入参转换距离数据单位
+# 172( 等待笔记 )
+    a) 00:00 - 使用postman创建API文档
+    b) 1:38 - 处理敏感数据，将敏感数据存储至postman环境变量中类似{{jwt}}
+    c) 2:16 - 入参使用postman环境变量
+    d) 3:00 - 给每个接口做备注，说明此接口的功能
+    e) 4:13 - 给postman下的文件夹做备注
+    f) 5:25 - 可以给入参添加备注
+    g) 5:39 - 发布文档: 按钮
+    h) 6:37 - 配置相关信息，不选择环境，单击发布按钮
+    i) 7:26 - 文档
+        0. 注意: 此发布文档，为公开，任何人都可以访问
+    j) 9:56 - 可在web页面直接运行postman以同步文档中的接口至本地postman
+# 173( 无需笔记 )
+    a) 00:00 简介课程UI渲染
+# 174( 等待笔记 )
+    a) 00:00 - 服务端渲染，客户端渲染
+    b) 1:13 - 渲染流程图
+    c) 1:38 - 查看服务端渲染结果
+# 175( 等待笔记 )
+    a) 00:00 - 在express中设置pug渲染模板
+    b) 
+
 
         
 
