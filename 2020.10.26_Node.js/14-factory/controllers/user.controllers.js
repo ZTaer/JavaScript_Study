@@ -1,22 +1,14 @@
-const fs = require("fs");
 const catchAsync = require("../utils/catch-async.utils");
 const User = require("../models/user.models");
 const AppError = require("../utils/app-error.utils");
 const Factory = require("./handle-factory-utils.controllers");
 
-const tour = JSON.parse(fs.readFileSync(`${__dirname}/../data/tours.json`, "utf-8"));
-
+/**
+ * 使用: 通用型多功能查询( 等待笔记 - 核心 )
+ *      0. 注意: 针对嵌套路由，过滤特殊化处理
+ */
 // user相关API模拟
-exports.getAllUser = catchAsync(async (_req, res, next) => {
-    const data = await User.find();
-    if (!data) return next(new AppError("get all user error", 400));
-
-    res.status(200).json({
-        status: "success",
-        results: data.length,
-        data,
-    });
-});
+exports.getAllUser = Factory.handleDataBaseFindAll(User);
 
 /**
  * 使用: 通用型更新逻辑，应用至，更新用户信息( 等待笔记 )
@@ -25,3 +17,9 @@ exports.getAllUser = catchAsync(async (_req, res, next) => {
 exports.updateItemUser = Factory.handleDataBaseUpdateOne(User);
 
 exports.deleteItemUser = Factory.handleDataBaseDeleteOne(User);
+
+
+/**
+ * 使用: 通用型单个查询逻辑，查询指定id用户信息( 等待笔记 )
+ */
+exports.findItemUser = Factory.handleDataBaseFindOne(User);

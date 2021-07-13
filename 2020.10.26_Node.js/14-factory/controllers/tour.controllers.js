@@ -138,49 +138,18 @@ exports.getAllTours = catchAsync(async (req, res, next) => {
 
 
 /**
- * 使用 - 异步错误处理: 统一抓捕异步函数中的错误( 完成笔记 )
- *      a) 注意:
- *          0. 异步错误处理后, async函数内，将无需try catch写法来抓取错误
- *          1. 入参: 增加next方便错误处理, 例: ( req, res, next )
+ * 使用: 通用型多功能查询( 等待笔记 - 核心 )
  */
-exports.getAllToursClass = catchAsync(async (req, res, next) => {
-    const featureClass = new SearchFeatureTour(Tour.find(), req.query)
-        .filter()
-        .sort() // 注意: new class后记得执行class中函数功能，否则功能将不起作用
-        .fields()
-        .page();
-    const TourData = await featureClass.query;
-
-    res.status(200).json({
-        status: "success",
-        result: TourData.length,
-        data: {
-            tours: TourData,
-        },
-    });
-});
+exports.getAllToursClass = Factory.handleDataBaseFindAll(Tour);
 
 
+/**
+ * 使用: 通用型单个查询逻辑，可以配置populate入参( 等待笔记 )
+ */
 // Get: 根据ID查询数据逻辑
-exports.getItemTours = catchAsync(async (req, res, next) => {
-    /**
-     * 配合虚拟填充( 完成笔记 )
-     *      a) 原因: 有了虚拟字段后，依然需要populate来逻辑加工填充
-     *      b) 与处理非虚拟填充字段无差
-     */
-    const tourItem = await Tour.findById(req.params.id).populate({
-        path: "reviews",
-        select: "-__v",
-    });
-    // const tourItem = await Tour.findById(req.params.id);
-
-    if (tourItem === null) {
-        throw new AppError("no data!", 404); // 使用: AppError传递错误信息 - 给全局错误处理中间件 ( 完成笔记 )
-    }
-    res.status(200).json({
-        status: "success",
-        data: tourItem,
-    });
+exports.getItemTours = Factory.handleDataBaseFindOne(Tour, {
+    path: "reviews",
+    select: "-__v",
 });
 
 // 构建: 指定路由api中间件，用于api的逻辑效验
@@ -194,16 +163,7 @@ exports.checkToursBody = (req, res, next) => {
 exports.getAddItemTours = Factory.handleDataBaseAddOne(Tour);
 
 // Patch: 数据更新逻辑
-exports.updateItemTours = catchAsync(async (req, res, next) => {
-    const updateTour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
-        new: true, // new属性: 代表确定要更新数据
-        runValidators: true, // runValidators属性: 并且效验更新的数据
-    });
-    res.status(200).json({
-        status: "success",
-        data: updateTour,
-    });
-});
+exports.updateItemTours = Factory.handleDataBaseUpdateOne(Tour);
 
 /**
  * 使用: 删除通用逻辑，用至，tour删除( 等待笔记 )

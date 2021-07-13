@@ -1622,7 +1622,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     g) 10:11 - 测试删除评论逻辑
     h) 11:35 - 使用: 通用删除逻辑, 应用至, 删除用户
     i) 12:50 - 测试删除用户逻辑
-# 161( 等待笔记 - 实战位置 )
+# 161( 等待笔记 )
     a) 00:00 - 构建: 通用型工厂函数, 更新和创建逻辑( 注意: 权衡维护成本 )
     b) 2:11 - 构建: 通用型更新逻辑
     c) 3:31 - 使用: 通用型更新逻辑，应用至，更新用户信息
@@ -1636,7 +1636,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     j) 10:18 - 路由: 中间件应用至评论路由
     k) 10:40 - 使用: 通用型创建逻辑，应用至，创建评论
     l) 13:06 - 测试逻辑
-# 162( 等待笔记 )
+# 162( 等待笔记 - 实战位置 )
     a) 00:00 - 构建: 工厂函数,查询逻辑
     b) 2:38 - 构建: 通用型查询逻辑，可以配置populate入参
     c) 4:00 - 应用, 新构建的查询逻辑, 查询tour
@@ -1842,8 +1842,56 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     b) 1:13 - 渲染流程图
     c) 1:38 - 查看服务端渲染结果
 # 175( 等待笔记 )
-    a) 00:00 - 在express中设置pug渲染模板
-    b) 
+    a) 00:00 - 在express中配置pug模板引擎 / 哈巴狗模板引擎 ( 可选学习 )
+    b) 2:01 - express声明使用的渲染引擎，pug模板引擎，已内置express 
+    c) 4:27 - express设定渲染模板位置路径, 通过path.join确定路径位置
+        0. path.join拼接路径: 使用他是为了，应对不同的环境，保持正确的路径 
+    d) 5:07 - express设定生成页面路径
+    e) 6:34 - 建立: 第一个pug模板文件
+    f) 7:56 - 配置: 渲染页面路由
+    g) 9:04 - 安装pug模板: yarn add pug
+    h) 9:12 - 浏览渲染后的主页面
+# 176( 等待笔记 )
+    a) 00:00 - pug渲染模板引擎，基础知识 
+    b) 2:55 - pug写法，( 挺神奇的，是我喜欢的菜 ) 
+    c) 3:06 - 浏览器预览渲染结果
+    d) 4:55 - pug写法: 引用css
+        0. 注意: pug支持原生html写法
+    e) 5:36 - 引入页面icon
+    f) 5:42 - 预览效果
+    g) 9:33 - 给pug传入变量
+    h) 10:46 - pug使用变量渲染
+    i) 11:21 - pug备注写法: 会渲染至html
+    j) 11:34 - pug备注写法： 不行渲染至html
+    k) 11:59 - pug使用简单的js语法
+    l) 12:10 - 预览效果
+    m) 12:54 - pug中，写js方式
+    n) 12:59 - 预览效果
+    o) 14:05 - pug中，插入js写法
+    p) 14:22 - 预览效果
+# 177( 等待笔记 )
+    a) 00:00 - 构建pug模板
+    b) 3:20 - 构建pug模板head
+    c) 5:29 - 根据html转译成pug格式
+    d) 6:26 - pug的div写法
+    e) 9:36 - pug的header部分, 接下来是内容部分
+    f) 12:17 - li嵌套内容，便捷式写法
+    g) 14:06 - footer内容已翻译pug
+    h) 15:11 - 修正css
+# 178( 等待笔记 )
+    a) 00:00 - pug获取文件渲染, 如导航栏 
+    b) 1:54 - 安装: pug beautify - 方便格式化pug
+    c) 2:05 - 构建: _header.pug文件,并复制header部分
+        0. 格式化pug:
+            a) 安装: pug beautify
+            b) 选中: 全选要求格式化的代码
+            c) vscood命令: 
+                0. Mac: command+shift+p
+                1. 注意: pug beautify也自带快捷键
+            d) 输入pug: 选择pug beautify格式化
+    d) 3:12 - 构建: _footer.pug, 并复制footer部分
+        0. 命名规范: 服务于其他模板，通常用_xxx.pug命名，方便渲染
+    e) 
 
 
         

@@ -7,6 +7,9 @@ class SearchFeatureTour {
     constructor(query, queryString) {
         this.query = query;
         this.queryString = queryString;
+        this.pageInfo = {
+            total: 0
+        }
     }
 
     // a) 分离字段 
@@ -20,9 +23,7 @@ class SearchFeatureTour {
         let queryStr = JSON.stringify(urlQuery);
         queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (cur) => `$${cur}`); // 目的: 替换字符串为指定字段: 如 gte --> $gte , 这样JSON.parse解析后可用在mongoose命令查询数据
         queryStr = JSON.parse(queryStr);
-
-        console.log('queryStr, this.queryString', queryStr, this.queryString);
-
+        
         this.query = this.query.find( queryStr );
         return this;
     }
@@ -59,6 +60,7 @@ class SearchFeatureTour {
         const page = this.queryString.page * 1 || 1;
         const limit = this.queryString.limit * 1 || 5;
         const skip = (page - 1) * limit; // 分页计算公式 ( 核心 )
+
         this.query = this.query.skip(skip).limit(limit);
 
         return this;

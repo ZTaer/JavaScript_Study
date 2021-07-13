@@ -7,34 +7,12 @@ const catchAsync = require("../utils/catch-async.utils");
 const Factory = require("./handle-factory-utils.controllers");
 // const AppError = require("../utils/app-error.utils");
 
-
-// 查询全部评论
 /**
- * 查询全部评论: 配合express嵌套路由逻辑( 完成笔记 )
- *      a) 改进:
- *          0. 适应不同路线那入参
- *              a) 从url那入参
- *              b) 从正常入参中那
- *              c) 目的: 适应多线路由的api逻辑
- *          1. 存在tourId,进行单个条件过滤查询
- *          2. 不存在tourId,则输出全部
+ * 使用: 通用型多功能查询( 等待笔记 - 核心 )
+ *      0. 注意: 针对嵌套路由，过滤特殊化处理
  */
-exports.handleApiGetAllReview = catchAsync(async (req, res, next) => {
-    let findFilter = {};
-    if (req.params.tourId) findFilter = { tourId: req.params.tourId }; // 过滤条件
-
-    const reviews = await Review.find(findFilter).select("-__v");
-
-    res.status(200).json({
-        status: "success",
-        result: reviews.length,
-        data: {
-            review: reviews,
-        },
-    });
-
-    next();
-});
+// 查询全部评论
+exports.handleApiGetAllReview = Factory.handleDataBaseFindAll(Review);
 
 /**
  * 使用: 通用型创建逻辑，应用至，创建评论( 等待笔记 )
@@ -62,3 +40,8 @@ exports.handleApiDeleteReview = Factory.handleDataBaseDeleteOne(Review);
  * 更新评论: 通用型更新逻辑( 等待笔记 )
  */
 exports.handleApiUpdateReview = Factory.handleDataBaseUpdateOne(Review);
+
+/**
+ * 查询指定id评论: 通用性查询逻辑( 等待笔记 )
+ */
+exports.handleApiFindItemReview = Factory.handleDataBaseFindOne(Review);

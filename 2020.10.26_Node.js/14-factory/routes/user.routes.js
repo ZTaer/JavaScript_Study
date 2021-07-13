@@ -43,7 +43,7 @@ router.route("/")
 
 
 router.route("/:id")
-    // .get(userControllers.getItemUser)
+    .get(userControllers.findItemUser)
     .patch(userControllers.updateItemUser)
     .delete(authControllers.protect, authControllers.restrictTo("admin"), userControllers.deleteItemUser);
 

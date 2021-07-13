@@ -10,6 +10,7 @@ const {
     handleApiSetCreateReviewId,
     handleApiDeleteReview,
     handleApiUpdateReview,
+    handleApiFindItemReview,
 } = require("../controllers/review.controllers");
 const authControllers = require("../controllers/auth.controllers");
 
@@ -39,8 +40,7 @@ router.route("/")
 
  */
 router.route("/:id")
-    // .get()
-    // 改进中间件应用在路由 - handleApiSetCreateReviewId
+    .get(handleApiFindItemReview)
     .patch(handleApiUpdateReview)
     .delete(handleApiDeleteReview);
 
