@@ -1636,7 +1636,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     j) 10:18 - 路由: 中间件应用至评论路由
     k) 10:40 - 使用: 通用型创建逻辑，应用至，创建评论
     l) 13:06 - 测试逻辑
-# 162( 等待笔记 - 实战位置 )
+# 162( 等待笔记 )
     a) 00:00 - 构建: 工厂函数,查询逻辑
     b) 2:38 - 构建: 通用型查询逻辑，可以配置populate入参
     c) 4:00 - 应用, 新构建的查询逻辑, 查询tour
@@ -1664,7 +1664,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     b) 1:56 - 创建获取userId的中间件
     c) 2:53 - 配置路由/me, 应用中间件
     d) 4:06 - 测试获取自身信息
-# 164( 等待笔记 )
+# 164( 等待笔记 - 实战位置 )
     a) 00:00 - 完善接口的身份认证和授权
     b) 1:18 - 多功能查看tour取消身份验证, 因为想暴露给用户
     c) 1:57 - 修改tour接口，需要身份验证
@@ -1891,7 +1891,44 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
             d) 输入pug: 选择pug beautify格式化
     d) 3:12 - 构建: _footer.pug, 并复制footer部分
         0. 命名规范: 服务于其他模板，通常用_xxx.pug命名，方便渲染
-    e) 
+    e) 3:22 - 引入使用: pug模板文件
+# 179( 等待笔记 )
+    a) 00:00 - 用块扩展pug
+    b) 2:41 - 配置路由, 相关tour渲染模板
+    c) 4:13 - block content: 块链接
+    d) 5:12 - extends base: 模板引用
+        0. 目的: 引用base.pug模板到当前文件, 并在block content渲染当前pug文件内容，从而形成新的页面
+    e) 7:48 - 引用base.pug模板到当前文件, 并在block content渲染当前pug文件内容，从而形成新的页面
+    f) 8:22 - 预览页面 
+    g) 9:09 - pug模板，使用title变量
+# 180( 等待笔记 )
+    a) 00:00 - 配置pug项目结构化
+    b) 1:58 - 路由结构化
+    c) 2:44 - 配置主路由
+    d) 3:40 - 将api逻辑，转移至controller下
+    e) 4:14 - 应用controller逻辑，至路由
+    f) 5:04 - 改进路由
+# 181( 等待笔记 )
+    a) 00:00 - 配置overview页面1
+    b) 2:25 - 构建: 确定overview页面构建思路
+    c) 3:58 - 查询数据，传入pug模板( 好原始 )
+    d) 9:39 - 复制card模板, 到overview页面
+    e) 9:48 - 预览页面
+    f) 11:12 - each tour in tours: pug预发循环迭代
+    g) 11:17 - 预览页面
+# 182( 等待笔记 )
+    a) 00:00 - 配置overview页面2
+    b) 3:58 - 给pug配置变量，动态迭代渲染card
+        0. 注意: 注意图片路径, 从public读取
+    c) 4:07 - 预览效果
+    d) 6:53 - 以此类推，变量写入pug中
+    e) 8:07 - 变量写入pug中，变量对应
+    f) 9:51 - 格式化时间: .toLocalString()
+    g) 13:59 - 完成card的pug变量填充
+    h) 15:09 - 优化渲染card排列
+    i) 15:21 - 预览效果
+# 183( 等待笔记 )
+    a) 00:00 - 
 
 
         

@@ -2,7 +2,7 @@ const catchAsync = require("../utils/catch-async.utils");
 const AppError = require("../utils/app-error.utils");
 const SearchUtils = require("../utils/search-feature-tour.utils");
 /**
- * 主要: 通用性逻辑总结( 等待笔记 )
+ * 通用性逻辑总结( 等待笔记 )
  *      a) 多功能查询全部
  *      b) 查询单个
  *      c) 创建单个
@@ -11,7 +11,7 @@ const SearchUtils = require("../utils/search-feature-tour.utils");
  */
 
 /**
- * 构建: 通用型工厂函数, 删除逻辑( 等待笔记 )
+ * 构建: 通用型删除逻辑( 等待笔记 )
  *      a) Model存放对应的文档
  *      b) 适用: review，tour项目，user
  */
@@ -30,7 +30,7 @@ exports.handleDataBaseDeleteOne = (Model) => catchAsync(async (req, res, next) =
 });
 
 /**
- * 构建: 通用型工厂函数, 更新和创建逻辑( 等待笔记 )
+ * 构建: 通用型更新逻辑( 等待笔记 )
  *      a) 适用: review，tour，user
  *      b) 注意: 要禁用敏感字段的更新
  *      c) 改进: 未来增加禁用更新字段入参 ( 未来改进 )

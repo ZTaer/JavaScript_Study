@@ -1,25 +1,23 @@
-const catchAsync = require("../utils/catch-async.utils");
 const User = require("../models/user.models");
-const AppError = require("../utils/app-error.utils");
 const Factory = require("./handle-factory-utils.controllers");
 
 /**
- * 使用: 通用型多功能查询( 等待笔记 - 核心 )
- *      0. 注意: 针对嵌套路由，过滤特殊化处理
+ * 通用性逻辑应用tour( 等待笔记 )
+ *      a) 注意: 针对嵌套路由，过滤特殊化处理
+ *      b) 注意: 禁止使用更新接口更新用户密码
  */
-// user相关API模拟
-exports.getAllUser = Factory.handleDataBaseFindAll(User);
+exports.getAllUser = Factory.handleDataBaseFindAll(User); // 多功能查询
+exports.updateItemUser = Factory.handleDataBaseUpdateOne(User); // 更新逻辑
+exports.deleteItemUser = Factory.handleDataBaseDeleteOne(User); // 删除逻辑
+exports.findItemUser = Factory.handleDataBaseFindOne(User); // 单个查询逻辑
 
 /**
- * 使用: 通用型更新逻辑，应用至，更新用户信息( 等待笔记 )
- *      a) 注意: 禁止使用此接口更新用户密码
+ * 配合: 获取当前用户信息API, 创建userId的中间件( 等待笔记 )
+ *      a) 目的: 为构建当前用户信息api
+ *      b) 作用: user id 存入api入参
+ *      c) 注意: 中间件不需要catchAsync保护，否则将报错
  */
-exports.updateItemUser = Factory.handleDataBaseUpdateOne(User);
-
-exports.deleteItemUser = Factory.handleDataBaseDeleteOne(User);
-
-
-/**
- * 使用: 通用型单个查询逻辑，查询指定id用户信息( 等待笔记 )
- */
-exports.findItemUser = Factory.handleDataBaseFindOne(User);
+exports.getMe = (req, _res, next) => {
+    req.params.id = req.user.id;
+    next();
+};

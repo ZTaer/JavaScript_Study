@@ -26,22 +26,19 @@ const router = express.Router({
     mergeParams: true, // 合并入参
 });
 
+router.use(authControllers.protect);
+
 /**
  * 配合: 通用型创建逻辑路由( 等待笔记 )
  *      a) 注意: 中间件函数, 应用在路由 - handleApiSetCreateReviewId
  */
 router.route("/")
     .get(handleApiGetAllReview)
-    .post(authControllers.protect, authControllers.restrictTo("user"), handleApiSetCreateReviewId, handleApiCreateReview); // 创建评论，有严格的用户校验逻辑
+    .post(authControllers.restrictTo("user"), handleApiSetCreateReviewId, handleApiCreateReview); // 创建评论，有严格的用户校验逻辑
 
-/**
- * 配合: 通用型删除逻辑路由( 等待笔记 )
- * 配合: 通用型更新逻辑路由( 等待笔记 )
-
- */
 router.route("/:id")
     .get(handleApiFindItemReview)
-    .patch(handleApiUpdateReview)
-    .delete(handleApiDeleteReview);
+    .patch(authControllers.restrictTo("admin", "user"), handleApiUpdateReview)
+    .delete(authControllers.restrictTo("admin", "user"), handleApiDeleteReview);
 
 module.exports = router;

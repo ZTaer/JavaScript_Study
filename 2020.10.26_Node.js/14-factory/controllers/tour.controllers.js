@@ -1,14 +1,19 @@
 const Tour = require("../models/tour.models");
-const SearchFeatureTour = require("../utils/search-feature-tour.utils");
 const catchAsync = require("../utils/catch-async.utils");
-const AppError = require("../utils/app-error.utils");
 const Factory = require("./handle-factory-utils.controllers");
 
-
-// 局部中间件: 提前处理错误逻辑
-exports.checkId = (req, res, next, value) => {
-    next();
-};
+/**
+ * 通用性逻辑应用tour( 等待笔记 )
+ *      a) 注意: 可根据实际情况开放通用型函数入参
+ */
+exports.getItemTours = Factory.handleDataBaseFindOne(Tour, {
+    path: "reviews",
+    select: "-__v",
+}); // 单个查询逻辑
+exports.getAllToursClass = Factory.handleDataBaseFindAll(Tour); // 多功能查询
+exports.getAddItemTours = Factory.handleDataBaseAddOne(Tour); // 创建tour
+exports.updateItemTours = Factory.handleDataBaseUpdateOne(Tour); // 数据更新逻辑
+exports.deleteItemTours = Factory.handleDataBaseDeleteOne(Tour); // 删除通用逻辑
 
 /**
  * 构建: 高级API查询数据 ( 完成笔记 )
@@ -136,40 +141,15 @@ exports.getAllTours = catchAsync(async (req, res, next) => {
     });
 });
 
-
-/**
- * 使用: 通用型多功能查询( 等待笔记 - 核心 )
- */
-exports.getAllToursClass = Factory.handleDataBaseFindAll(Tour);
-
-
-/**
- * 使用: 通用型单个查询逻辑，可以配置populate入参( 等待笔记 )
- */
-// Get: 根据ID查询数据逻辑
-exports.getItemTours = Factory.handleDataBaseFindOne(Tour, {
-    path: "reviews",
-    select: "-__v",
-});
+// 局部中间件: 提前处理错误逻辑
+exports.checkId = (req, res, next, value) => {
+    next();
+};
 
 // 构建: 指定路由api中间件，用于api的逻辑效验
 exports.checkToursBody = (req, res, next) => {
     next();
 };
-
-/**
- * 使用: 通用型创建逻辑，应用至，创建tour( 等待笔记 )
- */
-exports.getAddItemTours = Factory.handleDataBaseAddOne(Tour);
-
-// Patch: 数据更新逻辑
-exports.updateItemTours = Factory.handleDataBaseUpdateOne(Tour);
-
-/**
- * 使用: 删除通用逻辑，用至，tour删除( 等待笔记 )
- */
-// Delete: 删除数据逻辑
-exports.deleteItemTours = Factory.handleDataBaseDeleteOne(Tour);
 
 /**
  * 业务中间件( 完成笔记 )
