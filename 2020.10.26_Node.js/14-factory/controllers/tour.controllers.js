@@ -1,14 +1,19 @@
 const Tour = require("../models/tour.models");
-const SearchFeatureTour = require("../utils/search-feature-tour.utils");
 const catchAsync = require("../utils/catch-async.utils");
-const AppError = require("../utils/app-error.utils");
 const Factory = require("./handle-factory-utils.controllers");
 
-
-// 局部中间件: 提前处理错误逻辑
-exports.checkId = (req, res, next, value) => {
-    next();
-};
+/**
+ * 通用性逻辑应用tour( 完成笔记 )
+ *      a) 注意: 可根据实际情况开放通用型函数入参
+ */
+exports.getItemTours = Factory.handleDataBaseFindOne(Tour, {
+    path: "reviews",
+    select: "-__v",
+}); // 单个查询逻辑
+exports.getAllToursClass = Factory.handleDataBaseFindAll(Tour); // 多功能查询
+exports.getAddItemTours = Factory.handleDataBaseAddOne(Tour); // 创建tour
+exports.updateItemTours = Factory.handleDataBaseUpdateOne(Tour); // 数据更新逻辑
+exports.deleteItemTours = Factory.handleDataBaseDeleteOne(Tour); // 删除通用逻辑
 
 /**
  * 构建: 高级API查询数据 ( 完成笔记 )
@@ -136,80 +141,15 @@ exports.getAllTours = catchAsync(async (req, res, next) => {
     });
 });
 
-
-/**
- * 使用 - 异步错误处理: 统一抓捕异步函数中的错误( 完成笔记 )
- *      a) 注意:
- *          0. 异步错误处理后, async函数内，将无需try catch写法来抓取错误
- *          1. 入参: 增加next方便错误处理, 例: ( req, res, next )
- */
-exports.getAllToursClass = catchAsync(async (req, res, next) => {
-    const featureClass = new SearchFeatureTour(Tour.find(), req.query)
-        .filter()
-        .sort() // 注意: new class后记得执行class中函数功能，否则功能将不起作用
-        .fields()
-        .page();
-    const TourData = await featureClass.query;
-
-    res.status(200).json({
-        status: "success",
-        result: TourData.length,
-        data: {
-            tours: TourData,
-        },
-    });
-});
-
-
-// Get: 根据ID查询数据逻辑
-exports.getItemTours = catchAsync(async (req, res, next) => {
-    /**
-     * 配合虚拟填充( 完成笔记 )
-     *      a) 原因: 有了虚拟字段后，依然需要populate来逻辑加工填充
-     *      b) 与处理非虚拟填充字段无差
-     */
-    const tourItem = await Tour.findById(req.params.id).populate({
-        path: "reviews",
-        select: "-__v",
-    });
-    // const tourItem = await Tour.findById(req.params.id);
-
-    if (tourItem === null) {
-        throw new AppError("no data!", 404); // 使用: AppError传递错误信息 - 给全局错误处理中间件 ( 完成笔记 )
-    }
-    res.status(200).json({
-        status: "success",
-        data: tourItem,
-    });
-});
+// 局部中间件: 提前处理错误逻辑
+exports.checkId = (req, res, next, value) => {
+    next();
+};
 
 // 构建: 指定路由api中间件，用于api的逻辑效验
 exports.checkToursBody = (req, res, next) => {
     next();
 };
-
-/**
- * 使用: 通用型创建逻辑，应用至，创建tour( 等待笔记 )
- */
-exports.getAddItemTours = Factory.handleDataBaseAddOne(Tour);
-
-// Patch: 数据更新逻辑
-exports.updateItemTours = catchAsync(async (req, res, next) => {
-    const updateTour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
-        new: true, // new属性: 代表确定要更新数据
-        runValidators: true, // runValidators属性: 并且效验更新的数据
-    });
-    res.status(200).json({
-        status: "success",
-        data: updateTour,
-    });
-});
-
-/**
- * 使用: 删除通用逻辑，用至，tour删除( 等待笔记 )
- */
-// Delete: 删除数据逻辑
-exports.deleteItemTours = Factory.handleDataBaseDeleteOne(Tour);
 
 /**
  * 业务中间件( 完成笔记 )

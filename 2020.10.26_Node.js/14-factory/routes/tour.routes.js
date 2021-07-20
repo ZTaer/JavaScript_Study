@@ -17,12 +17,18 @@ const reviewRoute = require("./review.routes");
 
 const router = express.Router();
 
+/**
+ * tour: 给API接口身份认证和授权( 无需笔记 )
+ *      a) 创建/修改/删除tour: 需要admin, lead-guide
+ *      b) 查看年财报, 业务逻辑: 需要admin, lead-guide, guide
+ */
+
 
 /**
  * 聚合管道计算 | 业务逻辑实战模拟 ( 完成笔记 )
  */
 router.route("/monthly-plan/:year")
-    .get(getMonthlyPlan);
+    .get(authControllers.protect, authControllers.restrictTo("admin", "lead-guide", "guide"), getMonthlyPlan);
 
 /**
  *  聚合管道计算 | 聚合管道查询,配置路由,方便测试API ( 完成笔记 )
@@ -42,12 +48,12 @@ router.route("/getClass") // 高级API查询数据: class类型api
 
 router.route("/") // 高级API查询数据: 函数类型api
     .get(getAllTours)
-    .post(checkToursBody, getAddItemTours); // 核心
+    .post(authControllers.protect, authControllers.restrictTo("admin", "lead-guide"), checkToursBody, getAddItemTours); // 核心
 
 router.route("/:id")
     .get(getItemTours)
-    .patch(updateItemTours)
-    .delete(deleteItemTours);
+    .patch(authControllers.protect, authControllers.restrictTo("admin", "lead-guide"), authControllers.protect, updateItemTours)
+    .delete(authControllers.protect, authControllers.restrictTo("admin", "lead-guide"), deleteItemTours);
 
 
 /**

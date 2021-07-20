@@ -1,27 +1,23 @@
-const fs = require("fs");
-const catchAsync = require("../utils/catch-async.utils");
 const User = require("../models/user.models");
-const AppError = require("../utils/app-error.utils");
 const Factory = require("./handle-factory-utils.controllers");
 
-const tour = JSON.parse(fs.readFileSync(`${__dirname}/../data/tours.json`, "utf-8"));
-
-// user相关API模拟
-exports.getAllUser = catchAsync(async (_req, res, next) => {
-    const data = await User.find();
-    if (!data) return next(new AppError("get all user error", 400));
-
-    res.status(200).json({
-        status: "success",
-        results: data.length,
-        data,
-    });
-});
+/**
+ * 通用性逻辑应用tour( 完成笔记 )
+ *      a) 注意: 针对嵌套路由，过滤特殊化处理
+ *      b) 注意: 禁止使用更新接口更新用户密码
+ */
+exports.getAllUser = Factory.handleDataBaseFindAll(User); // 多功能查询
+exports.updateItemUser = Factory.handleDataBaseUpdateOne(User); // 更新逻辑
+exports.deleteItemUser = Factory.handleDataBaseDeleteOne(User); // 删除逻辑
+exports.findItemUser = Factory.handleDataBaseFindOne(User); // 单个查询逻辑
 
 /**
- * 使用: 通用型更新逻辑，应用至，更新用户信息( 等待笔记 )
- *      a) 注意: 禁止使用此接口更新用户密码
+ * 配合: 获取当前用户信息API, 创建userId的中间件( 完成笔记 )
+ *      a) 目的: 为构建当前用户信息api
+ *      b) 作用: user id 存入api入参
+ *      c) 注意: 中间件不需要catchAsync保护，否则将报错
  */
-exports.updateItemUser = Factory.handleDataBaseUpdateOne(User);
-
-exports.deleteItemUser = Factory.handleDataBaseDeleteOne(User);
+exports.getMe = (req, _res, next) => {
+    req.params.id = req.user.id;
+    next();
+};

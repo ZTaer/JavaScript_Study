@@ -1611,7 +1611,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     a) 00:00 - 完善查询评论Get请求逻辑
     b) 2:50 - 增加逻辑: 入参存在tourId则指定查询，否则查询全部评论
     c) 4:05 - 测试逻辑
-# 160( 等待笔记 )
+# 160( 完成笔记 )
     a) 00:00 - 构建: 通用型工厂函数, 删除逻辑( 注意: 权衡维护成本 )
         0. 原因: 虽然可以方便的使用在多种场合，但虽着项目增长，不易维护，推荐使用react组件思维构建api逻辑
     b) 2:31 - 构建: handleFactory.js 书写函数
@@ -1622,7 +1622,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     g) 10:11 - 测试删除评论逻辑
     h) 11:35 - 使用: 通用删除逻辑, 应用至, 删除用户
     i) 12:50 - 测试删除用户逻辑
-# 161( 等待笔记 - 实战位置 )
+# 161( 完成笔记 )
     a) 00:00 - 构建: 通用型工厂函数, 更新和创建逻辑( 注意: 权衡维护成本 )
     b) 2:11 - 构建: 通用型更新逻辑
     c) 3:31 - 使用: 通用型更新逻辑，应用至，更新用户信息
@@ -1636,7 +1636,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     j) 10:18 - 路由: 中间件应用至评论路由
     k) 10:40 - 使用: 通用型创建逻辑，应用至，创建评论
     l) 13:06 - 测试逻辑
-# 162( 等待笔记 )
+# 162( 完成笔记 )
     a) 00:00 - 构建: 工厂函数,查询逻辑
     b) 2:38 - 构建: 通用型查询逻辑，可以配置populate入参
     c) 4:00 - 应用, 新构建的查询逻辑, 查询tour
@@ -1658,13 +1658,13 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         2. 创建单个
         3. 更新单个
         4. 删除单个
-# 163( 等待笔记 )
+# 163( 完成笔记 )
     a) 00:00 - 添加一个user获取me的端点/获取自身信息的端点
         0. 目的: 方便获取当前用户信息
     b) 1:56 - 创建获取userId的中间件
     c) 2:53 - 配置路由/me, 应用中间件
     d) 4:06 - 测试获取自身信息
-# 164( 等待笔记 )
+# 164( 完成笔记 - 实战位置 )
     a) 00:00 - 完善接口的身份认证和授权
     b) 1:18 - 多功能查看tour取消身份验证, 因为想暴露给用户
     c) 1:57 - 修改tour接口，需要身份验证
@@ -1842,8 +1842,93 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     b) 1:13 - 渲染流程图
     c) 1:38 - 查看服务端渲染结果
 # 175( 等待笔记 )
-    a) 00:00 - 在express中设置pug渲染模板
-    b) 
+    a) 00:00 - 在express中配置pug模板引擎 / 哈巴狗模板引擎 ( 可选学习 )
+    b) 2:01 - express声明使用的渲染引擎，pug模板引擎，已内置express 
+    c) 4:27 - express设定渲染模板位置路径, 通过path.join确定路径位置
+        0. path.join拼接路径: 使用他是为了，应对不同的环境，保持正确的路径 
+    d) 5:07 - express设定生成页面路径
+    e) 6:34 - 建立: 第一个pug模板文件
+    f) 7:56 - 配置: 渲染页面路由
+    g) 9:04 - 安装pug模板: yarn add pug
+    h) 9:12 - 浏览渲染后的主页面
+# 176( 等待笔记 )
+    a) 00:00 - pug渲染模板引擎，基础知识 
+    b) 2:55 - pug写法，( 挺神奇的，是我喜欢的菜 ) 
+    c) 3:06 - 浏览器预览渲染结果
+    d) 4:55 - pug写法: 引用css
+        0. 注意: pug支持原生html写法
+    e) 5:36 - 引入页面icon
+    f) 5:42 - 预览效果
+    g) 9:33 - 给pug传入变量
+    h) 10:46 - pug使用变量渲染
+    i) 11:21 - pug备注写法: 会渲染至html
+    j) 11:34 - pug备注写法： 不行渲染至html
+    k) 11:59 - pug使用简单的js语法
+    l) 12:10 - 预览效果
+    m) 12:54 - pug中，写js方式
+    n) 12:59 - 预览效果
+    o) 14:05 - pug中，插入js写法
+    p) 14:22 - 预览效果
+# 177( 等待笔记 )
+    a) 00:00 - 构建pug模板
+    b) 3:20 - 构建pug模板head
+    c) 5:29 - 根据html转译成pug格式
+    d) 6:26 - pug的div写法
+    e) 9:36 - pug的header部分, 接下来是内容部分
+    f) 12:17 - li嵌套内容，便捷式写法
+    g) 14:06 - footer内容已翻译pug
+    h) 15:11 - 修正css
+# 178( 等待笔记 )
+    a) 00:00 - pug获取文件渲染, 如导航栏 
+    b) 1:54 - 安装: pug beautify - 方便格式化pug
+    c) 2:05 - 构建: _header.pug文件,并复制header部分
+        0. 格式化pug:
+            a) 安装: pug beautify
+            b) 选中: 全选要求格式化的代码
+            c) vscood命令: 
+                0. Mac: command+shift+p
+                1. 注意: pug beautify也自带快捷键
+            d) 输入pug: 选择pug beautify格式化
+    d) 3:12 - 构建: _footer.pug, 并复制footer部分
+        0. 命名规范: 服务于其他模板，通常用_xxx.pug命名，方便渲染
+    e) 3:22 - 引入使用: pug模板文件
+# 179( 等待笔记 )
+    a) 00:00 - 用块扩展pug
+    b) 2:41 - 配置路由, 相关tour渲染模板
+    c) 4:13 - block content: 块链接
+    d) 5:12 - extends base: 模板引用
+        0. 目的: 引用base.pug模板到当前文件, 并在block content渲染当前pug文件内容，从而形成新的页面
+    e) 7:48 - 引用base.pug模板到当前文件, 并在block content渲染当前pug文件内容，从而形成新的页面
+    f) 8:22 - 预览页面 
+    g) 9:09 - pug模板，使用title变量
+# 180( 等待笔记 )
+    a) 00:00 - 配置pug项目结构化
+    b) 1:58 - 路由结构化
+    c) 2:44 - 配置主路由
+    d) 3:40 - 将api逻辑，转移至controller下
+    e) 4:14 - 应用controller逻辑，至路由
+    f) 5:04 - 改进路由
+# 181( 等待笔记 )
+    a) 00:00 - 配置overview页面1
+    b) 2:25 - 构建: 确定overview页面构建思路
+    c) 3:58 - 查询数据，传入pug模板( 好原始 )
+    d) 9:39 - 复制card模板, 到overview页面
+    e) 9:48 - 预览页面
+    f) 11:12 - each tour in tours: pug预发循环迭代
+    g) 11:17 - 预览页面
+# 182( 等待笔记 )
+    a) 00:00 - 配置overview页面2
+    b) 3:58 - 给pug配置变量，动态迭代渲染card
+        0. 注意: 注意图片路径, 从public读取
+    c) 4:07 - 预览效果
+    d) 6:53 - 以此类推，变量写入pug中
+    e) 8:07 - 变量写入pug中，变量对应
+    f) 9:51 - 格式化时间: .toLocalString()
+    g) 13:59 - 完成card的pug变量填充
+    h) 15:09 - 优化渲染card排列
+    i) 15:21 - 预览效果
+# 183( 等待笔记 )
+    a) 00:00 - 
 
 
         
