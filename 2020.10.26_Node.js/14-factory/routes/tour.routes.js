@@ -18,7 +18,7 @@ const reviewRoute = require("./review.routes");
 const router = express.Router();
 
 /**
- * tour: 给API接口身份认证和授权( 等待笔记 )
+ * tour: 给API接口身份认证和授权( 无需笔记 )
  *      a) 创建/修改/删除tour: 需要admin, lead-guide
  *      b) 查看年财报, 业务逻辑: 需要admin, lead-guide, guide
  */

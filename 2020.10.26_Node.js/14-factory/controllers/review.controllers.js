@@ -4,11 +4,11 @@ const catchAsync = require("../utils/catch-async.utils");
 const Factory = require("./handle-factory-utils.controllers");
 
 /**
- * 通用性逻辑应用reviews( 等待笔记 )
+ * 通用性逻辑应用reviews( 完成笔记 )
  *      a) 注意: 多余逻辑放置中级件函数
  */
 
-// 创建评论:中间件函数, 放置多余逻辑 ( 等待笔记 )
+// 创建评论:中间件函数, 放置多余逻辑 ( 完成笔记 )
 //    a) 原因: 因有多余逻辑，不可直接使用通用逻辑，故将多余逻辑，应用至中间件函数
 exports.handleApiSetCreateReviewId = catchAsync(async (req, _res, next) => {
     const { tourId, userId } = req.body;

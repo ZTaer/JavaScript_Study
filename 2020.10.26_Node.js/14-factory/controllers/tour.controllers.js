@@ -3,7 +3,7 @@ const catchAsync = require("../utils/catch-async.utils");
 const Factory = require("./handle-factory-utils.controllers");
 
 /**
- * 通用性逻辑应用tour( 等待笔记 )
+ * 通用性逻辑应用tour( 完成笔记 )
  *      a) 注意: 可根据实际情况开放通用型函数入参
  */
 exports.getItemTours = Factory.handleDataBaseFindOne(Tour, {

@@ -23,7 +23,7 @@ router.route("/sinup")
 
 
 /**
- * 便捷式身份验证路由: route.use( 中间件 ) ( 等待笔记 )
+ * 便捷式身份验证路由: route.use( 中间件 ) ( 完成笔记 )
  *      a) 影响范围: 代码下方路由将全部受影响，代码上方则不受影响
  *      b) 原因: 中间件也有执行顺序
  *      c) 可以删除下方路由多余身份验证中间件
@@ -45,7 +45,7 @@ router.route("/updatepassword")
     .post(authControllers.updatePassword);
 
 /**
- * 创建: 获取当前用户信息API( 等待笔记 )
+ * 创建: 获取当前用户信息API( 完成笔记 )
  *      a) 主要逻辑
  *          0. 保护路线: 目的是让req.user.id存在
  *          1. 中间件: 目的是将req.user.id传入req.params入参
@@ -55,7 +55,7 @@ router.route("/me").get(userControllers.getMe, userControllers.findItemUser);
 
 
 /**
- * 便捷式身份验证路由: 叠加权限认证route.use( 中间件 ) ( 等待笔记 )
+ * 便捷式身份验证路由: 叠加权限认证route.use( 中间件 ) ( 完成笔记 )
  *      a) 影响范围: 代码下方路由将全部受影响，代码上方则不受影响
  *      b) 原因: 中间件也有执行顺序
  *      c) 可以删除下方路由多余身份验证中间件

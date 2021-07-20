@@ -29,7 +29,7 @@ const router = express.Router({
 router.use(authControllers.protect);
 
 /**
- * 配合: 通用型创建逻辑路由( 等待笔记 )
+ * 配合: 通用型创建逻辑路由( 完成笔记 )
  *      a) 注意: 中间件函数, 应用在路由 - handleApiSetCreateReviewId
  */
 router.route("/")
