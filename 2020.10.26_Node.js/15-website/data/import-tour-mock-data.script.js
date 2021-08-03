@@ -59,13 +59,13 @@ const readFilePro = (fileUrl) => new Promise((resolve, reject) => {
 // d) 写入数据库
 const handleImportTourData = async () => {
     try {
-        const userData = await readFilePro(`${__dirname}/users.json`);
+        // const userData = await readFilePro(`${__dirname}/users.json`);
         const tourData = await readFilePro(`${__dirname}/tours.json`);
-        const reviewData = await readFilePro(`${__dirname}/reviews.json`);
+        // const reviewData = await readFilePro(`${__dirname}/reviews.json`);
 
-        await User.create(JSON.parse(userData), { validateBeforeSave: false }); // 取消密码校验 - 核心
+        // await User.create(JSON.parse(userData), { validateBeforeSave: false }); // 取消密码校验 - 核心
         await Tour.create(JSON.parse(tourData));
-        await Review.create(JSON.parse(reviewData));
+        // await Review.create(JSON.parse(reviewData));
 
         console.log("写入成功!");
     } catch (err) {
@@ -77,9 +77,9 @@ const handleImportTourData = async () => {
 // e) 删除数据至数据库
 const handleDeleteTourData = async () => {
     try {
-        await User.deleteMany();
+        // await User.deleteMany();
         await Tour.deleteMany();
-        await Review.deleteMany();
+        // await Review.deleteMany();
 
         console.log("删除成功!");
     } catch (err) {
