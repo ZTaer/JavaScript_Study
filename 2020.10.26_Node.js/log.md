@@ -1664,7 +1664,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     b) 1:56 - 创建获取userId的中间件
     c) 2:53 - 配置路由/me, 应用中间件
     d) 4:06 - 测试获取自身信息
-# 164( 完成笔记 - 实战位置 )
+# 164( 完成笔记 )
     a) 00:00 - 完善接口的身份认证和授权
     b) 1:18 - 多功能查看tour取消身份验证, 因为想暴露给用户
     c) 1:57 - 修改tour接口，需要身份验证
@@ -1688,11 +1688,12 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
 # 166( 等待笔记 )
     a) 00:00 - mongodb索引提高性能
     b) 1:24 - 修改查询tour的接口，使其能够看到，查询统计数据
-    c) 1:47 - 测试结果
-        0. executionStats统计结果
+    c) 1:47 - 测试结果: 
+        0. 目的: 比较有索引后的性能提升效果
+        1. executionStats统计结果
             a) nReturned: 输出结果
             b) totalDocsExamined: 查询文档数有9
-        1. 解决方法:
+        2. 解决方法:
             a) 了解索引index
     d) 4:02 - compass查看索引index
         0. 索引决定查询性能
@@ -1716,8 +1717,8 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     l) 15:54 - 注释查询统计函数
 # 167( 等待笔记 )
     a) 00:00 - 计算tour的平均评分: 创建评论时
-        0. 目的: 应用存储相关数据集摘要
-            a) 防止: 每次查询都进行计算，节约计算资源
+        0. 目的: 应用存储相关数据集统计分析信息
+            a) 防止: 避免重复查询计算，节约计算资源
             b) 意思: 提前计算好并存储，需要时直接读取，无需每次查询都重复计算
             c) 应用场景: 评分，评论数量, 等...
     b) 4:15 - 使用静态方法创建计算评论数量逻辑
@@ -1741,18 +1742,20 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
             a) 使用post中间件原因: 是pre在新的评论未保存时进行的计算, post是在新的评论保存在数据库后进行计算
 # 168( 等待笔记 )
     a) 00:00 - 计算tour的平均评分: 更新,删除评论时
-    b) 1:28 - 难点: findByIdAndUpdate(findOneByIdAndUpdate)/findByIdAndDelete(findOneByIdAndUpdate)无中间件文档，只能建立一种中间件绕过机制, 预中间件
-    c) 8:26 - 构建: 预中间件( 诊断findByIdXXX..., findOneByIdXXXXX )进行计算
+    b) 1:28 - 难点: findByIdAndUpdate(findOneAndUpdate)/findByIdAndDelete(findOneAndUpdate)无中间件文档，只能建立一种中间件绕过机制, 预中间件
+        0. 注意: findByIdAndXXXX --底层--> findOneAndXXXX 
+    c) 8:26 - 构建: 预中间件( 诊断findByIdXXX..., findOneAndXXXXX )进行计算
         0. 构建pre下的this.r = await this.findOne(), 目的是为了给, post中间件传递查询属性
             a) 中间件之间数据有传递性 ( 核心 )
             b) 比如当前的this.r, 利用这一特性来计算新的操控数据库的结果计算
+            c) this.findOne(): 获取当前查询加工的数据
     d) 8:46 - 测试逻辑, 更新评论
     e) 10:24 - 测试逻辑，删除评论，查看计算结果是否正确
     f) 11:50 - 评论删除完毕后，计算逻辑报错，需增加防错逻辑
     g) 13:03 - 计算逻辑: 增加防错处理
         0. 原因: 无评论时，查询结果为空数组，故需对应处理
     h) 13:40 - 测试逻辑
-# 169( 等待笔记 )
+# 169( 等待笔记 - 实战位置 )
     a) 00:00 - 限制用户评论数量: 当前场景，每个旅游项目用户只能评价一次    
     b) 2:33 - 配置复合索引: 用户+tour保持唯一
         0. 此代码, 可能要间隔非常长的时间来生效, 有可能是一天以后....
@@ -1928,7 +1931,25 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     h) 15:09 - 优化渲染card排列
     i) 15:21 - 预览效果
 # 183( 等待笔记 )
-    a) 00:00 - 
+    a) 00:00 - 配置tour页面1
+    b) 3:03 - 构建: 确定tour页面构建思路
+    c) 3:33 - 配置路由
+    d) 5:25 - populate()数据填充
+    e) 9:29 - 修正css路径，为绝对路径 
+    f) 9:58 - 修正tour模板，相关文件路径
+    g) 11:14 - 传入模板tour变量，以配合渲染
+    h) 11:22 - 在模板中应用变量 
+    i) 12:30 -  pug根据变量修正图片
+    j) 15:56 - pug构建mixin模板块
+        0. 目的: 像函数一样方便调用渲染
+    k) 17:03 - 调用mixin渲染
+    l) 17:37 - mixin传入变量配置
+        0.  像使用函数一样
+    m) 17:43 - 预览效果
+    n) 20:03 - pug中使用js预发方式, 并mixin根据需求应用
+    o) 20:21 - 预览效果
+# 184( 等待笔记 )
+    a) 00:00 - 配置tour页面2 
 
 
         
