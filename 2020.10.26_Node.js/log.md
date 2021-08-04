@@ -1755,7 +1755,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     g) 13:03 - 计算逻辑: 增加防错处理
         0. 原因: 无评论时，查询结果为空数组，故需对应处理
     h) 13:40 - 测试逻辑
-# 169( 等待笔记 - 实战位置 )
+# 169( 等待笔记 )
     a) 00:00 - 限制用户评论数量: 当前场景，每个旅游项目用户只能评价一次    
     b) 2:33 - 配置复合索引: 用户+tour保持唯一
         0. 此代码, 可能要间隔非常长的时间来生效, 有可能是一天以后....
@@ -1800,7 +1800,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     q) 26:10 - 测试逻辑: 空间过滤
     r) 26:36 - 通过compass schema验证测试结果正确性
     s) 28:30 - mongoose地理空间运算符官方文档
-# 171( 等待笔记 )
+# 171( 等待笔记 - 实战位置 )
     a) 00:00 - 地理空间聚合 - 计算距离
     b) 1:26 - 配置路由
     c) 5:34 - 构建距离计算api函数
@@ -1823,7 +1823,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
             a) 原因: 默认计算结果单位为m
         1. $project目的: 仅保留指定字段
     i) 11:24 - 测试逻辑: 转换km
-    j) 14:38 - 构建: 单位变量, km 、mi 为了单位转换 
+    j) 14:38 - 构建: 单位变量, km 、mi(英里) 为了单位转换 
     k) 14:44 - 应用单位变量
     l) 15:06 - 测试逻辑: 通过入参转换距离数据单位
 # 172( 等待笔记 )

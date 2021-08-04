@@ -52,6 +52,9 @@
                 "allowTemplateLiterals": true
             }
         ],
-        "no-throw-literal": "warn"
+        "no-throw-literal": "warn",
+        "max-len": ["warn", {
+            "code": 200
+        }]
     }
 }

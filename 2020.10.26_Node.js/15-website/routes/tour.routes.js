@@ -10,6 +10,8 @@ const {
     checkToursBody,
     getTourStats,
     getMonthlyPlan,
+    getTourWithin,
+    getDistances,
 } = require("../controllers/tour.controllers");
 const authControllers = require("../controllers/auth.controllers");
 const { handleApiCreateReview } = require("../controllers/review.controllers");
@@ -45,6 +47,27 @@ router.route("/top-5-cheap")
 
 router.route("/getClass") // 高级API查询数据: class类型api
     .get(getAllToursClass);
+
+/**
+ * 地理空间查询: 在半径范围内查询那些tour坐标在内( 等待笔记 )
+ *      a) 路由解析:
+ *          0. 第一种路由: "/tours-within/:distance/center/:lathing/unit/:unit" --> "/tours-within/300/center/12,23/unit/mi"
+ *              a) distance: 距离
+ *              b) lathing: 坐标
+ *              c) unit: 单位 ( mi -> 英里 )
+ *          1. 第二种路由: "/tours-within?distance=300&lathing=12,23&unit=mi"
+ *      b) 实例: 查询半径400公里内的旅游
+ *          0. 写法: /tours-within/400/center/34.72788297346316,-117.48336975190146/unit/mi
+ */
+router.route("/tours-within/:distance/center/:lathing/unit/:unit").get(getTourWithin);
+
+/**
+ * 地理空间聚合: 计算距离路由配置( 等待笔记 )
+ *      a) 实例: 查询附近5000km内的tour
+ *          0. 写法: /distances/34.72788297346316,-117.48336975190146/unit/km?maxDistance=5000
+ */
+router.route("/distances/:lathing/unit/:unit").get(getDistances);
+
 
 router.route("/") // 高级API查询数据: 函数类型api
     .get(getAllTours)

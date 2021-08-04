@@ -1,4 +1,5 @@
 const Tour = require("../models/tour.models");
+const AppError = require("../utils/app-error.utils");
 const catchAsync = require("../utils/catch-async.utils");
 const Factory = require("./handle-factory-utils.controllers");
 
@@ -297,5 +298,121 @@ exports.getMonthlyPlan = catchAsync(async (req, res, next) => {
         data: {
             plan,
         },
+    });
+});
+
+
+/**
+ * 地理空间查询: 空间查询api( 等待笔记 )
+ *      a) radius( 弧度 ): 距离 / 地球半径 = 弧度
+ *          a) 英里(mi): distance / 3963.2
+ *          b) 公里(km): distance / 6378.1
+ *      b) mongoose地理空间运算符: ( 核心 )
+ *          0. 示例: Tour.find( { startLocation: { $geoWithin: { $centerSphere: [ [ 经度(longitude), 纬度(latitude) ], 弧度 ] } } } )
+ *          1. $geoWithin: 对startLocaltion字段过滤
+ *          2. $centerSphere: 根据入参进行半径之内过滤查询
+ *          3. 注意: startLocaltion的mongoose.schema写法
+ *      c) 注意: 增加startLocation空间坐标索引, 提高查询过滤性能
+ *      d) Compass --> Schema: 可以根据过滤条件的数据进行分析 ( 超级强大 )
+ *          0. 空间地理位置坐标的分析
+ *          1. 注意: 删除无效的地理坐标，才能出现地图
+ *      e) 官方空间运算符文档: https://docs.mongodb.com/manual/tutorial/query-a-2dsphere-index/
+ */
+
+exports.getTourWithin = catchAsync(async (req, res, next) => {
+    const {
+        distance,
+        lathing,
+        unit = "mi",
+    } = req.params;
+    const [lat, lng] = lathing.split(","); // 经纬度
+
+    const radius = unit === "mi" ? distance / 3963.2 : distance / 6378.1; // 弧度
+
+    if (!lat || !lng) {
+        next(
+            AppError("Please enter latitude(lat) and longitude(lng)!", 400),
+        );
+    }
+
+    // 过滤坐标
+    const tours = await Tour.find({
+        startLocation: {
+            $geoWithin: {
+                $centerSphere: [[lng, lat], radius], // 注意: 这里是[lng, lat], 不是[lat, lng]
+            },
+        },
+    });
+
+    res.status(200).json({
+        status: "success",
+        result: tours.length,
+        data: tours,
+    });
+});
+
+/**
+ * 地理空间聚合: 计算距离API ( 等待笔记 )
+ *      a) $geoNear用法:
+ *          0. 目的: 使用$geoNear计算空间坐标间的直线距离
+ *          1. 注意: $geoNear使用条件
+ *              a) 索引: 需要 2d 或 2dsphere 索引
+ *              b) 聚合管道位置: 需在聚合管道第一个位置，否则会报错
+ *          2. 当前场景已有startLocation为2dsphere索引，故可直接使用$geoNear来计算直线距离
+ *          3. 示例: const data = await Tour.aggregate([{ $geoNear: { near: { type: "Point", coordinaes: [ 经度(longitude), 纬度(latitude) ] }, distanceField: "字段名" } }])
+ *              a) 解析:
+ *                  0. near: 设定起点
+ *                  1. distanceField: 返回的字段名称
+ *                  2. distanceMultiplier: 返回距离单位( 默认单位m )
+ *                      a) km(公里): 0.001
+ *                      b) mi(英里): 0.000621371
+ *                  3. maxDistance: 最大过滤范围( 默认单位m )
+ *                  4. minDistance: 最小过滤范围( 默认单位m )
+ *              b) 注意: 一定要注意$geoNear使用条件
+ *      b) $project目的: 仅保留指定字段
+ */
+exports.getDistances = catchAsync(async (req, res, next) => {
+    const {
+        lathing,
+        unit = "mi",
+    } = req.params;
+    const { maxDistance = 1000 * 200, minDistance = 0 } = req.query; // 默认最大距离200kn, 最小距离0km
+    const [lat, lng] = lathing.split(","); // 经纬度
+
+    const multiplier = unit === "mi" ? 0.000621371 : 0.001; // 单位变量, mi(英里), km 为了单位转换
+
+    if (!lat || !lng) {
+        next(
+            AppError("Please enter latitude(lat) and longitude(lng)!", 400),
+        );
+    }
+
+    // 聚合运算,空间距离
+    const distances = await Tour.aggregate([
+        {
+            $geoNear: {
+                near: {
+                    type: "Point",
+                    coordinates: [lng * 1, lat * 1], // 注意: 这里是[lng, lat], 不是[lat, lng]
+                },
+                distanceField: "distance",
+                distanceMultiplier: multiplier, // 输出单位m或者km
+                maxDistance: maxDistance * 1000, // 最大过滤范围( 默认单位m, 这里*1000设定为km )
+                minDistance: minDistance * 1000,
+            },
+        },
+        {
+            // $project目的: 仅保留指定字段
+            $project: {
+                distance: 1,
+                name: 1,
+            },
+        },
+    ]);
+
+    res.status(200).json({
+        status: "success",
+        result: distances.length,
+        data: distances,
     });
 });

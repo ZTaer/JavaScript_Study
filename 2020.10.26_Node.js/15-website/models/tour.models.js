@@ -70,12 +70,6 @@ const tourSchema = new mongoose.Schema({
             message: "仅限使用,easy,medium,difficult",
         },
     },
-    rating: {
-        type: Number,
-        default: 4.5,
-        min: [1, "大于1"],
-        max: [5, "小于5"],
-    },
     ratingsAverage: {
         type: Number,
         default: 4.5,
@@ -165,16 +159,18 @@ const tourSchema = new mongoose.Schema({
         address: String,
         description: String,
     },
-    location: {
-        type: { // 注意: 当前type字段名，就为type，并非语法
-            type: "String",
-            default: "Point",
-            enum: ["Point"],
+    locations: [
+        {
+            type: { // 注意: 当前type字段名，就为type，并非语法
+                type: "String",
+                default: "Point",
+                enum: ["Point"],
+            },
+            coordinates: [Number],
+            address: String,
+            description: String,
         },
-        coordinates: [Number],
-        address: String,
-        description: String,
-    },
+    ],
     /**
      * 构建: 建模( 嵌入 - 不推荐 ): 导游( 完成笔记 )
      *      a) 注意: 因为嵌入模拟，故要写中间件查询
@@ -221,6 +217,13 @@ tourSchema.index({
 });
 tourSchema.index({
     difficulty: 1,
+});
+/**
+ * 地理空间查询: 增加startLocation空间坐标索引, 提高查询过滤性能( 等待笔记 )
+ *      a) 注意: 索引单位, '2dsphere' -> 代表二维平面上的点, mongoose的游戏规则
+ */
+tourSchema.index({
+    startLocation: "2dsphere",
 });
 
 /**
@@ -319,13 +322,13 @@ tourSchema.pre(/^find/, function (next) {
  *          0. .unshift()为标准的处理array的js函数，并非是第三方, 参考es5
  */
 // 目的: vip客户数据, 不进行数据分析 | 屏蔽数据分析方法
-tourSchema.pre("aggregate", function (next) {
-    console.log("this.pipeline", this.pipeline());
-    this.pipeline().unshift({
-        $match: { vipTour: { $ne: true } },
-    });
-    next();
-});
+// tourSchema.pre("aggregate", function (next) {
+//     console.log("this.pipeline", this.pipeline());
+//     this.pipeline().unshift({
+//         $match: { vipTour: { $ne: true } },
+//     });
+//     next();
+// });
 
 /**
  * 构建: 查询导游中间件( 为嵌入建模使用 - 不推荐 )( 完成笔记 )
