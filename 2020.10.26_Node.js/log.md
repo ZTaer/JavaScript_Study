@@ -1677,7 +1677,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     i) 8:52 - 测试api
     j) 11:27 - 便捷式身份验证，评论api
     k) 12:39 - 更新、删除评论api仅admin以及用户访问
-# 165( 等待笔记 )
+# 165( 完成笔记 )
     a) 00:00 - 导入评论，和用户数据
     b) 2:02 - 改进脚本，支持多个mongoose文档
     c) 2:11 - 使用脚本清空数据库
@@ -1685,7 +1685,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     e) 4:03 - 暂时注释密码加密，在用脚本导入数据
     f) 5:59 - 成功导入数据后，默认admin登录密码test1234
     g) 7:10 - 测试api
-# 166( 等待笔记 )
+# 166( 完成笔记 )
     a) 00:00 - mongodb索引提高性能
     b) 1:24 - 修改查询tour的接口，使其能够看到，查询统计数据
     c) 1:47 - 测试结果: 
@@ -1715,7 +1715,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     j) 13:48 - 增加: 单字段索引 
     k) 14:24 - compass查看字段
     l) 15:54 - 注释查询统计函数
-# 167( 等待笔记 )
+# 167( 完成笔记 )
     a) 00:00 - 计算tour的平均评分: 创建评论时
         0. 目的: 应用存储相关数据集统计分析信息
             a) 防止: 避免重复查询计算，节约计算资源
@@ -1740,7 +1740,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         1. 在model下创建，静态逻辑
         2. 将静态逻辑应用至，post中间件中, 在this.controller下执行
             a) 使用post中间件原因: 是pre在新的评论未保存时进行的计算, post是在新的评论保存在数据库后进行计算
-# 168( 等待笔记 )
+# 168( 完成笔记 )
     a) 00:00 - 计算tour的平均评分: 更新,删除评论时
     b) 1:28 - 难点: findByIdAndUpdate(findOneAndUpdate)/findByIdAndDelete(findOneAndUpdate)无中间件文档，只能建立一种中间件绕过机制, 预中间件
         0. 注意: findByIdAndXXXX --底层--> findOneAndXXXX 
@@ -1755,7 +1755,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     g) 13:03 - 计算逻辑: 增加防错处理
         0. 原因: 无评论时，查询结果为空数组，故需对应处理
     h) 13:40 - 测试逻辑
-# 169( 等待笔记 )
+# 169( 完成笔记 )
     a) 00:00 - 限制用户评论数量: 当前场景，每个旅游项目用户只能评价一次    
     b) 2:33 - 配置复合索引: 用户+tour保持唯一
         0. 此代码, 可能要间隔非常长的时间来生效, 有可能是一天以后....
@@ -1763,7 +1763,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     d) 7:05 - 修复平均评分，小数问题
     e) 8:29 - mongoose schema 处理小数，四舍五入问题
     f) 9:07 - 测试逻辑: 小数处理
-# 170( 等待笔记 )
+# 170( 完成笔记 )
     a) 00:00 - 地理空间查询，在半径内查询游览 
         0. 例: 查询半径300公里内的旅游
     b) 1:49 - 路由解析:
@@ -1800,7 +1800,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     q) 26:10 - 测试逻辑: 空间过滤
     r) 26:36 - 通过compass schema验证测试结果正确性
     s) 28:30 - mongoose地理空间运算符官方文档
-# 171( 等待笔记 - 实战位置 )
+# 171( 完成笔记 - 实战位置 )
     a) 00:00 - 地理空间聚合 - 计算距离
     b) 1:26 - 配置路由
     c) 5:34 - 构建距离计算api函数
@@ -1826,7 +1826,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     j) 14:38 - 构建: 单位变量, km 、mi(英里) 为了单位转换 
     k) 14:44 - 应用单位变量
     l) 15:06 - 测试逻辑: 通过入参转换距离数据单位
-# 172( 等待笔记 )
+# 172( 等待笔记 - 暂不实战 )
     a) 00:00 - 使用postman创建API文档
     b) 1:38 - 处理敏感数据，将敏感数据存储至postman环境变量中类似{{jwt}}
     c) 2:16 - 入参使用postman环境变量

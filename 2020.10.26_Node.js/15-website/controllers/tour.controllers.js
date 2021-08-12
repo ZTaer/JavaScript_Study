@@ -303,7 +303,7 @@ exports.getMonthlyPlan = catchAsync(async (req, res, next) => {
 
 
 /**
- * 地理空间查询: 空间查询api( 等待笔记 )
+ * 地理空间查询: 空间查询api( 完成笔记 )
  *      a) radius( 弧度 ): 距离 / 地球半径 = 弧度
  *          a) 英里(mi): distance / 3963.2
  *          b) 公里(km): distance / 6378.1
@@ -352,7 +352,7 @@ exports.getTourWithin = catchAsync(async (req, res, next) => {
 });
 
 /**
- * 地理空间聚合: 计算距离API ( 等待笔记 )
+ * 地理空间聚合: 计算距离API ( 完成笔记 )
  *      a) $geoNear用法:
  *          0. 目的: 使用$geoNear计算空间坐标间的直线距离
  *          1. 注意: $geoNear使用条件

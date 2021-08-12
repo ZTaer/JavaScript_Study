@@ -49,7 +49,7 @@ router.route("/getClass") // 高级API查询数据: class类型api
     .get(getAllToursClass);
 
 /**
- * 地理空间查询: 在半径范围内查询那些tour坐标在内( 等待笔记 )
+ * 地理空间查询: 在半径范围内查询那些tour坐标在内( 完成笔记 )
  *      a) 路由解析:
  *          0. 第一种路由: "/tours-within/:distance/center/:lathing/unit/:unit" --> "/tours-within/300/center/12,23/unit/mi"
  *              a) distance: 距离
@@ -62,7 +62,7 @@ router.route("/getClass") // 高级API查询数据: class类型api
 router.route("/tours-within/:distance/center/:lathing/unit/:unit").get(getTourWithin);
 
 /**
- * 地理空间聚合: 计算距离路由配置( 等待笔记 )
+ * 地理空间聚合: 计算距离路由配置( 完成笔记 )
  *      a) 实例: 查询附近5000km内的tour
  *          0. 写法: /distances/34.72788297346316,-117.48336975190146/unit/km?maxDistance=5000
  */

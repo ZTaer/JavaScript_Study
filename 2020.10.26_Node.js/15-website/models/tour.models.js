@@ -76,7 +76,7 @@ const tourSchema = new mongoose.Schema({
         min: [1, "大于1"],
         max: [5, "小于5"],
         /**
-         * MongoDB.Schema: set回调加工数据 ( 等待笔记 )
+         * MongoDB.Schema: set回调加工数据 ( 完成笔记 )
          * 实例: MongoDB.Schema设定评分四舍五入保留一位数
          *      a) Math.round(): ES5四舍五入官方默认方法
          */
@@ -198,7 +198,7 @@ const tourSchema = new mongoose.Schema({
 });
 
 /**
- * 接口索引: 增加索引，提高查询性能 ( 等待笔记 )
+ * 接口索引: 增加索引，提高查询性能 ( 完成笔记 )
  *      a) 比较: 通过接口统计数据对比得知，有索引性能提升一大截
  *      b) 注意: compass查看新建的索引, 有时需要等待较长的时间，才能生效 ( 截图 )
  *      c) 索引类型:
@@ -219,7 +219,7 @@ tourSchema.index({
     difficulty: 1,
 });
 /**
- * 地理空间查询: 增加startLocation空间坐标索引, 提高查询过滤性能( 等待笔记 )
+ * 地理空间查询: 增加startLocation空间坐标索引, 提高查询过滤性能( 完成笔记 )
  *      a) 注意: 索引单位, '2dsphere' -> 代表二维平面上的点, mongoose的游戏规则
  */
 tourSchema.index({

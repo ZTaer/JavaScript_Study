@@ -102,7 +102,7 @@ exports.handleDataBaseFindAll = (Model) => catchAsync(async (req, res, _next) =>
         .page();
 
     /**
-     * 接口索引: 查询接口统计数据( 等待笔记 )
+     * 接口索引: 查询接口统计数据( 完成笔记 )
      *      a) 目的: 查看接口运行状态, 比较有索引后的性能提升效果
      *      b)  executionStats统计结果
      *          0. nReturned: 输出结果数量

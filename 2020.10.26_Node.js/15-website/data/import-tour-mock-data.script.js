@@ -45,7 +45,7 @@ const readFilePro = (fileUrl) => new Promise((resolve, reject) => {
 });
 
 /**
- * 准备实例: mock数据导入 ( 等待笔记 )
+ * 准备实例: mock数据导入 ( 完成笔记 )
  *      a) 改进脚本: 支持多个mongoose文档操控
  *      b) 清空数据库: node 脚本名称.js --delete
  *      c) 临时取消密码校验: 方便脚本导入数据
@@ -59,13 +59,13 @@ const readFilePro = (fileUrl) => new Promise((resolve, reject) => {
 // d) 写入数据库
 const handleImportTourData = async () => {
     try {
-        // const userData = await readFilePro(`${__dirname}/users.json`);
+        const userData = await readFilePro(`${__dirname}/users.json`);
         const tourData = await readFilePro(`${__dirname}/tours.json`);
-        // const reviewData = await readFilePro(`${__dirname}/reviews.json`);
+        const reviewData = await readFilePro(`${__dirname}/reviews.json`);
 
-        // await User.create(JSON.parse(userData), { validateBeforeSave: false }); // 取消密码校验 - 核心
+        await User.create(JSON.parse(userData), { validateBeforeSave: false }); // 取消密码校验 - 核心
         await Tour.create(JSON.parse(tourData));
-        // await Review.create(JSON.parse(reviewData));
+        await Review.create(JSON.parse(reviewData));
 
         console.log("写入成功!");
     } catch (err) {
