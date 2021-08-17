@@ -1,5 +1,27 @@
 <pre>
+# 目录
+    0. 资源
+        a) 面试题
+        b) 算法
+    1. 面试题
+        a) 训练位置
+        b) HTML5/CSS3
+        c) JavaScript
+            0. ES5/ES6
+            1. React
+        d) Node.js
+    2. 算法
+        a) 训练位置
+        b) 基本
+        c) 算法
+        d) 基础数据结构
+        e) 高级数据结构
+        f) 技巧
+        g) 数学
+        h) 其他
+</pre>
 
+<pre>
 # 资源
     a) 面试题
         0. Udemy前端面试题视频资源: https://www.udemy.com/course/master-the-coding-interview-big-tech-faang-interviews/learn/lecture/19315028#overview
@@ -28,19 +50,25 @@
             d) 002-React-面试题整理
                 0. https://juejin.cn/post/6992588230851985445
         6. 掘金小册:
-            a) 前端算法与数据结构面试：底层逻辑解读与大厂真题训练
-                0. https://juejin.cn/book/6844733800300150797
-            b) 前端性能优化原理与实践
-                0. https://juejin.cn/book/6844733750048210957
-            c) 前端面试之道
-                0. https://juejin.cn/book/6844733763675488269
-            d) Web 前端面试指南与高频考题解析
-                0. https://juejin.cn/book/6844733713780047886
+            a) 前端性能优化原理与实践
+                0. 预览: https://juejin.cn/book/6844733750048210957
+            b) 前端面试之道
+                0. 预览: https://juejin.cn/book/6844733763675488269
+            c) Web 前端面试指南与高频考题解析
+                0. 预览: https://juejin.cn/book/6844733713780047886
+            d) JavaScript 设计模式核⼼原理与应⽤实践
+                0. 预览: https://juejin.cn/book/6844733790204461070
     b) 算法
         0. Udemy前端算法数据结构视频资源: https://www.udemy.com/course/master-the-coding-interview-data-structures-algorithms/learn/lecture/12202018#overview
         1. 力扣算法训练: https://leetcode-cn.com/problemset/all/
             a) 训练日志: https://codesandbox.io/s/hello-nodejs-ick33?file=/src/log-cpu.md
+        2. 掘金小册:
+            a) 前端算法与数据结构面试：底层逻辑解读与大厂真题训练
+                0. 预览: https://juejin.cn/book/6844733800300150797
+                1. 日志: ./log-algorithm.md
+</pre>
 
+<pre>
 # 面试题
     a) 训练位置: 
         0. 日志位置: 当前文件
@@ -60,7 +88,9 @@
                     d) react仅关注view层，因此甚至可以与Angular.js配合使用
                     e) 易于测试
     d) Node.js
+</pre>
 
+<pre>
 # 算法
     a) 训练位置:
         0. 日志位置: https://codesandbox.io/s/hello-nodejs-ick33?file=/src/log-cpu.md
@@ -152,5 +182,4 @@
         5. 迭代器
         6. 多线程
         7. Shell
-
 </pre>
