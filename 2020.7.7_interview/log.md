@@ -16,6 +16,8 @@
                 0. https://juejin.cn/post/6995744994166308895
             d) 前端一面又挂了？学习总结经验，别再让面试止步一面！
                 0. https://juejin.cn/post/6990357778917228551
+            e) 2年前端(外包经历) 6月部分面试记录 （高级、资深岗位）
+                0. https://juejin.cn/post/6989626582465789966
         5. 技术经验:
             a) 图解React源码 - Hook 原理(概览)
                 0. https://juejin.cn/post/6996267155893436446
@@ -25,6 +27,15 @@
                 0. https://juejin.cn/post/6995187050160848909
             d) 002-React-面试题整理
                 0. https://juejin.cn/post/6992588230851985445
+        6. 掘金小册:
+            a) 前端算法与数据结构面试：底层逻辑解读与大厂真题训练
+                0. https://juejin.cn/book/6844733800300150797
+            b) 前端性能优化原理与实践
+                0. https://juejin.cn/book/6844733750048210957
+            c) 前端面试之道
+                0. https://juejin.cn/book/6844733763675488269
+            d) Web 前端面试指南与高频考题解析
+                0. https://juejin.cn/book/6844733713780047886
     b) 算法
         0. Udemy前端算法数据结构视频资源: https://www.udemy.com/course/master-the-coding-interview-data-structures-algorithms/learn/lecture/12202018#overview
         1. 力扣算法训练: https://leetcode-cn.com/problemset/all/
