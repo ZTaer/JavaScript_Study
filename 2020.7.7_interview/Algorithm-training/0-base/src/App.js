@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import HomePages from './pages/homepages/homepages.component';
 import Header from './components/header/header.component';
+import BasePages from './pages/base-pages/base-pages.component';
 
 // Lazy+Suspense
 import ErrorBoundary from './components/error-boundary/error-boundary.component';
@@ -25,6 +26,7 @@ function App() {
           <Suspense fallback={<Spinner />} >
             <Route exact={true} path="/" component={HomePages} />
             <Route exact={true} path="/example" component={ExamplePages} />
+            <Route exact={true} path="/base" component={BasePages} />
           </Suspense>
         </ErrorBoundary>
       </Switch>
