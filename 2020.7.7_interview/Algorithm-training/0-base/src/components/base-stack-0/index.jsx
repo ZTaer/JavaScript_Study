@@ -3,6 +3,7 @@ import React from "react";
 const BaseStack0 = () => {
     /**
      * 栈: 先进后出过程 ( 等待笔记 )
+     *      a) 详见"log-algorithm"日志
      */
     const handleCpuStackMock = () => {
         // 构建栈
@@ -20,6 +21,8 @@ const BaseStack0 = () => {
             console.log("stack - 取出 :>> ", stack.pop());
         }
     };
+
+    console.log("<--------- 分割线 --------->");
 
     return (
         <div className="base-stack-0">
