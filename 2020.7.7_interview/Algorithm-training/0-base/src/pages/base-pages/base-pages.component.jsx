@@ -3,6 +3,7 @@ import BaseStack0 from "../../components/base-stack-0/index";
 import BaseBinaryTree1 from "../../components/base-binary-tree-1";
 import BaseComplexity2 from "../../components/base-complexity-2";
 import BaseDoublePointer3 from "../../components/base-double-pointer-3";
+import BaseString4 from "../../components/base-string-4";
 
 const BasePages = () => {
     return (
@@ -15,6 +16,8 @@ const BasePages = () => {
             <BaseComplexity2 />
             <h1>双指针</h1>
             <BaseDoublePointer3 />
+            <h1>字符串相关的“基本算法技能” </h1>
+            <BaseString4 />
         </div>
     );
 };

@@ -1,32 +1,33 @@
-import React,{useCallback } from 'react';
-import People from '../../components/people/people.component';
-import { Link } from 'react-router-dom';
+import React, { useCallback } from "react";
+import People from "../../components/people/people.component";
+import { Link } from "react-router-dom";
 
-import { connect } from 'react-redux';
-import { fetchPeopleAsync } from '../../redux/people/people.action';
-import { useEffect } from 'react';
+import { connect } from "react-redux";
+import { fetchPeopleAsync } from "../../redux/people/people.action";
+import { useEffect } from "react";
+import PageWatemark from "../../components/page-watermark";
 
-const Example = ({fetchPeopleAsync}) => {
-
+const Example = ({ fetchPeopleAsync }) => {
     // 性能优化一下
-    const fetchDate = useCallback( ()=>{
-       fetchPeopleAsync();
-    },[fetchPeopleAsync] );
+    const fetchDate = useCallback(() => {
+        fetchPeopleAsync();
+    }, [fetchPeopleAsync]);
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchDate();
-    },[fetchDate]);
+    }, [fetchDate]);
 
-    return(
+    return (
         <div>
-            <Link to={"/"} >主页</Link>
+            <Link to={"/"}>主页</Link>
             <People />
+            <PageWatemark />
         </div>
     );
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     fetchPeopleAsync: () => dispatch(fetchPeopleAsync()),
 });
 
-export default connect( null,mapDispatchToProps )(Example);
+export default connect(null, mapDispatchToProps)(Example);

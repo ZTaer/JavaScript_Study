@@ -1,0 +1,21 @@
+// 水印：相关CSS ( 等待笔记 )
+.page-watemark{
+    position: fixed;
+    inset: 0px;
+    z-index: 9999;
+    pointer-events: none; // 鼠标无法感知
+
+    .page-watemark-font{
+        transform: rotate(-15deg);
+        position: absolute;
+        left:40px; // 位置需要计算
+        top: 40px; // 位置需要计算
+        opacity: 0.2;
+        font-size: 15px;
+        font-family: 微软雅黑;
+        // color: rgba(170,170,170); // 水印颜色
+        color: red;
+        text-align: center;
+        
+    }
+}
