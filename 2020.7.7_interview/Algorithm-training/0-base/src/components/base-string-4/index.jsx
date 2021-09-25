@@ -135,6 +135,90 @@ const BaseString4 = () => {
         return false;
     };
 
+    /**
+     * 正则表达式: 字符串与数字之间的转换问题( 等待笔记 )
+     *      0. 题目描述:
+     *          a) 字符串转数字
+     *          b) 仅支持开头数字转换, 并支持+/-
+     *          c) 抓取数字范围, 超出返回范围值:  INT_MAX (2^31 − 1) 或 INT_MIN (−2^31)
+     *          d) 不满足转换条件返回0
+     *      1. 正则解析: /\s*([-\+]?[0-9]*).*/
+    /*          a) \s : 匹配空格, 回车, 换行, 等空白区域
+     *          b) * : *跟这前面的符号后面, 意味着此符号可能出现多次
+     *          c) () : 圈内，为抓取保存的目标
+     *          d) [] : 匹配之间 "或" 的关系
+     *          e) \+ : 因为+有其他含义，故需要转义符\配合使用
+     *          f) [0-9]* : 匹配数字
+     *          g) . : 任意字符的意思
+     *          h) .* : 多个任意字符
+     *          i) 注意 : 在抓取目标之外内容都会被清除
+     *
+     */
+
+    const targetStr = "  +123123asdasd";
+
+    // 参考版本
+    // 入参是一个字符串
+    const myAtoi = function (str) {
+        // 编写正则表达式
+        const reg = /\s*([-\+]?[0-9]*).*/;
+        // 得到捕获组
+        const groups = str.match(reg);
+        // 计算最大值
+        const max = Math.pow(2, 31) - 1;
+        // 计算最小值
+        const min = -max - 1;
+        // targetNum 用于存储转化出来的数字
+        let targetNum = 0;
+        // 如果匹配成功
+        if (groups) {
+            // 尝试转化捕获到的结构
+            targetNum = +groups[1];
+            // 注意，即便成功，也可能出现非数字的情况，比如单一个'+'
+            if (isNaN(targetNum)) {
+                // 不能进行有效的转换时，请返回 0
+                targetNum = 0;
+            }
+        }
+        // 卡口判断
+        if (targetNum > max) {
+            return max;
+        } else if (targetNum < min) {
+            return min;
+        }
+        // 返回转换结果
+        return targetNum;
+    };
+
+    // 个人版本
+    const handleCpuAtoi = (strData) => {
+        let result = 0;
+        const max = 2 ** 31 - 1;
+        const min = -max + 1;
+
+        // 正则匹配数字
+        const reg = /\s*([-\+]?[0-9]*).*/;
+        const matchString = strData.match(reg)[1];
+
+        // 运算值
+        if (matchString) {
+            result = +matchString;
+            if (isNaN(result)) {
+                result = 0;
+            }
+        }
+
+        // 限定范围
+        if (result > max) {
+            result = max;
+        } else if (result < min) {
+            result = min;
+        }
+
+        // 输出结果
+        return result;
+    };
+
     console.log("<--------- 分割线 --------->");
     return (
         <div className="base-string-4">
@@ -152,6 +236,9 @@ const BaseString4 = () => {
             <h2>回文字符串的衍生问题</h2>
             {console.log("参考版本 :>> ", validPalindrome("abca"))}
             {console.log("个人版本 :>> ", handleCpuValidPalindrome("abca"))}
+            <h2>正则表达式: 字符串与数字之间的转换问题</h2>
+            {console.log("参考版本 :>> ", myAtoi(targetStr))}
+            {console.log("个人版本 :>> ", handleCpuAtoi(targetStr))}
         </div>
     );
 };
