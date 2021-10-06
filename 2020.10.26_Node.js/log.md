@@ -2033,8 +2033,22 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     g) 13:57 - 测试修复结果
     h) 17:09 - 完善登陆逻辑, 登陆成功/登陆失败逻辑
 # 190( 等待笔记 )
-    a) 00:00 - 登陆API应用3
-    b) 
+    a) 00:00 - 登陆API应用3 ( 核心 )
+    b) 3:51 - 安装打包工具"yarn add parcel-bundler -D"
+        0. 作用: "parcel-bundler"是为了打包项目,代替webpack配置,开箱即用,简单便捷
+        1. 注意: 注意打包工具的版本，防止意外错误
+    c) 7:25 - 配置js压缩相关package.json
+    d) 8:08 - 修改: pug模板文件只依赖，打包后的js文件
+    e) 12:32 - 改进js文件写法, 适配打包
+    f) 12:58 - 安装: babel相关,编译js代码,以适配各种浏览器" yarn add @babel/polyfill " 
+    g) 14:16 - 改进mapbox写法
+        0. 注意: 部分代码需要迁移至index.js
+    h) 17:43 - dom防错逻辑写法
+    i) 20:33 - 改进dom逻辑位置
+    j) 25:51 - js写个toast弹窗
+    k) 26:49 - 应用弹窗逻辑
+    l) 27:17 - 测试弹窗
+    m) 
     
 
   
