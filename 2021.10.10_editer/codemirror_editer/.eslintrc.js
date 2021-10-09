@@ -66,7 +66,8 @@ const config = {
 		'import/no-unresolved': 'off',
 		indent: 'off',
 		'@typescript-eslint/indent': 'off',
-		'@typescript-eslint/no-unused-vars': ['error'],
+		'@typescript-eslint/no-unused-vars': ['warn'],
+		'@typescript-eslint/explicit-module-boundary-types': ['off'],
 	},
 };
 
