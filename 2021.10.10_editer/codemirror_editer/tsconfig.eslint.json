@@ -5,8 +5,10 @@
 		"tests",
 		".eslintrc.js",
 		"config-overrides.js",
-		"**/src/**/*.tsx",
-		"**/test/**/*.tsx"
+		"src/**/*.tsx",
+		"src/**/*.ts",
+		"test/**/*.tsx",
+		"test/**/*.ts"
 	],
 	"compilerOptions": {
 		"react/react-in-jsx-scope": "off"

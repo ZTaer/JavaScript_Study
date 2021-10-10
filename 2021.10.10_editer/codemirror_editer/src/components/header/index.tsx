@@ -1,13 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tabs, Tab } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
+import { MainProps } from './index.model';
+import { handleUtilsCpuJsonBeautify } from '../codemirror-0/index.utils';
 
-const Header = (props: any) => {
+const Header = (props: MainProps) => {
 	/**
 	 * 变量区
 	 */
 	const [tabValue, setTabValue] = useState('/');
-	const { history } = props;
+	const { history, location } = props;
+
+	console.log('history :>> ', history, props);
+
+	/**
+	 * 运算逻辑区
+	 */
+	// 页面路由同步tab
+	const handleCpuInitUrlTab = () => {
+		try {
+			const { pathname = '/' } = location;
+			setTabValue(pathname);
+		} catch {
+			console.warn('handleCpuInitUrlTab error');
+		}
+	};
 
 	/**
 	 * 交互逻辑区
@@ -20,6 +37,13 @@ const Header = (props: any) => {
 			console.warn('handleUiChangeTab error');
 		}
 	};
+
+	/**
+	 * 初始化区
+	 */
+	useEffect(() => {
+		handleCpuInitUrlTab();
+	}, [location.pathname]);
 
 	return (
 		<div className="header">
