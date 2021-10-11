@@ -9,7 +9,7 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/javascript/javascript';
 
 // 皮肤
-import 'codemirror/theme/mdn-like.css';
+import './custom-theme-monaco-light.styles.css';
 
 // 保证折叠正常
 import 'codemirror/addon/fold/foldgutter';
@@ -52,7 +52,7 @@ const Codemirror0 = (props: MainProps) => {
 				options={{
 					mode: 'application/ld+json',
 					lineNumbers: true,
-					theme: 'mdn-like',
+					theme: 'custom-theme-monaco-light',
 					lineWrapping: true,
 					foldGutter: true,
 					gutters: [
