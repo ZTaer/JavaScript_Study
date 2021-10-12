@@ -5,9 +5,9 @@
 		"tests",
 		".eslintrc.js",
 		"config-overrides.js",
-		"src/**/*.tsx",
 		"src/**/*.ts",
-		"test/**/*.tsx",
-		"test/**/*.ts"
+		"src/**/*.tsx",
+		"test/**/*.ts",
+		"test/**/*.tsx"
 	]
 }
