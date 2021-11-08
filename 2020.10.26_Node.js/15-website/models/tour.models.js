@@ -35,133 +35,124 @@ const User = require("./user.models");
  *          }
  */
 
-const tourSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: [true, "name is required!"],
-        unique: true,
-        trim: true,
-        maxlength: [30, "长度不能超过30"],
-        minlength: [5, "长度不能小于5"],
-        /**
-         * 构建: 自定义效验器, 配合第三方库validator( 完成笔记 )
-         *      a) 第三方效验库( 已内置mongoose ): https://github.com/validatorjs/validator.js
-         *          0. 安装: yarn add validator
-         *          1. 注意: 虽然已经内置validator, 但依然要安装才能使用
-         *      b) validators效验功能:
-         *          0. validator.isAlpha - "只允许包含字母, 空格都不允许"
-         *      b) validators使用方法如下:
-         */
-        validate: [validator.isAlpha, "只允许包含字母, 空格都不允许"],
-    },
-    duration: {
-        type: Number,
-        required: [true, "duration is required!"],
-    },
-    maxGroupSize: {
-        type: Number,
-        required: [true, "maxGroupSize is required!"],
-    },
-    difficulty: {
-        type: String,
-        required: [true, "difficulty is required!"],
-        enum: {
-            values: ["easy", "medium", "difficult"],
-            message: "仅限使用,easy,medium,difficult",
+const tourSchema = new mongoose.Schema(
+    {
+        name: {
+            type: String,
+            required: [true, "name is required!"],
+            unique: true,
+            trim: true,
+            maxlength: [30, "长度不能超过30"],
+            minlength: [5, "长度不能小于5"],
+            /**
+             * 构建: 自定义效验器, 配合第三方库validator( 完成笔记 )
+             *      a) 第三方效验库( 已内置mongoose ): https://github.com/validatorjs/validator.js
+             *          0. 安装: yarn add validator
+             *          1. 注意: 虽然已经内置validator, 但依然要安装才能使用
+             *      b) validators效验功能:
+             *          0. validator.isAlpha - "只允许包含字母, 空格都不允许"
+             *      b) validators使用方法如下:
+             */
+            validate: [validator.isAlpha, "只允许包含字母, 空格都不允许"],
         },
-    },
-    ratingsAverage: {
-        type: Number,
-        default: 4.5,
-        min: [1, "大于1"],
-        max: [5, "小于5"],
-        /**
-         * MongoDB.Schema: set回调加工数据 ( 完成笔记 )
-         * 实例: MongoDB.Schema设定评分四舍五入保留一位数
-         *      a) Math.round(): ES5四舍五入官方默认方法
-         */
-        set: (value) => (Math.round(value * 10) / 10),
-    },
-    ratingsQuantity: {
-        type: Number,
-        default: 0,
-    },
-    price: {
-        type: Number,
-        default: 5,
-    },
-    priceDiscount: {
-        type: Number,
-        /**
-         * 构建: 自定义效验器( 完成笔记 )
-         *      a) 注意:
-         *          0. 效验函数只能返回true/false, true代表效验通过，false代表效验失败
-         *          1. this.xxx读取相应字段入参，只能在mongoose.schema淫威下使用
-         *      b) {VALUE}: 能抓取到，对应的入参
-         *      c) 第三方效验库( 已内置mongoose ): https://github.com/validatorjs/validator.js
-         *          0. 安装: yarn add validator
-         *          1. 注意: 虽然已经内置validator, 但依然要安装才能使用
-         */
-        validate: {
-            validator: function (value) {
-                return value < this.price;
+        duration: {
+            type: Number,
+            required: [true, "duration is required!"],
+        },
+        maxGroupSize: {
+            type: Number,
+            required: [true, "maxGroupSize is required!"],
+        },
+        difficulty: {
+            type: String,
+            required: [true, "difficulty is required!"],
+            enum: {
+                values: ["easy", "medium", "difficult"],
+                message: "仅限使用,easy,medium,difficult",
             },
-            message: "折扣价格必须: {VALUE} < 正常价格",
         },
-    },
-    summary: {
-        type: String,
-        trim: true,
-        required: [true, "summary is required!"],
-    },
-    description: {
-        type: String,
-        trim: true,
-        required: [true, "description is required!"],
-    },
-    imageCover: {
-        type: String,
-        trim: true,
-        required: [true, "imageCover is required!"],
-    },
-    images: {
-        type: [String],
-        required: [true, "images required!"],
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now(),
-        select: false,
-    },
-    startDates: {
-        type: [Date],
-    },
-    testMongooseMiddlewareSave: {
-        type: String,
-        trim: true,
-    },
-    vipTour: {
-        type: Boolean,
-        default: false,
-    },
-    /**
-     * 构建: 位置建模( 完成笔记 )
-     *      0. 确定所需属性, 保证脚本导入mock数据正确性
-     *      1. 脚本: 导入mock数据
-     */
-    startLocation: {
-        type: { // 注意: 当前type字段名，就为type，并非语法
-            type: "String",
-            default: "Point",
-            enum: ["Point"],
+        ratingsAverage: {
+            type: Number,
+            default: 4.5,
+            min: [1, "大于1"],
+            max: [5, "小于5"],
+            /**
+             * MongoDB.Schema: set回调加工数据 ( 完成笔记 )
+             * 实例: MongoDB.Schema设定评分四舍五入保留一位数
+             *      a) Math.round(): ES5四舍五入官方默认方法
+             */
+            set: (value) => Math.round(value * 10) / 10,
         },
-        coordinates: [Number],
-        address: String,
-        description: String,
-    },
-    locations: [
-        {
-            type: { // 注意: 当前type字段名，就为type，并非语法
+        ratingsQuantity: {
+            type: Number,
+            default: 0,
+        },
+        price: {
+            type: Number,
+            default: 5,
+        },
+        priceDiscount: {
+            type: Number,
+            /**
+             * 构建: 自定义效验器( 完成笔记 )
+             *      a) 注意:
+             *          0. 效验函数只能返回true/false, true代表效验通过，false代表效验失败
+             *          1. this.xxx读取相应字段入参，只能在mongoose.schema淫威下使用
+             *      b) {VALUE}: 能抓取到，对应的入参
+             *      c) 第三方效验库( 已内置mongoose ): https://github.com/validatorjs/validator.js
+             *          0. 安装: yarn add validator
+             *          1. 注意: 虽然已经内置validator, 但依然要安装才能使用
+             */
+            validate: {
+                validator: function (value) {
+                    return value < this.price;
+                },
+                message: "折扣价格必须: {VALUE} < 正常价格",
+            },
+        },
+        summary: {
+            type: String,
+            trim: true,
+            required: [true, "summary is required!"],
+        },
+        description: {
+            type: String,
+            trim: true,
+            required: [true, "description is required!"],
+        },
+        imageCover: {
+            type: String,
+            trim: true,
+            required: [true, "imageCover is required!"],
+        },
+        images: {
+            type: [String],
+            required: [true, "images required!"],
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now(),
+            select: false,
+        },
+        startDates: {
+            type: [Date],
+        },
+        testMongooseMiddlewareSave: {
+            type: String,
+            trim: true,
+        },
+        vipTour: {
+            type: Boolean,
+            default: false,
+        },
+        /**
+         * 构建: 位置建模( 完成笔记 )
+         *      0. 确定所需属性, 保证脚本导入mock数据正确性
+         *      1. 脚本: 导入mock数据
+         */
+        startLocation: {
+            type: {
+                // 注意: 当前type字段名，就为type，并非语法
                 type: "String",
                 default: "Point",
                 enum: ["Point"],
@@ -170,32 +161,46 @@ const tourSchema = new mongoose.Schema({
             address: String,
             description: String,
         },
-    ],
-    /**
-     * 构建: 建模( 嵌入 - 不推荐 ): 导游( 完成笔记 )
-     *      a) 注意: 因为嵌入模拟，故要写中间件查询
-     */
-    // guides: {
-    //     type: Array,
-    // },
+        locations: [
+            {
+                type: {
+                    // 注意: 当前type字段名，就为type，并非语法
+                    type: "String",
+                    default: "Point",
+                    enum: ["Point"],
+                },
+                coordinates: [Number],
+                address: String,
+                description: String,
+            },
+        ],
+        /**
+         * 构建: 建模( 嵌入 - 不推荐 ): 导游( 完成笔记 )
+         *      a) 注意: 因为嵌入模拟，故要写中间件查询
+         */
+        // guides: {
+        //     type: Array,
+        // },
 
-    /**
-     * 构建: 建模 - 导游数据模型( 引用 - 推荐 - 完成笔记 )
-     *      a) 目的: 此id为mongodb要求类型id，方便之后做查询引用逻辑
-     *      b) type: mongoose.Schema.ObjectId: mongoose schema id特殊写法, 方便查询
-     *      c) ref: 查询数据集
-     */
-    guides: [
-        {
-            type: mongoose.Schema.ObjectId,
-            ref: "users", // 查询数据集 ( 核心 )
-        },
-    ],
-},
-{ // 定义虚拟属性，mongoose.schema增加入参: 允许虚拟属性输出 ( 完成笔记 )
-    toJSON: { virtuals: true }, // 虚拟属性变为真实
-    toObject: { virtuals: true }, // 虚拟属性可被输出
-});
+        /**
+         * 构建: 建模 - 导游数据模型( 引用 - 推荐 - 完成笔记 )
+         *      a) 目的: 此id为mongodb要求类型id，方便之后做查询引用逻辑
+         *      b) type: mongoose.Schema.ObjectId: mongoose schema id特殊写法, 方便查询
+         *      c) ref: 查询数据集
+         */
+        guides: [
+            {
+                type: mongoose.Schema.ObjectId,
+                ref: "users", // 查询数据集 ( 核心 )
+            },
+        ],
+    },
+    {
+        // 定义虚拟属性，mongoose.schema增加入参: 允许虚拟属性输出 ( 完成笔记 )
+        toJSON: { virtuals: true }, // 虚拟属性变为真实
+        toObject: { virtuals: true }, // 虚拟属性可被输出
+    }
+);
 
 /**
  * 接口索引: 增加索引，提高查询性能 ( 完成笔记 )
@@ -235,6 +240,10 @@ tourSchema.index({
 
 tourSchema.virtual("testVirtualDuration").get(function () {
     return this.duration / 7;
+});
+
+tourSchema.virtual("slug").get(function () {
+    return this.testMongooseMiddlewareSave;
 });
 
 /**
@@ -290,7 +299,8 @@ tourSchema.pre("save", function (next) {
  */
 // 目的: 隐藏vip客户数据
 // tourSchema.pre("find", function (next) { // 普通中间件抓取方法, vip客户资料仅在find方法时不透露
-tourSchema.pre(/^find/, function (next) { // 正则中间件抓取方法, vip客户资料将不会出现在任何相关查询方法中
+tourSchema.pre(/^find/, function (next) {
+    // 正则中间件抓取方法, vip客户资料将不会出现在任何相关查询方法中
     this.find({ vipTour: { $ne: true } }); // 当vipTour字段为true时，不输出此数据 ( 核心 )
     this.start = Date.now(); // 开始查询时间
     next();
@@ -335,13 +345,13 @@ tourSchema.pre(/^find/, function (next) {
  *      a) 注意: 因为嵌入模拟，故要写中间件查询
  */
 tourSchema.pre("save", async function (next) {
-    const guidesPromises = this.guides.map(async (item) => await User.findById(item));
+    const guidesPromises = this.guides.map(
+        async (item) => await User.findById(item)
+    );
     this.guides = await Promise.all(guidesPromises); // 群体等待异步执行完毕
     next();
 });
 
-
 const Tour = mongoose.model("tours", tourSchema);
 
 module.exports = Tour;
-

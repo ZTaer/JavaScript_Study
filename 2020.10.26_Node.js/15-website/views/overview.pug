@@ -1,0 +1,51 @@
+//- 使用pug第四个实例: 遍历渲染 ( 等待笔记 )
+    a) 示例位置: 下方以card示例
+    b) 遍历渲染核心: each xxxItem in xxxArray
+        0. xxxArray - 为渲染接口传入的list数据
+        1. xxxItem - 为遍历出来的单个子元素
+        2. 索引数据: xxxItem.xxx
+            a) 注意: pug索引变量的游戏规则
+//- 格式化时间.toLocalString({}) ( 等待笔记 )
+    a) 保留年月: 格式化时间.toLocalString("en-us", { month: "long", year: "numeric" }) 
+
+extends base
+
+block content 
+    main.main
+        div.card-container
+            //- 遍历渲染核心
+            each tourItem in tours 
+                div.card
+                    div.card__header
+                        div.card__picture
+                            div.card__picture-overlay &nbsp;
+                            img.card__picture-img(src=`img/tours/${tourItem.imageCover}`,alt=`${tourItem.name}`)
+                        h3.heading-tertirary
+                            span= tourItem.name
+                    div.card__details
+                        h4.card__sub-heading= `${tourItem.difficulty} ${tourItem.duration}-day tour`
+                        p.card__text= tourItem.summary
+                        div.card__data 
+                            svg.card__icon
+                                use(xlink:href="img/icons.svg#icon-map-pin")
+                            span= tourItem.startLocation.description
+                        div.card__data 
+                            svg.card__icon
+                                use(xlink:href="img/icons.svg#icon-calendar")
+                            span= tourItem.startDates[0].toLocaleString( "en-us", { month: "long", year: "numeric" } )
+                        div.card__data 
+                            svg.card__icon
+                                use(xlink:href="img/icons.svg#icon-flag")
+                            span= `${tourItem.locations.length} stops`
+                        div.card__data 
+                            svg.card__icon
+                                use(xlink:href="img/icons.svg#icon-user")
+                            span= `${tourItem.maxGroupSize} people`
+                    div.card__footer
+                        p
+                            span.card__footer-value= `$${tourItem.price}`
+                            span.card__footer-text= `per person ${tourItem.testMongooseMiddlewareSave}`
+                        p
+                            span.card__footer-value= tourItem.ratingsAverage
+                            span.card__footer-text= `rating (${tourItem.ratingsQuantity})`
+                        a.btn.btn--green.btn--small( href=`/tours/${tourItem.slug}` ) Details

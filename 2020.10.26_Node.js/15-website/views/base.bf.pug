@@ -1,0 +1,30 @@
+
+//- 初步学习: PUG游戏规则 ( 等待笔记 )
+//-      a) 注释方法: 
+//-             0. 不会渲染至页面: "//-"
+//-             1. 会渲染至页面: "//"
+//-      b) 使用变量/js语法方式:
+//-             0. div= js语法
+//-             1. - js语法
+//-      c) 字符串插入变量方式:
+//-             0. 使用: "#{变量}": p 描述内容#{test}
+
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link( rel="stylesheet" href="css/style.css" )
+        link(rel="shortcut icon", href="img/favicon.png", type="image/x-icon")
+        title 测试pug游戏规则
+    body 
+        h1 测试pug
+        //- 字符串中插入变量
+        p  描述内容#{test}
+        //- 使用变量
+        h2= test.toUpperCase() 
+        //- 写js语法
+        - const a = 123;
+        h2= 255 * a

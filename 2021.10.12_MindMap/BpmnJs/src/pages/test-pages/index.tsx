@@ -6,7 +6,7 @@ const TestPages = () => {
 	return (
 		<div className="test-pages">
 			<h1>TEST_PAGES</h1>
-			<h3>Bpmn-js初步实验</h3>
+			<h3>Bpmn-js实验</h3>
 			<SosBpmnMapping />
 		</div>
 	);

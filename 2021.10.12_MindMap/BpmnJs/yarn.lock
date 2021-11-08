@@ -3168,14 +3168,14 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-bpmn-js@^8.7.3:
-  version "8.7.3"
-  resolved "https://registry.yarnpkg.com/bpmn-js/-/bpmn-js-8.7.3.tgz#ed7e6fb8b28d9433bdf69ec9f5130db11d4da08d"
-  integrity sha512-4Xni4dApvVA8Iz3K9y1peE8oxmziAKY5Oi8BSpFRC2fbL8KEU2m4Dpz+yVdKBVGSTGbQdm1HP2YIb341UBtaDA==
+bpmn-js@^8.8.0:
+  version "8.8.0"
+  resolved "https://registry.yarnpkg.com/bpmn-js/-/bpmn-js-8.8.0.tgz#edd064b6ac1fb8caecd0fc7ce8477af7bcea39cf"
+  integrity sha512-W+pOZ3whSBCem53GMW9CAGPUuf47AHBMiVdfDSCMcsqjzGsBRsIE0vStvf63riBEYAhW9x9o6FxlVoQH1O/aGg==
   dependencies:
     bpmn-moddle "^7.1.2"
     css.escape "^1.5.1"
-    diagram-js "^7.3.0"
+    diagram-js "^7.5.0"
     diagram-js-direct-editing "^1.6.3"
     ids "^1.0.0"
     inherits "^2.0.4"
@@ -4488,10 +4488,20 @@ diagram-js-direct-editing@^1.6.3:
     min-dash "^3.5.2"
     min-dom "^3.1.3"
 
-diagram-js@^7.3.0:
-  version "7.4.1"
-  resolved "https://registry.yarnpkg.com/diagram-js/-/diagram-js-7.4.1.tgz#a2287d60c1d54f69729b127eef1955c40b9230d3"
-  integrity sha512-y21FjCo9QZJmH0g20ELYGv9+ps5AV52JEhsUroT4zJCwd28stjICGJMK/1VDnHhRqijjOp9Q/SLSwIa6k5/RlQ==
+diagram-js-minimap@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/diagram-js-minimap/-/diagram-js-minimap-2.0.4.tgz#834570de5203eb524f70fac7370744b091cdc844"
+  integrity sha512-BgpCCkGRzCxRBBg4se/gNSsaUQjHTilDsFPaH+LvKv4BT1EwTFvL0xqUYvXQ4SPwI+YpCIc0akzIxOk3gLygag==
+  dependencies:
+    css.escape "^1.5.1"
+    min-dash "^3.5.2"
+    min-dom "^3.1.1"
+    tiny-svg "^2.2.2"
+
+diagram-js@^7.5.0:
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/diagram-js/-/diagram-js-7.5.0.tgz#52d63bd0db5a18af0dd63ed64be65e3afbc5cf51"
+  integrity sha512-BAs3PJhTQYd+PjehBlf+ofGwEhSjsK1ku0B3MZKWQ4c2g1graa8CXHOdSHtxWY3KTcBVfARqx0DJdFga66Lfeg==
   dependencies:
     css.escape "^1.5.1"
     didi "^5.2.1"
@@ -7989,7 +7999,7 @@ min-dash@^3.0.0, min-dash@^3.5.2:
   resolved "https://registry.yarnpkg.com/min-dash/-/min-dash-3.8.0.tgz#4725fd2ac7c94d898f4c935a72c63d0bf1e4db83"
   integrity sha512-a0TLbmL6p4RlNGblZcLd2yjPORp+bCYRlNGvwK5OMwWaMROWh1DlRgN9W8jJm2x9gVuscvD38BEosV7cnikKnw==
 
-min-dom@^3.1.3:
+min-dom@^3.1.1, min-dom@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/min-dom/-/min-dom-3.1.3.tgz#6d3f4092439c80d13df52ac98d6a7d5fe92bfdbd"
   integrity sha512-Lbi1NZjLV9Hg6/bEe2Lfk2Fzsv1MwheR61whqTLP+FxLndYo9TxpksEgM5Kr1khjfCtFTMr0waeEfwIpStkRdw==
