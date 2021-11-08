@@ -1919,7 +1919,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     e) 9:48 - 预览页面
     f) 11:12 - each tour in tours: pug预发循环迭代
     g) 11:17 - 预览页面
-# 182( 等待笔记 - 实战位置 )
+# 182( 等待笔记 )
     a) 00:00 - 配置overview页面2
     b) 3:58 - 给pug配置变量，动态迭代渲染card
         0. 注意: 注意图片路径, 从public读取
@@ -1930,7 +1930,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     g) 13:59 - 完成card的pug变量填充
     h) 15:09 - 优化card排列布局
     i) 15:21 - 预览效果
-# 183( 等待笔记 )
+# 183( 等待笔记 - 实战位置 )
     a) 00:00 - 配置tour页面1
     b) 3:03 - 构建: 确定tour页面构建思路
     c) 3:33 - 配置路由
