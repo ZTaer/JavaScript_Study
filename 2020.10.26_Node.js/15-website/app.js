@@ -1,5 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
+const path = require("path");
 
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
@@ -11,6 +12,7 @@ const cookieParser = require("cookie-parser");
 const userRoute = require("./routes/user.routes");
 const tourRoute = require("./routes/tour.routes");
 const reviewRoute = require("./routes/review.routes");
+const viewsRoute = require("./routes/views.routes");
 
 const AppError = require("./utils/app-error.utils");
 const ErrorControllers = require("./controllers/error.controllers");
@@ -19,6 +21,17 @@ const ErrorControllers = require("./controllers/error.controllers");
  * 0. 全局中间件 - 区域:
  */
 const app = express();
+
+/**
+ * 配置1: pug模板引擎( 等待笔记 )
+ *      a) 安装模板引擎: yarn add pug
+ *      b) path.join拼接路径: 使用他是为了，应对不同的环境，保持正确的路径
+ */
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
+
+// 生成静态文件
+app.use(express.static(`${__dirname}/public`));
 
 /**
  * cookie相关 ( 完成笔记 )
@@ -54,9 +67,6 @@ const limiter = rateLimit({
 // 将限制IP逻辑，应用至对应路由
 app.use("/api", limiter);
 
-// 生成静态文件
-app.use(express.static(`${__dirname}/public`));
-
 // 解析req.body | 限制传输包的大小 ( 完成笔记 )
 app.use(express.json({ limit: "10kb" }));
 
@@ -80,10 +90,18 @@ app.use(xssClean());
  *          0. 注意: 某些场景需要重复入参，则使用参数白名单，在白名单中的参数，将不进行去重
  *      d) hpp({ whitelist:["白名单字段"] }): 在此字段，将不去重
  */
-app.use(hpp({
-    whitelist: ["duration", "ratingsQuantity", "ratingsAverage", "difficulty", "price", "maxGroupSize"],
-}));
-
+app.use(
+    hpp({
+        whitelist: [
+            "duration",
+            "ratingsQuantity",
+            "ratingsAverage",
+            "difficulty",
+            "price",
+            "maxGroupSize",
+        ],
+    })
+);
 
 app.use((req, res, next) => {
     /**
@@ -94,11 +112,14 @@ app.use((req, res, next) => {
     next();
 });
 
-
-
 /**
  * 1. 全局路由 - 区域:
  */
+
+// 配置2: pug模板路由( 等待笔记 )
+app.use("/", viewsRoute);
+
+// ### api 路由
 app.use("/api/v1/tours", tourRoute);
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/reviews", reviewRoute);

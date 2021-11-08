@@ -1,0 +1,50 @@
+
+//- 使用pug第一个实例: 改编HTML至PUG ( 等待笔记 )
+    a) 玩法像vscode写html时便捷式写法   
+    b) 标签css和id: div.class1.class2#testId --> <div class="class1 class2" id="testId" ></div>  
+    c) 标签属性: a( href="/xxx" )
+    d) 嵌套单行写法: li: a --> <li><a></a></li>
+
+//- 使用pug第二个实例: 导入模板玩法 ( 等待笔记 )
+    a) 安装pug格式化工具,vscode市场搜索: pug beautify
+        0. 格式化pug:
+            a) 安装: pug beautify
+            b) 选中: 全选要求格式化的代码
+            c) vscood命令: 
+                0. Mac: command+shift+p
+                1. 注意: pug beautify也自带快捷键
+            d) 输入pug: 选择pug beautify格式化
+    b) 插件模板片段: 没什么特殊的，正常些pug语法即可
+    c) 插入模板片段:
+        0. 非直接渲染pug文件, 前加下划线, 如: _header.pug, _footer.pug
+        1. 引入模板片段使用: include _xxx
+
+//- 使用pug第三个实例: block/extends引用嵌套玩法( 等待笔记 )
+    a) 设定嵌套位置: block xxx
+    b) 嵌套内容构建: 
+        0. 参考: overview.pug 文件
+        1. 注意: 继承嵌套页面"extends xxx"
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link( href="https://fonts.googleapis.com/css?family=Lato:300,300i,700" rel="stylesheet" )
+        link( rel="stylesheet" href="css/style.css" )
+        link(rel="shortcut icon", href="img/favicon.png",  type="image/png")
+        title #{title}
+    body 
+        include _header
+
+        // content
+        block content 
+            h1 Base Page
+        
+        include _footer
+        
+
+
+
+

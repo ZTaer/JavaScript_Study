@@ -1800,7 +1800,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     q) 26:10 - 测试逻辑: 空间过滤
     r) 26:36 - 通过compass schema验证测试结果正确性
     s) 28:30 - mongoose地理空间运算符官方文档
-# 171( 完成笔记 - 实战位置 )
+# 171( 完成笔记 )
     a) 00:00 - 地理空间聚合 - 计算距离
     b) 1:26 - 配置路由
     c) 5:34 - 构建距离计算api函数
@@ -1919,7 +1919,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     e) 9:48 - 预览页面
     f) 11:12 - each tour in tours: pug预发循环迭代
     g) 11:17 - 预览页面
-# 182( 等待笔记 )
+# 182( 等待笔记 - 实战位置 )
     a) 00:00 - 配置overview页面2
     b) 3:58 - 给pug配置变量，动态迭代渲染card
         0. 注意: 注意图片路径, 从public读取
@@ -1928,11 +1928,11 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     e) 8:07 - 变量写入pug中，变量对应
     f) 9:51 - 格式化时间: .toLocalString()
     g) 13:59 - 完成card的pug变量填充
-    h) 15:09 - 优化渲染card排列
+    h) 15:09 - 优化card排列布局
     i) 15:21 - 预览效果
 # 183( 等待笔记 )
     a) 00:00 - 配置tour页面1
-    b) 3:03 - 构建: 确定tour页面构建思路
+    b) 3:03 - 构建: 确定tour页面构建思路
     c) 3:33 - 配置路由
     d) 5:25 - populate()数据填充
     e) 9:29 - 修正css路径，为绝对路径 
