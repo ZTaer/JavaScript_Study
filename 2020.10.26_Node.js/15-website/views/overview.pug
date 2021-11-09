@@ -19,7 +19,7 @@ block content
                     div.card__header
                         div.card__picture
                             div.card__picture-overlay &nbsp;
-                            img.card__picture-img(src=`img/tours/${tourItem.imageCover}`,alt=`${tourItem.name}`)
+                            img.card__picture-img(src=`/img/tours/${tourItem.imageCover}`,alt=`${tourItem.name}`)
                         h3.heading-tertirary
                             span= tourItem.name
                     div.card__details
@@ -27,19 +27,19 @@ block content
                         p.card__text= tourItem.summary
                         div.card__data 
                             svg.card__icon
-                                use(xlink:href="img/icons.svg#icon-map-pin")
+                                use(xlink:href="/img/icons.svg#icon-map-pin")
                             span= tourItem.startLocation.description
                         div.card__data 
                             svg.card__icon
-                                use(xlink:href="img/icons.svg#icon-calendar")
+                                use(xlink:href="/img/icons.svg#icon-calendar")
                             span= tourItem.startDates[0].toLocaleString( "en-us", { month: "long", year: "numeric" } )
                         div.card__data 
                             svg.card__icon
-                                use(xlink:href="img/icons.svg#icon-flag")
+                                use(xlink:href="/img/icons.svg#icon-flag")
                             span= `${tourItem.locations.length} stops`
                         div.card__data 
                             svg.card__icon
-                                use(xlink:href="img/icons.svg#icon-user")
+                                use(xlink:href="/img/icons.svg#icon-user")
                             span= `${tourItem.maxGroupSize} people`
                     div.card__footer
                         p
@@ -48,4 +48,4 @@ block content
                         p
                             span.card__footer-value= tourItem.ratingsAverage
                             span.card__footer-text= `rating (${tourItem.ratingsQuantity})`
-                        a.btn.btn--green.btn--small( href=`/tours/${tourItem.slug}` ) Details
+                        a.btn.btn--green.btn--small( href=`/tour/${tourItem.slug}` ) Details
