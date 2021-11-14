@@ -1930,7 +1930,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     g) 13:59 - 完成card的pug变量填充
     h) 15:09 - 优化card排列布局
     i) 15:21 - 预览效果
-# 183( 等待笔记 - 实战位置 )
+# 183( 等待笔记 )
     a) 00:00 - 配置tour页面1
     b) 3:03 - 构建: 确定tour页面构建思路
     c) 3:33 - 配置路由
@@ -1948,7 +1948,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     m) 17:43 - 预览效果
     n) 20:03 - pug中使用js预发方式, 并mixin根据需求应用
     o) 20:21 - 预览效果
-# 184( 等待笔记 )
+# 184( 等待笔记 - 实战位置 )
     a) 00:00 - 配置tour页面2
         0. 关键字: quick facts  
     b) 3:07 - each迭代渲染导游变量内容
