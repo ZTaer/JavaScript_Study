@@ -604,7 +604,7 @@ body {
   display: grid;
   grid-column-gap: 6rem;
   grid-auto-flow: column;
-  overflow-x: scroll;
+  overflow-x: auto;
   -ms-scroll-snap-type: x mandatory;
   scroll-snap-type: x mandatory;
 }

@@ -14,7 +14,7 @@ const router = express.Router();
 // });
 
 // 配置4: pug路由 | 结构化( 等待笔记 )
-router.get("/", viewsControllers.getBase);
+router.get("/", viewsControllers.getOverview);
 router.get("/overview", viewsControllers.getOverview);
 router.get("/tour/:slug", viewsControllers.getTour);
 

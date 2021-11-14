@@ -318,7 +318,8 @@ tourSchema.post(/^find/, function (docs, next) {
 tourSchema.pre(/^find/, function (next) {
     this.populate({
         path: "guides", // path: 目标填充字段
-        select: "-__v -role", // select: 取消指定字段输出
+        // select: "-__v -role", // select: 取消指定字段输出
+        select: "-__v ", // select: 取消指定字段输出
     });
     next();
 });
