@@ -24,17 +24,30 @@
     b) 嵌套内容构建: 
         0. 参考: overview.pug 文件
         1. 注意: 继承嵌套页面"extends xxx"
+    c) 追加内容: block append xxx
+                    追加内容xxxx
+    d) 使用方法:
+        0. 使用block标记模板位置: base.pug
+            a) 如: block content
+        1. 如果想使某些xxx.pug文件，基于base做为基础模板进行扩展
+        2. xxx.pug文件写入: extends base.pug
+        3. 在block标记位置构建内容(xxx.pug文件下): 
+            a) 如: block content
+                    增加内容xxx 
+            b) 注意: 如果不使用block append xxx 那么当前block content增加的内容，将覆盖base.pug下的block content初始内容.
+        4. 追加内容: 使用block append xxx
 
 doctype html
 html(lang="en")
     head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link( href="https://fonts.googleapis.com/css?family=Lato:300,300i,700" rel="stylesheet" )
-        link( rel="stylesheet" href="/css/style.css" )
-        link(rel="shortcut icon", href="/img/favicon.png",  type="image/png")
-        title #{title}
+        block head
+            meta(charset="UTF-8")
+            meta(http-equiv="X-UA-Compatible", content="IE=edge")
+            meta(name="viewport", content="width=device-width, initial-scale=1.0")
+            link( href="https://fonts.googleapis.com/css?family=Lato:300,300i,700" rel="stylesheet" )
+            link( rel="stylesheet" href="/css/style.css" )
+            link(rel="shortcut icon", href="/img/favicon.png",  type="image/png")
+            title #{title}
     body 
         include _header
 

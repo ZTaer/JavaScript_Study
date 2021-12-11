@@ -1,16 +1,17 @@
+<h1> 日常遇见的面试题/算法 | 汇总 <h1>
 <pre>
 # 目录
     0. 资源
         a) 面试题
         b) 算法
-    1. 面试题
+    1. 野生面试题
         a) 训练位置
         b) HTML5/CSS3
         c) JavaScript
             0. ES5/ES6
             1. React
         d) Node.js
-    2. 算法
+    2. 野生算法
         a) 训练位置
         b) 基本
         c) 算法
@@ -70,7 +71,7 @@
 </pre>
 
 <pre>
-# 面试题
+# 野生面试题
     a) 训练位置: 
         0. 日志位置: 当前文件
         1. 路径位置: ./Interview-questions-training
@@ -92,7 +93,7 @@
 </pre>
 
 <pre>
-# 算法
+# 野生算法
     a) 训练位置:
         0. 日志位置: https://codesandbox.io/s/hello-nodejs-ick33?file=/src/log-cpu.md
         1. 路径位置: ./Algorithm-training
@@ -183,7 +184,7 @@
         5. 迭代器
         6. 多线程
         7. Shell
-# 算法
+# 野生算法
     a) 训练位置:
         0. 日志位置: https://codesandbox.io/s/hello-nodejs-ick33?file=/src/log-cpu.md
         1. 路径位置: ./Algorithm-training

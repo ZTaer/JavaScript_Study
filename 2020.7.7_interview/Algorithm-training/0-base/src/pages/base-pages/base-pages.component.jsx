@@ -21,6 +21,7 @@ const BasePages = () => {
             <BaseString4 />
             <h1>链表</h1>
             <BaseLinkedList5 />
+            <h1></h1>
         </div>
     );
 };

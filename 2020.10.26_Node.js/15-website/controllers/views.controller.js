@@ -40,7 +40,7 @@ exports.getTour = catchAsync(async (req, res, next) => {
     console.log(`tourItem`, tourItem);
 
     res.status(200).render("tour", {
-        title: "THE FOREST HIKER TOUR",
+        title: `${tourItem.name} Tour`,
         tourItem,
     });
 });

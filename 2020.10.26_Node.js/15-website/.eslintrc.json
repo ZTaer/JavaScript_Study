@@ -1,8 +1,5 @@
 {
-    "extends": [
-        "airbnb",
-        "plugin:node/recommended"
-    ],
+    "extends": ["airbnb", "plugin:node/recommended"],
     "rules": {
         "prettier/prettier": "off",
         "spaced-comment": "off",
@@ -34,10 +31,7 @@
                 "max": 3
             }
         ],
-        "indent": [
-            "warn",
-            4
-        ],
+        "indent": ["warn", 4],
         "key-spacing": [
             1,
             {
@@ -53,8 +47,11 @@
             }
         ],
         "no-throw-literal": "warn",
-        "max-len": ["warn", {
-            "code": 200
-        }]
+        "max-len": [
+            "warn",
+            {
+                "code": 200
+            }
+        ]
     }
 }

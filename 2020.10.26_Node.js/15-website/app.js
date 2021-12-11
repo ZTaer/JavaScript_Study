@@ -47,6 +47,42 @@ app.use(cookieParser());
  */
 app.use(helmet());
 
+/**
+ * Node.js服务通过helmet配置可访问域名白名单,CSP跨域问题( 等待笔记 - 核心 )
+ *      a) 跨域白名单
+ */
+const scriptSrcUrls = [
+    "https://api.tiles.mapbox.com/",
+    "https://api.mapbox.com/",
+    "https://cdn.jsdelivr.net/",
+];
+const styleSrcUrls = [
+    "https://api.mapbox.com/",
+    "https://api.tiles.mapbox.com/",
+    "https://fonts.googleapis.com/",
+    "https://cdn.jsdelivr.net/",
+];
+const connectSrcUrls = [
+    "https://api.mapbox.com/",
+    "https://a.tiles.mapbox.com/",
+    "https://b.tiles.mapbox.com/",
+    "https://events.mapbox.com/",
+];
+const fontSrcUrls = ["fonts.googleapis.com", "fonts.gstatic.com"];
+const helmetLinkWhitelist = helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: [],
+        connectSrc: ["'self'", ...connectSrcUrls],
+        scriptSrc: ["'self'", ...scriptSrcUrls],
+        styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+        workerSrc: ["'self'", "blob:"],
+        objectSrc: [],
+        imgSrc: ["'self'", "blob:", "data:", "https://images.unsplash.com/"],
+        fontSrc: ["'self'", ...fontSrcUrls],
+    },
+});
+app.use(helmetLinkWhitelist); // 应用helmet配置
+
 if (process.env.NODE_ENV === "development") {
     app.use(morgan("dev"));
 }
