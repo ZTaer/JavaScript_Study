@@ -23,7 +23,7 @@ const ErrorControllers = require("./controllers/error.controllers");
 const app = express();
 
 /**
- * 配置1: pug模板引擎( 等待笔记 )
+ * 配置1: pug模板引擎( 完成笔记 )
  *      a) 安装模板引擎: yarn add pug
  *      b) path.join拼接路径: 使用他是为了，应对不同的环境，保持正确的路径
  */
@@ -48,7 +48,7 @@ app.use(cookieParser());
 app.use(helmet());
 
 /**
- * Node.js服务通过helmet配置可访问域名白名单,CSP跨域问题( 等待笔记 - 核心 )
+ * Node.js服务通过helmet配置可访问域名白名单,CSP跨域问题( 完成笔记 - 核心 )
  *      a) 跨域白名单
  */
 const scriptSrcUrls = [
@@ -152,7 +152,7 @@ app.use((req, res, next) => {
  * 1. 全局路由 - 区域:
  */
 
-// 配置2: pug模板路由( 等待笔记 )
+// 配置2: pug模板路由( 完成笔记 )
 app.use("/", viewsRoute);
 
 // ### api 路由

@@ -1826,7 +1826,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     j) 14:38 - 构建: 单位变量, km 、mi(英里) 为了单位转换 
     k) 14:44 - 应用单位变量
     l) 15:06 - 测试逻辑: 通过入参转换距离数据单位
-# 172( 等待笔记 - 暂不实战 )
+# 172( 无需笔记 - 暂不实战 )
     a) 00:00 - 使用postman创建API文档
     b) 1:38 - 处理敏感数据，将敏感数据存储至postman环境变量中类似{{jwt}}
     c) 2:16 - 入参使用postman环境变量
@@ -1840,11 +1840,11 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     j) 9:56 - 可在web页面直接运行postman以同步文档中的接口至本地postman
 # 173( 无需笔记 )
     a) 00:00 简介课程UI渲染
-# 174( 等待笔记 )
+# 174( 完成笔记 )
     a) 00:00 - 服务端渲染，客户端渲染
     b) 1:13 - 渲染流程图
     c) 1:38 - 查看服务端渲染结果
-# 175( 等待笔记 )
+# 175( 完成笔记 )
     a) 00:00 - 在express中配置pug模板引擎 / 哈巴狗模板引擎 ( 可选学习 )
     b) 2:01 - express声明使用的渲染引擎，pug模板引擎，已内置express 
     c) 4:27 - express设定渲染模板位置路径, 通过path.join确定路径位置
@@ -1854,7 +1854,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     f) 7:56 - 配置: 渲染页面路由
     g) 9:04 - 安装pug模板: yarn add pug
     h) 9:12 - 浏览渲染后的主页面
-# 176( 等待笔记 )
+# 176( 完成笔记 )
     a) 00:00 - pug渲染模板引擎，基础知识 
     b) 2:55 - pug写法，( 挺神奇的，是我喜欢的菜 ) 
     c) 3:06 - 浏览器预览渲染结果
@@ -1872,7 +1872,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     n) 12:59 - 预览效果
     o) 14:05 - pug中，插入js写法
     p) 14:22 - 预览效果
-# 177( 等待笔记 )
+# 177( 完成笔记 )
     a) 00:00 - 构建pug模板
     b) 3:20 - 构建pug模板head
     c) 5:29 - 根据html转译成pug格式
@@ -1881,7 +1881,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     f) 12:17 - li嵌套内容，便捷式写法
     g) 14:06 - footer内容已翻译pug
     h) 15:11 - 修正css
-# 178( 等待笔记 )
+# 178( 完成笔记 )
     a) 00:00 - pug获取文件渲染, 如导航栏 
     b) 1:54 - 安装: pug beautify - 方便格式化pug
     c) 2:05 - 构建: _header.pug文件,并复制header部分
@@ -1895,7 +1895,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     d) 3:12 - 构建: _footer.pug, 并复制footer部分
         0. 命名规范: 服务于其他模板，通常用_xxx.pug命名，方便渲染
     e) 3:22 - 引入使用: pug模板文件
-# 179( 等待笔记 )
+# 179( 完成笔记 )
     a) 00:00 - 用块扩展pug
     b) 2:41 - 配置路由, 相关tour渲染模板
     c) 4:13 - block content: 块链接
@@ -1904,14 +1904,14 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     e) 7:48 - 引用base.pug模板到当前文件, 并在block content渲染当前pug文件内容，从而形成新的页面
     f) 8:22 - 预览页面 
     g) 9:09 - pug模板，使用title变量
-# 180( 等待笔记 )
+# 180( 完成笔记 )
     a) 00:00 - 配置pug项目结构化
     b) 1:58 - 路由结构化
     c) 2:44 - 配置主路由
     d) 3:40 - 将api逻辑，转移至controller下
     e) 4:14 - 应用controller逻辑，至路由
     f) 5:04 - 改进路由
-# 181( 等待笔记 )
+# 181( 完成笔记 )
     a) 00:00 - 配置overview页面1
     b) 2:25 - 构建: 确定overview页面构建思路
     c) 3:58 - 查询数据，传入pug模板( 好原始 )
@@ -1919,7 +1919,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     e) 9:48 - 预览页面
     f) 11:12 - each tour in tours: pug预发循环迭代
     g) 11:17 - 预览页面
-# 182( 等待笔记 )
+# 182( 完成笔记 )
     a) 00:00 - 配置overview页面2
     b) 3:58 - 给pug配置变量，动态迭代渲染card
         0. 注意: 注意图片路径, 从public读取
@@ -1930,7 +1930,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     g) 13:59 - 完成card的pug变量填充
     h) 15:09 - 优化card排列布局
     i) 15:21 - 预览效果
-# 183( 等待笔记 )
+# 183( 完成笔记 )
     a) 00:00 - 配置tour页面1
     b) 3:03 - 构建: 确定tour页面构建思路
     c) 3:33 - 配置路由
@@ -1948,7 +1948,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     m) 17:43 - 预览效果
     n) 20:03 - pug中使用js预发方式, 并mixin根据需求应用
     o) 20:21 - 预览效果
-# 184( 等待笔记 - 实战位置 )
+# 184( 完成笔记 )
     a) 00:00 - 配置tour页面2
         0. 关键字: quick facts  
     b) 3:07 - each迭代渲染导游变量内容
@@ -1966,14 +1966,14 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     o) 22:54 - 评论pug方法移动到单独的文件下
     p) 24:53 - tour底部渲染
     q) 24:59 - 预览效果
-# 185( 等待笔记 )
+# 185( 完成笔记 )
     a) 00:00 - Map地图,构建基础结构
     b) 4:38 - 引入mapbox.js
     c) 5:03 - 地图相关逻辑开发位置
     d) 7:41 - 导入地图相关信息
     e) 10:43 - 转移mapbox.js到文件底部
     f) 10:53 - 尝试在js中获取地图dom中数据
-# 186( 等待笔记 )
+# 186( 完成笔记 - 实战位置 )
     a) 00:00 - MapBox地图第三方库使用
     b) 1:57 - 访问MapBox官方，获取访问权限
     c) 2:34 - 引入MapBox要求的js cdn文件

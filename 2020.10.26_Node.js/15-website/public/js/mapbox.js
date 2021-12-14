@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 /**
- * 当前mapbox地图标点玩法( 等待笔记 )
+ * 当前mapbox地图标点玩法( 完成笔记 )
  *      a) 引入基本文件
  *          0. js:
  *              a) 基本: https://cdn.jsdelivr.net/npm/mapbox-gl@2.6.1/dist/mapbox-gl.min.js
@@ -19,7 +19,7 @@
 
 (function () {
     // # 获取位置数据
-    // # es5获取标签数据方法( 等待笔记 )
+    // # es5获取标签数据方法( 完成笔记 )
     //      a) 使用方法
     //          0. 数据赋值给标签: <div id="test" data-xxx="123" ></div>
     //          1. es5获取数据: document.querySelector("#map").dataset.xxx

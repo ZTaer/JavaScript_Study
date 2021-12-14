@@ -1,4 +1,4 @@
-//- 使用pug第五个实例: mixin函数方式渲染 ( 等待笔记 )
+//- 使用pug第五个实例: mixin函数方式渲染 ( 完成笔记 )
     a) mixin函数渲染
         0. 创建函数
             mixin xxx( x,y )
@@ -48,7 +48,7 @@ mixin handleMixinReviewsCard( name, avatra, review, rating )
                 svg.reviews__star( class=`reviews__star--${ rating >= item ? "active" : "inactive" }`) 
                     use(xlink:href="/img/icons.svg#icon-star")
 
-//- 示例: 给block追加代码 ( 等待笔记 )
+//- 示例: 给block追加代码 ( 完成笔记 )
 block append head
     link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/mapbox-gl@2.6.1/dist/mapbox-gl.min.css")
 
