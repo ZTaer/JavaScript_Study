@@ -3,7 +3,7 @@ const viewsControllers = require("../controllers/views.controller");
 
 const router = express.Router();
 
-// 配置3: pug路由 | 非结构化( 等待笔记 )
+// 配置3: pug路由 | 非结构化( 完成笔记 )
 //      a) pug支持传入变量
 
 // router.get("/", (req, res) => {
@@ -13,7 +13,7 @@ const router = express.Router();
 //     });
 // });
 
-// 配置4: pug路由 | 结构化( 等待笔记 )
+// 配置4: pug路由 | 结构化( 完成笔记 )
 router.get("/", viewsControllers.getOverview);
 router.get("/overview", viewsControllers.getOverview);
 router.get("/tour/:slug", viewsControllers.getTour);

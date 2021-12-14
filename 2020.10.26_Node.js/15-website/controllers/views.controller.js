@@ -9,7 +9,7 @@ exports.getBase = (req, res) => {
 };
 
 /**
- * 服务端获取数据进行页面渲染: 实例1 ( 等待笔记 )
+ * 服务端获取数据进行页面渲染: 实例1 ( 完成笔记 )
  * overview页面渲染接口
  */
 exports.getOverview = catchAsync(async (req, res, next) => {
@@ -19,12 +19,12 @@ exports.getOverview = catchAsync(async (req, res, next) => {
     // 接口渲染
     res.status(200).render("overview", {
         title: "ALL TOUR",
-        tours,
+        tours, // 传输给pug模板的数据，在pug可直接读取使用
     });
 });
 
 /**
- * 服务端获取数据进行页面渲染: 实例2 ( 等待笔记 )
+ * 服务端获取数据进行页面渲染: 实例2 ( 完成笔记 )
  * tour详情页面渲染接口
  *      a) 注意: 这里在中间件返回数据中增加了, 虚拟字段"slug", 其值与testMongooseMiddlewareSave相同
  */
@@ -40,7 +40,7 @@ exports.getTour = catchAsync(async (req, res, next) => {
     console.log(`tourItem`, tourItem);
 
     res.status(200).render("tour", {
-        title: "THE FOREST HIKER TOUR",
+        title: `${tourItem.name} Tour`,
         tourItem,
     });
 });

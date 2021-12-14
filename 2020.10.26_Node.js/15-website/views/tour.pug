@@ -1,4 +1,4 @@
-//- 使用pug第五个实例: mixin函数方式渲染 ( 等待笔记 )
+//- 使用pug第五个实例: mixin函数方式渲染 ( 完成笔记 )
     a) mixin函数渲染
         0. 创建函数
             mixin xxx( x,y )
@@ -16,6 +16,8 @@
 
 
 extends base
+
+
 
 //- 渲染旅游信息
 mixin handleMixinOverviewBox( label, text, icon )
@@ -45,6 +47,10 @@ mixin handleMixinReviewsCard( name, avatra, review, rating )
             each item in [1,2,3,4,5]
                 svg.reviews__star( class=`reviews__star--${ rating >= item ? "active" : "inactive" }`) 
                     use(xlink:href="/img/icons.svg#icon-star")
+
+//- 示例: 给block追加代码 ( 完成笔记 )
+block append head
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/mapbox-gl@2.6.1/dist/mapbox-gl.min.css")
 
 
 block content 
@@ -93,6 +99,8 @@ block content
             div.picture-box
                 img( src=`/img/tours/${item}`, alt=`The Park Camper Tour ${index+1}`).picture-box__img
                 class=`picture-box__img--${index+1}`
+    section.section-map
+        div#map( data-locations=`${JSON.stringify(tourItem.locations)}` )
     //- #评论
     section.section-reviews
         div.reviews
@@ -118,6 +126,10 @@ block content
                 h2.heading-secondary What are you waiting for?
                 p.cta__text= `${tourItem.duration} days. 1 adventure. Infinite memories. Make it yours today!`
                 button.btn.btn--green.span-all-rows Book tour now!
+    //- js文件 
+    script(src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-language/v1.0.0/mapbox-gl-language.js") 
+    script(src="https://cdn.jsdelivr.net/npm/mapbox-gl@2.6.1/dist/mapbox-gl.min.js") 
+    script(src="/js/mapbox.js") 
 
 
 
