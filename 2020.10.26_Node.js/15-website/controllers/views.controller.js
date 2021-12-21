@@ -44,3 +44,10 @@ exports.getTour = catchAsync(async (req, res, next) => {
         tourItem,
     });
 });
+
+/**
+ * 配置登陆页面controllers ( 等待笔记 )
+ */
+exports.getLoginForm = catchAsync(async (req, res, next) => {
+    res.status(200).render("login", { title: "登陆你的账号" });
+});

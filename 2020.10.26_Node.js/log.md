@@ -1973,7 +1973,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     d) 7:41 - 导入地图相关信息
     e) 10:43 - 转移mapbox.js到文件底部
     f) 10:53 - 尝试在js中获取地图dom中数据
-# 186( 完成笔记 - 实战位置 )
+# 186( 完成笔记 )
     a) 00:00 - MapBox地图第三方库使用
     b) 1:57 - 访问MapBox官方，获取访问权限
     c) 2:34 - 引入MapBox要求的js cdn文件
@@ -2004,7 +2004,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     c) 2:46 - 渲染逻辑接口
     d) 3:49 - 构建: pug模板文件 
     e) 5:32 - 浏览登陆页面,此时并无登陆逻辑
-# 188( 等待笔记 )
+# 188( 等待笔记 - 实战位置 )
     a) 00:00 - 登陆API应用1
     b) 3:58 - 用原生js做提交逻辑( 太上古了 )
     c) 4:18 - 禁用eslint( 太暴力了,不推荐 )
