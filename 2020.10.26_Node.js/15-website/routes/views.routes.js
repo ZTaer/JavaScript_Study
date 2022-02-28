@@ -4,6 +4,11 @@ const authControllers = require("../controllers/auth.controllers");
 
 const router = express.Router();
 
+/**
+ * 用户登陆: pug渲染页面时使用的中间件,方便渲染页面时读取user信息( 等待笔记 - 其实在API项目中无需设定此逻辑, 此逻辑仅适用于pug )
+ */
+// router.use(authControllers.isLoggedIn);
+
 // 配置3: pug路由 | 非结构化( 完成笔记 )
 //      a) pug支持传入变量
 

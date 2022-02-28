@@ -29,8 +29,8 @@
                     "Content-Type": "application/json; charset=utf-8",
                 },
             });
-            alert("登陆成功!");
             console.log(`data`, data);
+            window.location.href = "/";
         } catch (error) {
             console.warn("handleAsyncLogin error", error);
             alert("user password error or email!");
