@@ -1,5 +1,6 @@
 <pre>
 Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/learn/lecture/15080910#overview
+注意: 随着视频资源的时间更新迭代,日志可能与视频顺序有所偏差
 # 1 ~ # 4: 介绍Node.js
 # 5( 完成笔记 )
     a) 00:00 - 为什么要使用Node.js?
@@ -1973,7 +1974,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     d) 7:41 - 导入地图相关信息
     e) 10:43 - 转移mapbox.js到文件底部
     f) 10:53 - 尝试在js中获取地图dom中数据
-# 186( 完成笔记 - 实战位置 )
+# 186( 完成笔记 )
     a) 00:00 - MapBox地图第三方库使用
     b) 1:57 - 访问MapBox官方，获取访问权限
     c) 2:34 - 引入MapBox要求的js cdn文件
@@ -2025,7 +2026,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     p) 20:19 - 登陆后测试页面访问是否正常
 # 189( 等待笔记 )
     a) 00:00 - 登陆API应用2
-    b) 6:33 - 构建中间件: node登陆逻辑，使不能报错误信息
+    b) 6:33 - 构建中间件: node登陆逻辑，使不能报错误信息 ( 实战位置 )
     c) 7:14 - 应用中间件
     d) 10:13 - 改进header显示，登陆用户信息
     e) 12:59 - 登陆中间件有bug
@@ -2061,7 +2062,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     e) 9:07 - 应用"退出登陆"按钮前端逻辑
     f) 10:30 - 修正: 退出登陆路由
     g) 12:38 - 改进: jwt token 验证逻辑，以适应退出登陆
-# 192( 等待笔记 )
+# 192 --修正--> 193( 等待笔记 )
     a) 00:00 - 渲染错误页面, 如404页面 ( 核心 )
     b) 0:32 - 解决错误路由问题，渲染指定错误信息
         0. 可以指定的错误页面
@@ -2082,8 +2083,8 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         0. 注意: return res
     l) 19:07 - 修复: 错误信息没有反馈成功，这里需要单独赋值, 建议深拷贝object内容
     m) 20:05 - 测试错误逻辑
-# 193( 等待笔记 ) 
-    a) 00:00 - 构建用户信息页面
+# 194( 等待笔记 ) 
+    a) 00:00 - 建立用户账号界面
     
 
   

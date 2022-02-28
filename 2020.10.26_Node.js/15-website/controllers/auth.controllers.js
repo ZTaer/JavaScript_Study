@@ -10,14 +10,9 @@ const SendEmail = require("../utils/email.utils");
  * 运算逻辑区
  */
 // 根据用户id生成jwt token
-const handleOutputToken = (userId) => jwt.sign(
-    { id: userId },
-    process.env.JWT_SECRET,
-    {
-        expiresIn: process.env.JWT_EXPIRES_IN,
-    },
-);
-
+const handleOutputToken = (userId) => jwt.sign({ id: userId }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+});
 
 // 构建: 通用方法, 发送用户新生成的token逻辑( 完成笔记 )
 //      a) 构建原因: 此方法重复使用地方较多
@@ -38,7 +33,10 @@ const handleCpuCreateTokenSendTo = (user, statusCode = 200, res) => {
         const token = handleOutputToken(user._id);
 
         const cookieOption = {
-            expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000),
+            expires: new Date(
+                Date.now()
+                    + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000,
+            ),
             httpOnly: true,
         };
         if (process.env.NODE_ENV === "produce") cookieOption.secure = true; // 仅在生产模式，开启此安全选项
@@ -69,7 +67,6 @@ const handleCpuFilterKeyNameDate = (objectDate, ...keyName) => {
     }
 };
 
-
 /**
  * 构建: API注册用户逻辑 ( 完成笔记 )
  */
@@ -77,9 +74,14 @@ const handleCpuFilterKeyNameDate = (objectDate, ...keyName) => {
 // 注册逻辑
 exports.userSinUp = catchAsync(async (req, res, next) => {
     const {
-        email, phone, name, photo, password, passwordConfirm, passwordChangeAt,
+        email,
+        phone,
+        name,
+        photo,
+        password,
+        passwordConfirm,
+        passwordChangeAt,
     } = req.body;
-
 
     const newUser = await User.create({
         email, // 必填
@@ -103,7 +105,6 @@ exports.userSinUp = catchAsync(async (req, res, next) => {
      */
     handleCpuCreateTokenSendTo(newUser, "201", res);
 });
-
 
 /**
  * api用户登陆逻辑( 完成笔记 )
@@ -141,7 +142,10 @@ exports.userLogIn = catchAsync(async (req, res, next) => {
     //      a) 注意: schema method引入使用方式, 且为异步函数
     //      b) 模型: xxx.correctPassword
     const findResult = await User.findOne({ email }).select("+password");
-    if (!findResult || !await findResult.correctPassword(password, findResult.password)) {
+    if (
+        !findResult
+        || !(await findResult.correctPassword(password, findResult.password))
+    ) {
         return next(new AppError("user password error or email!", 401));
     }
 
@@ -169,7 +173,8 @@ exports.protect = catchAsync(async (req, res, next) => {
     //          2. 从req.headers.authorization( 包头 ): 获取token信息
     let token = "";
     if (
-        req.headers.authorization && req.headers.authorization.startsWith("Bearer")
+        req.headers.authorization
+        && req.headers.authorization.startsWith("Bearer")
     ) {
         token = req.headers.authorization.split(" ")[1];
     } else if (req.cookies && req.cookies.JWT) {
@@ -204,7 +209,12 @@ exports.protect = catchAsync(async (req, res, next) => {
     //      a) 主要目的: 验证用户是否存在，防止token存在，用户不存在的情况
     const freshUser = await User.findById(decoded.id);
     if (!freshUser) {
-        return next(new AppError(" The user belonging to this token does no longer exist! ", 401));
+        return next(
+            new AppError(
+                " The user belonging to this token does no longer exist! ",
+                401,
+            ),
+        );
     }
 
     // 3. 签发token后，检测用户是否修改了密码
@@ -224,6 +234,44 @@ exports.protect = catchAsync(async (req, res, next) => {
 
 
 /**
+ * 用户登陆: pug渲染页面时使用的中间件,方便渲染页面时读取user信息( 等待笔记 )
+ */
+exports.isLoggedIn = catchAsync(async (req, res, next) => {
+    // 0. 获取token
+    let token = "";
+    if (
+        req.headers.authorization
+        && req.headers.authorization.startsWith("Bearer")
+    ) {
+        token = req.headers.authorization.split(" ")[1];
+    } else if (req.cookies && req.cookies.JWT) {
+        // 从cookie验证获取token( 完成笔记 )
+        token = req.cookies.JWT;
+    }
+    if (token) {
+        // 1. 验证token
+        const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+        // 2. 验证用户是否正确
+        //      a) 主要目的: 验证用户是否存在，防止token存在，用户不存在的情况
+        const freshUser = await User.findById(decoded.id);
+        if (!freshUser) {
+            return next();
+        }
+
+        // 3. 签发token后，检测用户是否修改了密码
+        if (await freshUser.changePasswordAfter(decoded.iat)) {
+            return next();
+        }
+
+        // 4. 保存数据至res.locals使pug模板能访问变量( 等待笔记 - 核心 )
+        res.locals.user = freshUser;
+        return next();
+    }
+    next();
+});
+
+/**
  * 构建: 用户权限验证逻辑( 完成笔记 )
  *      a) role: ["xxx"]为数据类型，此为es6入参写法
  *      b) req.user.role: 只所以能获取到，用户信息，是因为在上放中间件做了铺垫，将查询到的user信息保存在了req中
@@ -238,7 +286,6 @@ exports.restrictTo = (...role) => (req, res, next) => {
 
     next();
 };
-
 
 /**
  * 构建: 忘记密码逻辑( 完成笔记 )
@@ -276,7 +323,9 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     //          0. req.protocol: 获取协议
     //          1. req.get("host"): 获取域名
     //      b) 注意: 如果邮件发送失败，则置空数据库中的，"重置token"，以及"重置token有效时间"
-    const resetUrl = `${req.protocol}://${req.get("host")}/api/v1/user/forgotpassword/${resetToken}`;
+    const resetUrl = `${req.protocol}://${req.get(
+        "host",
+    )}/api/v1/user/forgotpassword/${resetToken}`;
     const message = `<h1>重置密码: </h1><a href="${resetUrl}" target="_blank" >${resetUrl}</a>`;
 
     try {
@@ -294,7 +343,9 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
         user.passwordResetToken = undefined;
         user.passwordResetExpires = undefined;
         user.save({ validateBeforeSave: false });
-        return next(new AppError("Failed to send mail, please try again!", "500"));
+        return next(
+            new AppError("Failed to send mail, please try again!", "500"),
+        );
     }
 });
 
@@ -306,7 +357,10 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     // 0. 获取"重置令牌"
     const { resetTokenId } = req.params;
     const { password, passwordConfirm } = req.body;
-    const encryptResetTokenId = crypto.createHash("sha256").update(resetTokenId).digest("hex");
+    const encryptResetTokenId = crypto
+        .createHash("sha256")
+        .update(resetTokenId)
+        .digest("hex");
 
     // 1. 对比重置令牌
     //      a) 验证方式:
@@ -318,7 +372,9 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
         passwordResetToken: encryptResetTokenId,
         passwordResetExpires: { $gt: Date.now() },
     });
-    if (!user) { return next(new AppError("user not find!", 400)); }
+    if (!user) {
+        return next(new AppError("user not find!", 400));
+    }
 
     // 2. 更新改变密码时间( 此逻辑放置中间件最佳 )
     user.password = password;
@@ -372,7 +428,6 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
     handleCpuCreateTokenSendTo(user, "201", res);
 });
 
-
 /**
  * 构建: 更新当前用户个人信息( 完成笔记 )
  *      a) 注意: 防密码更新
@@ -391,10 +446,14 @@ exports.updateCurrentUser = catchAsync(async (req, res, next) => {
     }
 
     // 1. 更新用户个人信息
-    const updateUser = await User.findByIdAndUpdate(req.user.id, handleCpuFilterKeyNameDate(req.body, "name", "phone"), {
-        new: true,
-        runValidators: true,
-    });
+    const updateUser = await User.findByIdAndUpdate(
+        req.user.id,
+        handleCpuFilterKeyNameDate(req.body, "name", "phone"),
+        {
+            new: true,
+            runValidators: true,
+        },
+    );
 
     res.status(200).json({
         status: "success",
@@ -432,4 +491,3 @@ exports.deleteCurrentUser = catchAsync(async (req, res, next) => {
         data: user,
     });
 });
-
