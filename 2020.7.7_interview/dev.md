@@ -13,8 +13,8 @@
 2. 跨域问题
     a) 什么是跨域? - 浏览器的同源安全策略，协议相同（protocol）主机相同（host）端口相同（port), 如果3者有一种不同,那么就是跨域
     b) 解决跨域的有效策略? - 
-        a) 前端: 用whistle代理调试
-        b) 后端: 通过配置nginx实现代理
+        0. 前端: 用whistle代理调试
+        1. 后端: 通过配置nginx实现代理
 
 # 原生JS类
 0. 原型及原型链
@@ -122,6 +122,20 @@
         2. 块级作用域: ES6引入了let和const关键字,和var关键字不同，在大括号中使用let和const声明的变量存在于块级作用域中。在大括号之外不能访问这些变量
     c) 作用域链: 当在Javascript中使用一个变量的时候，首先Javascript引擎会尝试在当前作用域下去寻找该变量，如果没找到，再到它的上层作用域寻找，以此类推直到找到该变量或是已经到了全局作用域, 如果找不到,在严格模式下会报错
 8. promise相关
+    a) promise的3个状态
+        0. pending（进行中）
+        1. fulfilled（已成功）
+        2. rejected（已失败）
+    b) 正常使用的promise
+        0. 示例: 
+        const p1 = new Promise((resolve, reject) => {
+            resolve('hello');
+        })
+        .then(result => result)
+        .catch(e => e);
+    c) promise.all的使用
+        0. 示例: const p = Promise.all([p1, p2, p3]);
+        1. 只有p1、p2、p3的状态都变成fulfilled，p的状态才会变成fulfilled
 # React类
 0. React生命周期相关
     a) 说说 React 生命周期有哪些不同阶段？每个阶段对应的方法是？
