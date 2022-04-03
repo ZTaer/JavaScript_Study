@@ -18,7 +18,7 @@ const TestFdJl = () => {
         };
     }
 
-    // 节流
+    // 节流 360,
     function handleUiJl(fn, delay) {
         let timeout = true;
         return function () {

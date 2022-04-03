@@ -180,6 +180,85 @@
 9. 说说React Jsx转换成真实DOM过程？
 # 项目类
 0. 动态组件/动态表单, 方案制定
+    a) 必备条件
+        0. 表单的自动抓取rc-field-form( antd,fusion design )
+        1. 一个约定的,通用的JSON规范
+    b) 功能:
+        0. 动态表单
+        1. 动态组件( 交互逻辑复杂的那种 )
+    c) 实现细节:
+        0. 接入层 
+            a) 登记组件
+            b) 接入后端返给JSON
+            c) json状态管理( 目的: 做一些动态组件的,简单联动行为 )
+                0. 为什么是简单联动行为? --> 靠引擎自身给的方法,面对复杂交互逻辑时维护成本高,不如交给业务组件封装,在进行登记,在渲染
+        1. 逻辑层
+            a) 根据JSON决定选择渲染那个，已登记的组件
+        2. 输出层 
+            a) react正常渲染
+    d) 问题:
+        0. 目前没有开放简单的，联动行为? 
+            a) 原因是一旦口子开了, 他们会优先使用这些逻辑, 会导致后端逻辑维护成本过高，因为后端逻辑要提供action行为
+            b) 所以如果是保持规范的开发: 复杂的联动用业务组件, 简单的联动，用action的行为，就是本质上来说，就是根据提供的name改变对应的json
+        1. 注意: 
+            a) 递归渲染逻辑是否可行? 我们无需考虑递归逻辑, 单独开发个容器组件即可
+            b) Table组件有翻页的? 不推荐翻页字段内容在组件中，因为每一次的翻页都需要请求后端，然后重新渲染
+                0. 解决方案一: Table给request属性,里面含自己的请求,请求在table内部做
+                1. 解决方案二: Table不在动态渲染 
+    e) JSON规范核心属性
+        0. [
+            {
+                "uiType": "Input",
+                "value": "方便回填数据",
+                "visible": "隐藏/显示",
+                "disabled": "禁用"
+                "name": "唯一值,提交时的字段, 另外就是react map便利渲染做为key, 这样我们改变json便利渲染时, react可以做局部渲染",
+                "className": "方便控制样式"
+                "style": { "react约定style css语法" }
+            },
+            {
+                "uiType": "Select",
+                "name":"2"
+                "request": {
+                    "url": "/xxx",
+                    "method": "POST",
+                    "contentType": "application/json"
+                    "data": {
+                        test: "入参"
+                    }
+                }
+                "hotload": true,
+                "options": [
+                    {
+                        "label": "选项1",
+                        "value": "值"
+                    }
+                ],
+                "value": ""
+            },
+            {
+                "uiType": "Table",
+                "name": "3"
+                "dataSource": [],
+                "columns": [ 用于决定渲染列的内容 ],
+                "pageInfo": {
+                    "current": "1",
+                    "total": "100",
+                    "pageSize": "10"
+                }
+            },
+            {
+                "uiType": "FlexContainer",
+                "className":"xx"
+                "element": [ 
+                    背后逻辑交给引入过来的引擎,
+                    {
+                        "uiType": "Input",
+                        ...
+                    }
+                ]
+            }
+        ]
 
 # webpack类
 0. 说说你对webpack的理解？解决了什么问题？
