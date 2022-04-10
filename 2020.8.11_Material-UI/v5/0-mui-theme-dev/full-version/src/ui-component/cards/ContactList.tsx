@@ -1,0 +1,91 @@
+// material-ui
+import { styled, useTheme } from '@mui/material/styles';
+import { Button, Grid, Tooltip, Typography } from '@mui/material';
+
+// project imports
+import Avatar from '../extended/Avatar';
+import { gridSpacing } from 'store/constant';
+import { UserProfile } from 'types/user-profile';
+
+// assets
+import ChatBubbleTwoToneIcon from '@mui/icons-material/ChatBubbleTwoTone';
+import PhoneTwoToneIcon from '@mui/icons-material/PhoneTwoTone';
+
+const avatarImage = require.context('assets/images/users', true);
+
+// styles
+const ListWrapper = styled('div')(({ theme }) => ({
+    padding: '15px 0',
+    borderBottom: theme.palette.mode === 'dark' ? 'none' : '1px solid',
+    borderTop: theme.palette.mode === 'dark' ? 'none' : '1px solid',
+    borderColor: `${theme.palette.grey[100]}!important`
+}));
+
+// ==============================|| USER CONTACT LIST ||============================== //
+
+interface ContactListProps extends UserProfile {
+    onActive: () => void;
+}
+
+const ContactList = ({ avatar, name, role, onActive }: ContactListProps) => {
+    const theme = useTheme();
+    const avatarProfile = avatar && avatarImage(`./${avatar}`).default;
+
+    return (
+        <ListWrapper>
+            <Grid container alignItems="center" spacing={gridSpacing}>
+                <Grid
+                    item
+                    xs={12}
+                    sm={6}
+                    onClick={() => {
+                        onActive && onActive();
+                    }}
+                    style={{ cursor: 'pointer' }}
+                >
+                    <Grid container alignItems="center" spacing={gridSpacing} sx={{ flexWrap: 'nowrap' }}>
+                        <Grid item>
+                            <Avatar alt={name} src={avatarProfile} sx={{ width: 48, height: 48 }} />
+                        </Grid>
+                        <Grid item sm zeroMinWidth>
+                            <Grid container spacing={0}>
+                                <Grid item xs={12}>
+                                    <Typography variant="h4" component="div">
+                                        {name}
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography variant="caption">{role}</Typography>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <Grid
+                        container
+                        spacing={1}
+                        sx={{ justifyContent: 'flex-end', [theme.breakpoints.down('md')]: { justifyContent: 'flex-start' } }}
+                    >
+                        <Grid item>
+                            <Tooltip placement="top" title="Message">
+                                <Button variant="outlined" sx={{ minWidth: 32, height: 32, p: 0 }}>
+                                    <ChatBubbleTwoToneIcon fontSize="small" />
+                                </Button>
+                            </Tooltip>
+                        </Grid>
+                        <Grid item>
+                            <Tooltip placement="top" title="Call">
+                                <Button variant="outlined" color="secondary" sx={{ minWidth: 32, height: 32, p: 0 }}>
+                                    <PhoneTwoToneIcon fontSize="small" />
+                                </Button>
+                            </Tooltip>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </ListWrapper>
+    );
+};
+
+export default ContactList;
