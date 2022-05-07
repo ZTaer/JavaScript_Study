@@ -1,0 +1,13 @@
+body {
+  font-size: 22px;
+}
+
+input[type="text"] {
+  margin: 10px 0;
+  display: block;
+}
+
+/** 隐匿未渲染dom元素: css代码配置 **/
+[v-cloak] {
+    display: none;
+}

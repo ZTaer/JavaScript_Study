@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>VueJS Course</title>
+  <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<body>
+  <div id="app" v-cloak >
+    <!--
+        v-if条件渲染逻辑 ( 等待笔记 )
+          a) 功能: v-if 根据逻辑决定是否渲染dom
+          b) 注意: v-else-if & v-else 判断条件决定渲染,中间不能有隔离标签否则失效
+        <template />相当于<React.Farmate /> ( 等待笔记 )
+    -->
+    <select v-model = "age" style="width: 100px"  >
+      <option value="a">a</option>
+      <option value="b">b</option>
+      <option value="c">c</option>
+    </select>
+    <h3 v-if="age == 'a'" >v-if</h3> 
+    <template v-else-if="age == 'b'" >
+      <h3>v-else-if</h3> 
+    </template>
+    <h3 v-else="age == 'c'" >v-else</h3> 
+
+  </div>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

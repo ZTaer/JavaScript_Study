@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>VueJS Course</title>
+  <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<body>
+  <div id="app" v-cloak >
+    <!--
+        v-for遍历渲染逻辑 ( 等待笔记 )
+    -->
+
+    <h2>
+      基本渲染
+    </h2>
+    <div class="data-source-item" v-for="( item,index ) in dataSource" :key="index" >
+      <h3>{{item}}</h3>
+    </div>
+
+    <h2>
+      遍历list渲染
+    </h2>
+    <div class="data-source-item" v-for="( item,index ) in dataSourceList" :key="index" >
+      <h3>{{item.name}}: {{item.age}}</h3>
+    </div>
+
+    <h2>
+      遍历list渲染多级嵌套遍历( 等待笔记 )
+        a) v-for可遍历Array
+          0. v-for="(cur,index) in Array"
+          1. cur: 为当前值
+          2. keyName: 无
+          3. index: 为索引值
+        b) v-for可遍历Object
+          0. v-for="(cur,keyName,index) in Object"
+          1. cur: 为当前值
+          2. keyName: 为当前键值
+          3. index: 为索引值
+    </h2>
+    <div class="data-source-item" v-for="( item,index ) in dataSourceList" :key="index" >
+      <h3>{{item.name}}: {{item.age}}</h3>
+      <p>
+        <span v-for="(cur,keyName,index) in item.cars" :key="keyName" >
+          | {{keyName}} = {{cur}}; - {{index}} |
+        </span>
+      </p>
+      <hr/>
+    </div>
+
+  </div>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

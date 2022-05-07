@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>VueJS Course</title>
+  <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<body>
+  <div id="app" v-cloak >
+    <h2>
+      变量引用相关
+    </h2>
+    <p>{{ 
+      // 变量使用
+      start }}</p>
+    <p>{{ 
+      // 函数使用
+      handleStart() }}</p>
+    <h2>
+      语法相关
+    </h2>
+    <div>
+      <label for="testA">v-model测试数据绑定</label>
+      <input name="testA" type="text" v-model="start" />
+      <label for="testB">v-model约束数据类型,number</label>
+      <input name="testB" type="number" v-model.number="age" />
+      <label for="testC">v-model.lazy.trim懒同步+处理字符串二端空格</label>
+      <input name="testC" type="text" v-model.lazy.trim="start" />
+    </div>
+    <a v-bind:href="url" target="_blank" >
+      淘宝( v-bind绑定属性 )
+    </a>
+    <a :href="url" target="_blank" >
+      淘宝( v-bind简写绑定属性 )
+    </a>
+    <div v-html="vueHtml" ></div>
+    <h2>
+      事件相关
+    </h2>
+    <label for="testAge">@input输入事件</label>
+    <input type="number" name="testAge" :value="age" @input.prevent="handleUiChangeAge" /> 
+    <label for="testProps">@input输入事件入参</label>
+    <input type="number" name="testProps" :value="age" @input="handleUiChangeProps($event, 'msg props')" /> 
+    <button v-on:click="handleUiAddAge"  >
+      增加age( 单击事件:方式一 )
+    </button>
+    <button  @click="handleUiDelAge"  >
+      减少age( 单击事件:方式二 )
+    </button>
+    <h2>
+      键盘事件
+    </h2>
+    <h3>
+     {{
+      keyboardData
+     }} 
+     {{
+      age
+     }} 
+    </h3>
+    <input type="text" @keyup.enter="handleUiKeyboard" >
+    <button  @click.ctrl="handleUiDelAge"  >
+      减少age( 键盘事件: 按住ctrl+鼠标左键,促发事件 )
+    </button>
+    <h2>
+      computed运算方法
+    </h2>
+    <h3>
+      age: {{
+        handleCpuAge
+      }}
+    </h3>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
