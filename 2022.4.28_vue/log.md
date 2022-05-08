@@ -207,9 +207,21 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     a) 00:00 - 本地服务
 # 60( 等待笔记 )
     a) 00:00 - 审查文件
-    b) 
+    b) 7:57 - vue文件组成3部分
+        0. html <template></template>
+        1. javascript <script></script>
+        2. css <style></style>
 
+# 61( 等待笔记 )
+    a) 00:00 - 创建组件
+    b) 2:38 - 构建基本组件
 
+# 62( 等待笔记 )
+    a) 00:00 - 创建子组件
+    b) 2:48 - 基本子组件
+    c) 5:42 - 全局注册子组件 ( 不推荐 ) 
+        0. 会影响webpack优化编译
+    d) 7:12 - 使用子组件
          
 
 

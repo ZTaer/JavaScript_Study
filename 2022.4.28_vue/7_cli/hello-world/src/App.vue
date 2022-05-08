@@ -1,10 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld ></HelloWorld>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/hello-word/index.vue";
+
+/**
+ * 使用子组件 ( 等待笔记 )
+ *    0. vue components登记组件
+ *        a) 登记组件后, 可以在template标签中使用
+ */
 
 export default {
   name: 'App',
@@ -15,12 +20,5 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
