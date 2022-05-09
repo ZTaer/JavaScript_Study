@@ -222,6 +222,60 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     c) 5:42 - 全局注册子组件 ( 不推荐 ) 
         0. 会影响webpack优化编译
     d) 7:12 - 使用子组件
+
+# 63( 等待笔记 )
+    a) 00:00 - 组件样式
+    b) 2:59 - scoped使用
+    c) 4:01 - css作用域: style下的scoped属性作用
+        0. 文档: https://staging-cn.vuejs.org/api/sfc-css-features.html#scoped-css
+        1. 作用: 样式仅作用在当前组件下
+
+# 64( 等待笔记 )
+    a) 00:00 - 组件中使用scss
+        0. 官方文档: https://cli.vuejs.org/guide/css.html#referencing-assets
+    b) 0:41 - 安装sass: yarn add sass-loader sass -D
+    c) 1:47 - 组件中使用scss
+
+# 65( 无需笔记 )
+    a) 00:00 - 组件之间的通信
+    b) 2:20 - 与react组件通信思路一致
+
+# 66( 等待笔记 )
+    a) 00:00 - vue props 组件通信
+    b) 3:57 - 父组件参数传子组件
+    c) 4:48 - 子组件使用props数据
+
+# 67( 等待笔记 )
+    a) 00:00 - props的局限性
+    b) 1:44 - 子组件: 构建一个小逻辑,验证props特性
+    c) 2:05 - 父组件: 增加父组件改变props逻辑
+    d) 3:53 - 正常情况下子组件无法相关props的数据
+
+# 68( 等待笔记 )
+    a) 00:00 - 子组件与父组件通信, 发射事件 
+    b) 2:23 - 子组件: 创建this.$emit事件让父组件监听
+    c) 3:45 - 父组件: 监听子组件发射的活动，从而促发方法
+    d) 5:16 - 子组件: this.$emit发射事件,并传递数据
+    e) 5:48 - 父组件: 回调函数接受数据
+    f) 7:18 - vue emits: 登记emits方便vue引擎登记
+
+# 69( 等待笔记 )
+    a) 00:00 - 组件入参 vue props 验证
+        0. 官方文档: https://vuejs.org/guide/components/props.html
+    b) 2:40 - 子组件定义props验证要求, 不满足组件将报错
+    c) 3:14 - 根据约定类型传输props数据,否则引擎将报错
+    d) 4:30 - vue porps object 时定义数据
+    e) 6:09 - vue props validator函数验证
+        0. 注意: validator中无法调用methods中的方法
+
+# 70( 等待笔记 )
+    a) 00:00 - 回调函数
+    b) 1:25 - 父组件: 通过props传输方法到子组件
+    c) 1:50 - 子组件: 通过props接受方法函数
+    d) 2:17 - 子组件: 使用props传递来的方法函数
+
+# 71( 等待笔记 )
+    a) 00:00 - 组件content
          
 
 
