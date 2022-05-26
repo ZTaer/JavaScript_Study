@@ -275,7 +275,17 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     d) 2:17 - 子组件: 使用props传递来的方法函数
 
 # 71( 等待笔记 )
-    a) 00:00 - 组件content
+    a) 00:00 - 用插槽(slots)插入内容
+    b) 0:36 - 构建: vue create slots
+    c) 5:03 - 导入template
+        0. 驼峰登记components后: TestHeader
+            a) 可以使用原名称写组件: <TestHeader>
+            b) 可以使用全部小写写组件: <testheader>
+            c) 可以使用'-'写组件: <test-header>
+    d) 8:17 - <slot></slot>标签相当于react的props content
+        0. slot代表标签内容
+# 72( 等待笔记 )
+    a) 00:00 - 
          
 
 
