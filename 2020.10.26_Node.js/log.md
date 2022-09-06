@@ -317,7 +317,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     a) 00:00 - Postman测试API工具必备
     b) 0:48 - 官网下载: https://www.postman.com/downloads/
         0. 官方文档: https://learning.postman.com/docs/getting-started/introduction/
-# 50( 完成笔记 )
+# 50( 完成笔记 - 练习项目正式启动 )
     a) 00:00 - 配置基本的路由
     b) 2:25 - 初始化npm配置( 比较标准 )
     c) 3:09 - 安装express@4版本，切忽安装5版本
@@ -392,8 +392,9 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     a) 00:00 - express中间件: 理论知识
 # 59( 完成笔记 )
     a) 00:00 - 构建自己的express中间件
-    b) 6:15 - 构建自己的中间件函数，并且证明测试实验，中间件与API接口的执行顺序
-    c) 7:59 - 中间件: 加工接受的包，增加时间属性，并且利用到API接口逻辑
+    b) 2:57 - 自定义中间件逻辑
+    c) 6:15 - 构建自己的中间件函数，并且证明测试实验，中间件与API接口的执行顺序
+    d) 7:59 - 中间件: 加工接受的包，增加时间属性，并且利用到API接口逻辑
 # 60( 完成笔记 )
     a) 00:00 - 使用第三方中间件
     b) 1:06 - 安装morgan: yarn add morgan --dev
@@ -412,7 +413,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     b) 2:53 - 构建user相关API路由
     c) 4:46 - 构建user相关的api逻辑( 模拟逻辑 )
     d) 5:56 - 在postman里构建: 结构化的测试API的节点
-# 62( 完成笔记 )
+# 62( 完成笔记 - 回忆remeber )
     a) 00:00 - express下更好路由写法
     b) 4:29 - 中间件express.Router(): 更好的路由写法
     c) 6:54 - 中间件express.Router(): 改进user路由
