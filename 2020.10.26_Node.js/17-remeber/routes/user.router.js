@@ -1,8 +1,8 @@
 const express = require("express");
-const { handleApiGetAllUser } = require("../controllers/user.controllers");
+const { handleApiGetAllUser, handleApiCreateUser, handleMidAPiAuthCreateUser } = require("../controllers/user.controllers");
 
-const userRouter = express.Router();
+const router = express.Router();
 
-userRouter.route("/").get(handleApiGetAllUser);
+router.route("/").get(handleApiGetAllUser).post(handleMidAPiAuthCreateUser, handleApiCreateUser);
 
-module.exports = userRouter;
+module.exports = router;

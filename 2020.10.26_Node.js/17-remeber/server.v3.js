@@ -1,24 +1,15 @@
-const express = require("express");
-const morgan = require("morgan");
-const tourRouter = require("./routes/tour.router");
-const userRouter = require("./routes/user.router");
+const dotenv = require("dotenv");
 
-const app = express();
+// 应用环境配置
+dotenv.config({ path: `${__dirname}/config.env` }); // 注意: 在app前否则会出现bug
 
-/**
- * 中间件相关
- */
-app.use(express.json());
-app.use(morgan("dev"));
+const app = require("./app");
 
 
-app.use("/api/v1/tours", tourRouter);
-app.use("/api/v1/users", userRouter);
+console.log("当前环境：", app.get("env")); // 查看当前项目环境
+// console.log("环境详情：", process.env); // 查看当前环境详情
 
-/**
- * 初始化
- */
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("http://localhost:3000/");
 });
 

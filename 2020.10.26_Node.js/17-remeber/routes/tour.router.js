@@ -6,9 +6,15 @@ const {
 /**
  * 路由管理
  */
-const tourRouter = express.Router();
+const router = express.Router();
 
-tourRouter.route("/").get(handleApiGetAllTour).post(handleApiAddTour);
-tourRouter.route("/:id").get(handleApiGetTourItem).patch(handleApiUpdateTourItem).delete(handleApiDeleteTourItem);
+// 根据url入参,局部中间件
+router.param("id", (req, res, next, val) => {
+    console.log("根据url入参,局部中间件 :>> ", val);
+    next();
+});
 
-module.exports = tourRouter;
+router.route("/").get(handleApiGetAllTour).post(handleApiAddTour);
+router.route("/:id").get(handleApiGetTourItem).patch(handleApiUpdateTourItem).delete(handleApiDeleteTourItem);
+
+module.exports = router;

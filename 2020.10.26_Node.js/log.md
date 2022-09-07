@@ -413,7 +413,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     b) 2:53 - 构建user相关API路由
     c) 4:46 - 构建user相关的api逻辑( 模拟逻辑 )
     d) 5:56 - 在postman里构建: 结构化的测试API的节点
-# 62( 完成笔记 - 回忆remeber )
+# 62( 完成笔记 )
     a) 00:00 - express下更好路由写法
     b) 4:29 - 中间件express.Router(): 更好的路由写法
     c) 6:54 - 中间件express.Router(): 改进user路由
@@ -486,7 +486,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         1. 变量没使用报错 ( 建议关闭 )
         2. const变量使用错误报错
     h) 12:11 - Eslint会配合vscode显示: 文件错误数量，以及位置
-# 69( 无需笔记 )
+# 69( 无需笔记 - 回忆remeber )
     a) 00:00 - MongoDb介绍
 # 70( 完成笔记 )
     a) 00:00 - MongoDb介绍
