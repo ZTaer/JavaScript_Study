@@ -486,7 +486,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
         1. 变量没使用报错 ( 建议关闭 )
         2. const变量使用错误报错
     h) 12:11 - Eslint会配合vscode显示: 文件错误数量，以及位置
-# 69( 无需笔记 - 回忆remeber )
+# 69( 无需笔记 )
     a) 00:00 - MongoDb介绍
 # 70( 完成笔记 )
     a) 00:00 - MongoDb介绍
@@ -605,7 +605,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     c) 2:15 - 删库跑路: db.xxxCollectionName.deleteMany( {} )
         0. 目的: 匹配所有的文档，进行删除
 # 78( 完成笔记 )
-    a) 00:00 - compress可视化MongoDB数据库 
+    a) 00:00 - compress可视化MongoDB数据库 ( 可视化本地数据库, 或者远程数据库 ) 
     b) 0:40 - compress下载: https://www.mongodb.com/try/download/compass 
     c) 2:22 - compress链接MongoDB本地数据库
     d) 3:51 - 使用compress工具, 注入数据, 输入时可切换输入的数据类型
@@ -681,7 +681,7 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     h) 9:01 - server.js: Node.js结合Mongoose配置远程数据库逻辑
     i) 11:01 - server.js: Node.js结合Mongoose配置本地数据库逻辑 
     j) 12:16 - 初始化数据库, 防止出错，准备填充数据
-# 83( 无需笔记 )
+# 83( 无需笔记 - 回忆remeber )
     a) 00:00 - 什么是Mongoose?
 # 84( 完成笔记 )
     a) 00:00 - mongoose.Scheme构建数据模型
