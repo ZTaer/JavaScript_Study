@@ -63,7 +63,7 @@
         "react-quill": "^2.0.0-beta.4",
         "react-redux": "^7.2.6",
         "react-router-dom": "^6.2.1",
-        "react-scripts": "^4.0.3",
+        "react-scripts": "^5.0.1",
         "react-slick": "^0.28.1",
         "react-syntax-highlighter": "^15.4.5",
         "react-timer-hook": "^3.0.5",
