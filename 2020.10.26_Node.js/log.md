@@ -681,13 +681,13 @@ Udemy课程：Jonas Schmedtmann - https://www.udemy.com/course/nodejs-express-mo
     h) 9:01 - server.js: Node.js结合Mongoose配置远程数据库逻辑
     i) 11:01 - server.js: Node.js结合Mongoose配置本地数据库逻辑 
     j) 12:16 - 初始化数据库, 防止出错，准备填充数据
-# 83( 无需笔记 - 回忆remeber )
+# 83( 无需笔记 )
     a) 00:00 - 什么是Mongoose?
 # 84( 完成笔记 )
     a) 00:00 - mongoose.Scheme构建数据模型
         0. 目的: 声明数据结构, 强大的数据效验功能测试
     b) 6:02 - 构建tour数据的mongoose.Scheme数据模型
-# 85( 完成笔记 )
+# 85( 完成笔记 - 回忆remeber )
     a) 00:00 - 创建文档 | 数据写入到数据库，以及mongoose.Scheme强大的效验功能测试
     b) 4:40 - mongoose存储数据: .save() 数据存入数据库中, 有错误处理逻辑
     c) 6:27 - mongoose.Scheme发挥了作用: 阻止不正确的写入数据方式 ( 核心: 牛逼 )
